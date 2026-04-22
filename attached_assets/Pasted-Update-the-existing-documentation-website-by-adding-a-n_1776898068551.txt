@@ -1,0 +1,94 @@
+Update the existing documentation website by adding a new section called “Business Tools”. These tools should be simple, lightweight, and focused on helping small businesses understand and manage money and operations.
+
+New Section: Business Tools
+
+Create a navigation category called:
+
+“Business Tools”
+
+Inside this section, add the following tools:
+
+1. Budgeting Tool
+
+Create a simple interactive budgeting tool.
+
+Features:
+Input fields for monthly income
+Input fields for business expenses (categorized if possible)
+Calculate:
+total expenses
+remaining profit
+savings margin percentage
+Requirements:
+Keep UI simple and clean
+No backend required
+Works entirely in browser (HTML/JS)
+Focus on clarity over design complexity
+2. Invoice Generator
+
+Create a basic invoice generator tool.
+
+Features:
+Input:
+business name
+client name
+service description
+amount
+date
+Generate a clean invoice preview on screen
+Include a “download as PDF” option if simple implementation is possible (optional)
+Requirements:
+Clean layout
+Printable format
+No authentication or storage system
+3. Expense Categorizer Tool
+
+Create a tool that helps users organize expenses.
+
+Features:
+Input expense name and amount
+Category selection:
+operations
+marketing
+supplies
+other
+Display categorized summary totals
+Requirements:
+Simple table or list output
+Real-time updates on input
+4. Cash Flow Forecast Tool (Simple Version)
+
+Create a basic forecasting tool.
+
+Features:
+Input expected monthly income
+Input expected monthly expenses
+Output:
+projected profit/loss
+simple monthly summary
+Requirements:
+No complex graphs needed
+Keep it beginner-friendly
+Design Requirements for All Tools
+Minimal, clean UI
+Mobile-friendly layout
+Fast loading
+No unnecessary animations
+Focus on usability, not aesthetics
+Consistent style across all tools
+Constraints
+Do NOT add backend systems or databases
+Do NOT add user accounts or login systems
+Do NOT over-engineer calculations or analytics
+Do NOT expand beyond listed tools
+Keep everything lightweight and expandable later
+Goal
+
+Create a simple suite of business utility tools that help small business owners:
+
+understand their money
+track basic financial activity
+generate documents
+improve operational clarity
+
+These tools should support the existing documentation site and lead naturally into future templates or automation systems.

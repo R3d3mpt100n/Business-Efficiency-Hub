@@ -88,3 +88,17 @@
     -webkit-font-smoothing: antialiased;
   }
 }
+
+@media print {
+  header, footer, nav, .print\:hidden {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .invoice-preview {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}

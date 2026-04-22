@@ -30,6 +30,7 @@ export function Layout({ children }: { children: ReactNode }) {
           <nav className="flex items-center gap-6">
             {navLink("/", "Home")}
             {navLink("/docs", "Docs")}
+            {navLink("/tools", "Tools")}
           </nav>
         </div>
       </header>
