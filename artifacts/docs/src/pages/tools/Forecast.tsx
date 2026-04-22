@@ -5,6 +5,7 @@ import {
   formatCurrency,
   inputClass,
 } from "@/components/ToolShell";
+import { findTool } from "@/data/tools";
 
 export default function ForecastTool() {
   const [income, setIncome] = useState("");
@@ -37,6 +38,7 @@ export default function ForecastTool() {
     <ToolShell
       title="Cash Flow Forecast"
       description="Estimate where you'll be in a few months. Enter your expected monthly income and expenses below."
+      relatedSlugs={findTool("forecast")?.relatedSlugs}
     >
       <div className="space-y-8">
         <section className="grid sm:grid-cols-3 gap-4">

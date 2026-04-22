@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRoute } from "wouter";
 import {
   articles,
+  articlesBySlugs,
   findArticle,
   LEGAL_DISCLAIMER,
   type ChecklistGroup,
@@ -29,7 +30,10 @@ export default function Article() {
     );
   }
 
-  const others = articles.filter((a) => a.slug !== article.slug).slice(0, 2);
+  const related =
+    articlesBySlugs(article.relatedSlugs).length > 0
+      ? articlesBySlugs(article.relatedSlugs)
+      : articles.filter((a) => a.slug !== article.slug).slice(0, 2);
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-12">
@@ -52,6 +56,17 @@ export default function Article() {
           {article.description}
         </p>
       </header>
+
+      {article.directAnswer && (
+        <div className="mb-10 rounded-lg border-l-4 border-slate-900 bg-slate-50 px-5 py-4">
+          <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
+            Direct answer
+          </p>
+          <p className="text-slate-800 leading-relaxed">
+            {article.directAnswer}
+          </p>
+        </div>
+      )}
 
       {article.problem && (
         <Section title={article.problemLabel ?? "The problem"}>
@@ -114,7 +129,7 @@ export default function Article() {
         </Section>
       )}
 
-      <Section title="Quick recap">
+      <Section title="Summary">
         <ul className="space-y-2">
           {article.summary.map((s, i) => (
             <li key={i} className="flex gap-3 text-slate-700">
@@ -141,13 +156,13 @@ export default function Article() {
         </aside>
       )}
 
-      {others.length > 0 && (
+      {related.length > 0 && (
         <section className="mt-16 pt-10 border-t border-slate-200">
           <h2 className="text-sm font-medium uppercase tracking-widest text-slate-500 mb-5">
-            Keep reading
+            Related guides
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            {others.map((o) => (
+            {related.map((o) => (
               <Link
                 key={o.slug}
                 href={`/docs/${o.slug}`}

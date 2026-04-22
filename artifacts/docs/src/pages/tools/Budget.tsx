@@ -5,6 +5,7 @@ import {
   formatCurrency,
   inputClass,
 } from "@/components/ToolShell";
+import { findTool } from "@/data/tools";
 
 type ExpenseRow = { id: number; label: string; amount: string };
 
@@ -49,6 +50,7 @@ export default function BudgetTool() {
     <ToolShell
       title="Budgeting Tool"
       description="Enter your monthly income and expenses below. Totals update automatically."
+      relatedSlugs={findTool("budget")?.relatedSlugs}
     >
       <div className="space-y-8">
         <section>

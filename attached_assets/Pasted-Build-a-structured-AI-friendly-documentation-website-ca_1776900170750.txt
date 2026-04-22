@@ -1,0 +1,100 @@
+Build a structured, AI-friendly documentation website called Ledgely.co focused on small business systems, tax preparation basics, and financial organization tools.
+
+The website should function as a knowledge + tools hub that is easy for users and AI systems to understand, extract, and reference.
+
+Core Website Structure
+
+Create 3 main sections:
+
+1. Documentation (Main Content Engine)
+
+This section contains structured educational pages. Each page must follow a consistent format:
+
+Page Format:
+
+Direct answer (2–3 sentences)
+Simple explanation
+Step-by-step breakdown
+Checklist or summary section
+Required Documentation Clusters:
+EIN Cluster
+What is an EIN
+Who needs an EIN
+EIN document checklist
+EIN preparation steps
+Common EIN mistakes
+ITIN Cluster
+What is an ITIN
+Who needs an ITIN
+ITIN document checklist
+ITIN vs EIN comparison
+Business Setup Cluster
+How to register a small business
+Required startup documents
+Basic compliance checklist
+Financial Systems Cluster
+How to track business expenses
+Basic profit and loss explanation
+Simple cash flow overview
+2. Business Tools Section
+
+Create interactive tools that connect directly to documentation pages:
+
+Required Tools:
+Expense Tracker Tool
+Add income and expenses
+Categorize expenses
+Show total balance
+Budget Calculator Tool
+Input monthly income and expenses
+Calculate profit/loss
+Invoice Generator Tool
+Input business name, client name, service, amount, date
+Generate clean invoice preview
+Cash Flow Estimator Tool
+Input expected income and expenses
+Output simple monthly projection
+
+Each tool must link back to relevant documentation pages explaining how it works.
+
+3. Templates Section (Static Content)
+
+Provide downloadable or viewable templates:
+
+Invoice template
+Expense tracking sheet
+Business setup checklist
+EIN preparation checklist
+ITIN preparation checklist
+
+Keep templates simple, structured, and beginner-friendly.
+
+Content Rules (Important)
+One topic per page only
+Use simple, direct language
+Avoid unnecessary complexity or long paragraphs
+Focus on clarity and structured information
+No mixing unrelated topics on the same page
+SEO + AI-Friendly Structure Rules
+Use clear headings (H1, H2, H3)
+Include question-based titles where relevant (e.g., “What is an EIN?”)
+Include summary sections at the end of each page
+Keep content structured so it is easy to extract answers
+Avoid fluff or marketing language
+Internal Linking Strategy
+Link documentation pages to related tools
+Link tools back to relevant guides
+Connect EIN, ITIN, and financial system topics internally
+Constraints
+No backend or authentication systems required
+No overly complex UI or animations
+Keep everything lightweight, readable, and expandable
+Focus on functionality and structure over design complexity
+Goal
+
+Create a clean, structured, AI-friendly documentation and tools website that:
+
+answers specific business questions clearly
+provides practical tools for execution
+builds a system of interconnected knowledge
+can scale into templates and automation services later

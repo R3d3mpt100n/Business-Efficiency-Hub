@@ -5,6 +5,7 @@ import {
   formatCurrency,
   inputClass,
 } from "@/components/ToolShell";
+import { findTool } from "@/data/tools";
 
 type Category = "operations" | "marketing" | "supplies" | "other";
 
@@ -58,6 +59,7 @@ export default function ExpensesTool() {
     <ToolShell
       title="Expense Categorizer"
       description="Add expenses one at a time. Totals by category update as you add them."
+      relatedSlugs={findTool("expenses")?.relatedSlugs}
     >
       <div className="space-y-8">
         <section className="rounded-lg border border-slate-200 p-5">

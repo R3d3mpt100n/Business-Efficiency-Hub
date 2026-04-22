@@ -25,12 +25,13 @@ export function Layout({ children }: { children: ReactNode }) {
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-semibold text-slate-900">
             <span className="inline-block w-6 h-6 rounded-md bg-slate-900" />
-            <span>SBS Docs</span>
+            <span>Ledgely</span>
           </Link>
           <nav className="flex items-center gap-6">
             {navLink("/", "Home")}
             {navLink("/docs", "Docs")}
             {navLink("/tools", "Tools")}
+            {navLink("/templates", "Templates")}
           </nav>
         </div>
       </header>
@@ -40,11 +41,17 @@ export function Layout({ children }: { children: ReactNode }) {
       <footer className="border-t border-slate-200 bg-slate-50">
         <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-slate-500 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            Small Business Systems &middot; Practical guides for owners.
+            Ledgely &middot; Practical systems for small business owners.
           </div>
-          <div>
+          <div className="flex items-center gap-4">
             <Link href="/docs" className="hover:text-slate-900">
-              Browse all guides
+              Docs
+            </Link>
+            <Link href="/tools" className="hover:text-slate-900">
+              Tools
+            </Link>
+            <Link href="/templates" className="hover:text-slate-900">
+              Templates
             </Link>
           </div>
         </div>

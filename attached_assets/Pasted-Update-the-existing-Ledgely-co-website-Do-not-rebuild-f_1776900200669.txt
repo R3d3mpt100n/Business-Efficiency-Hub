@@ -1,0 +1,80 @@
+Update the existing Ledgely.co website. Do not rebuild from scratch. Expand the current structure into a more organized, AI-friendly documentation and tools system focused on small business systems, tax preparation basics, and financial organization.
+
+Add/Improve Site Structure
+1. Documentation System (Expand Existing Pages)
+
+Reorganize documentation into structured clusters with consistent formatting.
+
+Each documentation page must follow this format:
+
+Direct answer (2–3 sentences)
+Simple explanation
+Step-by-step breakdown
+Checklist or summary section
+Add/Ensure These Clusters Exist:
+EIN Cluster
+What is an EIN
+Who needs an EIN
+EIN document checklist
+EIN preparation steps
+Common EIN mistakes
+ITIN Cluster
+What is an ITIN
+Who needs an ITIN
+ITIN document checklist
+ITIN vs EIN comparison
+Business Setup Cluster
+How to register a small business
+Required startup documents
+Basic compliance checklist
+Financial Systems Cluster
+How to track business expenses
+Basic profit and loss explanation
+Simple cash flow overview
+2. Business Tools Section (Add if not present)
+
+Create or expand a “Business Tools” section with:
+
+Expense Tracker Tool (income/expenses, categories, balance calculation)
+Budget Calculator Tool (income vs expenses, profit/loss output)
+Invoice Generator Tool (business name, client, service, amount, date, printable output)
+Cash Flow Estimator Tool (simple monthly projection)
+
+Each tool must link back to relevant documentation pages.
+
+3. Templates Section (Add or Expand)
+
+Add a templates section containing:
+
+Invoice template
+Expense tracking sheet
+Business setup checklist
+EIN preparation checklist
+ITIN preparation checklist
+
+Keep templates simple, structured, and easy to download or copy.
+
+Content & Structure Rules
+Do not mix unrelated topics on the same page
+Use clear headings (H1, H2, H3)
+Keep language simple and direct
+Focus on structured answers, not long explanations
+Include summary sections on every page
+AI-Friendly Optimization
+Ensure pages are structured for easy extraction of answers
+Use question-based titles where appropriate (e.g., “What is an EIN?”)
+Keep information modular and clearly separated
+Ensure tools and documentation are interconnected through internal links
+Constraints
+Do not rebuild the entire site
+Do not add unnecessary complexity or backend systems
+Keep everything lightweight, readable, and expandable
+Improve existing structure rather than replacing it
+Goal
+
+Turn the current website into a structured, AI-friendly system where:
+
+documentation answers specific business questions clearly
+tools provide practical application
+templates support execution
+all sections are interconnected and scalable for future automation products

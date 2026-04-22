@@ -1,13 +1,16 @@
 import { Link } from "wouter";
 import { ReactNode } from "react";
+import { RelatedDocs } from "./RelatedDocs";
 
 export function ToolShell({
   title,
   description,
+  relatedSlugs,
   children,
 }: {
   title: string;
   description: string;
+  relatedSlugs?: string[];
   children: ReactNode;
 }) {
   return (
@@ -20,6 +23,7 @@ export function ToolShell({
         <p className="mt-2 text-slate-600">{description}</p>
       </header>
       {children}
+      <RelatedDocs slugs={relatedSlugs} />
     </div>
   );
 }
