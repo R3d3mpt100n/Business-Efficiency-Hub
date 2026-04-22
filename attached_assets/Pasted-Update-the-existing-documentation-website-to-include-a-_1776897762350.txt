@@ -1,0 +1,76 @@
+Update the existing documentation website to include a new section called “Business & Tax Setup Document Hub” focused on educational checklists and templates for understanding EIN and ITIN processes.
+
+New Section to Add
+
+Create a new main category in the documentation sidebar or navigation:
+
+“Business & Tax Setup Documents”
+
+Inside this section, add structured pages for:
+
+1. EIN Preparation Guide Page
+
+Title: “EIN Application Preparation Checklist (Business Tax ID)”
+
+Content structure:
+
+What an EIN is (simple explanation for beginners)
+Who needs an EIN (small businesses, freelancers, LLCs)
+Checklist of required information:
+Legal business name
+Business structure (LLC, sole proprietorship, etc.)
+Responsible party information
+Business address
+Mention IRS Form SS-4 as the official application form (do not recreate it)
+Step-by-step preparation guide focused only on organizing required information
+
+Include a simple checklist-style layout in HTML.
+
+2. ITIN Preparation Guide Page
+
+Title: “ITIN Application Checklist (Individual Tax ID)”
+
+Content structure:
+
+What an ITIN is (simple explanation)
+Who typically needs it (non-US citizens, etc.)
+Checklist of required documents:
+Passport (primary ID)
+National identification documents
+Visa or immigration documents (if applicable)
+Proof of income (if needed)
+Mention IRS Form W-7 as the official application form (do not recreate it)
+Step-by-step preparation guide focused on document organization
+3. Tax Document Organizer Page
+
+Title: “Tax Setup Document Organizer (Personal & Business)”
+
+Include:
+
+Categorized checklist of important documents:
+Identification documents
+Income records
+Business registration documents
+Bank statements
+Clean checkbox-style HTML layout for organization
+Legal Disclaimer (must be included on all pages)
+
+Add this footer or section to every page:
+
+“This content is for educational and informational purposes only. It does not constitute legal, tax, or financial advice. Users should consult a qualified professional for advice specific to their situation. We do not provide official government forms or services.”
+
+Design Requirements
+Clean and minimal layout
+Focus on readability and checklist structure
+Mobile-friendly design
+No backend or database features required
+No official government styling or branding
+Pages should function as educational guides and checklists
+Constraints
+Do not recreate IRS forms (SS-4, W-7, etc.)
+Do not present content as official documentation
+Do not add login systems, authentication, or backend complexity
+Keep everything static and easy to expand later
+Goal
+
+Create a clear educational hub that helps users understand and organize requirements for EIN and ITIN processes without providing official or legal services.

@@ -1,5 +1,11 @@
+import { useEffect, useState } from "react";
 import { Link, useRoute } from "wouter";
-import { articles, findArticle } from "@/data/articles";
+import {
+  articles,
+  findArticle,
+  LEGAL_DISCLAIMER,
+  type ChecklistGroup,
+} from "@/data/articles";
 
 export default function Article() {
   const [, params] = useRoute("/docs/:slug");
@@ -27,15 +33,12 @@ export default function Article() {
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-12">
-      <Link
-        href="/docs"
-        className="text-sm text-slate-500 hover:text-slate-900"
-      >
+      <Link href="/docs" className="text-sm text-slate-500 hover:text-slate-900">
         &larr; Back to docs
       </Link>
 
       <header className="mt-6 mb-10 pb-8 border-b border-slate-200">
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-3 mb-3 flex-wrap">
           <span className="text-xs font-medium uppercase tracking-widest text-slate-500">
             {article.category}
           </span>
@@ -50,32 +53,48 @@ export default function Article() {
         </p>
       </header>
 
-      <Section title="The problem">
-        <p className="text-slate-700 leading-relaxed">{article.problem}</p>
-      </Section>
+      {article.problem && (
+        <Section title={article.problemLabel ?? "The problem"}>
+          <p className="text-slate-700 leading-relaxed">{article.problem}</p>
+        </Section>
+      )}
 
-      <Section title="Why it happens">
-        <p className="text-slate-700 leading-relaxed">{article.whyItHappens}</p>
-      </Section>
+      {article.whyItHappens && (
+        <Section title={article.whyItHappensLabel ?? "Why it happens"}>
+          <p className="text-slate-700 leading-relaxed">{article.whyItHappens}</p>
+        </Section>
+      )}
 
-      <Section title="The solution">
-        <ol className="space-y-5">
-          {article.solution.map((s, i) => (
-            <li key={i} className="flex gap-4">
-              <span className="flex-none mt-0.5 inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-900 text-white text-sm font-medium">
-                {i + 1}
-              </span>
-              <div>
-                <h3 className="font-semibold text-slate-900">{s.step}</h3>
-                <p className="mt-1 text-slate-700 leading-relaxed">{s.detail}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      {article.solution && article.solution.length > 0 && (
+        <Section title={article.solutionLabel ?? "The solution"}>
+          <ol className="space-y-5">
+            {article.solution.map((s, i) => (
+              <li key={i} className="flex gap-4">
+                <span className="flex-none mt-0.5 inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-900 text-white text-sm font-medium">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="font-semibold text-slate-900">{s.step}</h3>
+                  <p className="mt-1 text-slate-700 leading-relaxed">{s.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      )}
 
-      {article.tools.length > 0 && (
-        <Section title="Tools that help">
+      {article.checklists && article.checklists.length > 0 && (
+        <Section title="Checklist">
+          <div className="space-y-6">
+            {article.checklists.map((group, i) => (
+              <Checklist key={i} slug={article.slug} group={group} index={i} />
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {article.tools && article.tools.length > 0 && (
+        <Section title={article.toolsLabel ?? "Tools that help"}>
           <ul className="space-y-3">
             {article.tools.map((t) => (
               <li
@@ -87,7 +106,6 @@ export default function Article() {
               </li>
             ))}
           </ul>
-          {/* Affiliate links area — reserved for future tool recommendations. */}
           <div
             data-section="affiliate-links"
             className="mt-4 text-xs text-slate-400"
@@ -107,8 +125,21 @@ export default function Article() {
         </ul>
       </Section>
 
-      {/* Resources / tools placeholder — reserved for future expansion. */}
       <div data-section="resources-placeholder" aria-hidden />
+
+      {article.showDisclaimer && (
+        <aside
+          role="note"
+          className="mt-10 rounded-md border border-slate-200 bg-slate-50 p-5"
+        >
+          <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
+            Legal disclaimer
+          </p>
+          <p className="text-sm text-slate-600 leading-relaxed">
+            {LEGAL_DISCLAIMER}
+          </p>
+        </aside>
+      )}
 
       {others.length > 0 && (
         <section className="mt-16 pt-10 border-t border-slate-200">
@@ -135,11 +166,82 @@ export default function Article() {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className="mb-10">
       <h2 className="text-xl font-semibold text-slate-900 mb-3">{title}</h2>
       {children}
     </section>
+  );
+}
+
+function Checklist({
+  slug,
+  group,
+  index,
+}: {
+  slug: string;
+  group: ChecklistGroup;
+  index: number;
+}) {
+  const storageKey = `checklist:${slug}:${index}`;
+  const [checked, setChecked] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (raw) setChecked(JSON.parse(raw));
+    } catch {
+      /* ignore */
+    }
+  }, [storageKey]);
+
+  const toggle = (i: number) => {
+    setChecked((prev) => {
+      const next = { ...prev, [i]: !prev[i] };
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  };
+
+  return (
+    <div className="rounded-md border border-slate-200 p-5">
+      <h3 className="font-semibold text-slate-900 mb-3">{group.heading}</h3>
+      <ul className="space-y-2">
+        {group.items.map((item, i) => {
+          const id = `${storageKey}:${i}`;
+          const isChecked = !!checked[i];
+          return (
+            <li key={i} className="flex items-start gap-3">
+              <input
+                id={id}
+                type="checkbox"
+                checked={isChecked}
+                onChange={() => toggle(i)}
+                className="mt-1 h-4 w-4 flex-none rounded border-slate-300 accent-slate-900 cursor-pointer"
+              />
+              <label
+                htmlFor={id}
+                className={`text-sm leading-relaxed cursor-pointer ${
+                  isChecked ? "text-slate-400 line-through" : "text-slate-700"
+                }`}
+              >
+                {item}
+              </label>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

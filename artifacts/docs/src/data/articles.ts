@@ -1,15 +1,29 @@
+export type ChecklistGroup = {
+  heading: string;
+  items: string[];
+};
+
 export type Article = {
   slug: string;
   title: string;
   description: string;
   category: string;
   readTime: string;
-  problem: string;
-  whyItHappens: string;
-  solution: { step: string; detail: string }[];
-  tools: { name: string; note: string }[];
+  problem?: string;
+  problemLabel?: string;
+  whyItHappens?: string;
+  whyItHappensLabel?: string;
+  solution?: { step: string; detail: string }[];
+  solutionLabel?: string;
+  checklists?: ChecklistGroup[];
+  tools?: { name: string; note: string }[];
+  toolsLabel?: string;
   summary: string[];
+  showDisclaimer?: boolean;
 };
+
+export const LEGAL_DISCLAIMER =
+  "This content is for educational and informational purposes only. It does not constitute legal, tax, or financial advice. Users should consult a qualified professional for advice specific to their situation. We do not provide official government forms or services.";
 
 export const articles: Article[] = [
   {
@@ -187,6 +201,237 @@ export const articles: Article[] = [
       "Capture every lead with a planned next-contact date.",
       "Use a simple cadence: 2 days, 7 days, 14 days, then monthly.",
       "Block 15 minutes a day for follow-ups. Consistency is the whole game.",
+    ],
+  },
+
+  // Business & Tax Setup Documents
+  {
+    slug: "ein-application-preparation-checklist",
+    title: "EIN Application Preparation Checklist (Business Tax ID)",
+    description:
+      "A plain-English guide to understanding the EIN and organizing the information you'll need before applying.",
+    category: "Business & Tax Setup Documents",
+    readTime: "6 min read",
+    showDisclaimer: true,
+    problemLabel: "What an EIN is",
+    problem:
+      "An EIN (Employer Identification Number) is a unique nine-digit number issued by the IRS to identify a business for tax purposes. Think of it as a Social Security number, but for your business. It's used when filing taxes, opening a business bank account, hiring employees, and applying for certain licenses.",
+    whyItHappensLabel: "Who needs an EIN",
+    whyItHappens:
+      "Most small businesses benefit from having one — and many are required to. This generally includes LLCs (especially multi-member), corporations, partnerships, businesses with employees, and businesses that file certain federal tax returns. Even single-member LLCs and freelancers often choose to get one to keep their personal SSN private when working with clients and banks.",
+    solutionLabel: "Step-by-step preparation",
+    solution: [
+      {
+        step: "Confirm your legal business name and structure",
+        detail:
+          "Decide whether you're applying as a sole proprietorship, single-member LLC, multi-member LLC, partnership, or corporation. Have your filed formation documents in front of you so the name matches exactly.",
+      },
+      {
+        step: "Gather information about the responsible party",
+        detail:
+          "This is the person who controls or owns the business. You'll need their full legal name and a valid taxpayer ID (typically an SSN or ITIN).",
+      },
+      {
+        step: "Confirm your business address and contact details",
+        detail:
+          "Use the physical address where the business operates. Have a phone number ready as well.",
+      },
+      {
+        step: "Know your reason for applying and your start date",
+        detail:
+          "Common reasons include starting a new business, hiring employees, or banking purposes. Have your business start or acquisition date ready.",
+      },
+      {
+        step: "Review the official IRS Form SS-4",
+        detail:
+          "The IRS uses Form SS-4 as the official application. We don't provide or recreate the form here — visit IRS.gov to access the current version. Walk through it once before starting your application so nothing surprises you.",
+      },
+    ],
+    checklists: [
+      {
+        heading: "Information checklist",
+        items: [
+          "Legal business name (matches formation documents exactly)",
+          "Trade name / DBA, if different",
+          "Business structure (LLC, sole proprietorship, partnership, corporation, etc.)",
+          "Responsible party's full legal name",
+          "Responsible party's SSN or ITIN",
+          "Business mailing address",
+          "Business physical address (if different)",
+          "Business phone number",
+          "Reason for applying (new business, hiring employees, banking, etc.)",
+          "Date the business started or was acquired",
+          "Expected number of employees in the next 12 months (if any)",
+        ],
+      },
+    ],
+    toolsLabel: "Helpful references",
+    tools: [
+      {
+        name: "IRS Form SS-4 (official application)",
+        note: "The official form is available on IRS.gov. We do not recreate or provide the form.",
+      },
+      {
+        name: "Your business formation documents",
+        note: "Articles of organization, partnership agreement, or corporate filing — to confirm exact legal name.",
+      },
+      {
+        name: "A simple folder or document organizer",
+        note: "Keep all gathered information in one place before starting the application.",
+      },
+    ],
+    summary: [
+      "An EIN is a federal Tax ID for your business — like an SSN for the company.",
+      "Most LLCs, partnerships, corporations, and businesses with employees need one.",
+      "Before applying, gather: legal name, structure, responsible party info, and address.",
+      "Form SS-4 is the official IRS application — get it directly from IRS.gov.",
+    ],
+  },
+  {
+    slug: "itin-application-checklist",
+    title: "ITIN Application Checklist (Individual Tax ID)",
+    description:
+      "Understand what an ITIN is, who typically needs one, and how to organize the documents required to apply.",
+    category: "Business & Tax Setup Documents",
+    readTime: "6 min read",
+    showDisclaimer: true,
+    problemLabel: "What an ITIN is",
+    problem:
+      "An ITIN (Individual Taxpayer Identification Number) is a nine-digit tax processing number issued by the IRS for people who need to file or report to the IRS but are not eligible for a Social Security Number. It's used purely for federal tax reporting.",
+    whyItHappensLabel: "Who typically needs one",
+    whyItHappens:
+      "ITINs are commonly needed by non-US citizens with US tax filing obligations, foreign nationals receiving income from US sources, dependents or spouses of US visa holders, and certain non-resident business owners. An ITIN does not authorize work in the US and is not a substitute for an SSN — it exists only for tax purposes.",
+    solutionLabel: "Step-by-step preparation",
+    solution: [
+      {
+        step: "Confirm you actually need an ITIN",
+        detail:
+          "An ITIN is needed when you have a US tax filing requirement but are not eligible for an SSN. If you might qualify for an SSN, that's typically the right route instead.",
+      },
+      {
+        step: "Identify your primary identification document",
+        detail:
+          "A valid, unexpired passport is the most common primary ID because it can stand alone. If you don't have a passport, you'll need a combination of two or more other supporting documents.",
+      },
+      {
+        step: "Gather supporting documents based on your situation",
+        detail:
+          "These can include national identification cards, foreign driver's license, civil birth certificate, visa, US Citizenship and Immigration Services (USCIS) photo ID, or school/medical records (for dependents). Originals or certified copies from the issuing agency are typically required.",
+      },
+      {
+        step: "Prepare any income or supporting documents",
+        detail:
+          "Depending on your reason for applying, you may need to attach a federal tax return or specific documents that prove your tax filing requirement (for example, certain treaty benefits or third-party withholding statements).",
+      },
+      {
+        step: "Review the official IRS Form W-7",
+        detail:
+          "Form W-7 is the official IRS application for an ITIN. We don't provide or recreate it here — get the current version directly from IRS.gov. Read its instructions carefully because they explain exactly which supporting documents apply to your situation.",
+      },
+    ],
+    checklists: [
+      {
+        heading: "Identification documents",
+        items: [
+          "Valid, unexpired passport (preferred — can stand alone as primary ID)",
+          "National identification card (with photo, name, address, DOB, expiration)",
+          "Foreign driver's license",
+          "Civil birth certificate (required for dependents under 18 if no passport)",
+          "US Citizenship and Immigration Services (USCIS) photo ID",
+          "Visa issued by the US Department of State (if applicable)",
+        ],
+      },
+      {
+        heading: "Supporting / situational documents",
+        items: [
+          "Federal tax return (if filing one with your application)",
+          "Proof of US residency for dependents (school or medical records)",
+          "Documents supporting any treaty benefits claimed",
+          "Letter from a withholding agent (if applicable)",
+        ],
+      },
+    ],
+    toolsLabel: "Helpful references",
+    tools: [
+      {
+        name: "IRS Form W-7 (official application)",
+        note: "The official form and instructions are on IRS.gov. We do not provide or recreate the form.",
+      },
+      {
+        name: "An IRS-authorized Certifying Acceptance Agent (CAA)",
+        note: "Optional. CAAs can help verify documents so you don't need to mail original IDs.",
+      },
+      {
+        name: "A document folder",
+        note: "Keep originals and copies organized and clearly labeled before submitting.",
+      },
+    ],
+    summary: [
+      "An ITIN is a tax-only ID for people who need to file with the IRS but can't get an SSN.",
+      "A valid, unexpired passport is the simplest primary ID.",
+      "Otherwise, you'll combine two or more supporting documents — check Form W-7 instructions.",
+      "Form W-7 is the official IRS application — get it directly from IRS.gov.",
+    ],
+  },
+  {
+    slug: "tax-setup-document-organizer",
+    title: "Tax Setup Document Organizer (Personal & Business)",
+    description:
+      "A clean checklist to help you gather and organize the documents you'll typically need for personal and business tax setup.",
+    category: "Business & Tax Setup Documents",
+    readTime: "5 min read",
+    showDisclaimer: true,
+    problemLabel: "Why an organizer helps",
+    problem:
+      "Most of the stress around tax setup comes from chasing scattered documents at the last minute. A simple, categorized checklist means you can gather things gradually — by the time you sit down with a professional or file, everything is already in one place.",
+    checklists: [
+      {
+        heading: "Identification documents",
+        items: [
+          "Government-issued photo ID (driver's license or state ID)",
+          "Passport (yours and dependents', if applicable)",
+          "Social Security card or ITIN letter",
+          "Dependents' SSNs or ITINs",
+        ],
+      },
+      {
+        heading: "Income records",
+        items: [
+          "W-2 forms from employers",
+          "1099 forms (contract income, interest, dividends, etc.)",
+          "Records of any cash income",
+          "Investment income statements",
+          "Rental income records",
+          "Records of unemployment or other government payments",
+        ],
+      },
+      {
+        heading: "Business registration documents",
+        items: [
+          "EIN confirmation letter (IRS Form CP 575)",
+          "State business registration / formation documents",
+          "Operating agreement (LLCs) or partnership agreement",
+          "Business licenses and permits",
+          "DBA / trade name filings",
+        ],
+      },
+      {
+        heading: "Bank & financial statements",
+        items: [
+          "Business checking and savings statements (full year)",
+          "Business credit card statements (full year)",
+          "Loan documents and year-end interest statements",
+          "Merchant processor statements (Stripe, Square, PayPal, etc.)",
+          "Mileage logs and vehicle expense records",
+          "Receipts for major business purchases",
+        ],
+      },
+    ],
+    summary: [
+      "Gather documents in four buckets: ID, income, business registration, and financials.",
+      "Use the checklists above to confirm nothing is missing.",
+      "Keep digital copies in a single folder for easy sharing with a professional.",
+      "Update the folder throughout the year so tax setup never feels last-minute.",
     ],
   },
 ];
