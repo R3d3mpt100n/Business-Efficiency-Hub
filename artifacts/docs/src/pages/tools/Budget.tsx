@@ -48,8 +48,8 @@ export default function BudgetTool() {
 
   return (
     <ToolShell
-      title="Budgeting Tool"
-      description="Enter your monthly income and expenses below. Totals update automatically."
+      title="Monthly Profit Estimator"
+      description="See how much profit you actually keep each month. Enter your income and expenses — totals update automatically."
       relatedSlugs={findTool("budget")?.relatedSlugs}
       toolSlug="budget"
     >

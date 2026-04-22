@@ -45,8 +45,8 @@ export default function InvoiceTool() {
 
   return (
     <ToolShell
-      title="Invoice Generator"
-      description="Fill in the details below. The preview updates as you type. Use 'Print / Save as PDF' to export."
+      title="Get Paid Invoice System"
+      description="Create a professional invoice in minutes. The preview updates as you type. Use 'Print / Save as PDF' to send it."
       relatedSlugs={findTool("invoice")?.relatedSlugs}
       toolSlug="invoice"
     >

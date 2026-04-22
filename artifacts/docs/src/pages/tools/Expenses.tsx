@@ -57,8 +57,8 @@ export default function ExpensesTool() {
 
   return (
     <ToolShell
-      title="Expense Categorizer"
-      description="Add expenses one at a time. Totals by category update as you add them."
+      title="Business Expense Tracker"
+      description="See where your money really goes. Add expenses one at a time — totals by category update as you add them."
       relatedSlugs={findTool("expenses")?.relatedSlugs}
       toolSlug="expenses"
     >

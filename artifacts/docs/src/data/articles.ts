@@ -22,6 +22,7 @@ export type Article = {
   summary: string[];
   relatedSlugs?: string[];
   showDisclaimer?: boolean;
+  nextStep?: { label: string; href: string; description?: string };
 };
 
 export const LEGAL_DISCLAIMER =
@@ -1061,6 +1062,54 @@ export const articles: Article[] = [
 
 export function findArticle(slug: string): Article | undefined {
   return articles.find((a) => a.slug === slug);
+}
+
+type NextStep = { label: string; href: string; description: string };
+
+const CATEGORY_NEXT_STEP: Record<string, NextStep> = {
+  EIN: {
+    label: "EIN Preparation Checklist",
+    href: "/docs/ein-application-preparation-checklist",
+    description:
+      "Have everything ready before you apply — names, addresses, responsible party, and entity details.",
+  },
+  ITIN: {
+    label: "ITIN Application Checklist",
+    href: "/docs/itin-application-checklist",
+    description:
+      "Gather the documents and information you'll need for the W-7 application.",
+  },
+  "Business Setup": {
+    label: "Basic compliance checklist",
+    href: "/docs/basic-compliance-checklist",
+    description:
+      "Lock in the recurring obligations that keep your business in good standing.",
+  },
+  "Financial Systems": {
+    label: "Open the Business Expense Tracker",
+    href: "/tools/expenses",
+    description:
+      "Put what you just learned into practice and start tracking expenses in your browser.",
+  },
+  "Money & Profit": {
+    label: "Open the Monthly Profit Estimator",
+    href: "/tools/budget",
+    description:
+      "See how much profit you actually keep each month after expenses.",
+  },
+  "Sales & Clients": {
+    label: "Open the Get Paid Invoice System",
+    href: "/tools/invoice",
+    description:
+      "Send a clean, professional invoice in minutes so clients pay you faster.",
+  },
+};
+
+export function getNextStep(article: Article): NextStep | undefined {
+  if (article.nextStep) {
+    return { description: "", ...article.nextStep };
+  }
+  return CATEGORY_NEXT_STEP[article.category];
 }
 
 export function articlesBySlugs(slugs: string[] = []): Article[] {

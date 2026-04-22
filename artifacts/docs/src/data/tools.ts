@@ -8,9 +8,9 @@ export type Tool = {
 export const tools: Tool[] = [
   {
     slug: "budget",
-    title: "Budgeting Tool",
+    title: "Monthly Profit Estimator",
     description:
-      "Enter your monthly income and expenses to see your remaining profit and savings margin.",
+      "See how much profit you actually keep each month after expenses — and where your margin really stands.",
     relatedSlugs: [
       "profit-and-loss-basics",
       "how-small-businesses-lose-money-without-noticing",
@@ -19,9 +19,9 @@ export const tools: Tool[] = [
   },
   {
     slug: "invoice",
-    title: "Invoice Generator",
+    title: "Get Paid Invoice System",
     description:
-      "Fill in client and service details to generate a clean, printable invoice.",
+      "Send clear, professional invoices in minutes so clients pay you faster — no design or accounting skills needed.",
     relatedSlugs: [
       "how-to-track-business-expenses",
       "simple-cash-flow-overview",
@@ -29,9 +29,9 @@ export const tools: Tool[] = [
   },
   {
     slug: "expenses",
-    title: "Expense Categorizer",
+    title: "Business Expense Tracker",
     description:
-      "Add expenses with a category to see your totals broken down in real time.",
+      "Know exactly where your money goes each month so you can cut waste and protect your profit.",
     relatedSlugs: [
       "how-to-track-business-expenses",
       "profit-and-loss-basics",
@@ -40,9 +40,9 @@ export const tools: Tool[] = [
   },
   {
     slug: "forecast",
-    title: "Cash Flow Forecast",
+    title: "Cash Flow Planner",
     description:
-      "Plug in expected monthly income and expenses to project profit or loss.",
+      "See where your cash will be in the months ahead so you can plan, save, and avoid shortfalls.",
     relatedSlugs: [
       "simple-cash-flow-overview",
       "profit-and-loss-basics",

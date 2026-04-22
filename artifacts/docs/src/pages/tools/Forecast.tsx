@@ -36,8 +36,8 @@ export default function ForecastTool() {
 
   return (
     <ToolShell
-      title="Cash Flow Forecast"
-      description="Estimate where you'll be in a few months. Enter your expected monthly income and expenses below."
+      title="Cash Flow Planner"
+      description="See where your cash will be in the months ahead. Enter your expected monthly income and expenses below."
       relatedSlugs={findTool("forecast")?.relatedSlugs}
       toolSlug="forecast"
     >

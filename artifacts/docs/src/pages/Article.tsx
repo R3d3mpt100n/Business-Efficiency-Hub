@@ -4,6 +4,7 @@ import {
   articles,
   articlesBySlugs,
   findArticle,
+  getNextStep,
   LEGAL_DISCLAIMER,
   type ChecklistGroup,
 } from "@/data/articles";
@@ -143,6 +144,29 @@ export default function Article() {
       </Section>
 
       <div data-section="resources-placeholder" aria-hidden />
+
+      {(() => {
+        const next = getNextStep(article);
+        if (!next) return null;
+        return (
+          <aside className="mt-10 rounded-lg border border-slate-300 bg-white p-5 print:hidden">
+            <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
+              Next step
+            </p>
+            <Link
+              href={next.href}
+              className="text-lg font-semibold text-slate-900 underline-offset-2 hover:underline"
+            >
+              {next.label} &rarr;
+            </Link>
+            {next.description && (
+              <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                {next.description}
+              </p>
+            )}
+          </aside>
+        );
+      })()}
 
       <UpgradePrompt system={proSystemForCategory(article.category)} />
 

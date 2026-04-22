@@ -1,0 +1,92 @@
+Update the existing Ledgely website. Do not rebuild the project or remove any existing features. Improve structure, navigation, and user flow while keeping all current pages and tools intact.
+
+1. Add “Start Here” Guided Flow Section (NEW)
+
+Create a new homepage section called:
+
+Start Here: Build Your Business Step by Step
+
+This section must guide users through a clear linear workflow:
+
+EIN Decision (Do I need an EIN?)
+EIN Preparation Checklist
+Business Setup Checklist
+Financial Tracking Tools (Budget / Expense tools)
+Invoice Generator Tool
+Templates Section
+
+Each step must link directly to the next step in sequence.
+
+Goal: convert the website into a guided system instead of isolated pages.
+
+2. Rename Tools for Outcome-Based Positioning (NO FUNCTION CHANGES)
+
+Rename tools and adjust descriptions only:
+
+Budgeting Tool → Monthly Profit Estimator
+Invoice Generator → Get Paid Invoice System
+Expense Categorizer → Business Expense Tracker
+Cash Flow Forecast → Cash Flow Planner
+
+Update descriptions to focus on outcomes and results, not technical function.
+
+3. Add Pro Systems Preview Section (NEW MONETIZATION LAYER)
+
+Create a new section titled:
+
+Pro Systems (Preview)
+
+Include three systems:
+
+Business Starter System (Pro)
+Financial Control System (Pro)
+Client Management System (Pro)
+
+Each must include:
+
+short description
+benefits or outcomes
+“Unlock full system” placeholder (no payment integration yet)
+
+Goal: introduce premium structure and future monetization path.
+
+4. Standardize Documentation Page Structure
+
+Ensure every documentation page follows this format:
+
+Direct answer (1–2 sentences at top)
+Simple explanation in bullet points
+Step-by-step instructions
+Checklist or summary section
+“Next step” link to relevant tool, template, or guide
+
+Goal: improve clarity, readability, and AI-friendly structure.
+
+5. Improve Internal Linking System
+
+Create strong internal navigation:
+
+Every doc links to a relevant tool or checklist
+Every tool links to a relevant guide
+Every template links back into the workflow
+All clusters are interconnected into a full system path
+
+Goal: create a connected ecosystem instead of isolated pages.
+
+6. Add User Progress Flow Structure
+
+Introduce a visible progression path:
+
+Beginner → Setup → Tools → Templates → Pro Systems
+
+Display this as a visual or structured navigation path so users understand progression through the system.
+
+Constraints
+Do not remove existing content or pages
+Do not change backend architecture
+Do not add login/authentication
+Do not break current tools or functionality
+Keep performance lightweight
+Goal
+
+Transform the website from a documentation and tools library into a structured guided system that leads users from setup → execution → advanced systems with clear progression and future monetization potential.
