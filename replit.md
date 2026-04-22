@@ -25,3 +25,7 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+- `docs` (`@workspace/docs`) — React + Vite documentation site for small business systems & efficiency. Pages: Home (`/`), Docs index (`/docs`), Article (`/docs/:slug`). Articles defined in `src/data/articles.ts`. Includes search/filter, category sidebar, and reserved layout slots for future affiliate links and resource sections.
