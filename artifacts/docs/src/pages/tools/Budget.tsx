@@ -51,6 +51,7 @@ export default function BudgetTool() {
       title="Budgeting Tool"
       description="Enter your monthly income and expenses below. Totals update automatically."
       relatedSlugs={findTool("budget")?.relatedSlugs}
+      toolSlug="budget"
     >
       <div className="space-y-8">
         <section>

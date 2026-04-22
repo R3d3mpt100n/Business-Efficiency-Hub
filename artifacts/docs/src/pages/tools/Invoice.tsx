@@ -48,6 +48,7 @@ export default function InvoiceTool() {
       title="Invoice Generator"
       description="Fill in the details below. The preview updates as you type. Use 'Print / Save as PDF' to export."
       relatedSlugs={findTool("invoice")?.relatedSlugs}
+      toolSlug="invoice"
     >
       <div className="grid lg:grid-cols-2 gap-8 print:grid-cols-1">
         <div className="space-y-5 print:hidden">

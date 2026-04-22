@@ -9,6 +9,8 @@ import Article from "@/pages/Article";
 import Tools from "@/pages/Tools";
 import ToolRouter from "@/pages/tools/ToolRouter";
 import Templates from "@/pages/Templates";
+import ProSystems from "@/pages/ProSystems";
+import ProSystem from "@/pages/ProSystem";
 import { Layout } from "@/components/Layout";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ function Router() {
         <Route path="/tools" component={Tools} />
         <Route path="/tools/:slug" component={ToolRouter} />
         <Route path="/templates" component={Templates} />
+        <Route path="/pro" component={ProSystems} />
+        <Route path="/pro/:slug" component={ProSystem} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

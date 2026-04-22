@@ -60,6 +60,7 @@ export default function ExpensesTool() {
       title="Expense Categorizer"
       description="Add expenses one at a time. Totals by category update as you add them."
       relatedSlugs={findTool("expenses")?.relatedSlugs}
+      toolSlug="expenses"
     >
       <div className="space-y-8">
         <section className="rounded-lg border border-slate-200 p-5">

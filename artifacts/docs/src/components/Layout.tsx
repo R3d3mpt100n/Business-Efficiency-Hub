@@ -32,6 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
             {navLink("/docs", "Docs")}
             {navLink("/tools", "Tools")}
             {navLink("/templates", "Templates")}
+            {navLink("/pro", "Pro Systems")}
           </nav>
         </div>
       </header>
@@ -52,6 +53,9 @@ export function Layout({ children }: { children: ReactNode }) {
             </Link>
             <Link href="/templates" className="hover:text-slate-900">
               Templates
+            </Link>
+            <Link href="/pro" className="hover:text-slate-900">
+              Pro Systems
             </Link>
           </div>
         </div>

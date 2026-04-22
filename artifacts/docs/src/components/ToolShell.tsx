@@ -1,16 +1,20 @@
 import { Link } from "wouter";
 import { ReactNode } from "react";
 import { RelatedDocs } from "./RelatedDocs";
+import { UpgradePrompt } from "./UpgradePrompt";
+import { proSystemForTool } from "@/data/proSystems";
 
 export function ToolShell({
   title,
   description,
   relatedSlugs,
+  toolSlug,
   children,
 }: {
   title: string;
   description: string;
   relatedSlugs?: string[];
+  toolSlug?: string;
   children: ReactNode;
 }) {
   return (
@@ -24,6 +28,7 @@ export function ToolShell({
       </header>
       {children}
       <RelatedDocs slugs={relatedSlugs} />
+      {toolSlug && <UpgradePrompt system={proSystemForTool(toolSlug)} />}
     </div>
   );
 }

@@ -69,6 +69,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-6 py-14">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
+              Pro
+            </span>
+            <span className="text-xs font-medium uppercase tracking-widest text-slate-500">
+              Complete business systems
+            </span>
+          </div>
+          <h2 className="text-2xl font-semibold text-slate-900 mb-2">
+            Pro Systems
+          </h2>
+          <p className="text-slate-600 max-w-2xl mb-6 leading-relaxed">
+            When you're ready to go beyond individual guides and tools, Pro
+            Systems combine related material into structured, done-for-you kits.
+          </p>
+          <Link
+            href="/pro"
+            className="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
+          >
+            Browse Pro Systems
+          </Link>
+        </div>
+      </section>
+
       <section className="max-w-5xl mx-auto px-6 py-16">
         <h2 className="text-2xl font-semibold text-slate-900 mb-2">
           Documentation clusters

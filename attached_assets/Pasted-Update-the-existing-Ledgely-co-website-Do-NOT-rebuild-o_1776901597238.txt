@@ -1,0 +1,81 @@
+Update the existing Ledgely.co website. Do NOT rebuild or replace current content. Extend the existing structure by adding a new monetization layer called “Pro Systems”.
+
+This layer introduces premium, upgraded versions of existing content and tools, designed as complete, structured “done-for-you” systems for small business owners.
+
+🧩 Add New Section: Pro Systems
+
+Create a new main navigation section:
+
+“Pro Systems”
+
+This section represents premium, structured business kits that expand on existing free documentation and tools.
+
+📦 1. Business Starter System (Pro)
+
+Create a premium system that expands the EIN and Business Setup content.
+
+Include:
+Full step-by-step business setup workflow
+EIN + ITIN preparation combined checklist (advanced version)
+Business registration roadmap (from idea → legal entity → bank account)
+Downloadable startup checklist bundle
+Pre-filled document templates where possible
+Purpose:
+
+Turn scattered setup information into a complete “start a business” system.
+
+📊 2. Financial Control System (Pro)
+
+Upgrade existing financial tools and guides into a structured system.
+
+Include:
+Advanced expense tracking system (monthly + category insights)
+Cash flow tracking + forecasting sheet (improved version)
+Profit/loss reporting template
+Monthly financial review checklist
+Simple business performance dashboard layout
+Purpose:
+
+Help users fully understand and control their business finances, not just track them.
+
+🧾 3. Client & Invoice Management System (Pro)
+
+Expand invoice generator and basic templates into a full system.
+
+Include:
+Professional invoice template pack
+Client tracking system (payments, status, history)
+Payment reminder workflow template
+Simple CRM-style spreadsheet for small businesses
+Invoice + payment organization structure
+Purpose:
+
+Turn basic invoicing into a full client management workflow.
+
+🔗 Integration Requirements
+Each Pro System must link back to relevant free documentation pages
+Free pages must include subtle upgrade prompts like:
+“Upgrade to the full Business Starter System”
+“Get the complete Financial Control System”
+🧠 Structure Rules
+Keep Pro Systems clearly separate from free content
+Do NOT mix premium and free content on the same page
+Keep Pro Systems organized as “complete solutions,” not individual files
+Use simple, clear descriptions (no marketing fluff)
+⚠️ Constraints
+Do NOT change or remove existing free content
+Do NOT build payment system or checkout yet
+Do NOT overcomplicate UI or add unnecessary features
+Focus on structure, hierarchy, and upgrade pathways
+🎯 Goal
+
+Transform the website from a free documentation and tools platform into a structured system with:
+
+Free layer → education + tools + trust
+Pro layer → complete business systems (monetizable upgrades)
+
+This should create a natural path where users can:
+
+Learn from free content
+Use basic tools
+Upgrade to full systems when needed
