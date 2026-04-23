@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
+import { W7Module } from "@/components/W7Module";
 
 type YesNo = "yes" | "no" | "";
 type People = "alone" | "others" | "";
@@ -538,6 +539,9 @@ export default function BusinessStarter() {
           </StepCard>
         </div>
       </section>
+
+      {/* ITIN W-7 MODULE */}
+      {taxPath === "itin" && <W7Module />}
 
       {/* 3. COMMON MISTAKES */}
       <section className="mb-10 rounded-lg border border-slate-200 bg-white p-6">

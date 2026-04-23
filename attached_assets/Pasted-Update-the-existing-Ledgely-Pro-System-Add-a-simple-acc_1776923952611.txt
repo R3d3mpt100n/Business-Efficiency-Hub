@@ -1,0 +1,125 @@
+Update the existing Ledgely Pro System. Add a simple access control system, ITIN W-7 support module, and ensure all Pro content is locked behind a paywall.
+
+Do NOT change overall site layout or unrelated pages.
+
+1. ACCESS CONTROL SYSTEM (PAYWALL)
+
+Create a lightweight frontend access system using an unlock page.
+
+/unlock page requirements:
+
+Add an input field:
+
+“Enter Access Code”
+
+Validate codes:
+
+USER CODE:
+LEDGELY-START
+→ grants access to Pro System pages
+ADMIN CODE:
+ADMIN-OVERRIDE-DEV
+→ grants full admin access and bypasses all restrictions
+Redirect behavior:
+
+If USER CODE:
+
+redirect → /pro/business-starter
+
+If ADMIN CODE:
+
+set localStorage.setItem("admin", "true")
+redirect → /pro/business-starter
+2. PRO PAGE PROTECTION
+
+On ALL /pro/* pages:
+
+Add frontend access check:
+
+If no valid access code AND no admin flag in localStorage:
+→ redirect to /unlock
+
+Admin bypass rule:
+
+If localStorage.admin === "true"
+→ allow full access without restriction
+3. STRIPE FLOW INTEGRATION
+
+Ensure payment button in Pro Systems links to Stripe:
+
+After payment redirect → /unlock
+
+Flow must be:
+
+Stripe Payment → /unlock → Pro System Access
+
+4. ADD ITIN W-7 SYSTEM MODULE
+
+Inside ITIN section of Pro System, add:
+
+A. Official Blank Form Download
+
+Provide link or download button for:
+
+IRS Form W-7
+
+Label clearly:
+
+“Download Official IRS Form W-7 (Blank)”
+Must NOT be modified or pre-filled
+B. W-7 EDUCATIONAL WALKTHROUGH
+
+Create a structured guide that mirrors the form but is NOT the official document.
+
+Label:
+“Educational Example – How to Fill W-7”
+
+For each field include:
+
+Field name
+Explanation of what it means
+Example value (clearly fictional)
+
+This is a visual learning guide only.
+
+DO NOT replicate the official form layout exactly.
+
+C. PREPARATION TOOL
+
+Add a simple input/checklist section where users enter:
+
+name
+DOB
+country
+reason for ITIN
+document type
+
+Output:
+
+“Prepared Information Summary”
+Clearly labeled as data for filling official W-7 form
+
+DO NOT generate a filled official form.
+
+5. SAFETY + CONSTRAINTS
+Do NOT create filled IRS forms
+Do NOT generate submission-ready tax documents
+Do NOT add backend authentication or databases
+Do NOT overcomplicate security
+Keep everything frontend-based and lightweight
+6. UX GOAL
+
+The system should feel like:
+
+User pays → unlocks system
+User enters code → gains access
+User follows guided ITIN + business setup system
+User finishes with clear actionable steps
+
+Focus on:
+
+clarity
+flow
+execution
+
+NOT on heavy infrastructure.

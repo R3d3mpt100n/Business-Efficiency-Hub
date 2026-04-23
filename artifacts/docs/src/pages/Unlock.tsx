@@ -1,7 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { Link, useLocation } from "wouter";
+import {
+  USER_CODE,
+  ADMIN_CODE,
+  grantUserAccess,
+  grantAdminAccess,
+} from "@/lib/access";
 
-const ACCESS_CODE = "LEDGELY-START";
 const REDIRECT_TO = "/pro/business-starter";
 
 export default function Unlock() {
@@ -12,12 +17,19 @@ export default function Unlock() {
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     const cleaned = code.trim().toUpperCase();
-    if (cleaned === ACCESS_CODE) {
+    if (cleaned === USER_CODE) {
+      grantUserAccess();
       setError(null);
       setLocation(REDIRECT_TO);
-    } else {
-      setError("That code didn't match. Check your purchase confirmation and try again.");
+      return;
     }
+    if (cleaned === ADMIN_CODE) {
+      grantAdminAccess();
+      setError(null);
+      setLocation(REDIRECT_TO);
+      return;
+    }
+    setError("That code didn't match. Check your purchase confirmation and try again.");
   }
 
   return (
@@ -43,7 +55,7 @@ export default function Unlock() {
           htmlFor="access-code"
           className="block text-sm font-medium text-slate-900 mb-2"
         >
-          Access code
+          Enter Access Code
         </label>
         <input
           id="access-code"
@@ -69,9 +81,9 @@ export default function Unlock() {
       </form>
 
       <p className="mt-6 text-sm text-slate-500 leading-relaxed">
-        Lost your code or didn't receive a confirmation?{" "}
-        <Link href="/pro" className="text-slate-900 underline underline-offset-2">
-          Return to Pro Systems
+        Lost your code or didn't receive a confirmation? Return to the{" "}
+        <Link href="/" className="text-slate-900 underline underline-offset-2">
+          home page
         </Link>
         .
       </p>
