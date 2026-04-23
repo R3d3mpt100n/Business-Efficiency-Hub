@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { articles } from "@/data/articles";
 import { proSystems, KEY_BENEFITS } from "@/data/proSystems";
-import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
+import { PRO_SYSTEMS_URL } from "@/data/checkout";
 
 const CLUSTERS = [
   {
@@ -408,9 +408,7 @@ export default function Home() {
 
                   <div className="mt-5 pt-4 border-t border-slate-700">
                     <a
-                      href={STRIPE_CHECKOUT_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={PRO_SYSTEMS_URL}
                       className="inline-flex items-center justify-center w-full rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
                     >
                       Unlock full system &rarr;

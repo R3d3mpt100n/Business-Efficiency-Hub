@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
-import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
+import { PRO_SYSTEMS_URL } from "@/data/checkout";
 import { W7Module } from "@/components/W7Module";
 import { KEY_BENEFITS } from "@/data/proSystems";
 import { BUSINESS_STARTER_FILES } from "@/data/downloads";
@@ -680,9 +680,7 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
           files and the complete guided workflow.
         </p>
         <a
-          href={STRIPE_CHECKOUT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={PRO_SYSTEMS_URL}
           className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
         >
           Unlock full system &rarr;

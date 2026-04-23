@@ -1,5 +1,5 @@
 import { proSystems, KEY_BENEFITS } from "@/data/proSystems";
-import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
+import { PRO_SYSTEMS_URL } from "@/data/checkout";
 
 export default function ProSystems() {
   return (
@@ -59,9 +59,7 @@ export default function ProSystems() {
 
               <div className="mt-5">
                 <a
-                  href={STRIPE_CHECKOUT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={PRO_SYSTEMS_URL}
                   className="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
                 >
                   Unlock full system &rarr;

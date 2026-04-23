@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Systems — Ledgely</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D98B;
+    --gold-pale: #FDF8EC;
+    --ink: #1A1814;
+    --ink-mid: #3D3A35;
+    --ink-muted: #7A756C;
+    --ink-faint: #B5B0A8;
+    --surface: #FAFAF8;
+    --surface-raised: #FFFFFF;
+    --border: #E8E4DC;
+    --border-strong: #C8C4BC;
+    --green: #2D6A4F;
+    --green-pale: #EAF5EE;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── GATE SCREEN ── */
+  #gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .gate-inner {
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .gate-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .gate-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 3rem;
+  }
+
+  .gate-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: #FAFAF8;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .gate-sub {
+    font-size: 0.875rem;
+    color: var(--ink-faint);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .gate-input-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  #password-field {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: #FAFAF8;
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #password-field:focus {
+    border-color: var(--gold);
+  }
+
+  #password-field::placeholder {
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+  }
+
+  .gate-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+
+  .gate-btn:hover { background: var(--gold-light); }
+  .gate-btn:active { transform: scale(0.99); }
+
+  #gate-error {
+    margin-top: 0.85rem;
+    font-size: 0.8rem;
+    color: #E07070;
+    display: none;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .gate-note {
+    margin-top: 2.5rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .gate-note a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ── MAIN APP ── */
+  #app { display: none; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+  }
+
+  .nav-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: #FAFAF8; }
+
+  /* ── HERO ── */
+  .pro-hero {
+    background: var(--ink);
+    padding: 4rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pro-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .pro-hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .pro-hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: #FAFAF8;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .pro-hero p {
+    font-size: 1.05rem;
+    color: var(--ink-faint);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .system-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    color: var(--ink-faint);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn:hover {
+    border-color: rgba(255,255,255,0.2);
+    color: #FAFAF8;
+  }
+
+  .tab-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── SYSTEM PAGES ── */
+  .system-page { display: none; }
+  .system-page.active { display: block; }
+
+  /* ── OVERVIEW BAR ── */
+  .overview-bar {
+    background: var(--gold-pale);
+    border-bottom: 1px solid #EDE7CE;
+    padding: 1rem 2rem;
+  }
+
+  .overview-bar-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .overview-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .overview-stat-label {
+    font-size: 0.7rem;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+  }
+
+  .overview-stat-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .overview-divider {
+    width: 1px;
+    height: 32px;
+    background: #DDD7C4;
+  }
+
+  /* ── CONTENT ── */
+  .content-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+
+  /* ── PHASE SECTION ── */
+  .phase {
+    margin-bottom: 3rem;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--gold);
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .phase-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── STEP CARDS ── */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+
+  .step-card:hover { border-color: var(--gold); }
+
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .step-action {
+    margin-top: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gold);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* ── TEMPLATE BLOCK ── */
+  .template-block {
+    background: #F7F5F0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .template-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--surface-raised);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .template-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .template-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--gold-pale);
+    border: 1px solid #EDE7CE;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .template-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .template-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 1px;
+  }
+
+  .template-toggle {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .toggle-arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 0.65rem;
+  }
+
+  .template-body {
+    padding: 1.25rem;
+    display: none;
+  }
+
+  .template-body.open { display: block; }
+  .template-header.open .toggle-arrow { transform: rotate(90deg); }
+
+  .template-preview {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.9;
+    color: var(--ink-mid);
+    overflow-x: auto;
+    white-space: pre;
+    margin-bottom: 1rem;
+  }
+
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .checklist li::before {
+    content: '☐';
+    font-size: 0.95rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0px;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    background: var(--ink);
+    color: var(--gold);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-download:hover { background: var(--ink-mid); }
+
+  .btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    background: transparent;
+    color: var(--ink-muted);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-copy:hover {
+    border-color: var(--ink-mid);
+    color: var(--ink);
+  }
+
+  .template-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── DECISION TOOL ── */
+  .decision-tool {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .decision-tool h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .decision-tool p {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .option-card {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .option-card:hover { border-color: var(--gold); }
+  .option-card.selected {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  .option-card-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .option-card-desc {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  .decision-result {
+    background: var(--green-pale);
+    border: 1px solid #B7DCC4;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: none;
+  }
+
+  .decision-result.visible { display: block; }
+
+  .decision-result-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--green);
+    margin-bottom: 0.4rem;
+  }
+
+  .decision-result-text {
+    font-size: 0.875rem;
+    color: #1A4030;
+    line-height: 1.6;
+  }
+
+  /* ── PROFIT CALCULATOR ── */
+  .calc-tool {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .calc-tool h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .calc-tool p {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .calc-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .calc-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .calc-label {
+    font-size: 0.82rem;
+    color: var(--ink-mid);
+    min-width: 130px;
+  }
+
+  .calc-input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--surface);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .calc-input:focus { border-color: var(--gold); }
+
+  .calc-result-bar {
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .calc-result-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+  }
+
+  .calc-result-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem;
+    color: var(--gold);
+  }
+
+  .calc-result-margin {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── INVOICE BUILDER ── */
+  .invoice-builder {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .invoice-builder-top {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .invoice-builder-top h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .invoice-builder-top p {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .invoice-form {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-label {
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+
+  .form-input {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.875rem;
+    color: var(--ink);
+    background: var(--surface);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: var(--gold); }
+
+  .invoice-preview {
+    margin: 0 1.5rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .invoice-preview-header {
+    background: var(--ink);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .invoice-preview-company {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+  }
+
+  .invoice-preview-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 0.25rem;
+  }
+
+  .invoice-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+    text-align: right;
+  }
+
+  .invoice-preview-body {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .invoice-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+
+  .invoice-row:last-child { border-bottom: none; }
+
+  .invoice-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 0 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ink);
+    border-top: 2px solid var(--ink);
+    margin-top: 0.5rem;
+  }
+
+  /* ── CLIENT TRACKER ── */
+  .client-tracker {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .tracker-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tracker-header-left h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .tracker-header-left p {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+  }
+
+  .tracker-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .tracker-table th {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+
+  .tracker-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+    vertical-align: middle;
+  }
+
+  .tracker-table tr:last-child td { border-bottom: none; }
+
+  .status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .status-paid { background: #D4F0DC; color: #1E6B3A; }
+  .status-pending { background: #FEF3CD; color: #7A5A00; }
+  .status-overdue { background: #FDDFDF; color: #8B2020; }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: var(--gold-pale);
+    border: 1px solid #EDE7CE;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .info-box-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .info-box-text {
+    font-size: 0.83rem;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  .info-box-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    .invoice-form { grid-template-columns: 1fr; }
+    .overview-bar-inner { gap: 1rem; }
+    .overview-divider { display: none; }
+    .pro-hero h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ GATE ════════════════ -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-logo">Ledgely</div>
+    <div class="gate-label">Pro Systems</div>
+    <div class="gate-heading">Members only access</div>
+    <p class="gate-sub">Enter your Pro password to access your systems, templates, and tools.</p>
+    <div class="gate-input-wrap">
+      <input type="password" id="password-field" placeholder="Enter your password" autocomplete="off" />
+    </div>
+    <button class="gate-btn" onclick="checkPassword()">Unlock Pro Systems</button>
+    <div id="gate-error">Incorrect password. Check your purchase confirmation email.</div>
+    <p class="gate-note">Not a member? <a href="index.html">See what's included →</a></p>
+  </div>
+</div>
+
+<!-- ════════════════ APP ════════════════ -->
+<div id="app">
+
+  <nav>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <span class="nav-logo">Ledgely</span>
+      <span class="nav-badge">Pro</span>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link">← Back to site</a>
+    </div>
+  </nav>
+
+  <div class="pro-hero">
+    <div class="pro-hero-eyebrow">Pro Systems — Members Only</div>
+    <h1>Done-for-you business<br>systems that actually work</h1>
+    <p>Each system combines step-by-step guidance, interactive tools, and ready-to-use templates — so you follow a clear path, not a pile of tabs.</p>
+    <div class="system-tabs">
+      <button class="tab-btn active" onclick="showSystem('starter')">Business Starter</button>
+      <button class="tab-btn" onclick="showSystem('financial')">Financial Control</button>
+      <button class="tab-btn" onclick="showSystem('client')">Client & Invoice</button>
+    </div>
+  </div>
+
+  <!-- ══════ SYSTEM 1: BUSINESS STARTER ══════ -->
+  <div id="system-starter" class="system-page active">
+
+    <div class="overview-bar">
+      <div class="overview-bar-inner">
+        <div class="overview-stat">
+          <span class="overview-stat-label">System</span>
+          <span class="overview-stat-value">Business Starter</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Phases</span>
+          <span class="overview-stat-value">4 phases</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Included</span>
+          <span class="overview-stat-value">6 templates + decision tool</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Outcome</span>
+          <span class="overview-stat-value">Idea → legally formed business</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrap">
+
+      <div class="info-box">
+        <span class="info-box-icon">◈</span>
+        <div class="info-box-text"><strong>How to use this system:</strong> Work through the four phases in order. Each phase has specific steps, decisions, and templates. Do not skip ahead — earlier decisions affect later ones (especially structure choice and EIN timing).</div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 01</span>
+          <span class="phase-title">Decide the fundamentals</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 1.1</div>
+            <div class="step-title">Choose your business structure</div>
+            <div class="step-desc">Sole proprietor, LLC, or S-Corp — this decision affects taxes, liability, and how much paperwork you deal with every year.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 1.2</div>
+            <div class="step-title">Name your business</div>
+            <div class="step-desc">Check your state's database, then Google, then trademark search. Lock down a domain at the same time.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 1.3</div>
+            <div class="step-title">Pick a business address</div>
+            <div class="step-desc">Home address, virtual office, or commercial space — each has legal and privacy implications worth understanding before you register.</div>
+          </div>
+        </div>
+
+        <!-- Decision Tool -->
+        <div class="decision-tool">
+          <h3>Business Structure Decision Tool</h3>
+          <p>Answer one question to get a plain-English recommendation for your situation.</p>
+          <div class="option-grid">
+            <div class="option-card" onclick="selectOption('structure','solo')">
+              <div class="option-card-label">Solo operator</div>
+              <div class="option-card-desc">Just you, no employees planned yet, low risk of lawsuits</div>
+            </div>
+            <div class="option-card" onclick="selectOption('structure','solo-protect')">
+              <div class="option-card-label">Solo, want protection</div>
+              <div class="option-card-desc">Just you, but client-facing work or some liability risk</div>
+            </div>
+            <div class="option-card" onclick="selectOption('structure','partners')">
+              <div class="option-card-label">With a partner</div>
+              <div class="option-card-desc">Two or more people sharing ownership</div>
+            </div>
+            <div class="option-card" onclick="selectOption('structure','scaling')">
+              <div class="option-card-label">Planning to scale</div>
+              <div class="option-card-desc">Expect significant revenue or want to bring on investors</div>
+            </div>
+          </div>
+          <div class="decision-result" id="structure-result">
+            <div class="decision-result-label">Recommendation</div>
+            <div class="decision-result-text" id="structure-result-text"></div>
+          </div>
+        </div>
+
+        <!-- Templates for Phase 1 -->
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📋</div>
+              <div>
+                <div class="template-name">Business Name Research Checklist</div>
+                <div class="template-type">Checklist · Plain text</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">BUSINESS NAME RESEARCH CHECKLIST
+================================
+
+Step 1 — State availability
+[ ] Search your state's Secretary of State business database
+[ ] Confirm exact legal name is available (not just similar)
+[ ] Note any similar names that could cause confusion
+
+Step 2 — Domain / web presence
+[ ] Check .com availability (use Namecheap or GoDaddy)
+[ ] Check .co and .net as fallbacks
+[ ] Search the name on Google — review first 2 pages
+[ ] Check social handles: Instagram, Facebook, LinkedIn, X
+
+Step 3 — Trademark
+[ ] Search USPTO TESS database (tess.uspto.gov)
+[ ] Search for phonetically similar marks in your industry
+[ ] If conflicts found: consult a trademark attorney
+
+Step 4 — Final confirmation
+[ ] Name passes all three checks above
+[ ] Domain secured (even if not using it yet)
+[ ] Name works across all business documents and signage</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('name-research')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('name-research')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-divider">Phase 02</div>
+
+      <!-- Phase 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 02</span>
+          <span class="phase-title">Register and make it official</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 2.1</div>
+            <div class="step-title">File state formation paperwork</div>
+            <div class="step-desc">LLCs and corporations file Articles of Organization (or Incorporation) with the state. Sole props typically just need a DBA if using a trade name.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2.2</div>
+            <div class="step-title">Get your EIN from the IRS</div>
+            <div class="step-desc">Free, takes 10 minutes on IRS.gov. You need this before opening a business bank account or hiring anyone. Save the CP 575 confirmation letter.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2.3</div>
+            <div class="step-title">Create your Operating Agreement</div>
+            <div class="step-desc">Required in most states for LLCs. Defines ownership %, how decisions are made, and what happens if someone leaves. Use the template below.</div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📄</div>
+              <div>
+                <div class="template-name">Full Business Setup Checklist</div>
+                <div class="template-type">Checklist · 4 phases · Plain text</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">SMALL BUSINESS SETUP CHECKLIST
+================================
+
+PHASE 1 — DECIDE
+[ ] Choose business structure (sole prop / LLC / S-Corp / C-Corp)
+[ ] Choose and verify business name
+     — State business database
+     — Domain availability
+     — Trademark search (USPTO TESS)
+[ ] Decide on business address
+     — Home address, virtual office, or commercial
+
+PHASE 2 — REGISTER
+[ ] File state formation paperwork (LLC: Articles of Organization)
+[ ] Register DBA / trade name if operating under different name
+[ ] Apply for EIN at IRS.gov (free, ~10 min)
+[ ] Save EIN confirmation letter (Form CP 575)
+[ ] Draft single-member or multi-member operating agreement
+[ ] Register for state taxes (income, sales) if applicable
+
+PHASE 3 — OPEN ACCOUNTS
+[ ] Open dedicated business checking account
+[ ] Apply for business debit or credit card
+[ ] Set up payment processor (Stripe, Square, PayPal)
+[ ] Choose bookkeeping method (spreadsheet or software)
+[ ] Set up basic expense categories
+
+PHASE 4 — COMPLIANCE
+[ ] Obtain general business license (city/county)
+[ ] Research state-specific license requirements
+[ ] Register for sales tax if selling taxable goods or services
+[ ] Research industry-specific permits or certifications
+[ ] Purchase business insurance (general liability at minimum)
+[ ] Set recurring calendar reminders:
+     — Annual report filing (state-specific deadline)
+     — License renewals
+     — Estimated tax payments (quarterly)</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('setup-checklist')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('setup-checklist')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">🔖</div>
+              <div>
+                <div class="template-name">EIN Application Preparation Checklist</div>
+                <div class="template-type">Checklist · Plain text</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">EIN APPLICATION PREPARATION CHECKLIST
+======================================
+
+Gather everything below BEFORE going to IRS.gov.
+The online session times out — you cannot save and return.
+
+REQUIRED INFORMATION
+[ ] Legal business name (must match formation documents exactly)
+[ ] Trade name / DBA if different from legal name
+[ ] Business structure (LLC, sole prop, partnership, corporation)
+[ ] Responsible party's full legal name
+[ ] Responsible party's SSN or ITIN
+[ ] Business mailing address (street, city, state, ZIP)
+[ ] Business physical address if different from mailing
+[ ] Business phone number
+[ ] Primary reason for applying:
+     — Started new business
+     — Hired or plan to hire employees
+     — Banking requirement
+     — Changed business structure
+[ ] Date business started or was acquired
+[ ] Expected number of employees in next 12 months
+[ ] Principal activity of business (brief description)
+
+AFTER APPLYING
+[ ] Screenshot or print the EIN confirmation page
+[ ] Wait for Form CP 575 by mail (~4 weeks)
+[ ] Store both in a dedicated business documents folder
+
+Apply only at IRS.gov. It is completely free.
+Never pay a third party to apply on your behalf.</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('ein-checklist')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('ein-checklist')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider">Phase 03</div>
+
+      <!-- Phase 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 03</span>
+          <span class="phase-title">Open accounts and set up money systems</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 3.1</div>
+            <div class="step-title">Open a business bank account</div>
+            <div class="step-desc">Keep business and personal money completely separate from day one. You'll need your EIN, formation documents, and a deposit (usually $25–$100).</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3.2</div>
+            <div class="step-title">Set up a payment processor</div>
+            <div class="step-desc">Stripe or Square for most small businesses. Takes 15 minutes and lets you accept cards immediately. Fees are typically 2.9% + $0.30 per transaction.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3.3</div>
+            <div class="step-title">Set up basic bookkeeping</div>
+            <div class="step-desc">Download the expense tracking CSV template from the Financial Control System, or use Wave (free) if you want software. Do not mix cash with card records.</div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📁</div>
+              <div>
+                <div class="template-name">Business Document Folder Structure</div>
+                <div class="template-type">Reference · File organization guide</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">BUSINESS DOCUMENT FOLDER STRUCTURE
+====================================
+
+Create this folder system in Google Drive or your computer.
+Label each folder exactly as shown.
+
+📁 [Business Name] — Master
+│
+├── 📁 Formation & Legal
+│   ├── Articles of Organization / Incorporation
+│   ├── Operating Agreement
+│   ├── EIN Confirmation (CP 575)
+│   ├── DBA Registration (if applicable)
+│   └── Business License(s)
+│
+├── 📁 Financial Records
+│   ├── 📁 [Year]
+│   │   ├── Bank Statements (monthly)
+│   │   ├── Expense Tracker (CSV or Sheet)
+│   │   ├── Income Records
+│   │   └── Tax Returns / Filings
+│
+├── 📁 Clients & Invoices
+│   ├── Invoices Sent
+│   ├── Paid Invoices
+│   └── Contracts
+│
+├── 📁 Insurance
+│   ├── Current Policy Documents
+│   └── Renewal Dates (text file)
+│
+└── 📁 Compliance Calendar
+    └── Annual Deadlines (text file)
+
+TIP: Everything in Formation & Legal should have a
+physical backup copy stored somewhere safe off-device.</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('folder-structure')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('folder-structure')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider">Phase 04</div>
+
+      <!-- Phase 4 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 04</span>
+          <span class="phase-title">Compliance and staying registered</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 4.1</div>
+            <div class="step-title">File your annual report</div>
+            <div class="step-desc">Most states require LLCs to file an annual or biennial report and pay a small fee. Missing it can result in administrative dissolution.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 4.2</div>
+            <div class="step-title">Pay estimated quarterly taxes</div>
+            <div class="step-desc">If you expect to owe $1,000 or more in taxes for the year, the IRS requires quarterly estimated payments. Deadlines: April 15, June 15, Sept 15, Jan 15.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 4.3</div>
+            <div class="step-title">Set your compliance calendar</div>
+            <div class="step-desc">Put every deadline in a recurring calendar with a 30-day reminder. Annual report, license renewals, and quarterly taxes are the three that matter most.</div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📅</div>
+              <div>
+                <div class="template-name">Annual Compliance Calendar Template</div>
+                <div class="template-type">Reference · Plain text</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">ANNUAL COMPLIANCE CALENDAR
+===========================
+
+FEDERAL — Every year
+[ ] Q1 Estimated Tax Payment .............. April 15
+[ ] Q2 Estimated Tax Payment .............. June 15
+[ ] Q3 Estimated Tax Payment .............. Sept 15
+[ ] Q4 Estimated Tax Payment .............. Jan 15 (next year)
+[ ] Federal Income Tax Return ............. April 15 (or Oct 15 w/ extension)
+[ ] W-2s / 1099s to contractors ........... Jan 31
+
+STATE — Varies by state (fill in your dates)
+[ ] State income tax return ............... ___________
+[ ] Annual / biennial report filing ....... ___________
+[ ] Sales tax filing (if applicable) ...... ___________
+     — Frequency: monthly / quarterly / annually
+[ ] State business license renewal ........ ___________
+
+LOCAL
+[ ] City / county business license renewal  ___________
+
+RECURRING (set as calendar reminders)
+[ ] Review business insurance coverage .... annually, 30 days before renewal
+[ ] Reconcile bookkeeping ................. monthly, last day of month
+[ ] Back up financial records ............. monthly
+
+NOTE: Add a 30-day advance reminder for every deadline above.
+State deadlines vary — look up yours at your Secretary of State website.</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('compliance-calendar')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('compliance-calendar')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /system-starter -->
+
+
+  <!-- ══════ SYSTEM 2: FINANCIAL CONTROL ══════ -->
+  <div id="system-financial" class="system-page">
+
+    <div class="overview-bar">
+      <div class="overview-bar-inner">
+        <div class="overview-stat">
+          <span class="overview-stat-label">System</span>
+          <span class="overview-stat-value">Financial Control</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Phases</span>
+          <span class="overview-stat-value">3 phases</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Included</span>
+          <span class="overview-stat-value">Profit calculator + 4 templates</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Outcome</span>
+          <span class="overview-stat-value">Monthly financial clarity</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrap">
+
+      <div class="info-box">
+        <span class="info-box-icon">◈</span>
+        <div class="info-box-text"><strong>What this system does:</strong> Most small business owners track some numbers but have no idea if they're actually profitable after everything. This system builds a simple, repeatable monthly process — so you know your real profit, not just your revenue.</div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 01</span>
+          <span class="phase-title">Set up your tracking system</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 1.1</div>
+            <div class="step-title">Choose your tracking method</div>
+            <div class="step-desc">Spreadsheet (CSV template below) or free software like Wave. Don't pay for accounting software until you're making $3k+ monthly consistently.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 1.2</div>
+            <div class="step-title">Define your expense categories</div>
+            <div class="step-desc">Keep it to 6–8 categories max. More categories means more friction and less consistency. Use the standard set below unless your business is unusual.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 1.3</div>
+            <div class="step-title">Set a monthly reconciliation date</div>
+            <div class="step-desc">Pick a fixed date — last Friday of the month works for most. Block 30 minutes on your calendar. This is non-negotiable; skipping one month turns into skipping six.</div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📊</div>
+              <div>
+                <div class="template-name">Expense Tracking Spreadsheet</div>
+                <div class="template-type">CSV · Open in Google Sheets or Excel</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">Date,Vendor,Description,Category,Amount,Payment Method,Notes
+2025-01-03,Google Workspace,Monthly subscription,Software,14.00,Business card,
+2025-01-05,Office Depot,Printer paper + pens,Supplies,42.50,Business card,
+2025-01-08,Shell,Gas for client visit,Travel,38.20,Business card,Mileage: 44mi
+2025-01-12,Meta Ads,January ad campaign,Marketing,150.00,Business card,
+2025-01-15,Zoom,Monthly plan,Software,15.99,Business card,
+,,,Operations,,,
+,,,Marketing,,,
+,,,Supplies,,,
+,,,Software,,,
+,,,Travel,,,
+,,,Contractor / Freelance,,,
+,,,Professional Services,,,
+,,,Other,,,</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadCSV()">↓ Download .csv</button>
+              <button class="btn-copy" onclick="copyTemplate('expense-csv')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider">Phase 02</div>
+
+      <!-- Phase 2: Profit Calculator -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 02</span>
+          <span class="phase-title">Know your real monthly profit</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 2.1</div>
+            <div class="step-title">Add up all income for the month</div>
+            <div class="step-desc">Every payment received — not invoiced, actually received. Include all payment methods: bank transfers, card payments, Venmo, cash.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2.2</div>
+            <div class="step-title">Total all business expenses</div>
+            <div class="step-desc">Everything you spent to run the business this month — from your expense tracker. Do not include personal spending or owner draws.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2.3</div>
+            <div class="step-title">Calculate net profit and margin</div>
+            <div class="step-desc">Use the calculator below. Your profit margin tells you how efficiently the business converts revenue into actual money in your pocket.</div>
+          </div>
+        </div>
+
+        <!-- Profit Calculator -->
+        <div class="calc-tool">
+          <h3>Monthly Profit Calculator</h3>
+          <p>Enter your monthly figures to see your real profit and profit margin.</p>
+          <div class="calc-rows">
+            <div class="calc-row">
+              <span class="calc-label">Total revenue ($)</span>
+              <input type="number" class="calc-input" id="calc-revenue" placeholder="0.00" oninput="calcProfit()" />
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Total expenses ($)</span>
+              <input type="number" class="calc-input" id="calc-expenses" placeholder="0.00" oninput="calcProfit()" />
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Owner's pay / draw ($)</span>
+              <input type="number" class="calc-input" id="calc-draw" placeholder="0.00" oninput="calcProfit()" />
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Est. tax set-aside ($)</span>
+              <input type="number" class="calc-input" id="calc-tax" placeholder="0.00" oninput="calcProfit()" />
+            </div>
+          </div>
+          <div class="calc-result-bar">
+            <div>
+              <div class="calc-result-label">Net profit</div>
+              <div class="calc-result-value" id="calc-result">$0.00</div>
+            </div>
+            <div>
+              <div class="calc-result-label">Profit margin</div>
+              <div class="calc-result-margin" id="calc-margin">—</div>
+            </div>
+            <div>
+              <div class="calc-result-label">After owner pay + tax</div>
+              <div class="calc-result-margin" id="calc-remaining">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📈</div>
+              <div>
+                <div class="template-name">Monthly P&L Summary Template</div>
+                <div class="template-type">Plain text · Fill in monthly</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">MONTHLY PROFIT & LOSS SUMMARY
+==============================
+Month: ___________   Year: ___________
+
+INCOME
+─────────────────────────────────
+Product / Service sales     $___________
+Consulting / Retainer fees  $___________
+Other income                $___________
+─────────────────────────────────
+TOTAL INCOME                $___________
+
+EXPENSES
+─────────────────────────────────
+Operations                  $___________
+Marketing                   $___________
+Software / Subscriptions    $___________
+Supplies                    $___________
+Travel                      $___________
+Contractor / Freelance      $___________
+Professional Services       $___________
+Other                       $___________
+─────────────────────────────────
+TOTAL EXPENSES              $___________
+
+SUMMARY
+─────────────────────────────────
+Gross Profit (Income − Expenses)  $___________
+Owner Draw / Salary               $___________
+Tax Set-Aside (25–30%)            $___________
+─────────────────────────────────
+NET (what stays in business)      $___________
+Profit Margin                     ___________%
+
+NOTES / OBSERVATIONS
+─────────────────────────────────
+Biggest expense this month:
+Biggest income source:
+One thing to cut next month:
+One thing to grow next month:</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('monthly-pl')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('monthly-pl')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider">Phase 03</div>
+
+      <!-- Phase 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 03</span>
+          <span class="phase-title">Review, identify leaks, and improve</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 3.1</div>
+            <div class="step-title">Find your biggest expense category</div>
+            <div class="step-desc">Sort your expenses by category total. The top 2–3 categories usually make up 70–80% of spending. These are the only ones worth optimizing first.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3.2</div>
+            <div class="step-title">Identify subscriptions not earning back</div>
+            <div class="step-desc">List every recurring charge. If you cannot directly link a subscription to revenue generated or significant time saved, cancel it this month.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3.3</div>
+            <div class="step-title">Set a target profit margin</div>
+            <div class="step-desc">Service businesses: aim for 30–50% net margin. Product businesses: 10–20% is healthy. Below 15% on a service business means pricing or expense issues to fix.</div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">🔍</div>
+              <div>
+                <div class="template-name">Monthly Financial Review Checklist</div>
+                <div class="template-type">Checklist · Run monthly in 30 min</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">MONTHLY FINANCIAL REVIEW CHECKLIST
+====================================
+Takes 30 minutes. Run on the last working day of each month.
+
+STEP 1 — RECONCILE (10 min)
+[ ] Download bank statement for the month
+[ ] Match every transaction to your expense tracker
+[ ] Flag any unrecognized charges immediately
+[ ] Add any missed cash transactions
+
+STEP 2 — SUMMARIZE (5 min)
+[ ] Total all income received this month
+[ ] Total all expenses by category
+[ ] Calculate gross profit (income − expenses)
+[ ] Note your profit margin %
+
+STEP 3 — ANALYZE (10 min)
+[ ] Compare this month's profit to last month
+[ ] Identify largest expense category
+[ ] List all recurring subscriptions — cancel unused ones
+[ ] Flag any expense over $200 — was it necessary?
+
+STEP 4 — PLAN FORWARD (5 min)
+[ ] Set one financial goal for next month
+[ ] Is there an invoice overdue? Follow up today.
+[ ] Do you need to adjust pricing based on margin?
+[ ] Transfer 25–30% of net profit to tax savings account
+
+RECORD YOUR NUMBERS
+Month: ___________
+Revenue: $___________
+Expenses: $___________
+Net Profit: $___________
+Margin: ___________%
+vs. Last Month: + / − $___________</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('monthly-review')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('monthly-review')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /system-financial -->
+
+
+  <!-- ══════ SYSTEM 3: CLIENT & INVOICE ══════ -->
+  <div id="system-client" class="system-page">
+
+    <div class="overview-bar">
+      <div class="overview-bar-inner">
+        <div class="overview-stat">
+          <span class="overview-stat-label">System</span>
+          <span class="overview-stat-value">Client & Invoice</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Phases</span>
+          <span class="overview-stat-value">3 phases</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Included</span>
+          <span class="overview-stat-value">Invoice builder + tracker + 3 templates</span>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stat">
+          <span class="overview-stat-label">Outcome</span>
+          <span class="overview-stat-value">No payment slips through again</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrap">
+
+      <div class="info-box">
+        <span class="info-box-icon">◈</span>
+        <div class="info-box-text"><strong>The real problem:</strong> Most missed payments aren't from difficult clients — they're from a missing system. Invoices sent without tracking. Follow-ups forgotten. This system turns invoicing into a weekly routine with a clear status for every client.</div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 01</span>
+          <span class="phase-title">Build a professional invoice</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 1.1</div>
+            <div class="step-title">Include every required field</div>
+            <div class="step-desc">Your business name, client name, invoice number, date, due date, itemized services, and payment instructions. Missing any of these slows payment down.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 1.2</div>
+            <div class="step-title">Set clear payment terms</div>
+            <div class="step-desc">Net 15 means pay within 15 days. Include your preferred payment method and exact account details. Don't make clients guess how to pay you.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 1.3</div>
+            <div class="step-title">Number every invoice sequentially</div>
+            <div class="step-desc">Start at INV-001 and go up. This makes tracking simple and looks professional. Never reuse an invoice number.</div>
+          </div>
+        </div>
+
+        <!-- Invoice Builder -->
+        <div class="invoice-builder">
+          <div class="invoice-builder-top">
+            <h3>Invoice Builder Preview</h3>
+            <p>Fill in the fields to see your invoice preview update in real time. Use the template below to generate a printable version.</p>
+          </div>
+          <div class="invoice-form">
+            <div class="form-group">
+              <label class="form-label">Your Business Name</label>
+              <input type="text" class="form-input" id="inv-business" placeholder="Acme Consulting LLC" oninput="updateInvoice()" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Invoice Number</label>
+              <input type="text" class="form-input" id="inv-num" value="INV-001" oninput="updateInvoice()" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Client Name</label>
+              <input type="text" class="form-input" id="inv-client" placeholder="Smith & Co." oninput="updateInvoice()" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Due Date</label>
+              <input type="text" class="form-input" id="inv-due" placeholder="Net 15 — May 8, 2025" oninput="updateInvoice()" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service Description</label>
+              <input type="text" class="form-input" id="inv-service" placeholder="Website Design — April" oninput="updateInvoice()" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Amount ($)</label>
+              <input type="number" class="form-input" id="inv-amount" placeholder="1500.00" oninput="updateInvoice()" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Payment Instructions</label>
+              <input type="text" class="form-input" id="inv-payment" placeholder="Bank transfer to: [Bank Name] Acct: 000123456 / Zelle: yourname@email.com" oninput="updateInvoice()" />
+            </div>
+          </div>
+          <div class="invoice-preview">
+            <div class="invoice-preview-header">
+              <div>
+                <div class="invoice-preview-company" id="prev-business">Your Business Name</div>
+                <div class="invoice-preview-label">Professional Services</div>
+              </div>
+              <div>
+                <div class="invoice-num" id="prev-num">INV-001</div>
+              </div>
+            </div>
+            <div class="invoice-preview-body">
+              <div class="invoice-row">
+                <span style="color: var(--ink-muted); font-size:0.78rem;">Billed to</span>
+                <span style="font-weight:500;" id="prev-client">Client Name</span>
+              </div>
+              <div class="invoice-row">
+                <span style="color: var(--ink-muted); font-size:0.78rem;">Due date</span>
+                <span id="prev-due">—</span>
+              </div>
+              <div class="invoice-row" style="margin-top:0.5rem;">
+                <span id="prev-service" style="color:var(--ink);">Service description</span>
+                <span id="prev-amount" style="font-family:'DM Mono',monospace; font-size:0.85rem;">$0.00</span>
+              </div>
+              <div class="invoice-total-row">
+                <span>Total Due</span>
+                <span id="prev-total" style="font-family:'DM Mono',monospace;">$0.00</span>
+              </div>
+              <div style="margin-top:1rem; padding:0.75rem; background:var(--surface); border-radius:6px; font-size:0.75rem; color:var(--ink-muted);" id="prev-payment">Payment instructions appear here</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">🧾</div>
+              <div>
+                <div class="template-name">Invoice Template (Print-Ready)</div>
+                <div class="template-type">Plain text · Fill and print</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">INVOICE
+=======
+From:  [Your Business Name]
+       [Your Address]
+       [City, State ZIP]
+       [Email] | [Phone]
+
+To:    [Client Business Name]
+       [Client Contact Name]
+       [Client Address]
+
+Invoice #:  INV-___
+Date:       ___________
+Due Date:   ___________ (Net __ days)
+
+─────────────────────────────────────────────
+SERVICES
+─────────────────────────────────────────────
+Description                         Amount
+─────────────────────────────────────────────
+[Service / Project Description]     $__________
+[Additional line item]              $__________
+[Additional line item]              $__________
+─────────────────────────────────────────────
+Subtotal                            $__________
+Tax (if applicable)                 $__________
+─────────────────────────────────────────────
+TOTAL DUE                           $__________
+
+PAYMENT INSTRUCTIONS
+─────────────────────
+Preferred method: [Bank transfer / Zelle / Check / PayPal]
+[Bank name, account number, routing — or Zelle email/phone]
+[Check payable to: Your Business Name]
+
+Please reference Invoice #INV-___ with payment.
+
+Late payments beyond [30] days may be subject to a
+[1.5%] monthly finance charge.
+
+Thank you for your business.</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('invoice')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('invoice')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider">Phase 02</div>
+
+      <!-- Phase 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 02</span>
+          <span class="phase-title">Track every client and invoice</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 2.1</div>
+            <div class="step-title">Log every invoice immediately</div>
+            <div class="step-desc">The moment you send an invoice, add it to your tracker below. Do not rely on memory or your sent folder. Status: Pending.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2.2</div>
+            <div class="step-title">Check status every Monday</div>
+            <div class="step-desc">5 minutes each Monday: review what's pending, what's overdue, and what to follow up on. This is the whole system — consistency beats complexity.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2.3</div>
+            <div class="step-title">Mark paid and file immediately</div>
+            <div class="step-desc">When payment arrives: mark as Paid in the tracker, move the invoice file to "Paid Invoices" folder, and record the income in your expense tracker the same day.</div>
+          </div>
+        </div>
+
+        <!-- Client Tracker -->
+        <div class="client-tracker">
+          <div class="tracker-header">
+            <div class="tracker-header-left">
+              <h3>Invoice Status Tracker</h3>
+              <p>Live example — download the CSV template to use your own</p>
+            </div>
+            <button class="btn-download" onclick="downloadCSVTracker()" style="font-size:0.78rem;">↓ Download CSV template</button>
+          </div>
+          <table class="tracker-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Client</th>
+                <th>Service</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink);">INV-001</td>
+                <td>Meridian Goods</td>
+                <td>Website redesign</td>
+                <td style="font-family:'DM Mono',monospace;">$2,400</td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;">Apr 15</td>
+                <td><span class="status-badge status-paid">Paid</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink);">INV-002</td>
+                <td>Brightfield LLC</td>
+                <td>Monthly retainer — April</td>
+                <td style="font-family:'DM Mono',monospace;">$850</td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;">Apr 30</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink);">INV-003</td>
+                <td>Ortega Solutions</td>
+                <td>Brand consultation</td>
+                <td style="font-family:'DM Mono',monospace;">$600</td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;">Apr 10</td>
+                <td><span class="status-badge status-overdue">Overdue</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--ink);">INV-004</td>
+                <td>Hartwell Co.</td>
+                <td>Logo + brand kit</td>
+                <td style="font-family:'DM Mono',monospace;">$1,200</td>
+                <td style="font-family:'DM Mono',monospace;font-size:0.78rem;">May 5</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-divider">Phase 03</div>
+
+      <!-- Phase 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 03</span>
+          <span class="phase-title">Follow up and close every payment</span>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">Step 3.1</div>
+            <div class="step-title">Send a friendly reminder at day 3</div>
+            <div class="step-desc">A short, warm message 3 days before the due date. Mention the invoice number and amount. Most late payments are just forgotten — this one message catches most of them.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3.2</div>
+            <div class="step-title">Send a firm follow-up at day 7 overdue</div>
+            <div class="step-desc">Professional but direct. Reference the invoice number, original due date, and outstanding amount. Include your payment link or details again. No apologies.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3.3</div>
+            <div class="step-title">Escalate at day 30 overdue</div>
+            <div class="step-desc">Phone call first. Then a final written notice mentioning potential late fees or referral to collections. Have a clear policy and stick to it — flexibility here costs you money.</div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">✉️</div>
+              <div>
+                <div class="template-name">Payment Follow-Up Email Templates (3 stages)</div>
+                <div class="template-type">Email copy · Ready to send</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">PAYMENT FOLLOW-UP EMAIL TEMPLATES
+===================================
+
+── STAGE 1: Friendly reminder (3 days before due) ──
+
+Subject: Quick reminder — Invoice #INV-___ due [Date]
+
+Hi [Client Name],
+
+Just a quick note to flag that Invoice #INV-___ for
+$[Amount] is due on [Date].
+
+Payment details are included in the original invoice,
+but let me know if you need me to resend anything.
+
+Thank you,
+[Your Name]
+
+
+── STAGE 2: First follow-up (7 days overdue) ──
+
+Subject: Invoice #INV-___ — Payment not yet received
+
+Hi [Client Name],
+
+I'm following up on Invoice #INV-___ for $[Amount],
+which was due on [Due Date].
+
+I haven't received payment yet — could you confirm
+when I should expect it? Happy to resend the invoice
+or provide alternative payment details if needed.
+
+[Payment instructions]
+
+Thanks,
+[Your Name]
+
+
+── STAGE 3: Final notice (30+ days overdue) ──
+
+Subject: Final notice — Invoice #INV-___ ($[Amount] overdue)
+
+Hi [Client Name],
+
+Invoice #INV-___ for $[Amount] remains unpaid, now
+[X] days past the due date of [Due Date].
+
+Please arrange payment by [Final Date].
+
+After that date, I may apply a late fee per my payment
+terms and/or engage a collections process.
+
+Please contact me directly if there's an issue
+I'm not aware of.
+
+[Your Name]
+[Phone number]</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('followup-emails')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('followup-emails')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="template-block">
+          <div class="template-header" onclick="toggleTemplate(this)">
+            <div class="template-header-left">
+              <div class="template-icon">📋</div>
+              <div>
+                <div class="template-name">Weekly Invoice Review Checklist</div>
+                <div class="template-type">Checklist · Run every Monday (5 min)</div>
+              </div>
+            </div>
+            <div class="template-toggle">Preview <span class="toggle-arrow">▶</span></div>
+          </div>
+          <div class="template-body">
+            <div class="template-preview">WEEKLY INVOICE REVIEW CHECKLIST
+================================
+Run this every Monday. Takes 5 minutes.
+
+STEP 1 — REVIEW TRACKER
+[ ] Open your invoice tracker
+[ ] Update status of any payments received last week
+[ ] Identify all invoices due within 5 days (send reminder)
+[ ] Identify all overdue invoices (send follow-up)
+
+STEP 2 — FOLLOW UP
+[ ] Send Stage 1 reminders (due in 3 days)
+[ ] Send Stage 2 follow-ups (7+ days overdue)
+[ ] Call any invoice 21+ days overdue
+
+STEP 3 — LOG NEW INVOICES
+[ ] Confirm all invoices sent this week are in the tracker
+[ ] Assign correct invoice number
+[ ] Set due date and reminder for 3 days prior
+
+WEEKLY NUMBERS (takes 2 min to fill in)
+Invoices sent this week:        ___
+Total invoiced this week:       $___
+Payments received this week:    $___
+Currently outstanding total:    $___
+Oldest unpaid invoice:          ___ days</div>
+            <div class="template-actions">
+              <button class="btn-download" onclick="downloadTemplate('weekly-review')">↓ Download .txt</button>
+              <button class="btn-copy" onclick="copyTemplate('weekly-review')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /system-client -->
+
+  <footer>
+    <p>Ledgely Pro · Members only · <a href="index.html">Back to main site</a></p>
+  </footer>
+
+</div><!-- /app -->
+
+<script>
+// ── PASSWORD ──
+const PRO_PASSWORD = 'ledgely-pro'; // Change this to your real password
+
+function checkPassword() {
+  const val = document.getElementById('password-field').value.trim();
+  if (val === PRO_PASSWORD) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    sessionStorage.setItem('ledgely-pro-auth', '1');
+  } else {
+    document.getElementById('gate-error').style.display = 'block';
+    document.getElementById('password-field').value = '';
+    document.getElementById('password-field').focus();
+  }
+}
+
+document.getElementById('password-field').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+if (sessionStorage.getItem('ledgely-pro-auth') === '1') {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+}
+
+// Also check URL param: ?key=ledgely-pro
+const urlKey = new URLSearchParams(window.location.search).get('key');
+if (urlKey === PRO_PASSWORD) {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+}
+
+// ── TABS ──
+function showSystem(id) {
+  document.querySelectorAll('.system-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('system-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── TEMPLATE ACCORDION ──
+function toggleTemplate(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+}
+
+// ── DECISION TOOL ──
+const structureRecommendations = {
+  'solo': 'Sole proprietorship is fine for now. No formation paperwork needed — you just operate under your name (or file a DBA if using a business name). Downside: no liability protection. Upgrade to a single-member LLC when you start earning consistently or taking on client risk.',
+  'solo-protect': 'Single-member LLC. Separates your personal assets from business liabilities, costs $50–500 to form depending on state, and is taxed exactly like a sole prop by default (no extra complexity). File Articles of Organization with your state, get an EIN, and open a separate business bank account.',
+  'partners': 'Multi-member LLC. Clearest structure for partnerships — each member\'s ownership % and responsibilities are defined in the Operating Agreement. Avoid general partnerships (no liability protection). Make sure your Operating Agreement covers what happens if a partner wants to leave.',
+  'scaling': 'Start as an LLC and elect S-Corp tax treatment with the IRS if your net profit exceeds ~$50K/year — this can save on self-employment taxes. Full C-Corp makes sense only if you plan to raise outside investment. Get a CPA involved before making this decision.'
+};
+
+function selectOption(tool, value) {
+  document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  if (tool === 'structure') {
+    const result = document.getElementById('structure-result');
+    document.getElementById('structure-result-text').textContent = structureRecommendations[value];
+    result.classList.add('visible');
+  }
+}
+
+// ── PROFIT CALCULATOR ──
+function calcProfit() {
+  const rev = parseFloat(document.getElementById('calc-revenue').value) || 0;
+  const exp = parseFloat(document.getElementById('calc-expenses').value) || 0;
+  const draw = parseFloat(document.getElementById('calc-draw').value) || 0;
+  const tax = parseFloat(document.getElementById('calc-tax').value) || 0;
+  const net = rev - exp;
+  const remaining = net - draw - tax;
+  const margin = rev > 0 ? ((net / rev) * 100).toFixed(1) : null;
+  document.getElementById('calc-result').textContent = '$' + net.toFixed(2);
+  document.getElementById('calc-margin').textContent = margin !== null ? margin + '% margin' : '—';
+  document.getElementById('calc-remaining').textContent = rev > 0 ? '$' + remaining.toFixed(2) + ' stays in business' : '—';
+}
+
+// ── INVOICE PREVIEW ──
+function updateInvoice() {
+  const business = document.getElementById('inv-business').value || 'Your Business Name';
+  const num = document.getElementById('inv-num').value || 'INV-001';
+  const client = document.getElementById('inv-client').value || 'Client Name';
+  const due = document.getElementById('inv-due').value || '—';
+  const service = document.getElementById('inv-service').value || 'Service description';
+  const amount = parseFloat(document.getElementById('inv-amount').value) || 0;
+  const payment = document.getElementById('inv-payment').value || 'Payment instructions appear here';
+  document.getElementById('prev-business').textContent = business;
+  document.getElementById('prev-num').textContent = num;
+  document.getElementById('prev-client').textContent = client;
+  document.getElementById('prev-due').textContent = due;
+  document.getElementById('prev-service').textContent = service;
+  const formatted = '$' + amount.toFixed(2);
+  document.getElementById('prev-amount').textContent = formatted;
+  document.getElementById('prev-total').textContent = formatted;
+  document.getElementById('prev-payment').textContent = payment;
+}
+
+// ── TEMPLATES MAP ──
+const templateContents = {
+  'name-research': `BUSINESS NAME RESEARCH CHECKLIST\n================================\n\nStep 1 — State availability\n[ ] Search your state's Secretary of State business database\n[ ] Confirm exact legal name is available (not just similar)\n[ ] Note any similar names that could cause confusion\n\nStep 2 — Domain / web presence\n[ ] Check .com availability (use Namecheap or GoDaddy)\n[ ] Check .co and .net as fallbacks\n[ ] Search the name on Google — review first 2 pages\n[ ] Check social handles: Instagram, Facebook, LinkedIn, X\n\nStep 3 — Trademark\n[ ] Search USPTO TESS database (tess.uspto.gov)\n[ ] Search for phonetically similar marks in your industry\n[ ] If conflicts found: consult a trademark attorney\n\nStep 4 — Final confirmation\n[ ] Name passes all three checks above\n[ ] Domain secured (even if not using it yet)\n[ ] Name works across all business documents and signage`,
+
+  'setup-checklist': `SMALL BUSINESS SETUP CHECKLIST\n================================\n\nPHASE 1 — DECIDE\n[ ] Choose business structure (sole prop / LLC / S-Corp / C-Corp)\n[ ] Choose and verify business name\n     — State business database\n     — Domain availability\n     — Trademark search (USPTO TESS)\n[ ] Decide on business address\n\nPHASE 2 — REGISTER\n[ ] File state formation paperwork\n[ ] Register DBA / trade name if applicable\n[ ] Apply for EIN at IRS.gov (free)\n[ ] Save EIN confirmation letter (Form CP 575)\n[ ] Draft operating agreement\n[ ] Register for state taxes if applicable\n\nPHASE 3 — OPEN ACCOUNTS\n[ ] Open dedicated business checking account\n[ ] Apply for business debit or credit card\n[ ] Set up payment processor (Stripe, Square, PayPal)\n[ ] Choose bookkeeping method\n\nPHASE 4 — COMPLIANCE\n[ ] Obtain general business license\n[ ] Research state-specific requirements\n[ ] Register for sales tax if applicable\n[ ] Purchase business insurance\n[ ] Set recurring compliance calendar reminders`,
+
+  'ein-checklist': `EIN APPLICATION PREPARATION CHECKLIST\n======================================\n\n[ ] Legal business name (matches formation documents)\n[ ] Trade name / DBA if different\n[ ] Business structure\n[ ] Responsible party's full legal name\n[ ] Responsible party's SSN or ITIN\n[ ] Business mailing address\n[ ] Business physical address\n[ ] Business phone number\n[ ] Reason for applying\n[ ] Date business started\n[ ] Expected employees in next 12 months\n\nApply only at IRS.gov. The EIN is free.`,
+
+  'folder-structure': `BUSINESS DOCUMENT FOLDER STRUCTURE\n====================================\n\n📁 [Business Name] — Master\n│\n├── 📁 Formation & Legal\n│   ├── Articles of Organization\n│   ├── Operating Agreement\n│   ├── EIN Confirmation (CP 575)\n│   └── Business License(s)\n│\n├── 📁 Financial Records\n│   └── 📁 [Year]\n│       ├── Bank Statements\n│       ├── Expense Tracker\n│       └── Tax Returns\n│\n├── 📁 Clients & Invoices\n│   ├── Invoices Sent\n│   └── Paid Invoices\n│\n└── 📁 Compliance Calendar`,
+
+  'compliance-calendar': `ANNUAL COMPLIANCE CALENDAR\n===========================\n\nFEDERAL\n[ ] Q1 Estimated Tax ........... April 15\n[ ] Q2 Estimated Tax ........... June 15\n[ ] Q3 Estimated Tax ........... Sept 15\n[ ] Q4 Estimated Tax ........... Jan 15\n[ ] Federal Tax Return ......... April 15\n[ ] W-2s / 1099s ............... Jan 31\n\nSTATE (fill in your dates)\n[ ] State income tax return .... ___________\n[ ] Annual report filing ....... ___________\n[ ] Sales tax filing ........... ___________\n[ ] State license renewal ...... ___________\n\nLOCAL\n[ ] City/county license renewal  ___________`,
+
+  'monthly-pl': `MONTHLY PROFIT & LOSS SUMMARY\n==============================\nMonth: ___________   Year: ___________\n\nINCOME\n────────────────────────────\nProduct / Service sales     $___________\nConsulting / Retainer fees  $___________\nOther income                $___________\n────────────────────────────\nTOTAL INCOME                $___________\n\nEXPENSES\n────────────────────────────\nOperations                  $___________\nMarketing                   $___________\nSoftware / Subscriptions    $___________\nSupplies                    $___________\nTravel                      $___________\nContractor / Freelance      $___________\nProfessional Services       $___________\nOther                       $___________\n────────────────────────────\nTOTAL EXPENSES              $___________\n\nSUMMARY\n────────────────────────────\nGross Profit (Income − Expenses)  $___________\nOwner Draw / Salary               $___________\nTax Set-Aside (25–30%)            $___________\n────────────────────────────\nNET (stays in business)           $___________\nProfit Margin                     ___________%`,
+
+  'monthly-review': `MONTHLY FINANCIAL REVIEW CHECKLIST\n====================================\n\nSTEP 1 — RECONCILE (10 min)\n[ ] Download bank statement\n[ ] Match every transaction to expense tracker\n[ ] Flag unrecognized charges\n[ ] Add missed cash transactions\n\nSTEP 2 — SUMMARIZE (5 min)\n[ ] Total all income received\n[ ] Total all expenses by category\n[ ] Calculate gross profit\n[ ] Note profit margin %\n\nSTEP 3 — ANALYZE (10 min)\n[ ] Compare to last month\n[ ] Identify largest expense category\n[ ] List recurring subscriptions — cancel unused\n[ ] Flag any expense over $200\n\nSTEP 4 — PLAN FORWARD (5 min)\n[ ] Set one financial goal for next month\n[ ] Follow up on any overdue invoices\n[ ] Adjust pricing if margin is below target\n[ ] Transfer 25–30% of net profit to tax savings`,
+
+  'invoice': `INVOICE\n=======\nFrom:  [Your Business Name]\n       [Your Address]\n       [Email] | [Phone]\n\nTo:    [Client Name]\n       [Client Address]\n\nInvoice #:  INV-___\nDate:       ___________\nDue Date:   ___________\n\n────────────────────────────────────────\nSERVICES\n────────────────────────────────────────\n[Service Description]           $__________\n[Additional line item]          $__________\n────────────────────────────────────────\nTOTAL DUE                       $__________\n\nPAYMENT\n────────\n[Payment method and details]\n\nPlease reference Invoice #INV-___ with payment.\nLate payments beyond 30 days may incur a 1.5% monthly fee.`,
+
+  'followup-emails': `PAYMENT FOLLOW-UP EMAIL TEMPLATES\n===================================\n\n── STAGE 1: Reminder (3 days before due) ──\n\nSubject: Quick reminder — Invoice #INV-___ due [Date]\n\nHi [Client Name],\n\nJust flagging that Invoice #INV-___ for $[Amount] is due on [Date].\nLet me know if you need anything resent.\n\nThank you,\n[Your Name]\n\n\n── STAGE 2: First follow-up (7 days overdue) ──\n\nSubject: Invoice #INV-___ — Payment not yet received\n\nHi [Client Name],\n\nFollowing up on Invoice #INV-___ for $[Amount], due on [Due Date].\nCould you confirm when to expect payment?\n\n[Payment details]\n\nThanks,\n[Your Name]\n\n\n── STAGE 3: Final notice (30+ days overdue) ──\n\nSubject: Final notice — Invoice #INV-___ ($[Amount] overdue)\n\nHi [Client Name],\n\nInvoice #INV-___ for $[Amount] is now [X] days past due.\nPlease arrange payment by [Final Date].\n\nAfter that date I may apply late fees or engage collections.\n\n[Your Name] | [Phone]`,
+
+  'weekly-review': `WEEKLY INVOICE REVIEW CHECKLIST\n================================\nRun every Monday — 5 minutes.\n\n[ ] Update status of payments received last week\n[ ] Send reminders for invoices due within 5 days\n[ ] Send follow-ups for overdue invoices\n[ ] Log any new invoices sent\n\nWEEKLY NUMBERS\nInvoices sent:          ___\nTotal invoiced:         $___\nPayments received:      $___\nOutstanding total:      $___\nOldest unpaid:          ___ days`
+};
+
+function downloadTemplate(key) {
+  const content = templateContents[key] || 'Template not found.';
+  const blob = new Blob([content], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = key + '.txt';
+  a.click();
+}
+
+function copyTemplate(key) {
+  const content = templateContents[key] || '';
+  navigator.clipboard.writeText(content).then(() => {
+    alert('Copied to clipboard.');
+  });
+}
+
+function downloadCSV() {
+  const content = `Date,Vendor,Description,Category,Amount,Payment Method,Notes\n,,,Operations,,,\n,,,Marketing,,,\n,,,Supplies,,,\n,,,Software,,,\n,,,Travel,,,\n,,,Contractor / Freelance,,,\n,,,Professional Services,,,\n,,,Other,,,`;
+  const blob = new Blob([content], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'expense-tracker.csv';
+  a.click();
+}
+
+function downloadCSVTracker() {
+  const content = `Invoice #,Client,Service,Amount,Date Sent,Due Date,Status,Notes\nINV-001,,,,,,Pending,\nINV-002,,,,,,Pending,\nINV-003,,,,,,Pending,`;
+  const blob = new Blob([content], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'invoice-tracker.csv';
+  a.click();
+}
+</script>
+
+</body>
+</html>

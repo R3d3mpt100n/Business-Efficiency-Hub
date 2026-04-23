@@ -3,7 +3,7 @@ import { findProSystem } from "@/data/proSystems";
 import { articlesBySlugs } from "@/data/articles";
 import { tools } from "@/data/tools";
 import { templates } from "@/data/templates";
-import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
+import { PRO_SYSTEMS_URL } from "@/data/checkout";
 
 export default function ProSystem() {
   const [, params] = useRoute("/pro/:slug");
@@ -112,9 +112,7 @@ export default function ProSystem() {
           and ongoing access.
         </p>
         <a
-          href={STRIPE_CHECKOUT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={PRO_SYSTEMS_URL}
           className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
         >
           Unlock full system &rarr;
