@@ -15,9 +15,9 @@ export default function ProSystems() {
         </div>
         <h1 className="text-3xl font-semibold text-slate-900">Pro Systems</h1>
         <p className="mt-2 text-slate-600 max-w-2xl">
-          Pro Systems are structured, done-for-you kits that expand the free
-          documentation and tools into complete workflows for a specific area of
-          your business.
+          Pro Systems are structured, done-for-you workflows that turn the free
+          guides and tools into complete, step-by-step systems you can follow
+          without guessing.
         </p>
       </div>
 

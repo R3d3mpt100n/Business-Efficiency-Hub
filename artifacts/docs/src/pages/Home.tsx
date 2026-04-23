@@ -94,29 +94,32 @@ const PRO_PITCH: Record<
 > = {
   "business-starter": {
     headline:
-      "Go from idea to fully registered business without figuring things out alone.",
+      "Go from idea to a legally formed business without figuring it out step by step on your own.",
     benefits: [
-      "One organized path from idea → entity → bank account",
-      "Combined EIN + ITIN advanced checklist",
-      "Pre-filled operating agreement and setup templates",
+      "Complete EIN + ITIN preparation workflow",
+      "Business setup steps in the correct order",
+      "Pre-structured documents and checklists",
+      "One clear path from idea → registered business",
     ],
   },
   "financial-control": {
     headline:
-      "Stop guessing your profit. See exactly where your money goes every month.",
+      "Stop guessing your profit. Know exactly where your money goes every month.",
     benefits: [
-      "Real profit, not just totals in a spreadsheet",
-      "6-month rolling cash flow forecast built in",
-      "Monthly review checklist so nothing slips through",
+      "Monthly profit tracking workflow",
+      "Expense tracking and categorization system",
+      "Cash flow planning structure",
+      "Simple monthly review process",
     ],
   },
   "client-invoice": {
     headline:
-      "Turn invoicing into a structured system so you never lose track of payments.",
+      "Turn invoicing into a system so you stop losing track of payments and clients.",
     benefits: [
-      "Get paid faster with a structured reminder workflow",
-      "Track every client, payment, and project in one sheet",
-      "Year-end tax prep is painless because everything is organized",
+      "Structured invoicing workflow",
+      "Client tracking system",
+      "Payment follow-up process",
+      "Organized records for tax time",
     ],
   },
 };

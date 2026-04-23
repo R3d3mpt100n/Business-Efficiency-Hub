@@ -21,11 +21,12 @@ export const proSystems: ProSystem[] = [
     slug: "business-starter",
     title: "Business Starter System (Pro)",
     shortTitle: "Business Starter",
-    tagline: "Go from idea to legally formed business with one organized system.",
+    tagline:
+      "Go from idea to a legally formed business without figuring it out step by step on your own.",
     description:
-      "A complete, structured kit that combines the EIN, ITIN, and business setup material into a single done-for-you workflow — so you stop assembling pieces and just follow one path.",
+      "If you try to piece this together manually, you'll waste time jumping between checklists, documents, and requirements. This system puts everything into one clear path so you can follow it and finish setup properly.",
     purpose:
-      "Turn scattered setup information into a complete 'start a business' system.",
+      "One clear path from idea → registered business, with EIN/ITIN preparation, setup steps in the correct order, and pre-structured documents and checklists in one place.",
     sections: [
       {
         heading: "Full step-by-step business setup workflow",
@@ -89,11 +90,11 @@ export const proSystems: ProSystem[] = [
     title: "Financial Control System (Pro)",
     shortTitle: "Financial Control",
     tagline:
-      "Understand and control your business finances — not just track them.",
+      "Stop guessing your profit. Know exactly where your money goes every month.",
     description:
-      "An upgraded version of the free expense, budgeting, and cash flow tools, shaped into one structured system with monthly reviews, reporting templates, and a simple performance dashboard.",
+      "Most small businesses track numbers but don't actually understand them. This system turns scattered tracking into a simple, repeatable monthly process so you can see what's working and what's not.",
     purpose:
-      "Help users fully understand and control their business finances, not just track them.",
+      "A simple, repeatable monthly process: profit tracking, expense categorization, cash flow planning, and a structured monthly review.",
     sections: [
       {
         heading: "Advanced expense tracking system",
@@ -150,11 +151,11 @@ export const proSystems: ProSystem[] = [
     title: "Client & Invoice Management System (Pro)",
     shortTitle: "Client & Invoice",
     tagline:
-      "Turn basic invoicing into a full client management workflow.",
+      "Turn invoicing into a system so you stop losing track of payments and clients.",
     description:
-      "An expanded version of the invoice generator and client follow-up basics, structured into a complete client and payment management system for small service businesses.",
+      "Sending invoices isn't the problem — managing clients and follow-ups is. This system gives you a clear workflow so payments don't slip through the cracks.",
     purpose:
-      "Turn basic invoicing into a full client management workflow.",
+      "A structured workflow for invoicing, client tracking, payment follow-ups, and organized records for tax time.",
     sections: [
       {
         heading: "Professional invoice template pack",
