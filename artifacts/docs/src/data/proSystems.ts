@@ -16,6 +16,30 @@ export type ProSystem = {
   freeTemplateSlugs?: string[];
 };
 
+export const KEY_BENEFITS: Record<string, string[]> = {
+  "business-starter": [
+    "Know exactly which business structure fits your situation",
+    "Avoid filing mistakes that delay or block approval",
+    "Follow a clear step-by-step setup path from idea to registration",
+    "Understand when and how to apply for EIN or ITIN",
+    "Get a complete checklist so nothing is missed",
+  ],
+  "financial-control": [
+    "See your real monthly profit, not guesswork",
+    "Understand where your money is actually going",
+    "Plan cash flow before problems happen",
+    "Stop mixing personal and business finances",
+    "Build a simple financial review routine",
+  ],
+  "client-invoice": [
+    "Send professional invoices that clients take seriously",
+    "Track payments and outstanding balances easily",
+    "Reduce late payments with structured follow-up flow",
+    "Keep all client activity organized in one place",
+    "Simplify tax season with clean records",
+  ],
+};
+
 export const proSystems: ProSystem[] = [
   {
     slug: "business-starter",

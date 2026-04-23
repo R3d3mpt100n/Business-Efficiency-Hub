@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { articles } from "@/data/articles";
-import { proSystems } from "@/data/proSystems";
+import { proSystems, KEY_BENEFITS } from "@/data/proSystems";
 import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
 
 const CLUSTERS = [
@@ -89,39 +89,18 @@ const PROGRESS_PATH = [
   { label: "Pro Systems", href: "/pro" },
 ];
 
-const PRO_PITCH: Record<
-  string,
-  { headline: string; benefits: string[] }
-> = {
+const PRO_PITCH: Record<string, { headline: string }> = {
   "business-starter": {
     headline:
       "Go from idea to a legally formed business without figuring it out step by step on your own.",
-    benefits: [
-      "Complete EIN + ITIN preparation workflow",
-      "Business setup steps in the correct order",
-      "Pre-structured documents and checklists",
-      "One clear path from idea → registered business",
-    ],
   },
   "financial-control": {
     headline:
       "Stop guessing your profit. Know exactly where your money goes every month.",
-    benefits: [
-      "Monthly profit tracking workflow",
-      "Expense tracking and categorization system",
-      "Cash flow planning structure",
-      "Simple monthly review process",
-    ],
   },
   "client-invoice": {
     headline:
       "Turn invoicing into a system so you stop losing track of payments and clients.",
-    benefits: [
-      "Structured invoicing workflow",
-      "Client tracking system",
-      "Payment follow-up process",
-      "Organized records for tax time",
-    ],
   },
 };
 
@@ -394,6 +373,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-5">
             {proSystems.map((p) => {
               const pitch = PRO_PITCH[p.slug];
+              const benefits = KEY_BENEFITS[p.slug] ?? [];
               return (
                 <article
                   key={p.slug}
@@ -405,32 +385,36 @@ export default function Home() {
                   <p className="mt-2 text-sm text-slate-300 leading-relaxed font-medium">
                     {pitch?.headline ?? p.tagline}
                   </p>
-                  <ul className="mt-4 space-y-1.5">
-                    {(pitch?.benefits ?? []).map((b) => (
-                      <li
-                        key={b}
-                        className="flex gap-2 text-sm text-slate-300 leading-relaxed"
-                      >
-                        <span className="text-slate-500">&bull;</span>
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-5 pt-4 border-t border-slate-700 flex flex-col gap-2">
+
+                  <details className="mt-4 group rounded-md border border-slate-700 bg-slate-900/60 open:bg-slate-900/80 transition-colors">
+                    <summary className="cursor-pointer list-none flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-100 select-none">
+                      <span>Key Benefits</span>
+                      <span className="text-slate-400 text-xs transition-transform duration-200 group-open:rotate-180">
+                        &#9662;
+                      </span>
+                    </summary>
+                    <ul className="px-3 pb-3 pt-1 space-y-1.5">
+                      {benefits.map((b) => (
+                        <li
+                          key={b}
+                          className="flex gap-2 text-sm text-slate-300 leading-relaxed"
+                        >
+                          <span className="text-slate-500">&bull;</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+
+                  <div className="mt-5 pt-4 border-t border-slate-700">
                     <a
                       href={STRIPE_CHECKOUT_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+                      className="inline-flex items-center justify-center w-full rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
                     >
                       Unlock full system &rarr;
                     </a>
-                    <Link
-                      href={`/pro/${p.slug}`}
-                      className="text-xs text-slate-400 hover:text-white text-center"
-                    >
-                      See what's included
-                    </Link>
                   </div>
                 </article>
               );
