@@ -11,6 +11,7 @@ import ToolRouter from "@/pages/tools/ToolRouter";
 import Templates from "@/pages/Templates";
 import ProSystems from "@/pages/ProSystems";
 import ProSystem from "@/pages/ProSystem";
+import Unlock from "@/pages/Unlock";
 import { Layout } from "@/components/Layout";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ function Router() {
         <Route path="/templates" component={Templates} />
         <Route path="/pro" component={ProSystems} />
         <Route path="/pro/:slug" component={ProSystem} />
+        <Route path="/unlock" component={Unlock} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

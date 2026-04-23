@@ -3,6 +3,7 @@ import { findProSystem } from "@/data/proSystems";
 import { articlesBySlugs } from "@/data/articles";
 import { tools } from "@/data/tools";
 import { templates } from "@/data/templates";
+import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
 
 export default function ProSystem() {
   const [, params] = useRoute("/pro/:slug");
@@ -86,18 +87,33 @@ export default function ProSystem() {
         <p className="text-slate-700 leading-relaxed">{system.purpose}</p>
       </section>
 
-      <section className="mb-12 rounded-lg border border-slate-300 bg-slate-50 p-6">
-        <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
-          Availability
+      <section className="mb-12 rounded-lg border border-slate-900 bg-slate-900 text-slate-100 p-6">
+        <p className="text-xs font-medium uppercase tracking-widest text-slate-400 mb-2">
+          Get instant access
         </p>
-        <h2 className="text-lg font-semibold text-slate-900 mb-2">
-          Coming soon
+        <h2 className="text-lg font-semibold text-white mb-2">
+          Unlock the full {system.shortTitle} system
         </h2>
-        <p className="text-sm text-slate-600 leading-relaxed">
-          Pro Systems are being prepared as structured, downloadable kits.
-          Checkout isn't live yet — in the meantime, every related free guide,
-          tool, and template is linked below.
+        <p className="text-sm text-slate-300 leading-relaxed mb-4">
+          Complete checkout to receive your access code, then return to enter
+          it and open the full system.
         </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href={STRIPE_CHECKOUT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+          >
+            Unlock full system &rarr;
+          </a>
+          <Link
+            href="/unlock"
+            className="text-sm font-medium text-slate-300 hover:text-white"
+          >
+            I already have a code
+          </Link>
+        </div>
       </section>
 
       <section className="mb-10">
