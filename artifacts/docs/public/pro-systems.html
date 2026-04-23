@@ -2188,6 +2188,7 @@ const urlKey = new URLSearchParams(window.location.search).get('key');
 if (urlKey === 'ledgely-pro') {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = 'block';
+  sessionStorage.setItem('ledgely-pro-auth', '1');
 }
 
 // ── TABS ──
