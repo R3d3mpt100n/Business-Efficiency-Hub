@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
 import { W7Module } from "@/components/W7Module";
 import { KEY_BENEFITS } from "@/data/proSystems";
+import { BUSINESS_STARTER_FILES } from "@/data/downloads";
 
 const WHATS_INCLUDED = [
   "Decision gate: 3 questions that pick the right business structure for your situation",
@@ -65,103 +66,6 @@ function loadAnswers(): Answers {
     return DEFAULT_ANSWERS;
   }
 }
-
-function downloadText(filename: string, content: string) {
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-const FILES: { name: string; label: string; description: string; build: () => string }[] = [
-  {
-    name: "ledgely-startup-checklist.txt",
-    label: "Startup Checklist (Master List)",
-    description: "The full ordered list of every step from idea to opened bank account.",
-    build: () => `LEDGELY — STARTUP CHECKLIST (MASTER LIST)
-
-1. Decide business structure (Sole Prop / LLC / Partnership)
-2. Choose business name and verify availability
-3. Decide tax ID path (EIN or ITIN)
-4. Apply for the chosen tax ID
-5. File formation documents with your state
-6. Receive and store official approval documents
-7. Get an operating agreement (even for single-member LLC)
-8. Open a dedicated business bank account
-9. Set up a basic bookkeeping system
-10. Confirm any state/local compliance requirements
-`,
-  },
-  {
-    name: "ledgely-ein-prep-checklist.txt",
-    label: "EIN Preparation Checklist",
-    description: "Everything you need before applying for an EIN with the IRS.",
-    build: () => `LEDGELY — EIN PREPARATION CHECKLIST
-
-[ ] Legal name of the entity (matches formation docs)
-[ ] Trade name / DBA (if any)
-[ ] Mailing address (US)
-[ ] Responsible party name
-[ ] Responsible party SSN or ITIN
-[ ] Entity type (Sole Prop / LLC / Partnership / Corp)
-[ ] Reason for applying (Started new business / Banking purposes / etc.)
-[ ] Date business started
-[ ] Closing month of accounting year (usually December)
-[ ] Highest expected number of employees in next 12 months
-[ ] Principal activity of the business
-`,
-  },
-  {
-    name: "ledgely-itin-prep-checklist.txt",
-    label: "ITIN Preparation Checklist",
-    description: "What to gather before applying for an ITIN with Form W-7.",
-    build: () => `LEDGELY — ITIN PREPARATION CHECKLIST
-
-[ ] Reason for applying (selected on Form W-7)
-[ ] Valid passport OR two acceptable supporting documents
-[ ] Foreign address
-[ ] US mailing address (if different)
-[ ] Date and country of birth
-[ ] Country of citizenship
-[ ] Foreign tax ID number (if applicable)
-[ ] Visa information (if applicable)
-[ ] Federal tax return to attach (unless exception applies)
-[ ] Plan for document submission (CAA / IRS office / mail)
-`,
-  },
-  {
-    name: "ledgely-compliance-calendar.txt",
-    label: "Compliance Calendar Template",
-    description: "A simple yearly calendar of items most small businesses must track.",
-    build: () => `LEDGELY — COMPLIANCE CALENDAR TEMPLATE
-
-JANUARY
-- Issue 1099s to contractors (if applicable)
-- Reconcile prior-year bookkeeping
-
-MARCH / APRIL
-- File federal tax return (or extension)
-- File state tax return (or extension)
-
-QUARTERLY (Apr / Jun / Sep / Jan)
-- Pay estimated taxes if required
-
-ANNUALLY (varies by state)
-- File state annual report / franchise tax
-- Renew local business license
-
-ONGOING (monthly)
-- Reconcile bank account
-- Review profit/loss
-- File and pay sales tax (if applicable)
-`,
-  },
-];
 
 function Q({
   label,
@@ -691,47 +595,75 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
         </div>
       </section>
 
-      {/* 5. DOWNLOAD PACK */}
-      <section className="mb-12">
+      {/* 5. DOWNLOAD PACK — locked preview */}
+      <section className="mb-10">
         <h2 className="text-xl font-semibold text-slate-900 mb-1">
           Downloadable Setup Pack
         </h2>
         <p className="text-sm text-slate-600 mb-4">
-          Save these locally and work through them as you progress.
+          These files come with purchase. Each one is ready to fill in and save
+          alongside the system above.
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
-          {FILES.map((f) => (
+          {BUSINESS_STARTER_FILES.map((f) => (
             <div
               key={f.name}
-              className="rounded-lg border border-slate-200 p-4 flex flex-col"
+              className="rounded-lg border border-slate-200 bg-white p-4 flex flex-col"
             >
-              <h3 className="font-semibold text-slate-900 text-sm">{f.label}</h3>
-              <p className="mt-1 text-xs text-slate-600 leading-relaxed flex-1">
+              <div className="flex items-start justify-between gap-2 mb-1">
+                <h3 className="font-semibold text-slate-900 text-sm leading-snug">
+                  {f.label}
+                </h3>
+                <span className="flex-none text-[10px] font-medium uppercase tracking-wide text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
+                  {f.tag}
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed flex-1 mb-3">
                 {f.description}
               </p>
-              <button
-                type="button"
-                onClick={() => downloadText(f.name, f.build())}
-                className="mt-3 inline-flex items-center justify-center rounded-md border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-900 hover:bg-slate-50"
-              >
-                Download .txt
-              </button>
+              <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 font-medium">
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
+                </svg>
+                Available after purchase
+              </span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* AFTER PURCHASE */}
+      {/* FULL ACCESS INCLUDES */}
       <section className="mb-10 rounded-lg border border-slate-200 bg-slate-50 p-6">
-        <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
-          After purchase
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">
+          Full access includes
         </p>
-        <h2 className="text-lg font-semibold text-slate-900 mb-2">
-          What happens after you purchase
-        </h2>
-        <p className="text-slate-700 leading-relaxed">
-          After completing your purchase, you'll receive access instructions and
-          downloadable materials.
+        <ul className="space-y-2">
+          {[
+            "5 downloadable files: checklists, templates, questionnaires, and a filled example",
+            "Startup Checklist — master ordered list from idea to open bank account",
+            "EIN + ITIN Preparation Questionnaires — pre-built, just fill in your details",
+            "Compliance Calendar — yearly deadlines template, pre-structured",
+            "Filled Setup Plan Example — completed sample so you know what yours should look like",
+          ].map((item) => (
+            <li key={item} className="flex gap-3 text-sm text-slate-700 leading-relaxed">
+              <span className="text-slate-400 mt-0.5">&bull;</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-xs text-slate-500">
+          After purchase you'll land on a page where every file is ready to
+          download immediately — no email required.
         </p>
       </section>
 
@@ -744,8 +676,8 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
           Ready to start your business setup?
         </h2>
         <p className="text-sm text-slate-300 leading-relaxed mb-4">
-          Purchase the Business Starter System to get the complete guided
-          workflow, downloadable checklists, and ongoing access.
+          Purchase the Business Starter System to unlock all 5 downloadable
+          files and the complete guided workflow.
         </p>
         <a
           href={STRIPE_CHECKOUT_URL}
