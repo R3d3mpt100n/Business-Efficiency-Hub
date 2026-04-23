@@ -1,0 +1,99 @@
+Update ONLY the “Business Starter System (Pro)” page content. Do not change layout, navigation, or other sections.
+
+Replace the existing content with a structured, guided execution system focused on outcomes, decision-making, and step-by-step completion.
+
+NEW STRUCTURE FOR BUSINESS STARTER SYSTEM (PRO)
+1. START HERE — Decision Gate
+
+Add a section titled: “Before You Do Anything Else”
+
+Include:
+
+Brief explanation that most people choose the wrong business structure or start in the wrong order
+3-question decision flow:
+Are you already earning income?
+Are you operating alone or with others?
+Do you expect legal or financial risk?
+
+Then output a recommendation:
+
+Sole Proprietor / LLC / Partnership based on answers
+
+Purpose: give users a clear starting direction before anything else.
+
+2. SETUP PATH — Step-by-Step Execution Flow
+
+Replace all general explanations with a strict step-by-step path:
+
+Step 1: Business Structure
+short explanation only
+user follows recommendation from Step 1
+move directly to next step
+Step 2: Name + Business Identity
+what matters when choosing a name
+how to check availability (simple explanation)
+common mistake warning (e.g., trademark issues, name duplication)
+Step 3: EIN / ITIN Decision Layer
+clear branching logic:
+if US person → EIN path
+if non-resident/no SSN → ITIN path
+only show relevant checklist based on selection
+Step 4: Business Registration
+correct sequence:
+file formation documents
+confirm legal entity approval
+store official documents safely
+Step 5: Banking Setup
+what banks require
+required documents checklist
+mistakes to avoid (e.g., mixing personal/business funds)
+3. COMMON MISTAKES SECTION
+
+Add a section titled: “Where Most People Get Stuck”
+
+Include:
+
+choosing wrong structure too early
+applying for EIN at the wrong stage
+mixing personal and business finances
+skipping compliance requirements
+
+Keep it short and direct. No long explanations.
+
+4. OUTPUT SECTION — FINAL RESULT
+
+Add a section titled: “Your Completed Setup Plan”
+
+This section should summarize:
+
+chosen business structure
+EIN/ITIN path selected
+next 3 immediate actions
+
+Purpose: user leaves with a clear actionable plan, not just information.
+
+5. DOWNLOAD PACK SECTION
+
+Add a final section titled: “Downloadable Setup Pack”
+
+Include:
+
+Startup checklist (master list)
+EIN preparation checklist
+ITIN preparation checklist
+Compliance calendar template
+
+These can be simple downloadable files or static documents.
+
+CONSTRAINTS
+Do NOT add login systems or authentication
+Do NOT add backend or databases
+Do NOT change other pages or site structure
+Keep everything frontend and lightweight
+Focus on clarity, flow, and execution
+GOAL
+
+Transform the Business Starter System from informational content into a guided execution system that takes a user from:
+idea → decision → legal setup → banking → completion
+
+The user should feel like they are following a clear path, not reading scattered information.
