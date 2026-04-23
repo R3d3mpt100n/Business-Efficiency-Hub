@@ -87,33 +87,38 @@ export default function ProSystem() {
         <p className="text-slate-700 leading-relaxed">{system.purpose}</p>
       </section>
 
+      <section className="mb-6 rounded-lg border border-slate-200 bg-slate-50 p-6">
+        <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
+          After purchase
+        </p>
+        <h2 className="text-lg font-semibold text-slate-900 mb-1">
+          What happens after you purchase
+        </h2>
+        <p className="text-slate-700 leading-relaxed">
+          After completing your purchase, you'll receive access instructions and
+          downloadable materials.
+        </p>
+      </section>
+
       <section className="mb-12 rounded-lg border border-slate-900 bg-slate-900 text-slate-100 p-6">
         <p className="text-xs font-medium uppercase tracking-widest text-slate-400 mb-2">
-          Get instant access
+          Get full access
         </p>
         <h2 className="text-lg font-semibold text-white mb-2">
           Unlock the full {system.shortTitle} system
         </h2>
         <p className="text-sm text-slate-300 leading-relaxed mb-4">
-          Complete checkout to receive your access code, then return to enter
-          it and open the full system.
+          Purchase to get the complete guided workflow, downloadable checklists,
+          and ongoing access.
         </p>
-        <div className="flex flex-wrap items-center gap-3">
-          <a
-            href={STRIPE_CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-          >
-            Unlock full system &rarr;
-          </a>
-          <Link
-            href="/unlock"
-            className="text-sm font-medium text-slate-300 hover:text-white"
-          >
-            I already have a code
-          </Link>
-        </div>
+        <a
+          href={STRIPE_CHECKOUT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+        >
+          Unlock full system &rarr;
+        </a>
       </section>
 
       <section className="mb-10">

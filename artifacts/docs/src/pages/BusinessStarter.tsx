@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
 import { W7Module } from "@/components/W7Module";
 import { KEY_BENEFITS } from "@/data/proSystems";
-import { USER_CODE, grantUserAccess, hasAccess } from "@/lib/access";
 
 const WHATS_INCLUDED = [
   "Decision gate: 3 questions that pick the right business structure for your situation",
@@ -14,106 +13,6 @@ const WHATS_INCLUDED = [
   "Downloadable startup checklist, prep checklists, and compliance calendar (.txt)",
   "A live 'Your Completed Setup Plan' summary you can save and reference",
 ];
-
-function AccessPanel({
-  unlocked,
-  onUnlock,
-}: {
-  unlocked: boolean;
-  onUnlock: () => void;
-}) {
-  const [code, setCode] = useState("");
-  const [error, setError] = useState<string | null>(null);
-
-  if (unlocked) {
-    return (
-      <aside className="rounded-lg border border-emerald-300 bg-emerald-50 p-5">
-        <p className="text-[10px] font-semibold uppercase tracking-widest text-emerald-900 mb-1">
-          Access unlocked
-        </p>
-        <p className="text-sm text-emerald-900 leading-relaxed">
-          Full access mode is on. All sections below are unlocked.
-        </p>
-      </aside>
-    );
-  }
-
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    const cleaned = code.trim().toUpperCase();
-    if (cleaned === USER_CODE) {
-      grantUserAccess();
-      setError(null);
-      setCode("");
-      onUnlock();
-    } else {
-      setError("Invalid code. Check your purchase confirmation and try again.");
-    }
-  }
-
-  return (
-    <aside className="rounded-lg border border-slate-900 bg-slate-900 text-white p-5">
-      <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-300 mb-1">
-        Access System
-      </p>
-      <h3 className="text-base font-semibold">Unlock full access</h3>
-      <p className="mt-2 text-sm text-slate-300 leading-relaxed">
-        The system overview is open to read. Unlock to mark progress and use
-        the full Pro flow.
-      </p>
-
-      <Link
-        href="/unlock"
-        className="mt-4 inline-flex w-full items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-      >
-        Unlock System
-      </Link>
-
-      <div className="my-4 flex items-center gap-3 text-[10px] uppercase tracking-widest text-slate-400">
-        <span className="flex-1 h-px bg-slate-700" />
-        <span>or</span>
-        <span className="flex-1 h-px bg-slate-700" />
-      </div>
-
-      <form onSubmit={onSubmit}>
-        <label
-          htmlFor="quick-code"
-          className="block text-xs font-medium text-slate-300 mb-1.5"
-        >
-          Have a code? Enter it here
-        </label>
-        <div className="flex gap-2">
-          <input
-            id="quick-code"
-            type="text"
-            autoComplete="off"
-            value={code}
-            onChange={(e) => {
-              setCode(e.target.value);
-              if (error) setError(null);
-            }}
-            placeholder="LEDGELY-XXXX-XXXX"
-            className="flex-1 min-w-0 rounded-md bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-white"
-          />
-          <button
-            type="submit"
-            className="inline-flex items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-          >
-            Enter
-          </button>
-        </div>
-        {error && (
-          <p role="alert" className="mt-2 text-xs text-red-300">
-            {error}
-          </p>
-        )}
-        <p className="mt-3 text-[11px] text-slate-400 leading-relaxed">
-          You'll receive an access code by email after purchase.
-        </p>
-      </form>
-    </aside>
-  );
-}
 
 type YesNo = "yes" | "no" | "";
 type People = "alone" | "others" | "";
@@ -330,11 +229,9 @@ function StepCard({
 
 export default function BusinessStarter() {
   const [answers, setAnswers] = useState<Answers>(DEFAULT_ANSWERS);
-  const [unlocked, setUnlocked] = useState(false);
 
   useEffect(() => {
     setAnswers(loadAnswers());
-    setUnlocked(hasAccess());
   }, []);
 
   useEffect(() => {
@@ -371,7 +268,7 @@ export default function BusinessStarter() {
   const benefits = KEY_BENEFITS["business-starter"] ?? [];
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
+    <article className="max-w-3xl mx-auto px-6 py-12">
       <Link href="/pro" className="text-sm text-slate-500 hover:text-slate-900">
         &larr; Back to Pro Systems
       </Link>
@@ -394,9 +291,6 @@ export default function BusinessStarter() {
           step.
         </p>
       </header>
-
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
-        <article className="min-w-0">
 
       {/* OVERVIEW: KEY BENEFITS + WHAT'S INCLUDED */}
       <section className="mb-10 grid gap-5 md:grid-cols-2">
@@ -827,46 +721,41 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
         </div>
       </section>
 
-      {/* CHECKOUT FOOTER */}
+      {/* AFTER PURCHASE */}
+      <section className="mb-10 rounded-lg border border-slate-200 bg-slate-50 p-6">
+        <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">
+          After purchase
+        </p>
+        <h2 className="text-lg font-semibold text-slate-900 mb-2">
+          What happens after you purchase
+        </h2>
+        <p className="text-slate-700 leading-relaxed">
+          After completing your purchase, you'll receive access instructions and
+          downloadable materials.
+        </p>
+      </section>
+
+      {/* CTA */}
       <section className="mb-10 rounded-lg border border-slate-900 bg-slate-900 text-slate-100 p-6">
         <p className="text-xs font-medium uppercase tracking-widest text-slate-400 mb-2">
-          Get instant access
+          Get full access
         </p>
         <h2 className="text-lg font-semibold text-white mb-2">
-          Sharing this system with your business partner?
+          Ready to start your business setup?
         </h2>
         <p className="text-sm text-slate-300 leading-relaxed mb-4">
-          Each access purchase comes with a code so they can open this guided
-          system on their device.
+          Purchase the Business Starter System to get the complete guided
+          workflow, downloadable checklists, and ongoing access.
         </p>
-        <div className="flex flex-wrap items-center gap-3">
-          <a
-            href={STRIPE_CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-          >
-            Unlock full system &rarr;
-          </a>
-          <Link
-            href="/unlock"
-            className="text-sm font-medium text-slate-300 hover:text-white"
-          >
-            I already have a code
-          </Link>
-        </div>
+        <a
+          href={STRIPE_CHECKOUT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+        >
+          Unlock full system &rarr;
+        </a>
       </section>
-        </article>
-
-        <div className="mt-10 lg:mt-0">
-          <div className="lg:sticky lg:top-6">
-            <AccessPanel
-              unlocked={unlocked}
-              onUnlock={() => setUnlocked(true)}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    </article>
   );
 }

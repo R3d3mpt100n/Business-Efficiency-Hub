@@ -12,9 +12,8 @@ import Templates from "@/pages/Templates";
 import ProSystems from "@/pages/ProSystems";
 import ProSystem from "@/pages/ProSystem";
 import BusinessStarter from "@/pages/BusinessStarter";
-import Unlock from "@/pages/Unlock";
+import Success from "@/pages/Success";
 import { Layout } from "@/components/Layout";
-import { ProGuard } from "@/components/ProGuard";
 
 const queryClient = new QueryClient();
 
@@ -28,18 +27,10 @@ function Router() {
         <Route path="/tools" component={Tools} />
         <Route path="/tools/:slug" component={ToolRouter} />
         <Route path="/templates" component={Templates} />
-        <Route path="/pro">
-          <ProGuard>
-            <ProSystems />
-          </ProGuard>
-        </Route>
+        <Route path="/pro" component={ProSystems} />
         <Route path="/pro/business-starter" component={BusinessStarter} />
-        <Route path="/pro/:slug">
-          <ProGuard>
-            <ProSystem />
-          </ProGuard>
-        </Route>
-        <Route path="/unlock" component={Unlock} />
+        <Route path="/pro/:slug" component={ProSystem} />
+        <Route path="/success" component={Success} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
