@@ -33,11 +33,7 @@ function Router() {
             <ProSystems />
           </ProGuard>
         </Route>
-        <Route path="/pro/business-starter">
-          <ProGuard>
-            <BusinessStarter />
-          </ProGuard>
-        </Route>
+        <Route path="/pro/business-starter" component={BusinessStarter} />
         <Route path="/pro/:slug">
           <ProGuard>
             <ProSystem />

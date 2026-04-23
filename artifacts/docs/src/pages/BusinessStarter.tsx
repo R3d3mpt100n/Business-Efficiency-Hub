@@ -1,7 +1,119 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Link } from "wouter";
 import { STRIPE_CHECKOUT_URL } from "@/data/checkout";
 import { W7Module } from "@/components/W7Module";
+import { KEY_BENEFITS } from "@/data/proSystems";
+import { USER_CODE, grantUserAccess, hasAccess } from "@/lib/access";
+
+const WHATS_INCLUDED = [
+  "Decision gate: 3 questions that pick the right business structure for your situation",
+  "Ordered 5-step setup path: structure → name → tax ID → registration → banking",
+  "Branching EIN vs. ITIN preparation checklists (only the one you need)",
+  "Form W-7 preparation module for ITIN applicants",
+  "Common-mistakes list so you avoid the traps that force a redo later",
+  "Downloadable startup checklist, prep checklists, and compliance calendar (.txt)",
+  "A live 'Your Completed Setup Plan' summary you can save and reference",
+];
+
+function AccessPanel({
+  unlocked,
+  onUnlock,
+}: {
+  unlocked: boolean;
+  onUnlock: () => void;
+}) {
+  const [code, setCode] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  if (unlocked) {
+    return (
+      <aside className="rounded-lg border border-emerald-300 bg-emerald-50 p-5">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-emerald-900 mb-1">
+          Access unlocked
+        </p>
+        <p className="text-sm text-emerald-900 leading-relaxed">
+          Full access mode is on. All sections below are unlocked.
+        </p>
+      </aside>
+    );
+  }
+
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    const cleaned = code.trim().toUpperCase();
+    if (cleaned === USER_CODE) {
+      grantUserAccess();
+      setError(null);
+      setCode("");
+      onUnlock();
+    } else {
+      setError("Invalid code. Check your purchase confirmation and try again.");
+    }
+  }
+
+  return (
+    <aside className="rounded-lg border border-slate-900 bg-slate-900 text-white p-5">
+      <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-300 mb-1">
+        Access System
+      </p>
+      <h3 className="text-base font-semibold">Unlock full access</h3>
+      <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+        The system overview is open to read. Unlock to mark progress and use
+        the full Pro flow.
+      </p>
+
+      <Link
+        href="/unlock"
+        className="mt-4 inline-flex w-full items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+      >
+        Unlock System
+      </Link>
+
+      <div className="my-4 flex items-center gap-3 text-[10px] uppercase tracking-widest text-slate-400">
+        <span className="flex-1 h-px bg-slate-700" />
+        <span>or</span>
+        <span className="flex-1 h-px bg-slate-700" />
+      </div>
+
+      <form onSubmit={onSubmit}>
+        <label
+          htmlFor="quick-code"
+          className="block text-xs font-medium text-slate-300 mb-1.5"
+        >
+          Have a code? Enter it here
+        </label>
+        <div className="flex gap-2">
+          <input
+            id="quick-code"
+            type="text"
+            autoComplete="off"
+            value={code}
+            onChange={(e) => {
+              setCode(e.target.value);
+              if (error) setError(null);
+            }}
+            placeholder="LEDGELY-XXXX-XXXX"
+            className="flex-1 min-w-0 rounded-md bg-slate-800 border border-slate-700 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-white"
+          />
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+          >
+            Enter
+          </button>
+        </div>
+        {error && (
+          <p role="alert" className="mt-2 text-xs text-red-300">
+            {error}
+          </p>
+        )}
+        <p className="mt-3 text-[11px] text-slate-400 leading-relaxed">
+          You'll receive an access code by email after purchase.
+        </p>
+      </form>
+    </aside>
+  );
+}
 
 type YesNo = "yes" | "no" | "";
 type People = "alone" | "others" | "";
@@ -218,9 +330,11 @@ function StepCard({
 
 export default function BusinessStarter() {
   const [answers, setAnswers] = useState<Answers>(DEFAULT_ANSWERS);
+  const [unlocked, setUnlocked] = useState(false);
 
   useEffect(() => {
     setAnswers(loadAnswers());
+    setUnlocked(hasAccess());
   }, []);
 
   useEffect(() => {
@@ -254,13 +368,15 @@ export default function BusinessStarter() {
 
   const reset = () => setAnswers(DEFAULT_ANSWERS);
 
+  const benefits = KEY_BENEFITS["business-starter"] ?? [];
+
   return (
-    <article className="max-w-3xl mx-auto px-6 py-12">
+    <div className="max-w-6xl mx-auto px-6 py-12">
       <Link href="/pro" className="text-sm text-slate-500 hover:text-slate-900">
         &larr; Back to Pro Systems
       </Link>
 
-      <header className="mt-6 mb-10 pb-8 border-b border-slate-200">
+      <header className="mt-6 mb-8 pb-8 border-b border-slate-200">
         <div className="flex items-center gap-2 mb-3">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
             Pro
@@ -278,6 +394,50 @@ export default function BusinessStarter() {
           step.
         </p>
       </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
+        <article className="min-w-0">
+
+      {/* OVERVIEW: KEY BENEFITS + WHAT'S INCLUDED */}
+      <section className="mb-10 grid gap-5 md:grid-cols-2">
+        <details
+          open
+          className="group rounded-lg border border-slate-200 bg-white p-5 open:bg-white"
+        >
+          <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-slate-900 select-none">
+            <span>Key Benefits</span>
+            <span className="text-slate-500 text-xs transition-transform duration-200 group-open:rotate-180">
+              &#9662;
+            </span>
+          </summary>
+          <ul className="mt-3 space-y-2">
+            {benefits.map((b) => (
+              <li
+                key={b}
+                className="flex gap-3 text-sm text-slate-700 leading-relaxed"
+              >
+                <span className="text-slate-400">&bull;</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+
+        <div className="rounded-lg border border-slate-200 bg-white p-5">
+          <p className="text-sm font-semibold text-slate-900">What you get</p>
+          <ul className="mt-3 space-y-2">
+            {WHATS_INCLUDED.map((b) => (
+              <li
+                key={b}
+                className="flex gap-3 text-sm text-slate-700 leading-relaxed"
+              >
+                <span className="text-slate-400">&bull;</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* 1. DECISION GATE */}
       <section className="mb-10 rounded-lg border border-slate-900 bg-slate-50 p-6">
@@ -696,6 +856,17 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
           </Link>
         </div>
       </section>
-    </article>
+        </article>
+
+        <div className="mt-10 lg:mt-0">
+          <div className="lg:sticky lg:top-6">
+            <AccessPanel
+              unlocked={unlocked}
+              onUnlock={() => setUnlocked(true)}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
