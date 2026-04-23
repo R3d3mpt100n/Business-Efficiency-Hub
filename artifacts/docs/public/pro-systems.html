@@ -84,6 +84,61 @@
     line-height: 1.6;
   }
 
+  .gate-input-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  #code-field {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: #FAFAF8;
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #code-field:focus {
+    border-color: var(--gold);
+  }
+
+  #code-field::placeholder {
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+  }
+
+  #gate-error {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: #E07070;
+    display: none;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .gate-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    color: rgba(255,255,255,0.15);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .gate-divider::before,
+  .gate-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
   .gate-btn {
     width: 100%;
     padding: 0.9rem;
@@ -989,7 +1044,12 @@
     <div class="gate-logo">Ledgely</div>
     <div class="gate-label">Pro Systems</div>
     <div class="gate-heading">Members only access</div>
-    <p class="gate-sub">Purchase Pro Systems access to unlock your templates, tools, and systems.</p>
+    <p class="gate-sub">Already a member? Enter your access code below, or purchase to get instant access.</p>
+    <div class="gate-input-wrap">
+      <input type="text" id="code-field" placeholder="Enter your access code" autocomplete="off" />
+    </div>
+    <div id="gate-error">Incorrect code. Check your purchase confirmation email.</div>
+    <div class="gate-divider">or</div>
     <button class="gate-btn" onclick="window.location.href='https://buy.stripe.com/test_8x200c3OA2w311d9nG7Zu00'">Unlock Pro Systems</button>
     <p class="gate-note">Not a member? <a href="index.html">See what's included →</a></p>
   </div>
@@ -2190,6 +2250,25 @@ if (urlKey === 'ledgely-pro') {
   document.getElementById('app').style.display = 'block';
   sessionStorage.setItem('ledgely-pro-auth', '1');
 }
+
+// ── CODE ENTRY ──
+function checkCode() {
+  const val = document.getElementById('code-field').value.trim();
+  if (val === 'ledgely-pro') {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    sessionStorage.setItem('ledgely-pro-auth', '1');
+  } else {
+    document.getElementById('gate-error').style.display = 'block';
+    document.getElementById('code-field').value = '';
+    document.getElementById('code-field').focus();
+  }
+}
+
+document.getElementById('code-field').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkCode();
+  document.getElementById('gate-error').style.display = 'none';
+});
 
 // ── TABS ──
 function showSystem(id) {
