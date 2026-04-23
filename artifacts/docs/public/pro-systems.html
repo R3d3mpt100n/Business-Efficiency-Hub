@@ -169,6 +169,71 @@
     text-decoration: none;
   }
 
+  .gate-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    color: #FAFAF8;
+    outline: none;
+    text-align: center;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s;
+    margin-bottom: 0.75rem;
+  }
+
+  .gate-input::placeholder { color: rgba(255,255,255,0.25); }
+  .gate-input:focus { border-color: var(--gold); }
+
+  .gate-error {
+    font-size: 0.78rem;
+    color: #FF7B7B;
+    margin-top: -0.25rem;
+    margin-bottom: 0.75rem;
+    display: none;
+  }
+
+  .gate-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    color: rgba(255,255,255,0.15);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .gate-divider::before,
+  .gate-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .gate-btn-secondary {
+    width: 100%;
+    padding: 0.9rem;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+
+  .gate-btn-secondary:hover { background: rgba(201,168,76,0.1); }
+  .gate-btn-secondary:active { transform: scale(0.99); }
+
   /* ── MAIN APP ── */
   #app { display: none; }
 
@@ -1044,14 +1109,19 @@
     <div class="gate-logo">Ledgely</div>
     <div class="gate-label">Pro Systems</div>
     <div class="gate-heading">Members only access</div>
-    <p class="gate-sub">Already a member? Enter your access code below, or purchase to get instant access.</p>
-    <div class="gate-input-wrap">
-      <input type="text" id="code-field" placeholder="Enter your access code" autocomplete="off" />
-    </div>
-    <div id="gate-error">Incorrect code. Check your purchase confirmation email.</div>
+    <p class="gate-sub">Enter your access code below, or purchase to get instant access.</p>
+    <input
+      id="gate-code-input"
+      type="password"
+      class="gate-input"
+      placeholder="Enter access code"
+      onkeydown="if(event.key==='Enter') checkAccess()"
+    />
+    <div id="gate-error" class="gate-error">Incorrect access code. Please try again.</div>
+    <button class="gate-btn" onclick="checkAccess()">Enter Pro Systems</button>
     <div class="gate-divider">or</div>
-    <button class="gate-btn" onclick="window.location.href='https://buy.stripe.com/test_8x200c3OA2w311d9nG7Zu00'">Unlock Pro Systems</button>
-    <p class="gate-note">Not a member? <a href="index.html">See what's included →</a></p>
+    <button class="gate-btn-secondary" onclick="window.location.href='https://buy.stripe.com/test_8x200c3OA2w311d9nG7Zu00'">Purchase Access</button>
+    <p class="gate-note">Back to main site? <a href="index.html">See what's included →</a></p>
   </div>
 </div>
 
@@ -2243,32 +2313,32 @@ Oldest unpaid invoice:          ___ days</div>
 </div><!-- /app -->
 
 <script>
-// ── URL KEY CHECK ──
-const urlKey = new URLSearchParams(window.location.search).get('key');
-if (urlKey === 'ledgely-pro') {
+// ── ACCESS CODE ──
+const ACCESS_CODE = 'ledgely-pro-2025';
+
+function unlockApp() {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = 'block';
   sessionStorage.setItem('ledgely-pro-auth', '1');
 }
 
-// ── CODE ENTRY ──
-function checkCode() {
-  const val = document.getElementById('code-field').value.trim();
-  if (val === 'ledgely-pro') {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    sessionStorage.setItem('ledgely-pro-auth', '1');
+function checkAccess() {
+  const input = document.getElementById('gate-code-input').value.trim();
+  const errorEl = document.getElementById('gate-error');
+  if (input === ACCESS_CODE) {
+    errorEl.style.display = 'none';
+    unlockApp();
   } else {
-    document.getElementById('gate-error').style.display = 'block';
-    document.getElementById('code-field').value = '';
-    document.getElementById('code-field').focus();
+    errorEl.style.display = 'block';
+    document.getElementById('gate-code-input').value = '';
+    document.getElementById('gate-code-input').focus();
   }
 }
 
-document.getElementById('code-field').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkCode();
-  document.getElementById('gate-error').style.display = 'none';
-});
+// ── SESSION CHECK ──
+if (sessionStorage.getItem('ledgely-pro-auth') === '1') {
+  unlockApp();
+}
 
 // ── TABS ──
 function showSystem(id) {
