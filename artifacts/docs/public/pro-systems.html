@@ -84,35 +84,6 @@
     line-height: 1.6;
   }
 
-  .gate-input-wrap {
-    position: relative;
-    margin-bottom: 1rem;
-  }
-
-  #password-field {
-    width: 100%;
-    padding: 0.85rem 1.25rem;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px;
-    color: #FAFAF8;
-    font-family: 'DM Mono', monospace;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  #password-field:focus {
-    border-color: var(--gold);
-  }
-
-  #password-field::placeholder {
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.05em;
-    font-size: 0.875rem;
-  }
-
   .gate-btn {
     width: 100%;
     padding: 0.9rem;
@@ -131,13 +102,6 @@
   .gate-btn:hover { background: var(--gold-light); }
   .gate-btn:active { transform: scale(0.99); }
 
-  #gate-error {
-    margin-top: 0.85rem;
-    font-size: 0.8rem;
-    color: #E07070;
-    display: none;
-    font-family: 'DM Mono', monospace;
-  }
 
   .gate-note {
     margin-top: 2.5rem;
@@ -1025,12 +989,8 @@
     <div class="gate-logo">Ledgely</div>
     <div class="gate-label">Pro Systems</div>
     <div class="gate-heading">Members only access</div>
-    <p class="gate-sub">Enter your Pro password to access your systems, templates, and tools.</p>
-    <div class="gate-input-wrap">
-      <input type="password" id="password-field" placeholder="Enter your password" autocomplete="off" />
-    </div>
-    <button class="gate-btn" onclick="checkPassword()">Unlock Pro Systems</button>
-    <div id="gate-error">Incorrect password. Check your purchase confirmation email.</div>
+    <p class="gate-sub">Purchase Pro Systems access to unlock your templates, tools, and systems.</p>
+    <button class="gate-btn" onclick="window.location.href='https://buy.stripe.com/test_8x200c3OA2w311d9nG7Zu00'">Unlock Pro Systems</button>
     <p class="gate-note">Not a member? <a href="index.html">See what's included →</a></p>
   </div>
 </div>
@@ -2223,34 +2183,9 @@ Oldest unpaid invoice:          ___ days</div>
 </div><!-- /app -->
 
 <script>
-// ── PASSWORD ──
-const PRO_PASSWORD = 'ledgely-pro'; // Change this to your real password
-
-function checkPassword() {
-  const val = document.getElementById('password-field').value.trim();
-  if (val === PRO_PASSWORD) {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    sessionStorage.setItem('ledgely-pro-auth', '1');
-  } else {
-    document.getElementById('gate-error').style.display = 'block';
-    document.getElementById('password-field').value = '';
-    document.getElementById('password-field').focus();
-  }
-}
-
-document.getElementById('password-field').addEventListener('keydown', e => {
-  if (e.key === 'Enter') checkPassword();
-});
-
-if (sessionStorage.getItem('ledgely-pro-auth') === '1') {
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-}
-
-// Also check URL param: ?key=ledgely-pro
+// ── URL KEY CHECK ──
 const urlKey = new URLSearchParams(window.location.search).get('key');
-if (urlKey === PRO_PASSWORD) {
+if (urlKey === 'ledgely-pro') {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = 'block';
 }
