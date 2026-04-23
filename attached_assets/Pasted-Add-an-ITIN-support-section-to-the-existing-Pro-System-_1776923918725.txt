@@ -1,0 +1,79 @@
+Add an ITIN support section to the existing Pro System. This should NOT change overall site structure, only add a new module inside the ITIN portion.
+
+1. Add W-7 System Section
+
+Create a section titled:
+
+ITIN Application Support System (W-7 Guide)
+
+This section must include three components:
+
+A. Blank Form Download
+
+Provide a download link or button for:
+
+IRS Form W-7
+
+Label it clearly:
+
+“Download Official IRS Form W-7 (Blank)”
+Must be presented as an external official form
+Do NOT pre-fill or modify the form
+B. W-7 Field-by-Field Example Guide (Mock Layout)
+
+Create a visual “example guide” that mirrors the structure of the W-7 form but is NOT the official form.
+
+This section must:
+
+NOT be an editable or submission form
+NOT replicate the official PDF exactly
+Be labeled clearly as:
+
+“Educational Example – How to Fill Each Section”
+
+For each field include:
+
+Field name
+What it means
+Example value (clearly labeled as fictional)
+
+Example format:
+
+Name → What to enter → Example: John Doe
+Reason for ITIN → Explanation → Example: Non-resident filing tax return
+Passport info → What is required → Example format only
+C. Pre-Fill Preparation Tool (Interactive or Static)
+
+Add a simple checklist or input section where users can:
+
+Enter their personal details (name, DOB, country, etc.)
+Select their reason for applying
+See a “prepared summary”
+
+This summary should output:
+
+A structured list of their information
+Clearly labeled as:
+“Information to transfer into official IRS Form W-7”
+
+Do NOT generate a completed official form.
+
+2. Safety & Compliance Constraints
+Do NOT generate a filled official IRS form
+Do NOT simulate a real government document as a downloadable completed PDF
+Do NOT imply submission-ready tax filing output
+All examples must be clearly labeled as educational and fictional
+Keep everything informational and instructional
+3. UX Requirements
+Keep layout consistent with existing Pro System design
+Make this section feel like a guided tool, not a document dump
+Prioritize clarity and step-by-step understanding
+Users should feel: “I know exactly how to fill this out now”
+4. Goal
+
+Transform the ITIN section into a guided preparation system that helps users:
+
+understand Form W-7
+prepare correct information
+avoid common mistakes
+confidently complete the official IRS form themselves
