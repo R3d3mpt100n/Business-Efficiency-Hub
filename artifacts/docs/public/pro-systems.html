@@ -2320,7 +2320,7 @@ const ACCESS_CODE = 'ledgely-pro';
 function unlockApp() {
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  sessionStorage.setItem('ledgely-pro-auth', '1');
+  localStorage.setItem('ledgely-pro-auth', '1');
 }
 
 function checkAccess() {
@@ -2337,7 +2337,7 @@ function checkAccess() {
 }
 
 // ── SESSION CHECK ──
-if (sessionStorage.getItem('ledgely-pro-auth') === '1') {
+if (localStorage.getItem('ledgely-pro-auth') === '1') {
   unlockApp();
 }
 
