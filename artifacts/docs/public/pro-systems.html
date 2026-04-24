@@ -32,7 +32,7 @@
     min-height: 100vh;
   }
 
-  /* ── GATE SCREEN ── */
+  /* -- GATE SCREEN -- */
   #gate {
     min-height: 100vh;
     display: flex;
@@ -235,10 +235,10 @@
   .gate-btn-secondary:hover { background: rgba(201,168,76,0.1); }
   .gate-btn-secondary:active { transform: scale(0.99); }
 
-  /* ── MAIN APP ── */
+  /* -- MAIN APP -- */
   #app { display: none; }
 
-  /* ── NAV ── */
+  /* -- NAV -- */
   nav {
     background: var(--ink);
     padding: 0 2rem;
@@ -284,7 +284,7 @@
 
   .nav-link:hover { color: #FAFAF8; }
 
-  /* ── HERO ── */
+  /* -- HERO -- */
   .pro-hero {
     background: var(--ink);
     padding: 4rem 2rem 5rem;
@@ -363,11 +363,11 @@
     font-weight: 600;
   }
 
-  /* ── SYSTEM PAGES ── */
+  /* -- SYSTEM PAGES -- */
   .system-page { display: none; }
   .system-page.active { display: block; }
 
-  /* ── OVERVIEW BAR ── */
+  /* -- OVERVIEW BAR -- */
   .overview-bar {
     background: var(--gold-pale);
     border-bottom: 1px solid #EDE7CE;
@@ -409,14 +409,14 @@
     background: #DDD7C4;
   }
 
-  /* ── CONTENT ── */
+  /* -- CONTENT -- */
   .content-wrap {
     max-width: 900px;
     margin: 0 auto;
     padding: 3rem 2rem;
   }
 
-  /* ── PHASE SECTION ── */
+  /* -- PHASE SECTION -- */
   .phase {
     margin-bottom: 3rem;
   }
@@ -449,7 +449,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* ── STEP CARDS ── */
+  /* -- STEP CARDS -- */
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -499,7 +499,7 @@
     cursor: pointer;
   }
 
-  /* ── TEMPLATE BLOCK ── */
+  /* -- TEMPLATE BLOCK -- */
   .template-block {
     background: #F7F5F0;
     border: 1px solid var(--border);
@@ -658,7 +658,7 @@
     flex-wrap: wrap;
   }
 
-  /* ── DECISION TOOL ── */
+  /* -- DECISION TOOL -- */
   .decision-tool {
     background: var(--surface-raised);
     border: 1px solid var(--border);
@@ -740,7 +740,7 @@
     line-height: 1.6;
   }
 
-  /* ── PROFIT CALCULATOR ── */
+  /* -- PROFIT CALCULATOR -- */
   .calc-tool {
     background: var(--surface-raised);
     border: 1px solid var(--border);
@@ -828,7 +828,7 @@
     font-family: 'DM Mono', monospace;
   }
 
-  /* ── INVOICE BUILDER ── */
+  /* -- INVOICE BUILDER -- */
   .invoice-builder {
     background: var(--surface-raised);
     border: 1px solid var(--border);
@@ -956,7 +956,7 @@
     margin-top: 0.5rem;
   }
 
-  /* ── CLIENT TRACKER ── */
+  /* -- CLIENT TRACKER -- */
   .client-tracker {
     background: var(--surface-raised);
     border: 1px solid var(--border);
@@ -1026,7 +1026,7 @@
   .status-pending { background: #FEF3CD; color: #7A5A00; }
   .status-overdue { background: #FDDFDF; color: #8B2020; }
 
-  /* ── INFO BOX ── */
+  /* -- INFO BOX -- */
   .info-box {
     background: var(--gold-pale);
     border: 1px solid #EDE7CE;
@@ -1055,7 +1055,7 @@
     font-weight: 600;
   }
 
-  /* ── SECTION DIVIDER ── */
+  /* -- SECTION DIVIDER -- */
   .section-divider {
     display: flex;
     align-items: center;
@@ -1076,7 +1076,7 @@
     background: var(--border);
   }
 
-  /* ── FOOTER ── */
+  /* -- FOOTER -- */
   footer {
     background: var(--ink);
     padding: 1.5rem 2rem;
@@ -1327,11 +1327,11 @@ Step 4 — Final confirmation
 PHASE 1 — DECIDE
 [ ] Choose business structure (sole prop / LLC / S-Corp / C-Corp)
 [ ] Choose and verify business name
-    ├── State business database
-    ├── Domain availability
-    └── Trademark search (USPTO TESS)
+    +-- State business database
+    +-- Domain availability
+    \-- Trademark search (USPTO TESS)
 [ ] Decide on business address
-    └── Home address, virtual office, or commercial
+    \-- Home address, virtual office, or commercial
 
 PHASE 2 — REGISTER
 [ ] File state formation paperwork (LLC: Articles of Organization)
@@ -1355,9 +1355,9 @@ PHASE 4 — COMPLIANCE
 [ ] Research industry-specific permits or certifications
 [ ] Purchase business insurance (general liability at minimum)
 [ ] Set recurring calendar reminders:
-    ├── Annual report filing (state-specific deadline)
-    ├── License renewals
-    └── Estimated tax payments (quarterly)</div>
+    +-- Annual report filing (state-specific deadline)
+    +-- License renewals
+    \-- Estimated tax payments (quarterly)</div>
             <div class="template-actions">
               <button class="btn-download" onclick="downloadTemplate('setup-checklist')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('setup-checklist')">Copy</button>
@@ -1393,10 +1393,10 @@ REQUIRED INFORMATION
 [ ] Business physical address if different from mailing
 [ ] Business phone number
 [ ] Primary reason for applying:
-    ├── Started new business
-    ├── Hired or plan to hire employees
-    ├── Banking requirement
-    └── Changed business structure
+    +-- Started new business
+    +-- Hired or plan to hire employees
+    +-- Banking requirement
+    \-- Changed business structure
 [ ] Date business started or was acquired
 [ ] Expected number of employees in next 12 months
 [ ] Principal activity of business (brief description)
@@ -1462,32 +1462,32 @@ Create this folder system in Google Drive or your computer.
 Label each folder exactly as shown.
 
 📁 [Business Name] — Master
-│
-├── 📁 Formation & Legal
-│   ├── Articles of Organization / Incorporation
-│   ├── Operating Agreement
-│   ├── EIN Confirmation (CP 575)
-│   ├── DBA Registration (if applicable)
-│   └── Business License(s)
-│
-├── 📁 Financial Records
-│   ├── 📁 [Year]
-│   │   ├── Bank Statements (monthly)
-│   │   ├── Expense Tracker (CSV or Sheet)
-│   │   ├── Income Records
-│   │   └── Tax Returns / Filings
-│
-├── 📁 Clients & Invoices
-│   ├── Invoices Sent
-│   ├── Paid Invoices
-│   └── Contracts
-│
-├── 📁 Insurance
-│   ├── Current Policy Documents
-│   └── Renewal Dates (text file)
-│
-└── 📁 Compliance Calendar
-    └── Annual Deadlines (text file)
+|
++-- 📁 Formation & Legal
+|   +-- Articles of Organization / Incorporation
+|   +-- Operating Agreement
+|   +-- EIN Confirmation (CP 575)
+|   +-- DBA Registration (if applicable)
+|   \-- Business License(s)
+|
++-- 📁 Financial Records
+|   +-- 📁 [Year]
+|   |   +-- Bank Statements (monthly)
+|   |   +-- Expense Tracker (CSV or Sheet)
+|   |   +-- Income Records
+|   |   \-- Tax Returns / Filings
+|
++-- 📁 Clients & Invoices
+|   +-- Invoices Sent
+|   +-- Paid Invoices
+|   \-- Contracts
+|
++-- 📁 Insurance
+|   +-- Current Policy Documents
+|   \-- Renewal Dates (text file)
+|
+\-- 📁 Compliance Calendar
+    \-- Annual Deadlines (text file)
 
 TIP: Everything in Formation & Legal should have a
 physical backup copy stored somewhere safe off-device.</div>
@@ -1553,7 +1553,7 @@ STATE — Varies by state (fill in your dates)
 [ ] State income tax return ............... ___________
 [ ] Annual / biennial report filing ....... ___________
 [ ] Sales tax filing (if applicable) ...... ___________
-    └── Frequency: monthly / quarterly / annually
+    \-- Frequency: monthly / quarterly / annually
 [ ] State business license renewal ........ ___________
 
 LOCAL
@@ -1753,15 +1753,15 @@ State deadlines vary — look up yours at your Secretary of State website.</div>
 Month: ___________   Year: ___________
 
 INCOME
-─────────────────────────────────
+---------------------------------
 Product / Service sales     $___________
 Consulting / Retainer fees  $___________
 Other income                $___________
-─────────────────────────────────
+---------------------------------
 TOTAL INCOME                $___________
 
 EXPENSES
-─────────────────────────────────
+---------------------------------
 Operations                  $___________
 Marketing                   $___________
 Software / Subscriptions    $___________
@@ -1770,20 +1770,20 @@ Travel                      $___________
 Contractor / Freelance      $___________
 Professional Services       $___________
 Other                       $___________
-─────────────────────────────────
+---------------------------------
 TOTAL EXPENSES              $___________
 
 SUMMARY
-─────────────────────────────────
+---------------------------------
 Gross Profit (Income − Expenses)  $___________
 Owner Draw / Salary               $___________
 Tax Set-Aside (25–30%)            $___________
-─────────────────────────────────
+---------------------------------
 NET (what stays in business)      $___________
 Profit Margin                     ___________%
 
 NOTES / OBSERVATIONS
-─────────────────────────────────
+---------------------------------
 Biggest expense this month:
 Biggest income source:
 One thing to cut next month:
@@ -2036,22 +2036,22 @@ Invoice #:  INV-___
 Date:       ___________
 Due Date:   ___________ (Net __ days)
 
-─────────────────────────────────────────────
+---------------------------------------------
 SERVICES
-─────────────────────────────────────────────
+---------------------------------------------
 Description                         Amount
-─────────────────────────────────────────────
+---------------------------------------------
 [Service / Project Description]     $__________
 [Additional line item]              $__________
 [Additional line item]              $__________
-─────────────────────────────────────────────
+---------------------------------------------
 Subtotal                            $__________
 Tax (if applicable)                 $__________
-─────────────────────────────────────────────
+---------------------------------------------
 TOTAL DUE                           $__________
 
 PAYMENT INSTRUCTIONS
-─────────────────────
+---------------------
 Preferred method: [Bank transfer / Zelle / Check / PayPal]
 [Bank name, account number, routing — or Zelle email/phone]
 [Check payable to: Your Business Name]
@@ -2197,7 +2197,7 @@ Thank you for your business.</div>
             <div class="template-preview">PAYMENT FOLLOW-UP EMAIL TEMPLATES
 ===================================
 
-── STAGE 1: Friendly reminder (3 days before due) ──
+-- STAGE 1: Friendly reminder (3 days before due) --
 
 Subject: Quick reminder — Invoice #INV-___ due [Date]
 
@@ -2213,7 +2213,7 @@ Thank you,
 [Your Name]
 
 
-── STAGE 2: First follow-up (7 days overdue) ──
+-- STAGE 2: First follow-up (7 days overdue) --
 
 Subject: Invoice #INV-___ — Payment not yet received
 
@@ -2232,7 +2232,7 @@ Thanks,
 [Your Name]
 
 
-── STAGE 3: Final notice (30+ days overdue) ──
+-- STAGE 3: Final notice (30+ days overdue) --
 
 Subject: Final notice — Invoice #INV-___ ($[Amount] overdue)
 
@@ -2314,7 +2314,7 @@ Oldest unpaid invoice:          ___ days</div>
 </div><!-- /app -->
 
 <script>
-// ── ACCESS CODE ──
+// -- ACCESS CODE --
 const ACCESS_CODE = 'ledgely-pro';
 
 function unlockApp() {
@@ -2336,12 +2336,12 @@ function checkAccess() {
   }
 }
 
-// ── SESSION CHECK ──
+// -- SESSION CHECK --
 if (localStorage.getItem('ledgely-pro-auth') === '1') {
   unlockApp();
 }
 
-// ── TABS ──
+// -- TABS --
 function showSystem(id) {
   document.querySelectorAll('.system-page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -2350,7 +2350,7 @@ function showSystem(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── TEMPLATE ACCORDION ──
+// -- TEMPLATE ACCORDION --
 function toggleTemplate(header) {
   const body = header.nextElementSibling;
   const isOpen = body.classList.contains('open');
@@ -2358,7 +2358,7 @@ function toggleTemplate(header) {
   header.classList.toggle('open', !isOpen);
 }
 
-// ── DECISION TOOL ──
+// -- DECISION TOOL --
 const structureRecommendations = {
   'solo': 'Sole proprietorship is fine for now. No formation paperwork needed — you just operate under your name (or file a DBA if using a business name). Downside: no liability protection. Upgrade to a single-member LLC when you start earning consistently or taking on client risk.',
   'solo-protect': 'Single-member LLC. Separates your personal assets from business liabilities, costs $50–500 to form depending on state, and is taxed exactly like a sole prop by default (no extra complexity). File Articles of Organization with your state, get an EIN, and open a separate business bank account.',
@@ -2376,7 +2376,7 @@ function selectOption(tool, value) {
   }
 }
 
-// ── PROFIT CALCULATOR ──
+// -- PROFIT CALCULATOR --
 function calcProfit() {
   const rev = parseFloat(document.getElementById('calc-revenue').value) || 0;
   const exp = parseFloat(document.getElementById('calc-expenses').value) || 0;
@@ -2390,7 +2390,7 @@ function calcProfit() {
   document.getElementById('calc-remaining').textContent = rev > 0 ? '$' + remaining.toFixed(2) + ' stays in business' : '—';
 }
 
-// ── INVOICE PREVIEW ──
+// -- INVOICE PREVIEW --
 function updateInvoice() {
   const business = document.getElementById('inv-business').value || 'Your Business Name';
   const num = document.getElementById('inv-num').value || 'INV-001';
@@ -2410,7 +2410,7 @@ function updateInvoice() {
   document.getElementById('prev-payment').textContent = payment;
 }
 
-// ── TEMPLATES MAP ──
+// -- TEMPLATES MAP --
 const templateContents = {
 
 'name-research': `BUSINESS NAME RESEARCH CHECKLIST
@@ -2619,10 +2619,10 @@ Business bank account — what to bring:
 [ ] Initial deposit (most banks require $25–$100 minimum)
 
 Recommended bank options:
-  ├── Chase Business Complete Banking — branches nationwide, strong integration
-  ├── Mercury — online only, no fees, excellent for digital/tech businesses
-  ├── Relay — built for small business, excellent cash flow management
-  └── Bank of America Business Advantage — good if you need in-person banking
+  +-- Chase Business Complete Banking — branches nationwide, strong integration
+  +-- Mercury — online only, no fees, excellent for digital/tech businesses
+  +-- Relay — built for small business, excellent cash flow management
+  \-- Bank of America Business Advantage — good if you need in-person banking
 
 After opening:
 [ ] Set up online banking and mobile app
@@ -2713,11 +2713,11 @@ An Employer Identification Number (EIN) is a free, 9-digit tax ID issued
 by the IRS. Format: XX-XXXXXXX (example: 45-1234567)
 
 You need it to:
-  ├── Open a business bank account
-  ├── File federal and state business taxes
-  ├── Hire employees or pay contractors
-  ├── Set up Stripe, PayPal, or other payment processors
-  └── Complete Form W-9 when a client requests it
+  +-- Open a business bank account
+  +-- File federal and state business taxes
+  +-- Hire employees or pay contractors
+  +-- Set up Stripe, PayPal, or other payment processors
+  \-- Complete Form W-9 when a client requests it
 
 It is completely free. Apply only at IRS.gov. Never pay a third party.
 
@@ -2802,42 +2802,42 @@ A consistent structure means you can find any document in under 60 seconds.
 MASTER FOLDER STRUCTURE
 
 [Business Name] — Master
-│
-├── Formation & Legal
-│   ├── Articles of Organization (or Certificate of Formation)
-│   ├── Operating Agreement — signed and dated
-│   ├── EIN Confirmation — CP 575 (IRS letter)
-│   ├── Business License(s)
-│   └── DBA Filing (if applicable)
-│
-├── Financial Records
-│   └── [Year] (create a new folder at the start of each year)
-│       ├── Bank Statements (one PDF per month)
-│       ├── Expense Tracker (spreadsheet or exported CSV)
-│       ├── Income Records
-│       ├── Tax Return — Federal
-│       ├── Tax Return — State
-│       └── Quarterly Estimated Tax Payments
-│
-├── Clients and Invoices
-│   ├── Invoices Sent
-│   ├── Paid Invoices (move here once confirmed paid)
-│   ├── Contracts (one subfolder per client if applicable)
-│   └── W-9 Forms Received from clients
-│
-├── Vendors and Expenses
-│   ├── Receipts (all business receipts, scanned)
-│   ├── 1099-NEC Forms Issued to Contractors
-│   └── W-9 Forms Collected from Contractors
-│
-├── Insurance
-│   ├── Current Policy Documents
-│   └── Claims (if any)
-│
-└── Compliance
-    ├── Annual Report Filings
-    ├── License Renewals
-    └── State Correspondence
+|
++-- Formation & Legal
+|   +-- Articles of Organization (or Certificate of Formation)
+|   +-- Operating Agreement — signed and dated
+|   +-- EIN Confirmation — CP 575 (IRS letter)
+|   +-- Business License(s)
+|   \-- DBA Filing (if applicable)
+|
++-- Financial Records
+|   \-- [Year] (create a new folder at the start of each year)
+|       +-- Bank Statements (one PDF per month)
+|       +-- Expense Tracker (spreadsheet or exported CSV)
+|       +-- Income Records
+|       +-- Tax Return — Federal
+|       +-- Tax Return — State
+|       \-- Quarterly Estimated Tax Payments
+|
++-- Clients and Invoices
+|   +-- Invoices Sent
+|   +-- Paid Invoices (move here once confirmed paid)
+|   +-- Contracts (one subfolder per client if applicable)
+|   \-- W-9 Forms Received from clients
+|
++-- Vendors and Expenses
+|   +-- Receipts (all business receipts, scanned)
+|   +-- 1099-NEC Forms Issued to Contractors
+|   \-- W-9 Forms Collected from Contractors
+|
++-- Insurance
+|   +-- Current Policy Documents
+|   \-- Claims (if any)
+|
+\-- Compliance
+    +-- Annual Report Filings
+    +-- License Renewals
+    \-- State Correspondence
 
 
 FILE NAMING CONVENTIONS
@@ -2877,9 +2877,9 @@ Option 3 — Local computer with cloud backup
 
 PHYSICAL BACKUP RULE
 Keep physical copies of your Formation & Legal documents:
-  ├── Original Articles of Organization or Certificate of Formation
-  ├── EIN Confirmation Letter (CP 575)
-  └── Original Operating Agreement
+  +-- Original Articles of Organization or Certificate of Formation
+  +-- EIN Confirmation Letter (CP 575)
+  \-- Original Operating Agreement
 Store in a home filing cabinet or fireproof safe.
 Scan all physical documents to your digital folder immediately.
 
@@ -3077,20 +3077,20 @@ Month: ___________   Year: ___________
 
 
 INCOME
-────────────────────────────────────────────
+--------------------------------------------
 Service or Consulting Revenue       $___________
 Product Sales                       $___________
 Retainer or Recurring Revenue       $___________
 Other Income                        $___________
-────────────────────────────────────────────
+--------------------------------------------
 TOTAL INCOME                        $___________
 
 
 COST OF GOODS SOLD
-────────────────────────────────────────────
+--------------------------------------------
 Direct Labor (subcontractors)       $___________
 Materials or Inventory              $___________
-────────────────────────────────────────────
+--------------------------------------------
 TOTAL COGS                          $___________
 
 GROSS PROFIT (Income minus COGS)    $___________
@@ -3098,7 +3098,7 @@ GROSS MARGIN PERCENT                ___________%
 
 
 OPERATING EXPENSES
-────────────────────────────────────────────
+--------------------------------------------
 Rent or Office Space                $___________
 Software and Subscriptions          $___________
 Marketing and Advertising           $___________
@@ -3109,17 +3109,17 @@ Professional Services (CPA, legal)  $___________
 Insurance                           $___________
 Phone and Internet                  $___________
 Other                               $___________
-────────────────────────────────────────────
+--------------------------------------------
 TOTAL OPERATING EXPENSES            $___________
 
 
 NET PROFIT SUMMARY
-────────────────────────────────────────────
+--------------------------------------------
 Net Profit (Gross Profit minus Expenses) $___________
 Net Profit Margin Percent                ___________%
 Owner Draw or Salary                     $___________
 Tax Set-Aside (25 to 30 percent)         $___________
-────────────────────────────────────────────
+--------------------------------------------
 Remaining in Business Account            $___________
 
 
@@ -3305,11 +3305,11 @@ STEP 4 — PLAN FORWARD (5 minutes)
     Amount (25 to 30 percent of net profit): $___________
 
 MONTHLY REVIEW COMPLETE — WHAT YOU NOW HAVE
-├── Fully reconciled and accurate bookkeeping for the month
-├── Clear view of profit margin and direction vs. prior month
-├── At least one money leak identified and addressed
-├── Outstanding invoices flagged for follow-up
-└── Tax savings transferred and protected
++-- Fully reconciled and accurate bookkeeping for the month
++-- Clear view of profit margin and direction vs. prior month
++-- At least one money leak identified and addressed
++-- Outstanding invoices flagged for follow-up
+\-- Tax savings transferred and protected
 
 
 COMMON MISTAKES TO AVOID
@@ -3370,14 +3370,14 @@ Invoice Date:     March 15, 2025
 Payment Due:      March 29, 2025  (Net 14)
 
 SERVICES RENDERED
-──────────────────────────────────────────────────────────────
+--------------------------------------------------------------
 Landscaping — residential property maintenance (8 hrs x $75)   $600.00
 Monthly lawn care — March 2025                                  $250.00
 Equipment rental reimbursement                                   $85.00
-──────────────────────────────────────────────────────────────
+--------------------------------------------------------------
 SUBTOTAL                                                        $935.00
 Sales Tax (0%)                                                    $0.00
-──────────────────────────────────────────────────────────────
+--------------------------------------------------------------
 TOTAL DUE                                                       $935.00
 
 PAYMENT OPTIONS
@@ -3404,14 +3404,14 @@ Invoice Date:     ___________
 Payment Due:      ___________  (Net ___ days)
 
 SERVICES RENDERED
-──────────────────────────────────────────────────────────────
+--------------------------------------------------------------
 [Description of work performed]                      $___________
 [Additional line item or deliverable]                $___________
 [Reimbursable expense with receipt]                  $___________
-──────────────────────────────────────────────────────────────
+--------------------------------------------------------------
 SUBTOTAL                                             $___________
 Sales Tax (___%)                                     $___________
-──────────────────────────────────────────────────────────────
+--------------------------------------------------------------
 TOTAL DUE                                            $___________
 
 PAYMENT
