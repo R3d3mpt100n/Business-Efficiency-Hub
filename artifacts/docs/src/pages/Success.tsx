@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { BUSINESS_STARTER_FILES, downloadText } from "@/data/downloads";
+import { BUSINESS_STARTER_FILES, downloadPdf } from "@/data/downloads";
 import { PRO_SYSTEMS_BYPASS_URL } from "@/data/checkout";
 
 const FULL_ACCESS_ITEMS = [
@@ -79,7 +79,7 @@ export default function Success() {
               </p>
               <button
                 type="button"
-                onClick={() => downloadText(f.name, f.build())}
+                onClick={() => downloadPdf(f.name, f.build())}
                 className="inline-flex items-center justify-center gap-1.5 rounded-md bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-800"
               >
                 <svg
@@ -95,7 +95,7 @@ export default function Success() {
                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                   />
                 </svg>
-                Download .txt
+                Download PDF
               </button>
             </div>
           ))}

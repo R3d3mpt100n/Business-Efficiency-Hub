@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { PRO_SYSTEMS_URL } from "@/data/checkout";
+import { downloadPdf, BUSINESS_STARTER_FILES } from "@/data/downloads";
 import { W7Module } from "@/components/W7Module";
 import { KEY_BENEFITS } from "@/data/proSystems";
-import { BUSINESS_STARTER_FILES } from "@/data/downloads";
 
 const WHATS_INCLUDED = [
   "Decision gate: 3 questions that pick the right business structure for your situation",
@@ -561,8 +561,8 @@ export default function BusinessStarter() {
           <button
             type="button"
             onClick={() =>
-              downloadText(
-                "ledgely-setup-plan.txt",
+              downloadPdf(
+                "ledgely-setup-plan.pdf",
                 `LEDGELY — YOUR COMPLETED SETUP PLAN
 
 Business structure: ${recommendation?.name ?? "(not yet chosen)"}

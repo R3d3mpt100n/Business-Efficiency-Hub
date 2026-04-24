@@ -1,13 +1,78 @@
-export function downloadText(filename: string, content: string) {
-  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+import { jsPDF } from "jspdf";
+
+export function downloadPdf(filename: string, content: string) {
+  const doc = new jsPDF({ unit: "pt", format: "letter" });
+
+  const marginLeft = 56;
+  const marginTop = 72;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const maxWidth = pageWidth - marginLeft * 2;
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(180, 150, 70);
+  doc.text("LEDGELY", marginLeft, marginTop);
+
+  doc.setDrawColor(220, 210, 190);
+  doc.setLineWidth(0.5);
+  doc.line(marginLeft, marginTop + 8, pageWidth - marginLeft, marginTop + 8);
+
+  let y = marginTop + 26;
+
+  const lines = content.split("\n");
+  for (const raw of lines) {
+    if (y > doc.internal.pageSize.getHeight() - 56) {
+      doc.addPage();
+      y = 56;
+    }
+
+    const line = raw.trimEnd();
+
+    if (line === "") {
+      y += 8;
+      continue;
+    }
+
+    const isHeading =
+      /^[A-Z0-9 &/()—–-]{4,}$/.test(line) && !line.startsWith("[ ") && !line.startsWith("- ") && !line.match(/^\d+\./);
+    const isSectionLabel = line.startsWith("===") || line.startsWith("---");
+
+    if (isSectionLabel) {
+      y += 4;
+      continue;
+    }
+
+    if (isHeading) {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.setTextColor(30, 25, 20);
+      const wrapped = doc.splitTextToSize(line, maxWidth);
+      doc.text(wrapped, marginLeft, y);
+      y += wrapped.length * 14 + 6;
+    } else {
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9.5);
+      doc.setTextColor(60, 55, 50);
+      const wrapped = doc.splitTextToSize(line, maxWidth);
+      doc.text(wrapped, marginLeft, y);
+      y += wrapped.length * 13;
+    }
+  }
+
+  const pageCount = doc.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7.5);
+    doc.setTextColor(180, 175, 168);
+    doc.text(
+      `Ledgely · ledgely.com · Page ${i} of ${pageCount}`,
+      marginLeft,
+      doc.internal.pageSize.getHeight() - 28
+    );
+  }
+
+  doc.save(filename);
 }
 
 export const BUSINESS_STARTER_FILES: {
@@ -18,7 +83,7 @@ export const BUSINESS_STARTER_FILES: {
   build: () => string;
 }[] = [
   {
-    name: "ledgely-startup-checklist.txt",
+    name: "ledgely-startup-checklist.pdf",
     label: "Startup Checklist",
     tag: "Master checklist",
     description:
@@ -38,7 +103,7 @@ export const BUSINESS_STARTER_FILES: {
 `,
   },
   {
-    name: "ledgely-ein-prep-checklist.txt",
+    name: "ledgely-ein-prep-checklist.pdf",
     label: "EIN Preparation Checklist",
     tag: "Questionnaire",
     description:
@@ -59,7 +124,7 @@ export const BUSINESS_STARTER_FILES: {
 `,
   },
   {
-    name: "ledgely-itin-prep-checklist.txt",
+    name: "ledgely-itin-prep-checklist.pdf",
     label: "ITIN Preparation Checklist",
     tag: "Questionnaire",
     description:
@@ -79,7 +144,7 @@ export const BUSINESS_STARTER_FILES: {
 `,
   },
   {
-    name: "ledgely-compliance-calendar.txt",
+    name: "ledgely-compliance-calendar.pdf",
     label: "Compliance Calendar",
     tag: "Template",
     description:
@@ -108,7 +173,7 @@ ONGOING (monthly)
 `,
   },
   {
-    name: "ledgely-setup-plan-example.txt",
+    name: "ledgely-setup-plan-example.pdf",
     label: "Filled Setup Plan Example",
     tag: "Filled example",
     description:
