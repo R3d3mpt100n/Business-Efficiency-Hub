@@ -2412,25 +2412,1002 @@ function updateInvoice() {
 
 // ── TEMPLATES MAP ──
 const templateContents = {
-  'name-research': `BUSINESS NAME RESEARCH CHECKLIST\n================================\n\nStep 1 — State availability\n[ ] Search your state's Secretary of State business database\n[ ] Confirm exact legal name is available (not just similar)\n[ ] Note any similar names that could cause confusion\n\nStep 2 — Domain / web presence\n[ ] Check .com availability (use Namecheap or GoDaddy)\n[ ] Check .co and .net as fallbacks\n[ ] Search the name on Google — review first 2 pages\n[ ] Check social handles: Instagram, Facebook, LinkedIn, X\n\nStep 3 — Trademark\n[ ] Search USPTO TESS database (tess.uspto.gov)\n[ ] Search for phonetically similar marks in your industry\n[ ] If conflicts found: consult a trademark attorney\n\nStep 4 — Final confirmation\n[ ] Name passes all three checks above\n[ ] Domain secured (even if not using it yet)\n[ ] Name works across all business documents and signage`,
 
-  'setup-checklist': `SMALL BUSINESS SETUP CHECKLIST\n================================\n\nPHASE 1 — DECIDE\n[ ] Choose business structure (sole prop / LLC / S-Corp / C-Corp)\n[ ] Choose and verify business name\n     — State business database\n     — Domain availability\n     — Trademark search (USPTO TESS)\n[ ] Decide on business address\n\nPHASE 2 — REGISTER\n[ ] File state formation paperwork\n[ ] Register DBA / trade name if applicable\n[ ] Apply for EIN at IRS.gov (free)\n[ ] Save EIN confirmation letter (Form CP 575)\n[ ] Draft operating agreement\n[ ] Register for state taxes if applicable\n\nPHASE 3 — OPEN ACCOUNTS\n[ ] Open dedicated business checking account\n[ ] Apply for business debit or credit card\n[ ] Set up payment processor (Stripe, Square, PayPal)\n[ ] Choose bookkeeping method\n\nPHASE 4 — COMPLIANCE\n[ ] Obtain general business license\n[ ] Research state-specific requirements\n[ ] Register for sales tax if applicable\n[ ] Purchase business insurance\n[ ] Set recurring compliance calendar reminders`,
+'name-research': `BUSINESS NAME RESEARCH CHECKLIST
+=================================
+Complete all four steps before committing to any name.
+A name that fails any check costs money and time to rebrand.
+Time needed: 30 minutes.
 
-  'ein-checklist': `EIN APPLICATION PREPARATION CHECKLIST\n======================================\n\n[ ] Legal business name (matches formation documents)\n[ ] Trade name / DBA if different\n[ ] Business structure\n[ ] Responsible party's full legal name\n[ ] Responsible party's SSN or ITIN\n[ ] Business mailing address\n[ ] Business physical address\n[ ] Business phone number\n[ ] Reason for applying\n[ ] Date business started\n[ ] Expected employees in next 12 months\n\nApply only at IRS.gov. The EIN is free.`,
 
-  'folder-structure': `BUSINESS DOCUMENT FOLDER STRUCTURE\n====================================\n\n📁 [Business Name] — Master\n│\n├── 📁 Formation & Legal\n│   ├── Articles of Organization\n│   ├── Operating Agreement\n│   ├── EIN Confirmation (CP 575)\n│   └── Business License(s)\n│\n├── 📁 Financial Records\n│   └── 📁 [Year]\n│       ├── Bank Statements\n│       ├── Expense Tracker\n│       └── Tax Returns\n│\n├── 📁 Clients & Invoices\n│   ├── Invoices Sent\n│   └── Paid Invoices\n│\n└── 📁 Compliance Calendar`,
+STEP 1 — STATE DATABASE CHECK
+Confirm the exact legal name is available in your formation state.
 
-  'compliance-calendar': `ANNUAL COMPLIANCE CALENDAR\n===========================\n\nFEDERAL\n[ ] Q1 Estimated Tax ........... April 15\n[ ] Q2 Estimated Tax ........... June 15\n[ ] Q3 Estimated Tax ........... Sept 15\n[ ] Q4 Estimated Tax ........... Jan 15\n[ ] Federal Tax Return ......... April 15\n[ ] W-2s / 1099s ............... Jan 31\n\nSTATE (fill in your dates)\n[ ] State income tax return .... ___________\n[ ] Annual report filing ....... ___________\n[ ] Sales tax filing ........... ___________\n[ ] State license renewal ...... ___________\n\nLOCAL\n[ ] City/county license renewal  ___________`,
+[ ] Go to your state's Secretary of State website
+[ ] Search the exact name you want to register
+[ ] Search phonetically similar names (e.g. "Apex" vs "Apeks")
+[ ] Confirm no active business has the same or confusingly similar name
+[ ] Note: LLCs must include "LLC" or "Limited Liability Company" in the name
 
-  'monthly-pl': `MONTHLY PROFIT & LOSS SUMMARY\n==============================\nMonth: ___________   Year: ___________\n\nINCOME\n────────────────────────────\nProduct / Service sales     $___________\nConsulting / Retainer fees  $___________\nOther income                $___________\n────────────────────────────\nTOTAL INCOME                $___________\n\nEXPENSES\n────────────────────────────\nOperations                  $___________\nMarketing                   $___________\nSoftware / Subscriptions    $___________\nSupplies                    $___________\nTravel                      $___________\nContractor / Freelance      $___________\nProfessional Services       $___________\nOther                       $___________\n────────────────────────────\nTOTAL EXPENSES              $___________\n\nSUMMARY\n────────────────────────────\nGross Profit (Income − Expenses)  $___________\nOwner Draw / Salary               $___________\nTax Set-Aside (25–30%)            $___________\n────────────────────────────\nNET (stays in business)           $___________\nProfit Margin                     ___________%`,
+Common state search links:
+  Texas:       mycpa.cpa.state.tx.us/coa/
+  Florida:     dos.myflorida.com/sunbiz/
+  California:  bizfileonline.sos.ca.gov/
+  New York:    apps.dos.ny.gov/publicInquiry/
+  All states:  search "[your state] secretary of state business search"
 
-  'monthly-review': `MONTHLY FINANCIAL REVIEW CHECKLIST\n====================================\n\nSTEP 1 — RECONCILE (10 min)\n[ ] Download bank statement\n[ ] Match every transaction to expense tracker\n[ ] Flag unrecognized charges\n[ ] Add missed cash transactions\n\nSTEP 2 — SUMMARIZE (5 min)\n[ ] Total all income received\n[ ] Total all expenses by category\n[ ] Calculate gross profit\n[ ] Note profit margin %\n\nSTEP 3 — ANALYZE (10 min)\n[ ] Compare to last month\n[ ] Identify largest expense category\n[ ] List recurring subscriptions — cancel unused\n[ ] Flag any expense over $200\n\nSTEP 4 — PLAN FORWARD (5 min)\n[ ] Set one financial goal for next month\n[ ] Follow up on any overdue invoices\n[ ] Adjust pricing if margin is below target\n[ ] Transfer 25–30% of net profit to tax savings`,
+Result: [ ] Available    [ ] Not available — choose alternate name
 
-  'invoice': `INVOICE\n=======\nFrom:  [Your Business Name]\n       [Your Address]\n       [Email] | [Phone]\n\nTo:    [Client Name]\n       [Client Address]\n\nInvoice #:  INV-___\nDate:       ___________\nDue Date:   ___________\n\n────────────────────────────────────────\nSERVICES\n────────────────────────────────────────\n[Service Description]           $__________\n[Additional line item]          $__________\n────────────────────────────────────────\nTOTAL DUE                       $__________\n\nPAYMENT\n────────\n[Payment method and details]\n\nPlease reference Invoice #INV-___ with payment.\nLate payments beyond 30 days may incur a 1.5% monthly fee.`,
 
-  'followup-emails': `PAYMENT FOLLOW-UP EMAIL TEMPLATES\n===================================\n\n── STAGE 1: Reminder (3 days before due) ──\n\nSubject: Quick reminder — Invoice #INV-___ due [Date]\n\nHi [Client Name],\n\nJust flagging that Invoice #INV-___ for $[Amount] is due on [Date].\nLet me know if you need anything resent.\n\nThank you,\n[Your Name]\n\n\n── STAGE 2: First follow-up (7 days overdue) ──\n\nSubject: Invoice #INV-___ — Payment not yet received\n\nHi [Client Name],\n\nFollowing up on Invoice #INV-___ for $[Amount], due on [Due Date].\nCould you confirm when to expect payment?\n\n[Payment details]\n\nThanks,\n[Your Name]\n\n\n── STAGE 3: Final notice (30+ days overdue) ──\n\nSubject: Final notice — Invoice #INV-___ ($[Amount] overdue)\n\nHi [Client Name],\n\nInvoice #INV-___ for $[Amount] is now [X] days past due.\nPlease arrange payment by [Final Date].\n\nAfter that date I may apply late fees or engage collections.\n\n[Your Name] | [Phone]`,
+STEP 2 — DOMAIN AND ONLINE PRESENCE
+Secure the domain the same day you confirm state availability.
+Domains cost $10–15/year and can be purchased at Namecheap or GoDaddy.
 
-  'weekly-review': `WEEKLY INVOICE REVIEW CHECKLIST\n================================\nRun every Monday — 5 minutes.\n\n[ ] Update status of payments received last week\n[ ] Send reminders for invoices due within 5 days\n[ ] Send follow-ups for overdue invoices\n[ ] Log any new invoices sent\n\nWEEKLY NUMBERS\nInvoices sent:          ___\nTotal invoiced:         $___\nPayments received:      $___\nOutstanding total:      $___\nOldest unpaid:          ___ days`
+[ ] Check .com availability
+[ ] Check .co as fallback if .com is taken
+[ ] Search the full name on Google — review first two pages of results
+[ ] Check social handle availability: Instagram / Facebook / LinkedIn / X
+[ ] Confirm no established brand uses this name in any industry
+
+Pro tip: You do not need to build a website immediately.
+Securing the domain prevents anyone else from taking it.
+
+Result: [ ] Domain available    [ ] Taken — adjust name or use .co
+
+
+STEP 3 — FEDERAL TRADEMARK CHECK
+A name can be available in your state but still infringe on a federal
+trademark. This step protects you from future legal issues.
+
+[ ] Go to tess.uspto.gov
+[ ] Select "Basic Word Mark Search (New User)"
+[ ] Search the exact name
+[ ] Search phonetically similar versions
+[ ] Filter results to show "Live" marks only — Dead marks are inactive
+[ ] Review results in your industry / goods and services class
+
+If a conflict is found:
+[ ] Do NOT file state paperwork using a conflicting name
+[ ] Consult a trademark attorney before proceeding
+[ ] Choose a different name and restart from Step 1
+
+Result: [ ] No conflicts found    [ ] Conflict found — needs review
+
+
+STEP 4 — FINAL CONFIRMATION AND RECOMMENDATION SUMMARY
+
+Fill this in as your final verification record:
+
+Business name chosen:     ________________________________
+Structure it will use:    ________________________________
+State of formation:       ________________________________
+State check result:       [ ] Available
+Domain status:            [ ] Secured at: ________________
+Trademark result:         [ ] No conflicts in my industry class
+
+Pre-filled example (replace with your own):
+  Business name:    Apex Home Services LLC
+  Structure:        Single-Member LLC
+  State:            Texas — available
+  Domain:           apexhomeservices.com — secured
+  Trademark:        No live marks in Class 37 (construction services)
+
+[ ] Name works on business cards, invoices, and signage
+[ ] Name is easy to spell and pronounce
+[ ] Name passes all three verification checks
+
+AFTER THIS CHECKLIST YOU WILL HAVE
+A verified, available business name with a secured domain,
+ready to use in your state formation filing.`,
+
+
+'setup-checklist': `SMALL BUSINESS SETUP CHECKLIST
+================================
+Complete phases in order. Each phase builds on the previous.
+Do not open a bank account before you have your EIN.
+Do not apply for an EIN before your state formation is approved.
+
+
+PHASE 1 — DECIDE (Days 1–3)
+
+CHOOSE YOUR BUSINESS STRUCTURE
+
+Sole Proprietorship
+[ ] No state filing required — simplest to start
+[ ] No legal separation between you and the business
+[ ] Use an EIN (not your SSN) for banking
+[ ] Best for: low-risk freelancers testing an idea
+[ ] Skip to Phase 2 (EIN only — no formation paperwork needed)
+
+Single-Member LLC (most common for small business owners)
+[ ] Provides liability protection between personal and business assets
+[ ] Requires state filing: $50–$500 depending on state
+[ ] Requires Operating Agreement even if you are the only owner
+[ ] Best for: most service businesses, contractors, online businesses
+
+Multi-Member LLC
+[ ] Same as Single-Member but with 2 or more owners
+[ ] Operating Agreement must specify: ownership %, profit split,
+    decision-making authority, exit procedure
+[ ] All owners must agree on formation state before filing
+
+S-Corporation (advanced — consult a CPA first)
+[ ] Requires an existing LLC or Corporation as the base entity
+[ ] Can reduce self-employment taxes when net profit exceeds $60,000
+[ ] Requires payroll setup, corporate formalities, additional filings
+[ ] Do not choose this structure without professional tax advice
+
+Structure chosen: ________________________________
+
+Other Phase 1 decisions:
+[ ] Business name chosen and verified (run Name Research Checklist)
+[ ] Business address decided: home / virtual office / commercial space
+[ ] Fiscal year end decided: almost always December 31
+
+
+PHASE 2 — REGISTER (Days 3–10)
+
+For all LLCs and Corporations:
+[ ] Prepare Articles of Organization (or Certificate of Formation)
+[ ] File with your state's Secretary of State
+[ ] Pay filing fee (look up current fee at your state's website)
+[ ] Wait for approval — 1 to 10 business days depending on state
+[ ] Save official approval document immediately
+
+After state approval is confirmed:
+[ ] Apply for EIN at IRS.gov — free, instant, takes 15 minutes
+[ ] Print or screenshot your EIN from the confirmation page
+[ ] Save Form CP 575 when it arrives by mail (4–6 weeks)
+[ ] Draft Operating Agreement (template below or hire attorney)
+
+If applicable to your business:
+[ ] Register DBA / trade name if operating under a different name
+[ ] Register for state income tax withholding
+[ ] Apply for sales tax permit if selling taxable goods or services
+[ ] Check for industry-specific licenses (contractor, food, healthcare, etc.)
+
+Documents you will have at the end of Phase 2:
+  1. State formation approval (Articles / Certificate)
+  2. EIN confirmation (IRS.gov page + CP 575 by mail)
+  3. Signed Operating Agreement
+  4. Any required state or local licenses
+
+
+PHASE 3 — OPEN ACCOUNTS (Days 7–14)
+
+Business bank account — what to bring:
+[ ] EIN letter or confirmation page
+[ ] State formation approval documents
+[ ] Government-issued photo ID
+[ ] Initial deposit (most banks require $25–$100 minimum)
+
+Recommended bank options:
+  Chase Business Complete Banking — branches nationwide, strong integration
+  Mercury — online only, no fees, excellent for digital/tech businesses
+  Relay — built for small business, excellent cash flow management
+  Bank of America Business Advantage — good if you need in-person banking
+
+After opening:
+[ ] Set up online banking and mobile app
+[ ] Request a business debit card
+[ ] NEVER mix personal and business funds — not even once
+
+Payment processing setup:
+[ ] Create Stripe, Square, or PayPal Business account
+[ ] Connect and verify your business bank account
+[ ] Send a $1 test transaction to yourself and confirm deposit appears
+[ ] Set up your payment link or invoicing in the platform
+
+Bookkeeping setup (15 minutes):
+[ ] Choose method: Wave (free) / Google Sheets / QuickBooks / FreshBooks
+[ ] Create expense categories matching the Financial Control system
+[ ] If using software: connect your business bank account
+
+
+PHASE 4 — COMPLIANCE (Days 14–21)
+
+Immediate:
+[ ] Obtain general business license from your city or county (if required)
+[ ] Research industry-specific licenses for your type of business
+[ ] Purchase general liability insurance (most businesses need this)
+[ ] Set up your compliance calendar with all key deadlines (see template)
+
+Ongoing (set calendar reminders today):
+[ ] Quarterly estimated taxes — April 15 / June 15 / Sept 15 / Jan 15
+[ ] State annual report filing — date varies by state
+[ ] Business license renewal — date on your license
+[ ] Sales tax filing — monthly, quarterly, or annual (check your state)
+
+AFTER COMPLETING THIS SYSTEM YOU WILL HAVE
+[ ] Registered legal entity with state approval documents filed and saved
+[ ] Federal EIN obtained and stored in Formation & Legal folder
+[ ] Dedicated business bank account opened with debit card active
+[ ] Payment processing connected and verified with a test transaction
+[ ] Bookkeeping system set up with expense categories defined
+[ ] Compliance calendar created with all key deadlines and reminders set`,
+
+
+'ein-checklist': `EIN APPLICATION PREPARATION CHECKLIST
+======================================
+
+WHAT IS AN EIN
+An Employer Identification Number (EIN) is a free, 9-digit tax ID issued
+by the IRS. Format: XX-XXXXXXX (example: 45-1234567)
+
+You need it to:
+  - Open a business bank account
+  - File federal and state business taxes
+  - Hire employees or pay contractors
+  - Set up Stripe, PayPal, or other payment processors
+  - Complete Form W-9 when a client requests it
+
+It is completely free. Apply only at IRS.gov. Never pay a third party.
+
+
+BEFORE YOU APPLY — GATHER THESE
+
+[ ] Legal business name (exactly as it appears on your state formation docs)
+[ ] Trade name or DBA if operating under a different name
+[ ] Business structure (Sole Prop / LLC / S-Corp / C-Corp / Partnership)
+[ ] Responsible party's full legal name
+    The responsible party is the person who controls or manages the entity
+    and its funds. For a single-owner LLC, this is you.
+[ ] Responsible party's SSN or ITIN
+    Note: This is required by the IRS. It is not shared publicly.
+[ ] Business mailing address (must be a US address)
+[ ] Business physical address if different from mailing
+[ ] Business phone number
+[ ] Date business started or will start
+[ ] Closing month of accounting year (almost always December)
+[ ] Number of employees expected in next 12 months
+    Enter 0 if none — this does not affect your eligibility
+[ ] Principal activity or industry of the business
+    Examples: "landscaping," "consulting," "retail clothing," "software"
+[ ] Reason for applying
+    Common reasons: Started new business / Banking purposes / Hired employees
+
+
+HOW TO APPLY — STEP BY STEP
+
+1. Open: irs.gov/businesses/small-businesses-self-employed/
+         apply-for-an-employer-identification-number-ein-online
+2. Click "Apply Online Now"
+3. Select your entity type (LLC, Sole Proprietor, etc.)
+4. Select your reason for applying
+5. Enter responsible party information (your name and SSN/ITIN)
+6. Enter business name and address
+7. Answer the activity and employment questions
+8. Review and submit
+9. Your EIN appears immediately on the confirmation page
+10. Save or print the confirmation page before closing the browser
+
+
+WHAT YOUR SCREEN WILL LOOK LIKE
+After submitting, the IRS will display:
+  "Your EIN has been successfully assigned."
+  Followed by: "EIN: XX-XXXXXXX"
+
+This is your permanent federal tax ID. Write it down immediately.
+You will also receive Form CP 575 by mail in 4 to 6 weeks — keep it forever.
+
+
+AFTER YOU RECEIVE YOUR EIN
+
+[ ] Screenshot or print the IRS confirmation page right now
+[ ] Save to your Formation & Legal folder as "EIN-Confirmation.pdf"
+[ ] Enter EIN into your bookkeeping system
+[ ] Use EIN when opening your business bank account
+[ ] Provide EIN when any client or vendor requests Form W-9
+[ ] Never use your personal SSN for business banking or payments
+
+COMMON MISTAKES TO AVOID
+- Applying before the LLC formation is approved by the state
+  (Wait for state confirmation first — the business must legally exist)
+- Selecting the wrong entity type on the application
+  (If you formed an LLC, select LLC — not Sole Proprietor)
+- Entering someone else as the responsible party if they are not an owner
+- Closing the browser before saving or printing the EIN confirmation
+- Using a third-party "EIN service" — the IRS application is instant and free`,
+
+
+'folder-structure': `BUSINESS DOCUMENT FOLDER STRUCTURE
+====================================
+Set this up today, even if most folders are empty.
+A consistent structure means you can find any document in under 60 seconds.
+
+
+MASTER FOLDER STRUCTURE
+
+[Business Name] — Master
+│
+├── Formation & Legal
+│   ├── Articles of Organization (or Certificate of Formation)
+│   ├── Operating Agreement — signed and dated
+│   ├── EIN Confirmation — CP 575 (IRS letter)
+│   ├── Business License(s)
+│   └── DBA Filing (if applicable)
+│
+├── Financial Records
+│   └── [Year] (create a new folder at the start of each year)
+│       ├── Bank Statements (one PDF per month)
+│       ├── Expense Tracker (spreadsheet or exported CSV)
+│       ├── Income Records
+│       ├── Tax Return — Federal
+│       ├── Tax Return — State
+│       └── Quarterly Estimated Tax Payments
+│
+├── Clients and Invoices
+│   ├── Invoices Sent
+│   ├── Paid Invoices (move here once confirmed paid)
+│   ├── Contracts (one subfolder per client if applicable)
+│   └── W-9 Forms Received from clients
+│
+├── Vendors and Expenses
+│   ├── Receipts (all business receipts, scanned)
+│   ├── 1099-NEC Forms Issued to Contractors
+│   └── W-9 Forms Collected from Contractors
+│
+├── Insurance
+│   ├── Current Policy Documents
+│   └── Claims (if any)
+│
+└── Compliance
+    ├── Annual Report Filings
+    ├── License Renewals
+    └── State Correspondence
+
+
+FILE NAMING CONVENTIONS
+Use consistent naming so files sort chronologically and are searchable.
+
+Bank Statements:
+  2025-01_BankName_Statement.pdf
+  2025-02_BankName_Statement.pdf
+
+Invoices:
+  INV-001_AcmeCorp_2025-03-15.pdf
+  INV-002_JohnSmith_2025-03-22.pdf
+
+Receipts:
+  2025-03-15_AmazonAWS_29.99.pdf
+  2025-03-18_OfficeDepot_47.50.pdf
+
+Tax Documents:
+  2024_Federal_TaxReturn_Filed.pdf
+  2024_State_TaxReturn_Filed.pdf
+
+
+WHERE TO STORE THIS
+
+Option 1 — Google Drive (recommended for most businesses)
+  Free up to 15 GB. Accessible from any device. Automatic backup.
+  Share specific folders with your accountant at tax time.
+  Create your master folder structure, then share Formation & Legal
+  with your attorney or CPA as needed.
+
+Option 2 — Dropbox
+  Strong offline access. Good for teams. Paid plans for more storage.
+
+Option 3 — Local computer with cloud backup
+  Use Time Machine (Mac) or Windows Backup, AND a cloud service.
+  Local-only storage is not safe — drives fail.
+
+PHYSICAL BACKUP RULE
+Keep physical copies of your Formation & Legal documents:
+  - Original Articles of Organization or Certificate of Formation
+  - EIN Confirmation Letter (CP 575)
+  - Original Operating Agreement
+Store in a home filing cabinet or fireproof safe.
+Scan all physical documents to your digital folder immediately.`,
+
+
+'compliance-calendar': `ANNUAL COMPLIANCE CALENDAR
+===========================
+Fill in your specific deadlines using the guidance below.
+Set two calendar reminders per deadline: 30 days before and 7 days before.
+
+
+FEDERAL DEADLINES
+
+Q1 Estimated Tax Payment
+  Due: April 15
+  Who: Anyone expecting to owe $1,000 or more in federal taxes for the year
+  How much: Approximately 25 to 30 percent of net profit from Jan through March
+  Where: IRS Direct Pay at irs.gov/payments or by mailing Form 1040-ES
+[ ] Scheduled    [ ] Paid    [ ] Not applicable (expect less than $1,000 tax)
+
+Q2 Estimated Tax Payment
+  Due: June 15
+  How much: 25 to 30 percent of net profit from April through May
+[ ] Scheduled    [ ] Paid    [ ] Not applicable
+
+Q3 Estimated Tax Payment
+  Due: September 15
+  How much: 25 to 30 percent of net profit from June through August
+[ ] Scheduled    [ ] Paid    [ ] Not applicable
+
+Q4 Estimated Tax Payment
+  Due: January 15 (of the following year)
+  How much: 25 to 30 percent of net profit from September through December
+[ ] Scheduled    [ ] Paid    [ ] Not applicable
+
+Federal Income Tax Return
+  Due: April 15 (extension available to October 15 — file Form 4868)
+  Form: Schedule C attached to Form 1040 (sole prop / single-member LLC)
+        Form 1065 (multi-member LLC or partnership)
+        Form 1120-S (S-Corporation)
+[ ] Filed    [ ] Extension filed (by April 15)
+
+W-2s and 1099-NEC
+  Due: January 31 (must reach recipients AND be filed with IRS)
+  Who must file: Anyone who paid a contractor $600 or more in the calendar year
+  How: File online at irs.gov or use tax software that handles 1099s
+[ ] Issued    [ ] Not applicable (no contractors paid $600+)
+
+
+STATE DEADLINES
+Fill in your state-specific dates. Find them at your Secretary of State site.
+
+State Income Tax Return
+  Due: ___________  (usually April 15 or within 30 days of federal due date)
+  Form: ___________
+[ ] Filed
+
+Annual Report or Franchise Tax
+  Due: ___________
+  Fee: $___________
+  Where to file: ___________
+[ ] Filed
+
+Sales Tax Filing
+  Frequency: [ ] Monthly    [ ] Quarterly    [ ] Annually
+  Due dates: ___________
+[ ] Current
+
+State Business License Renewal
+  Due: ___________
+  Fee: $___________
+[ ] Renewed
+
+
+LOCAL DEADLINES
+
+City or County Business License Renewal
+  Due: ___________
+  Fee: $___________
+[ ] Renewed
+
+Other local permits or requirements: ___________
+Due: ___________
+
+
+WHAT HAPPENS IF YOU MISS DEADLINES
+
+Federal estimated taxes (not paid on time):
+  Underpayment penalty: approximately 3 to 5 percent of the unpaid amount
+  This compounds — missing all four quarters adds up significantly
+
+Federal tax return (filed late without extension):
+  Failure-to-file penalty: 5 percent of unpaid taxes per month, up to 25%
+  Failure-to-pay penalty: 0.5 percent per month on unpaid balance
+  Interest also accrues on unpaid balances
+
+State annual report (missed):
+  Late fees: $25 to $500 depending on state
+  Loss of "good standing" status — may affect loans, contracts
+  Administrative dissolution in some states after extended non-filing
+  Reinstatement fee to restore active status
+
+Sales tax (filed or paid late):
+  Penalties and interest vary by state — can be 10 to 25 percent of amount due
+  States take sales tax compliance seriously — prioritize this
+
+Business license (expired):
+  Operating without a valid license may result in fines
+  Some municipalities require immediate shutdown until renewed
+
+SET ALL REMINDERS NOW
+For each deadline with a date filled in above:
+  [ ] Add to calendar: 30-day advance reminder
+  [ ] Add to calendar: 7-day advance reminder
+  [ ] Add to calendar: the deadline itself`,
+
+
+'monthly-pl': `MONTHLY PROFIT & LOSS SUMMARY
+==============================
+Month: ___________   Year: ___________
+
+
+INCOME
+────────────────────────────────────────────
+Service or Consulting Revenue       $___________
+Product Sales                       $___________
+Retainer or Recurring Revenue       $___________
+Other Income                        $___________
+────────────────────────────────────────────
+TOTAL INCOME                        $___________
+
+
+COST OF GOODS SOLD
+────────────────────────────────────────────
+Direct Labor (subcontractors)       $___________
+Materials or Inventory              $___________
+────────────────────────────────────────────
+TOTAL COGS                          $___________
+
+GROSS PROFIT (Income minus COGS)    $___________
+GROSS MARGIN PERCENT                ___________%
+
+
+OPERATING EXPENSES
+────────────────────────────────────────────
+Rent or Office Space                $___________
+Software and Subscriptions          $___________
+Marketing and Advertising           $___________
+Supplies                            $___________
+Travel and Transportation           $___________
+Contractor or Freelance             $___________
+Professional Services (CPA, legal)  $___________
+Insurance                           $___________
+Phone and Internet                  $___________
+Other                               $___________
+────────────────────────────────────────────
+TOTAL OPERATING EXPENSES            $___________
+
+
+NET PROFIT SUMMARY
+────────────────────────────────────────────
+Net Profit (Gross Profit minus Expenses) $___________
+Net Profit Margin Percent                ___________%
+Owner Draw or Salary                     $___________
+Tax Set-Aside (25 to 30 percent)         $___________
+────────────────────────────────────────────
+Remaining in Business Account            $___________
+
+
+MARGIN HEALTH GUIDE
+Use this to interpret your net profit margin percent each month.
+
+Under 10 percent:
+  Warning. Expenses are consuming most of your revenue.
+  Action: Identify top 2 expense categories and set reduction targets.
+  Review all subscriptions and cancel unused ones this week.
+
+10 to 20 percent:
+  Tight. The business is functional but has limited buffer.
+  Action: Focus on raising prices or increasing client volume.
+  Review your pricing against market rates.
+
+20 to 30 percent:
+  Stable. You have a solid foundation.
+  Action: Prioritize consistent growth. Protect this margin.
+
+30 percent and above:
+  Strong. Costs are well-controlled and profitability is healthy.
+  Action: Consider reinvestment in growth, equipment, or owner distribution.
+
+
+FILLED EXAMPLE (replace with your own numbers)
+
+Month: March 2025
+
+Income:
+  Consulting revenue:    $8,500
+
+COGS:
+  Subcontractor:         $1,200
+  Gross Profit:          $7,300  (85.9 percent gross margin)
+
+Operating Expenses:
+  Software:              $240
+  Marketing:             $350
+  Phone and internet:    $120
+  Other:                 $180
+  Total Expenses:        $890
+
+Net Profit:              $6,410
+Net Margin:              75.4 percent — STRONG
+
+Owner Draw:              $4,000
+Tax Set-Aside (25%):     $1,602
+Remaining in account:    $808
+
+
+MONTHLY TREND TRACKER
+Month          Income     Expenses    Net Profit    Margin %
+___________    $______    $_______    $________     _______%
+___________    $______    $_______    $________     _______%
+___________    $______    $_______    $________     _______%
+___________    $______    $_______    $________     _______%`,
+
+
+'monthly-review': `MONTHLY FINANCIAL REVIEW CHECKLIST
+====================================
+Time needed: 30 minutes
+Run on: Last day of each month (or first day of the following month)
+
+
+STEP 1 — RECONCILE (10 minutes)
+
+[ ] Download your bank statement for the month (PDF or CSV)
+[ ] Open your expense tracker
+[ ] Match every single bank transaction to a tracker entry
+[ ] For each unmatched transaction: add it to the tracker right now
+[ ] Flag any unrecognized charge over $10 for review
+[ ] Add any cash transactions not yet logged
+[ ] Verify: your tracker total matches your bank ending balance
+
+Result: Every transaction is categorized. Nothing is missing or unaccounted for.
+
+
+STEP 2 — SUMMARIZE (5 minutes)
+
+[ ] Calculate total income received this month:      $___________
+[ ] Calculate total expenses this month:             $___________
+[ ] Calculate gross profit:                          $___________
+[ ] Calculate profit margin percent:                 ___________%
+
+Margin interpretation:
+  Under 15%:  Warning — review your top expense categories immediately
+  15 to 30%:  Stable — monitor and optimize
+  Above 30%:  Strong — well-controlled spending
+
+
+STEP 3 — ANALYZE (10 minutes)
+
+[ ] List your top 3 expense categories this month:
+      1. _______________________________   $___________
+      2. _______________________________   $___________
+      3. _______________________________   $___________
+
+[ ] Compare to last month — which categories increased and by how much?
+
+Review all recurring subscriptions:
+[ ] List every subscription charge on your bank statement:
+      _______________________________   $___________   Keep / Cancel
+      _______________________________   $___________   Keep / Cancel
+      _______________________________   $___________   Keep / Cancel
+[ ] Cancel any subscription you did not actively use this month
+
+TOP 5 MONEY LEAKS — CHECK THESE EVERY MONTH
+[ ] Unused software subscriptions (scan card statement for recurring charges)
+[ ] Duplicate tool subscriptions (two project managers, two design tools, etc.)
+[ ] Contractor hours that exceeded agreed scope without approval
+[ ] Cash expenses that were not tracked (these inflate apparent profit)
+[ ] Invoiced work that was never sent (revenue earned but not billed)
+
+WHAT TO LOOK FOR:
+  Any category up more than 20 percent vs. last month — find out why
+  A single vendor representing over 25 percent of total expenses — review necessity
+  Net profit lower than last month despite similar revenue — a new expense crept in
+
+WHAT TO CHANGE IMMEDIATELY:
+  Any subscription over $50/month you did not use — cancel this week
+  Any expense you cannot clearly justify as business-necessary — remove
+  Any income that was earned but not yet invoiced — invoice today
+
+
+STEP 4 — PLAN FORWARD (5 minutes)
+
+[ ] Set one financial goal for next month:
+    Goal: _________________________   Target: $___________
+
+[ ] List outstanding invoices to follow up on:
+    INV-___   Client: _______________   Amount: $________   Due: ___________
+    INV-___   Client: _______________   Amount: $________   Due: ___________
+
+[ ] If margin was below 15 percent this month:
+    [ ] Review your pricing — are you undercharging for your time?
+    [ ] Identify which service or product line has the lowest margin
+    [ ] Set a price adjustment to take effect next month
+
+[ ] Transfer tax set-aside to savings account:
+    Amount (25 to 30 percent of net profit): $___________
+
+MONTHLY REVIEW COMPLETE — WHAT YOU NOW HAVE
+- Fully reconciled and accurate bookkeeping for the month
+- Clear view of profit margin and direction vs. prior month
+- At least one money leak identified and addressed
+- Outstanding invoices flagged for follow-up
+- Tax savings transferred and protected`,
+
+
+'invoice': `INVOICE TEMPLATE
+================
+
+
+FILLED EXAMPLE (for reference — delete before sending to clients)
+
+From:  Apex Home Services LLC
+       1234 Business Blvd, Suite 100
+       Austin, TX 78701
+       hello@apexhome.com | (512) 555-0100
+
+To:    John Smith
+       Acme Corp
+       456 Client Ave, Chicago, IL 60601
+
+Invoice Number:   INV-008
+Invoice Date:     March 15, 2025
+Payment Due:      March 29, 2025  (Net 14)
+
+SERVICES RENDERED
+──────────────────────────────────────────────────────────────
+Landscaping — residential property maintenance (8 hrs x $75)   $600.00
+Monthly lawn care — March 2025                                  $250.00
+Equipment rental reimbursement                                   $85.00
+──────────────────────────────────────────────────────────────
+SUBTOTAL                                                        $935.00
+Sales Tax (0%)                                                    $0.00
+──────────────────────────────────────────────────────────────
+TOTAL DUE                                                       $935.00
+
+PAYMENT OPTIONS
+  Venmo: @apexhome
+  Zelle: hello@apexhome.com
+  Check payable to: Apex Home Services LLC
+
+Please include Invoice #INV-008 with your payment.
+A 1.5 percent monthly finance charge applies to balances 30+ days overdue.
+
+
+BLANK TEMPLATE (copy this for your own invoices)
+
+From:  [Your Business Legal Name]
+       [Street Address]
+       [City, State, ZIP]
+       [Email Address] | [Phone Number]
+
+To:    [Client Full Name or Business Name]
+       [Client Address]
+
+Invoice Number:   INV-___
+Invoice Date:     ___________
+Payment Due:      ___________  (Net ___ days)
+
+SERVICES RENDERED
+──────────────────────────────────────────────────────────────
+[Description of work performed]                      $___________
+[Additional line item or deliverable]                $___________
+[Reimbursable expense with receipt]                  $___________
+──────────────────────────────────────────────────────────────
+SUBTOTAL                                             $___________
+Sales Tax (___%)                                     $___________
+──────────────────────────────────────────────────────────────
+TOTAL DUE                                            $___________
+
+PAYMENT
+[Payment method and details — bank transfer, Venmo, Zelle, check]
+
+Please reference Invoice #INV-___ with payment.
+Payment due within ___ days of invoice date.
+A 1.5 percent monthly finance charge applies to balances past 30 days.
+
+
+INVOICE NUMBERING — PICK ONE FORMAT AND KEEP IT FOREVER
+  Sequential:          INV-001 / INV-002 / INV-003
+  Year + sequential:   2025-001 / 2025-002
+  Client + sequential: ACME-001 / SMITH-001
+
+PAYMENT TERMS GUIDE
+  Net 7:           Due within 7 days — use for new or unknown clients
+  Net 14:          Due within 14 days — standard for service businesses
+  Net 30:          Due within 30 days — common for larger corporate clients
+  Due on Receipt:  Due immediately — use for deposits or rush jobs
+
+WHAT TO DO AFTER SENDING EACH INVOICE
+[ ] Log in tracker: Invoice #, Client, Amount, Date Sent, Due Date, Status
+[ ] Set a calendar reminder on the due date
+[ ] If unpaid by due date: send follow-up email same day (see follow-up template)`,
+
+
+'followup-emails': `PAYMENT FOLLOW-UP EMAIL TEMPLATES
+===================================
+Use these in order. Most invoices are resolved at Stage 1 or Stage 2.
+Replace all fields in brackets before sending.
+
+
+ESCALATION TIMELINE
+  Day 0:    Invoice sent
+  Day -3:   (3 days before due) Send Stage 1 — Friendly Reminder
+  Day +1:   Check bank — confirm if paid
+  Day +7:   (7 days overdue) Send Stage 2 — Professional Follow-Up
+  Day +14:  (14 days overdue) Send Stage 2B — Second Notice
+  Day +30:  (30 days overdue) Send Stage 3 — Final Notice
+  Day +45:  Consider small claims court (for amounts under $5,000 to $10,000)
+            or send to a collections agency (for larger amounts)
+
+
+STAGE 1 — FRIENDLY REMINDER (3 days before due date)
+
+Subject: Friendly reminder — Invoice #INV-[number] due [Date]
+
+Hi [Client First Name],
+
+Quick note to let you know Invoice #INV-[number] for $[Amount] is due on
+[Due Date]. Payment details are included in the invoice.
+
+Let me know if you need me to resend it or if you have any questions.
+
+Thank you,
+[Your Name]
+[Business Name]
+[Phone Number]
+
+
+STAGE 2 — PROFESSIONAL FOLLOW-UP (7 days past due)
+
+Subject: Invoice #INV-[number] — Payment not yet received
+
+Hi [Client First Name],
+
+I wanted to follow up on Invoice #INV-[number] for $[Amount], which was
+due on [Due Date]. I haven't seen a payment come through yet.
+
+Could you let me know when to expect it, or flag anything on your end
+that is holding things up?
+
+You can pay via:
+[Payment Method 1 — e.g. Zelle: email@business.com]
+[Payment Method 2 — e.g. Check payable to: Business Name]
+
+I've reattached the invoice for reference.
+
+Thank you,
+[Your Name]
+[Phone Number]
+
+
+STAGE 2B — SECOND NOTICE (14 days past due)
+
+Subject: Second notice — Invoice #INV-[number] ($[Amount] outstanding)
+
+Hi [Client First Name],
+
+I'm following up again on Invoice #INV-[number] for $[Amount], now
+[14] days past its due date.
+
+Please confirm payment or let me know if there is an issue I can help
+resolve. I would like to get this sorted out before it requires further
+action on my end.
+
+[Payment details]
+
+[Your Name]
+[Business Name]
+[Phone Number]
+
+
+STAGE 3 — FINAL NOTICE (30 or more days past due)
+
+Subject: Final notice — Invoice #INV-[number] ($[Amount] overdue [X] days)
+
+Hi [Client First Name],
+
+Invoice #INV-[number] for $[Amount] is now [number of days] days past
+its due date of [Original Due Date].
+
+I need to receive payment by [Date 7 days from now].
+
+If I do not receive payment by that date, I will have no choice but to
+pursue other options for collection, including applicable late fees and
+escalation to a collections process.
+
+I would strongly prefer to resolve this directly and promptly.
+
+[Your Name]
+[Business Name]
+[Phone Number]
+
+
+PHONE SCRIPT (use when emails go unanswered after 14 days)
+
+"Hi, this is [Your Name] from [Business Name]. I'm calling regarding
+Invoice number INV-[number] for $[Amount], which has been outstanding
+since [Due Date]. I've sent a few emails. Can we sort out the payment today?"
+
+Have ready before calling: invoice number, amount owed, original due date,
+your payment options.
+
+
+LATE FEE LANGUAGE FOR YOUR INVOICES
+Include this on every invoice you send — it is not a surprise when enforced:
+
+"A late fee of 1.5 percent per month will be applied to outstanding
+balances beyond 30 days from the invoice date."
+
+
+AFTER STAGE 3 — WHEN TO ESCALATE
+  Amount under $5,000:  File in small claims court (no attorney required,
+                        filing fee $30 to $100, judgment in 30 to 60 days)
+  Amount over $5,000:   Consult an attorney or collections agency
+                        Collections agencies typically charge 25 to 40 percent
+                        of the recovered amount`,
+
+
+'weekly-review': `WEEKLY INVOICE REVIEW CHECKLIST
+================================
+Run every Monday morning. Estimated time: 5 minutes.
+This routine prevents missed payments, overdue invoices, and lost revenue.
+
+
+THE MONDAY 5-MINUTE ROUTINE
+
+STEP 1 — UPDATE PAYMENT STATUSES (2 minutes)
+[ ] Open your invoice tracker
+[ ] Log into your bank account and review deposits from last week
+[ ] For each deposit received: update the matching invoice to "Paid"
+[ ] Record the date payment was received next to each paid invoice
+[ ] If a deposit doesn't match any invoice: investigate immediately
+
+STEP 2 — CHECK UPCOMING DUE DATES (1 minute)
+[ ] List all invoices due within the next 7 days:
+    INV-___   Client: _______________   Amount: $________   Due: ___________
+    INV-___   Client: _______________   Amount: $________   Due: ___________
+[ ] For new clients or invoices over $1,000: send Stage 1 reminder today
+[ ] For invoices due in 7 days with no acknowledgment: confirm it was received
+
+STEP 3 — HANDLE OVERDUE INVOICES (1 minute)
+[ ] List all invoices currently past their due date:
+    INV-___   Client: _______________   Amount: $________   Days overdue: ___
+    INV-___   Client: _______________   Amount: $________   Days overdue: ___
+[ ] For each overdue invoice: send the appropriate follow-up stage today
+    7 to 13 days overdue → Stage 2
+    14 to 29 days overdue → Stage 2B
+    30 or more days overdue → Stage 3 Final Notice
+
+STEP 4 — LOG NEW INVOICES (1 minute)
+[ ] Was any work delivered last week that has not been invoiced yet?
+    [ ] Invoice it today — do not let earned revenue sit uninvoiced
+[ ] Are any retainer or recurring invoices due to go out this week?
+    [ ] Send on their scheduled date without waiting for a reminder
+
+
+INVOICE STATUS DEFINITIONS
+PENDING    Invoice sent, payment not yet due
+PAID       Payment confirmed in bank account
+OVERDUE    Past due date, payment not received
+DISPUTED   Client has questioned the invoice or amount
+WRITTEN OFF Decision made to stop pursuing (document reason and date)
+
+Rule: Never leave an invoice in "Pending" status past its due date.
+Move it to "Overdue" and send the appropriate follow-up the same day.
+
+
+WEEKLY NUMBERS LOG
+
+Week of: ___________
+
+New invoices sent:
+  INV-___   Client: _______________   Amount: $________   Due: ___________
+  INV-___   Client: _______________   Amount: $________   Due: ___________
+
+Payments received:
+  INV-___   Client: _______________   Amount: $________
+  INV-___   Client: _______________   Amount: $________
+
+Weekly summary:
+  Total invoiced this week:        $___________
+  Total payments received:         $___________
+  Currently outstanding total:     $___________
+  Oldest unpaid invoice:           ___ days
+
+
+MONTHLY COLLECTION SNAPSHOT (fill in at month end)
+
+Month: ___________
+Total invoiced:               $___________
+Total collected:              $___________
+Collection rate:              ___________%
+Average days to payment:      ___________ days
+Outstanding at month close:   $___________
+
+Collection rate guide:
+  Below 85 percent:  Your follow-up process needs to be more consistent.
+                     Start sending Stage 1 reminders for every invoice.
+  85 to 95 percent:  Good. Continue current process.
+  Above 95 percent:  Excellent. Your invoicing system is working well.`
+
 };
 
 function downloadTemplate(key) {
