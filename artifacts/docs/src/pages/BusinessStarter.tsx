@@ -172,29 +172,44 @@ export default function BusinessStarter() {
   const benefits = KEY_BENEFITS["business-starter"] ?? [];
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-12">
-      <Link href="/pro" className="text-sm text-slate-500 hover:text-slate-900">
-        &larr; Back to Pro Systems
-      </Link>
+    <div>
+      {/* Header card */}
+      <div className="border-b border-slate-200 bg-slate-50">
+        <div className="max-w-3xl mx-auto px-6 py-10">
+          <Link href="/pro" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 mb-6">
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Pro Systems
+          </Link>
 
-      <header className="mt-6 mb-8 pb-8 border-b border-slate-200">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
-            Pro
-          </span>
-          <span className="text-xs font-medium uppercase tracking-widest text-slate-500">
-            Guided execution system
-          </span>
+          <div className="bg-white rounded-xl border-t-4 border-t-blue-500 border border-slate-200 shadow-sm p-6">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest border rounded px-2 py-0.5 bg-blue-50 text-blue-700 border-blue-200">
+                    Setup
+                  </span>
+                  <span className="text-xs text-slate-400">4 phases  ·  EIN + setup + compliance</span>
+                </div>
+                <h1 className="text-2xl font-semibold text-slate-900">Business Starter System</h1>
+                <p className="mt-1 text-slate-500">Idea → legally registered business</p>
+                <p className="mt-3 text-sm text-slate-700 leading-relaxed max-w-xl">
+                  A clear, ordered path from idea → decision → legal setup → banking → completion. Make each decision once, then move directly to the next step.
+                </p>
+              </div>
+              <a
+                href={PRO_SYSTEMS_URL}
+                className="flex-none inline-flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+              >
+                Unlock full system →
+              </a>
+            </div>
+          </div>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-900 leading-tight">
-          Business Starter System
-        </h1>
-        <p className="mt-3 text-lg text-slate-600 leading-relaxed">
-          A clear, ordered path from idea → decision → legal setup → banking →
-          completion. Make each decision once, then move directly to the next
-          step.
-        </p>
-      </header>
+      </div>
+
+    <article className="max-w-3xl mx-auto px-6 py-10">
 
       {/* OVERVIEW: KEY BENEFITS + WHAT'S INCLUDED */}
       <section className="mb-10 grid gap-5 md:grid-cols-2">
@@ -687,5 +702,6 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
         </a>
       </section>
     </article>
+    </div>
   );
 }

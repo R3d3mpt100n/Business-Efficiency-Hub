@@ -1,7 +1,104 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { articles } from "@/data/articles";
-import { proSystems, KEY_BENEFITS } from "@/data/proSystems";
-import { PRO_SYSTEMS_URL } from "@/data/checkout";
+
+type HomeProCardDef = {
+  slug: string;
+  title: string;
+  outcome: string;
+  meta: string;
+  href: string;
+  accentClass: string;
+  badgeClass: string;
+  statusLabel: string;
+  included: string[];
+};
+
+const HOME_PRO_CARDS: HomeProCardDef[] = [
+  {
+    slug: "business-starter",
+    title: "Business Starter",
+    outcome: "Idea → legally registered business",
+    meta: "4 phases  ·  EIN + setup + compliance",
+    href: "/pro/business-starter",
+    accentClass: "border-t-blue-500",
+    badgeClass: "bg-blue-50 text-blue-700 border-blue-200",
+    statusLabel: "Setup",
+    included: ["Structure decision tool", "EIN checklist", "Operating agreement", "Compliance calendar"],
+  },
+  {
+    slug: "financial-control",
+    title: "Financial Control",
+    outcome: "Monthly financial clarity",
+    meta: "3 phases  ·  calculator + templates",
+    href: "/pro/financial-control",
+    accentClass: "border-t-emerald-500",
+    badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    statusLabel: "Finance",
+    included: ["Profit calculator", "Expense tracker", "P&L template", "Review system"],
+  },
+  {
+    slug: "client-invoice",
+    title: "Client & Invoice",
+    outcome: "No missed payments",
+    meta: "3 phases  ·  invoice + tracking system",
+    href: "/pro/client-invoice",
+    accentClass: "border-t-amber-500",
+    badgeClass: "bg-amber-50 text-amber-700 border-amber-200",
+    statusLabel: "Clients",
+    included: ["Invoice builder", "Tracking sheet", "Follow-up templates", "Escalation timeline"],
+  },
+];
+
+function HomeProCard({ card }: { card: HomeProCardDef }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`bg-white rounded-xl border-t-4 border border-slate-200 ${card.accentClass} shadow-sm flex flex-col`}>
+      <div className="p-5 flex-1 flex flex-col">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3 className="text-sm font-semibold text-slate-900 leading-snug">{card.title}</h3>
+          <span className={`flex-none text-[10px] font-semibold uppercase tracking-widest border rounded px-2 py-0.5 ${card.badgeClass}`}>
+            {card.statusLabel}
+          </span>
+        </div>
+        <p className="text-sm text-slate-500 mb-2 leading-snug">{card.outcome}</p>
+        <p className="text-xs text-slate-400 mb-4">{card.meta}</p>
+
+        <div className="mb-4 rounded-lg border border-slate-200 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 transition-colors"
+          >
+            <span>What's included</span>
+            <svg className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {open && (
+            <ul className="px-3 py-2.5 space-y-1.5 bg-white border-t border-slate-200">
+              {card.included.map((item) => (
+                <li key={item} className="flex items-center gap-2 text-xs text-slate-600">
+                  <span className="w-1 h-1 rounded-full bg-slate-400 flex-none" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="mt-auto">
+          <Link
+            href={card.href}
+            className="inline-flex items-center justify-center w-full rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+          >
+            Open System
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const CLUSTERS = [
   {
@@ -89,20 +186,6 @@ const PROGRESS_PATH = [
   { label: "Pro Systems", href: "/pro" },
 ];
 
-const PRO_PITCH: Record<string, { headline: string }> = {
-  "business-starter": {
-    headline:
-      "Go from idea to a legally formed business without figuring it out step by step on your own.",
-  },
-  "financial-control": {
-    headline:
-      "Stop guessing your profit. Know exactly where your money goes every month.",
-  },
-  "client-invoice": {
-    headline:
-      "Turn invoicing into a system so you stop losing track of payments and clients.",
-  },
-};
 
 export default function Home() {
   const featured = articles.slice(0, 3);
@@ -349,83 +432,38 @@ export default function Home() {
       </section>
 
       {/* TIER 4: PRO SYSTEMS — UPGRADE LAYER */}
-      <section className="border-b border-slate-200 bg-slate-900 text-slate-100">
+      <section className="border-b border-slate-200 bg-slate-50">
         <div className="max-w-5xl mx-auto px-6 py-16">
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-white px-2 py-0.5 rounded">
-                Pro
-              </span>
-              <span className="text-xs font-medium uppercase tracking-widest text-slate-400">
-                Upgrade layer &middot; Preview
-              </span>
+          <div className="mb-8 flex items-end justify-between gap-4 flex-wrap">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
+                  Pro
+                </span>
+                <span className="text-xs font-medium uppercase tracking-widest text-slate-500">
+                  Upgrade layer
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900">
+                Pro Systems
+              </h2>
+              <p className="mt-2 text-slate-600 max-w-xl leading-relaxed">
+                Structured, done-for-you execution kits. Each system combines
+                guides, tools, and templates into one complete workflow.
+              </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white">
-              Pro Systems
-            </h2>
-            <p className="mt-3 text-slate-300 max-w-2xl leading-relaxed">
-              When the free path isn't enough, these structured kits combine
-              everything into complete, done-for-you systems for a specific area
-              of your business.
-            </p>
+            <Link
+              href="/pro"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900"
+            >
+              Browse all systems &rarr;
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
-            {proSystems.map((p) => {
-              const pitch = PRO_PITCH[p.slug];
-              const benefits = KEY_BENEFITS[p.slug] ?? [];
-              return (
-                <article
-                  key={p.slug}
-                  className="flex flex-col rounded-lg border border-slate-700 bg-slate-800 p-5"
-                >
-                  <h3 className="font-semibold text-white">
-                    {p.shortTitle} System (Pro)
-                  </h3>
-                  <p className="mt-2 text-sm text-slate-300 leading-relaxed font-medium">
-                    {pitch?.headline ?? p.tagline}
-                  </p>
-
-                  <details className="mt-4 group rounded-md border border-slate-700 bg-slate-900/60 open:bg-slate-900/80 transition-colors">
-                    <summary className="cursor-pointer list-none flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-100 select-none">
-                      <span>Key Benefits</span>
-                      <span className="text-slate-400 text-xs transition-transform duration-200 group-open:rotate-180">
-                        &#9662;
-                      </span>
-                    </summary>
-                    <ul className="px-3 pb-3 pt-1 space-y-1.5">
-                      {benefits.map((b) => (
-                        <li
-                          key={b}
-                          className="flex gap-2 text-sm text-slate-300 leading-relaxed"
-                        >
-                          <span className="text-slate-500">&bull;</span>
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-
-                  <div className="mt-5 pt-4 border-t border-slate-700">
-                    <a
-                      href={PRO_SYSTEMS_URL}
-                      className="inline-flex items-center justify-center w-full rounded-md bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-                    >
-                      Unlock full system &rarr;
-                    </a>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-
-          <div className="mt-6">
-            <Link
-              href="/pro"
-              className="inline-flex items-center justify-center rounded-md border border-slate-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
-            >
-              Browse all Pro Systems
-            </Link>
+            {HOME_PRO_CARDS.map((card) => (
+              <HomeProCard key={card.slug} card={card} />
+            ))}
           </div>
         </div>
       </section>

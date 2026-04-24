@@ -1,85 +1,199 @@
-import { proSystems, KEY_BENEFITS } from "@/data/proSystems";
+import { useState } from "react";
+import { Link } from "wouter";
 import { PRO_SYSTEMS_URL } from "@/data/checkout";
+
+type SystemDef = {
+  slug: string;
+  title: string;
+  outcome: string;
+  meta: string;
+  href: string;
+  accentClass: string;
+  badgeClass: string;
+  statusLabel: string;
+  included: string[];
+};
+
+const SYSTEMS: SystemDef[] = [
+  {
+    slug: "business-starter",
+    title: "Business Starter",
+    outcome: "Idea → legally registered business",
+    meta: "4 phases  ·  EIN + setup + compliance",
+    href: "/pro/business-starter",
+    accentClass: "border-t-blue-500",
+    badgeClass: "bg-blue-50 text-blue-700 border-blue-200",
+    statusLabel: "Setup",
+    included: [
+      "Structure decision tool",
+      "EIN checklist",
+      "Operating agreement",
+      "Compliance calendar",
+    ],
+  },
+  {
+    slug: "financial-control",
+    title: "Financial Control",
+    outcome: "Monthly financial clarity",
+    meta: "3 phases  ·  calculator + templates",
+    href: "/pro/financial-control",
+    accentClass: "border-t-emerald-500",
+    badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    statusLabel: "Finance",
+    included: [
+      "Profit calculator",
+      "Expense tracker",
+      "P&L template",
+      "Review system",
+    ],
+  },
+  {
+    slug: "client-invoice",
+    title: "Client & Invoice",
+    outcome: "No missed payments",
+    meta: "3 phases  ·  invoice + tracking system",
+    href: "/pro/client-invoice",
+    accentClass: "border-t-amber-500",
+    badgeClass: "bg-amber-50 text-amber-700 border-amber-200",
+    statusLabel: "Clients",
+    included: [
+      "Invoice builder",
+      "Tracking sheet",
+      "Follow-up templates",
+      "Escalation timeline",
+    ],
+  },
+];
+
+function SystemCard({ system }: { system: SystemDef }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className={`bg-white rounded-xl border-t-4 border border-slate-200 ${system.accentClass} shadow-sm flex flex-col`}
+    >
+      <div className="p-5 flex-1 flex flex-col">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="min-w-0">
+            <h2 className="text-base font-semibold text-slate-900 leading-snug">
+              {system.title}
+            </h2>
+            <p className="mt-1 text-sm text-slate-500 leading-snug">
+              {system.outcome}
+            </p>
+          </div>
+          <span
+            className={`flex-none text-[10px] font-semibold uppercase tracking-widest border rounded px-2 py-0.5 ${system.badgeClass}`}
+          >
+            {system.statusLabel}
+          </span>
+        </div>
+
+        {/* Meta row */}
+        <p className="text-xs text-slate-400 mb-4">{system.meta}</p>
+
+        {/* Expandable included */}
+        <div className="mb-4 rounded-lg border border-slate-200 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors"
+          >
+            <span>What's included</span>
+            <svg
+              className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {open && (
+            <ul className="px-4 py-3 space-y-1.5 bg-white border-t border-slate-200">
+              {system.included.map((item) => (
+                <li key={item} className="flex items-center gap-2 text-sm text-slate-600">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-400 flex-none" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="mt-auto flex gap-2">
+          <Link
+            href={system.href}
+            className="flex-1 inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+          >
+            Open System
+          </Link>
+          <a
+            href={PRO_SYSTEMS_URL}
+            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+          >
+            Unlock
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ProSystems() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12">
-      <div className="mb-10">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
-            Pro
-          </span>
-          <span className="text-xs font-medium uppercase tracking-widest text-slate-500">
-            Complete business systems
-          </span>
+    <div>
+      {/* Page header */}
+      <div className="border-b border-slate-200 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-6 py-12">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
+              Pro
+            </span>
+            <span className="text-xs font-medium uppercase tracking-widest text-slate-500">
+              Complete business systems
+            </span>
+          </div>
+          <h1 className="text-3xl font-semibold text-slate-900">
+            Pro Systems
+          </h1>
+          <p className="mt-2 text-slate-600 max-w-xl leading-relaxed">
+            Structured, done-for-you execution kits for every key area of your
+            business — from setup to financial control to getting paid.
+          </p>
         </div>
-        <h1 className="text-3xl font-semibold text-slate-900">Pro Systems</h1>
-        <p className="mt-2 text-slate-600 max-w-2xl">
-          Pro Systems are structured, done-for-you workflows that turn the free
-          guides and tools into complete, step-by-step systems you can follow
-          without guessing.
-        </p>
       </div>
 
-      <div className="space-y-5">
-        {proSystems.map((p) => {
-          const benefits = KEY_BENEFITS[p.slug] ?? [];
-          return (
-            <article
-              key={p.slug}
-              className="rounded-lg border border-slate-200 bg-white p-6 hover:border-slate-300 transition-colors"
-            >
-              <h2 className="text-xl font-semibold text-slate-900">
-                {p.title}
-              </h2>
-              <p className="mt-1 text-slate-600">{p.tagline}</p>
-              <p className="mt-4 text-sm text-slate-600 leading-relaxed">
-                {p.description}
-              </p>
+      {/* Card grid */}
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <div className="grid md:grid-cols-3 gap-5">
+          {SYSTEMS.map((s) => (
+            <SystemCard key={s.slug} system={s} />
+          ))}
+        </div>
 
-              <details className="mt-5 group rounded-md border border-slate-200 bg-slate-50 open:bg-white open:border-slate-300 transition-colors">
-                <summary className="cursor-pointer list-none flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-900 select-none">
-                  <span>Key Benefits</span>
-                  <span className="text-slate-500 text-xs transition-transform duration-200 group-open:rotate-180">
-                    &#9662;
-                  </span>
-                </summary>
-                <ul className="px-4 pb-4 pt-1 space-y-2">
-                  {benefits.map((b) => (
-                    <li
-                      key={b}
-                      className="flex gap-3 text-sm text-slate-700 leading-relaxed"
-                    >
-                      <span className="text-slate-400">&bull;</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-
-              <div className="mt-5">
-                <a
-                  href={PRO_SYSTEMS_URL}
-                  className="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
-                >
-                  Unlock full system &rarr;
-                </a>
-              </div>
-            </article>
-          );
-        })}
+        {/* How it works footer note */}
+        <div className="mt-8 rounded-xl border border-slate-200 bg-white p-5 flex items-start gap-4">
+          <div className="flex-none w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-slate-900 mb-0.5">
+              How Pro Systems work
+            </p>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Free guides, tools, and templates stay free. Pro Systems
+              combine everything into one organized, step-by-step execution kit
+              you can follow without guessing.
+            </p>
+          </div>
+        </div>
       </div>
-
-      <section className="mt-16 rounded-lg border border-slate-200 bg-slate-50 p-6">
-        <h2 className="font-semibold text-slate-900 mb-1">
-          How Pro Systems relate to free content
-        </h2>
-        <p className="text-sm text-slate-600 leading-relaxed">
-          Free guides, tools, and templates stay free — Pro Systems are
-          structured upgrades that combine related material into one organized,
-          ready-to-use kit.
-        </p>
-      </section>
     </div>
   );
 }
