@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pro Systems — Ledgely</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root {
     --gold: #C9A84C;
@@ -1273,7 +1274,7 @@ Step 4 — Final confirmation
 [ ] Domain secured (even if not using it yet)
 [ ] Name works across all business documents and signage</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('name-research')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('name-research')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('name-research')">Copy</button>
             </div>
           </div>
@@ -1358,7 +1359,7 @@ PHASE 4 — COMPLIANCE
      — License renewals
      — Estimated tax payments (quarterly)</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('setup-checklist')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('setup-checklist')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('setup-checklist')">Copy</button>
             </div>
           </div>
@@ -1408,7 +1409,7 @@ AFTER APPLYING
 Apply only at IRS.gov. It is completely free.
 Never pay a third party to apply on your behalf.</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('ein-checklist')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('ein-checklist')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('ein-checklist')">Copy</button>
             </div>
           </div>
@@ -1491,7 +1492,7 @@ Label each folder exactly as shown.
 TIP: Everything in Formation & Legal should have a
 physical backup copy stored somewhere safe off-device.</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('folder-structure')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('folder-structure')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('folder-structure')">Copy</button>
             </div>
           </div>
@@ -1566,7 +1567,7 @@ RECURRING (set as calendar reminders)
 NOTE: Add a 30-day advance reminder for every deadline above.
 State deadlines vary — look up yours at your Secretary of State website.</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('compliance-calendar')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('compliance-calendar')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('compliance-calendar')">Copy</button>
             </div>
           </div>
@@ -1788,7 +1789,7 @@ Biggest income source:
 One thing to cut next month:
 One thing to grow next month:</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('monthly-pl')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('monthly-pl')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('monthly-pl')">Copy</button>
             </div>
           </div>
@@ -1870,7 +1871,7 @@ Net Profit: $___________
 Margin: ___________%
 vs. Last Month: + / − $___________</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('monthly-review')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('monthly-review')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('monthly-review')">Copy</button>
             </div>
           </div>
@@ -2062,7 +2063,7 @@ Late payments beyond [30] days may be subject to a
 
 Thank you for your business.</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('invoice')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('invoice')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('invoice')">Copy</button>
             </div>
           </div>
@@ -2251,7 +2252,7 @@ I'm not aware of.
 [Your Name]
 [Phone number]</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('followup-emails')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('followup-emails')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('followup-emails')">Copy</button>
             </div>
           </div>
@@ -2296,7 +2297,7 @@ Payments received this week:    $___
 Currently outstanding total:    $___
 Oldest unpaid invoice:          ___ days</div>
             <div class="template-actions">
-              <button class="btn-download" onclick="downloadTemplate('weekly-review')">↓ Download .txt</button>
+              <button class="btn-download" onclick="downloadTemplate('weekly-review')">↓ Download PDF</button>
               <button class="btn-copy" onclick="copyTemplate('weekly-review')">Copy</button>
             </div>
           </div>
@@ -2434,11 +2435,58 @@ const templateContents = {
 
 function downloadTemplate(key) {
   const content = templateContents[key] || 'Template not found.';
-  const blob = new Blob([content], { type: 'text/plain' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = key + '.txt';
-  a.click();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+  const marginLeft = 56;
+  const marginTop = 72;
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const maxWidth = pageWidth - marginLeft * 2;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(180, 150, 70);
+  doc.text('LEDGELY', marginLeft, marginTop);
+  doc.setDrawColor(220, 210, 190);
+  doc.setLineWidth(0.5);
+  doc.line(marginLeft, marginTop + 8, pageWidth - marginLeft, marginTop + 8);
+
+  let y = marginTop + 26;
+  const lines = content.split('\n');
+  for (const raw of lines) {
+    if (y > doc.internal.pageSize.getHeight() - 56) {
+      doc.addPage();
+      y = 56;
+    }
+    const line = raw.trimEnd();
+    if (line === '') { y += 8; continue; }
+    const isHeading = /^[A-Z0-9 &/()—–\-.:]{4,}$/.test(line) &&
+      !line.startsWith('[ ') && !line.startsWith('- ') && !line.match(/^\d+\./);
+    if (isHeading) {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.setTextColor(30, 25, 20);
+      const wrapped = doc.splitTextToSize(line, maxWidth);
+      doc.text(wrapped, marginLeft, y);
+      y += wrapped.length * 14 + 6;
+    } else {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9.5);
+      doc.setTextColor(60, 55, 50);
+      const wrapped = doc.splitTextToSize(line, maxWidth);
+      doc.text(wrapped, marginLeft, y);
+      y += wrapped.length * 13;
+    }
+  }
+  const pageCount = doc.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(180, 175, 168);
+    doc.text('Ledgely · ledgely.com · Page ' + i + ' of ' + pageCount,
+      marginLeft, doc.internal.pageSize.getHeight() - 28);
+  }
+  doc.save(key + '.pdf');
 }
 
 function copyTemplate(key) {
