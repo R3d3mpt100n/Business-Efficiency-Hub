@@ -12,7 +12,6 @@ import Templates from "@/pages/Templates";
 import ProSystems from "@/pages/ProSystems";
 import ProSystem from "@/pages/ProSystem";
 import BusinessStarter from "@/pages/BusinessStarter";
-import Success from "@/pages/Success";
 import { Layout } from "@/components/Layout";
 
 const queryClient = new QueryClient();
@@ -30,7 +29,6 @@ function Router() {
         <Route path="/pro" component={ProSystems} />
         <Route path="/pro/business-starter" component={BusinessStarter} />
         <Route path="/pro/:slug" component={ProSystem} />
-        <Route path="/success" component={Success} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
