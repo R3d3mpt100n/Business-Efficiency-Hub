@@ -8,11 +8,31 @@
     <link rel="canonical" href="https://ledgely.online/" />
     <!--SEO_HEAD-->
     <script>if(location.hostname.endsWith('.replit.app')){location.replace('https://ledgely.online'+location.pathname+location.search+location.hash);}</script>
+
+    <!-- DNS preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9807896655398121"
-     crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fundingchoicesmessages.google.com">
+
+    <!-- Non-blocking font load with display=optional (prevents CLS on swap) -->
+    <link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional"
+      onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional">
+    </noscript>
+
+    <!-- AdSense: deferred until after page load to not block rendering -->
+    <script>
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.setAttribute('crossorigin', 'anonymous');
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9807896655398121';
+        document.head.appendChild(s);
+      });
+    </script>
   </head>
   <body>
     <div id="seo-content" style="display:none">

@@ -1,36 +1,41 @@
+import { lazy, Suspense } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import Docs from "@/pages/Docs";
-import Article from "@/pages/Article";
-import Tools from "@/pages/Tools";
-import ToolRouter from "@/pages/tools/ToolRouter";
-import Templates from "@/pages/Templates";
-import ProSystems from "@/pages/ProSystems";
-import ProSystem from "@/pages/ProSystem";
-import BusinessStarter from "@/pages/BusinessStarter";
 import { Layout } from "@/components/Layout";
+
+// Route-level code splitting — only loads code for the current page
+const NotFound        = lazy(() => import("@/pages/not-found"));
+const Home            = lazy(() => import("@/pages/Home"));
+const Docs            = lazy(() => import("@/pages/Docs"));
+const Article         = lazy(() => import("@/pages/Article"));
+const Tools           = lazy(() => import("@/pages/Tools"));
+const ToolRouter      = lazy(() => import("@/pages/tools/ToolRouter"));
+const Templates       = lazy(() => import("@/pages/Templates"));
+const ProSystems      = lazy(() => import("@/pages/ProSystems"));
+const ProSystem       = lazy(() => import("@/pages/ProSystem"));
+const BusinessStarter = lazy(() => import("@/pages/BusinessStarter"));
 
 const queryClient = new QueryClient();
 
 function Router() {
   return (
     <Layout>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/docs" component={Docs} />
-        <Route path="/docs/:slug" component={Article} />
-        <Route path="/tools" component={Tools} />
-        <Route path="/tools/:slug" component={ToolRouter} />
-        <Route path="/templates" component={Templates} />
-        <Route path="/pro" component={ProSystems} />
-        <Route path="/pro/business-starter" component={BusinessStarter} />
-        <Route path="/pro/:slug" component={ProSystem} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={<div style={{ minHeight: "60vh" }} />}>
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/docs" component={Docs} />
+          <Route path="/docs/:slug" component={Article} />
+          <Route path="/tools" component={Tools} />
+          <Route path="/tools/:slug" component={ToolRouter} />
+          <Route path="/templates" component={Templates} />
+          <Route path="/pro" component={ProSystems} />
+          <Route path="/pro/business-starter" component={BusinessStarter} />
+          <Route path="/pro/:slug" component={ProSystem} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </Layout>
   );
 }

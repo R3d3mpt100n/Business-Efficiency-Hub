@@ -42,6 +42,16 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Inter fallback with adjusted metrics — minimises layout shift on font swap */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
 :root {
   --background: 0 0% 100%;
   --foreground: 222 47% 11%;
@@ -70,7 +80,7 @@
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --app-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --app-font-sans: 'Inter', 'Inter Fallback', system-ui, -apple-system, sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
   --radius: 0.5rem;

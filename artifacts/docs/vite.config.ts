@@ -57,6 +57,19 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("html2canvas"))       return "html2canvas";
+          if (id.includes("react-dom"))         return "react-dom";
+          if (id.includes("jspdf"))             return "jspdf";
+          if (id.includes("dompurify"))         return "dompurify";
+          if (id.includes("@tanstack"))         return "react-query";
+          return "vendor";
+        },
+      },
+    },
   },
   server: {
     port,
