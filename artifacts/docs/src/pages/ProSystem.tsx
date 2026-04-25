@@ -7,13 +7,21 @@ import { templates } from "@/data/templates";
 import { PRO_SYSTEMS_URL } from "@/data/checkout";
 import { EarlyAccessNote } from "@/components/EarlyAccessNote";
 
-const SYSTEM_META: Record<string, { outcome: string; meta: string; accentClass: string; badgeClass: string; statusLabel: string }> = {
+const SYSTEM_META: Record<string, {
+  outcome: string; meta: string;
+  accentClass: string; badgeClass: string; statusLabel: string;
+  textClass: string; dotClass: string; borderLeftClass: string; ctaBgClass: string;
+}> = {
   "financial-control": {
     outcome: "Monthly financial clarity",
     meta: "3 phases  ·  calculator + templates",
     accentClass: "border-t-emerald-500",
     badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
     statusLabel: "Finance",
+    textClass: "text-emerald-500",
+    dotClass: "bg-emerald-400",
+    borderLeftClass: "border-l-4 border-l-emerald-400",
+    ctaBgClass: "bg-emerald-950 border-emerald-900",
   },
   "client-invoice": {
     outcome: "No missed payments",
@@ -21,6 +29,10 @@ const SYSTEM_META: Record<string, { outcome: string; meta: string; accentClass: 
     accentClass: "border-t-amber-500",
     badgeClass: "bg-amber-50 text-amber-700 border-amber-200",
     statusLabel: "Clients",
+    textClass: "text-amber-500",
+    dotClass: "bg-amber-400",
+    borderLeftClass: "border-l-4 border-l-amber-400",
+    ctaBgClass: "bg-amber-950 border-amber-900",
   },
   "business-starter": {
     outcome: "Idea → legally registered business",
@@ -28,6 +40,10 @@ const SYSTEM_META: Record<string, { outcome: string; meta: string; accentClass: 
     accentClass: "border-t-blue-500",
     badgeClass: "bg-blue-50 text-blue-700 border-blue-200",
     statusLabel: "Setup",
+    textClass: "text-blue-500",
+    dotClass: "bg-blue-400",
+    borderLeftClass: "border-l-4 border-l-blue-400",
+    ctaBgClass: "bg-blue-950 border-blue-900",
   },
   "marketing-growth": {
     outcome: "Repeatable customer acquisition",
@@ -35,6 +51,10 @@ const SYSTEM_META: Record<string, { outcome: string; meta: string; accentClass: 
     accentClass: "border-t-purple-500",
     badgeClass: "bg-purple-50 text-purple-700 border-purple-200",
     statusLabel: "Marketing",
+    textClass: "text-purple-500",
+    dotClass: "bg-purple-400",
+    borderLeftClass: "border-l-4 border-l-purple-400",
+    ctaBgClass: "bg-purple-950 border-purple-900",
   },
 };
 
@@ -107,12 +127,18 @@ export default function ProSystem() {
 
         {/* What's included — module cards */}
         <section>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-4">
+          <h2 className={`text-sm font-semibold uppercase tracking-widest mb-4 ${meta?.textClass ?? "text-slate-500"}`}>
             What's included
           </h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {system.sections.map((s) => (
-              <ModuleCard key={s.heading} heading={s.heading} items={s.items} />
+              <ModuleCard
+                key={s.heading}
+                heading={s.heading}
+                items={s.items}
+                borderLeftClass={meta?.borderLeftClass ?? "border-l-4 border-l-slate-300"}
+                dotClass={meta?.dotClass ?? "bg-slate-300"}
+              />
             ))}
           </div>
         </section>
@@ -120,14 +146,14 @@ export default function ProSystem() {
         {/* Key benefits */}
         {benefits.length > 0 && (
           <section>
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-4">
+            <h2 className={`text-sm font-semibold uppercase tracking-widest mb-4 ${meta?.textClass ?? "text-slate-500"}`}>
               Key benefits
             </h2>
             <div className="rounded-xl border border-slate-200 bg-white p-5">
               <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
                 {benefits.map((b) => (
                   <li key={b} className="flex items-start gap-2.5 text-sm text-slate-700">
-                    <svg className="w-4 h-4 mt-0.5 flex-none text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg className={`w-4 h-4 mt-0.5 flex-none ${meta?.textClass ?? "text-emerald-500"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="leading-relaxed">{b}</span>
@@ -139,7 +165,7 @@ export default function ProSystem() {
         )}
 
         {/* CTA */}
-        <section className="rounded-xl border border-slate-900 bg-slate-900 text-slate-100 p-6 flex items-center justify-between gap-6 flex-wrap">
+        <section className={`rounded-xl border text-slate-100 p-6 flex items-center justify-between gap-6 flex-wrap ${meta?.ctaBgClass ?? "bg-slate-900 border-slate-900"}`}>
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Get full access</p>
             <p className="text-lg font-semibold text-white">
@@ -225,11 +251,16 @@ export default function ProSystem() {
   );
 }
 
-function ModuleCard({ heading, items }: { heading: string; items: string[] }) {
+function ModuleCard({
+  heading, items, borderLeftClass, dotClass,
+}: {
+  heading: string; items: string[];
+  borderLeftClass: string; dotClass: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
+    <div className={`rounded-xl border border-slate-200 bg-white overflow-hidden ${borderLeftClass}`}>
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -250,7 +281,7 @@ function ModuleCard({ heading, items }: { heading: string; items: string[] }) {
         <ul className="px-5 pb-4 pt-1 space-y-2 border-t border-slate-100">
           {items.map((it) => (
             <li key={it} className="flex items-start gap-2.5 text-sm text-slate-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-300 flex-none mt-1.5" />
+              <span className={`w-1.5 h-1.5 rounded-full flex-none mt-1.5 ${dotClass}`} />
               <span className="leading-relaxed">{it}</span>
             </li>
           ))}
