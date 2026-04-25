@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { articles } from "@/data/articles";
+import { featuredArticles } from "@/data/featuredArticles";
 
 type HomeProCardDef = {
   slug: string;
@@ -199,7 +199,7 @@ const PROGRESS_PATH = [
 
 
 export default function Home() {
-  const featured = articles.slice(0, 3);
+  const featured = featuredArticles;
 
   return (
     <div>
