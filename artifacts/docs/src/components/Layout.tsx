@@ -64,7 +64,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1" style={{ minHeight: "80vh" }}>{children}</main>
 
       <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
         <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-slate-500 dark:text-slate-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">

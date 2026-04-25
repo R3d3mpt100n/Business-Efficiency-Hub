@@ -580,7 +580,7 @@ export default function BusinessStarter() {
           <button
             type="button"
             onClick={() =>
-              downloadPdf(
+              void downloadPdf(
                 "ledgely-setup-plan.pdf",
                 `LEDGELY — YOUR COMPLETED SETUP PLAN
 

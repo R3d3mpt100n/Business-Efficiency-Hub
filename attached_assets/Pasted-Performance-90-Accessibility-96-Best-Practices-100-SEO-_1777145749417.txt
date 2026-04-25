@@ -1,0 +1,285 @@
+Performance
+90
+Accessibility
+96
+Best Practices
+100
+SEO
+51
+FCP
++0
+LCP
++0
+TBT
++30
+CLS
++20
+SI
++1
+Performance
+Values are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.
+0–49
+50–89
+90–100
+Final Screenshot
+
+Metrics
+Expand view
+First Contentful Paint
+9.6 s
+Largest Contentful Paint
+12.0 s
+Total Blocking Time
+40 ms
+Cumulative Layout Shift
+0.137
+Speed Index
+9.6 s
+Captured at Apr 25, 2026, 3:33 PM AST
+Emulated Moto G Power with Lighthouse 13.0.1
+Single page session
+Initial page load
+Slow 4G throttling
+Using HeadlessChromium 146.0.7680.177 with lr
+View Treemap
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Show audits relevant to:
+
+All
+
+FCP
+
+LCP
+
+TBT
+
+CLS
+Insights
+Use efficient cache lifetimes Est savings of 1,032 KiB
+A long cache lifetime can speed up repeat visits to your page. Learn more about caching.LCPFCPUnscored
+Request
+Cache TTL
+Transfer Size
+ledgely.online 1st party
+1,015 KiB
+/assets/jspdf-BSBY4oss.js(ledgely.online)
+None
+331 KiB
+/assets/vendor-V9VZUyVo.js(ledgely.online)
+None
+271 KiB
+/assets/react-dom-CV2lsGCl.js(ledgely.online)
+None
+201 KiB
+/assets/index-CYRBOi4M.css(ledgely.online)
+None
+101 KiB
+/assets/articles-BXreV1UY.js(ledgely.online)
+None
+56 KiB
+/assets/react-que….js(ledgely.online)
+None
+24 KiB
+/assets/Home-CS8w-Ghb.js(ledgely.online)
+None
+20 KiB
+/assets/index-B-_oGb7v.js(ledgely.online)
+None
+12 KiB
+Google/Doubleclick Ads ad 
+178 KiB
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+14d
+178 KiB
+Render blocking requests Est savings of 610 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+ledgely.online 1st party
+100.6 KiB	3,450 ms
+/assets/index-CYRBOi4M.css(ledgely.online)
+100.6 KiB
+3,450 ms
+Layout shift culprits
+Layout shifts occur when elements move absent any user interaction. Investigate the causes of layout shifts, such as elements being added, removed, or their fonts changing as the page loads.CLSUnscored
+Element
+Layout shift score
+Total
+0.137
+Ledgely · Practical systems for small business owners. Docs Tools Templates Pro…
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-…">
+0.137
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 600 ms
+Initial Navigation
+https://ledgely.online - 259 ms, 35.21 KiB
+/assets/index-B-_oGb7v.js(ledgely.online) - 438 ms, 11.67 KiB
+/assets/index-CYRBOi4M.css(ledgely.online) - 600 ms, 100.64 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+Origin
+Source
+https://fonts.googleapis.com/
+head > link
+<link rel="preconnect" href="https://fonts.googleapis.com">
+https://fonts.gstatic.com/
+head > link
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+https://fundingchoicesmessages.google.com/
+head > link
+<link rel="preconnect" href="https://fundingchoicesmessages.google.com">
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Document request latency Est savings of 23 KiB
+Optimize DOM size
+A large DOM can increase the duration of style calculations and layout reflows, impacting page responsiveness. A large DOM will also increase memory usage. Learn how to avoid an excessive DOM size.Unscored
+Statistic
+Element
+Value
+Total elements
+360
+DOM depth
+div.mb-4 > button.w-full > svg.w-3.5 > path
+<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7">
+14
+Most children
+SMALL BUSINESS SYSTEMS & EFFICIENCY Clear answers, simple tools, and templates…
+<div>
+12
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Element render delay
+2,410 ms
+I built Ledgely because every time I looked up something simple — like how to g…
+<p class="text-slate-700 leading-relaxed">
+3rd parties
+3rd party code can significantly impact load performance. Reduce and defer loading of 3rd party code to prioritize your page's content.Unscored
+3rd party
+Transfer size
+Main thread time
+Google/Doubleclick Ads ad 
+261 KiB	117 ms
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+178 KiB
+59 ms
+…js/adsbygoogle.js?client=ca-pub-980…(pagead2.googlesyndication.com)
+55 KiB
+43 ms
+/bg/iEdN92eAU….js(pagead2.googlesyndication.com)
+23 KiB
+11 ms
+…r20190131/zrt_lookup_fy2021.html(googleads.g.doubleclick.net)
+4 KiB
+3 ms
+/pagead/ads?gdpr=…(googleads.g.doubleclick.net)
+1 KiB
+0 ms
+/pagead/sodar?id=sodar2&v=254&li=gda_r20260423&jk=563…&rc=(pagead2.googlesyndication.com)
+0 KiB
+0 ms
+Google FundingChoices consent-provider 
+76 KiB	31 ms
+/i/ca-pub-98…?href=https%3A%2F%2Fledgely.online&ers=2(fundingchoicesmessages.google.com)
+70 KiB
+30 ms
+/el/AGSKWxVik…==(fundingchoicesmessages.google.com)
+5 KiB
+0 ms
+adtrafficquality.google
+28 KiB	16 ms
+/sodar/sodar2.js(ep2.adtrafficquality.google)
+8 KiB
+10 ms
+…254/runner.html(ep2.adtrafficquality.google)
+6 KiB
+5 ms
+/getconfig/sodar?sv=200&tid=gda&tv=r20260423&st=env&sjk=563…(ep1.adtrafficquality.google)
+14 KiB
+0 ms
+/pagead/sodar?id=…(ep1.adtrafficquality.google)
+0 KiB
+0 ms
+/generate_204?xjcIbA(ep2.adtrafficquality.google)
+0 KiB
+0 ms
+Other Google APIs/SDKs utility 
+2 KiB	2 ms
+…api2/aframe(www.google.com)
+2 KiB
+2 ms
+Google Fonts cdn 
+50 KiB	0 ms
+…v20/UcC73FwrK….woff2(fonts.gstatic.com)
+48 KiB
+0 ms
+/css2?family=Inter:wght@400;500;600;700&display=optional(fonts.googleapis.com)
+1 KiB
+0 ms
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Reduce unused JavaScript Est savings of 773 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+ledgely.online 1st party
+825.0 KiB	576.2 KiB
+/assets/jspdf-BSBY4oss.js(ledgely.online)
+330.3 KiB
+287.1 KiB
+/assets/vendor-V9VZUyVo.js(ledgely.online)
+270.7 KiB
+185.1 KiB
+/assets/react-dom-CV2lsGCl.js(ledgely.online)
+200.4 KiB
+82.2 KiB
+/assets/react-que….js(ledgely.online)
+23.6 KiB
+21.8 KiB
+Google/Doubleclick Ads ad 
+231.0 KiB	160.8 KiB
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+177.0 KiB
+132.3 KiB
+…js/adsbygoogle.js?client=ca-pub-980…(pagead2.googlesyndication.com)
+54.0 KiB
+28.6 KiB
+Google FundingChoices consent-provider 
+68.4 KiB	36.1 KiB
+/i/ca-pub-98…?href=https%3A%2F%2Fledgely.online&ers=2(fundingchoicesmessages.google.com)
+68.4 KiB
+36.1 KiB
+Avoid long main-thread tasks 3 long tasks found
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored
+URL
+Start Time
+Duration
+Google/Doubleclick Ads ad 
+157 ms
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+8,449 ms
+105 ms
+…js/adsbygoogle.js?client=ca-pub-980…(pagead2.googlesyndication.com)
+6,447 ms
+52 ms
+Google FundingChoices consent-provider 
+69 ms
+/i/ca-pub-98…?href=https%3A%2F%2Fledgely.online&ers=2(fundingchoicesmessages.google.com)
+10,055 ms
+69 ms
+More information about the performance of your application. These numbers don't directly affect the Performance score.
+Passed audits (17)

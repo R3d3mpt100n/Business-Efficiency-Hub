@@ -5,9 +5,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/Layout";
 
-// Route-level code splitting — only loads code for the current page
+// Home is static — it's the primary landing page, no round-trip delay for LCP
+import Home from "@/pages/Home";
+
+// All other routes are lazy — only their code loads when the user navigates there
 const NotFound        = lazy(() => import("@/pages/not-found"));
-const Home            = lazy(() => import("@/pages/Home"));
 const Docs            = lazy(() => import("@/pages/Docs"));
 const Article         = lazy(() => import("@/pages/Article"));
 const Tools           = lazy(() => import("@/pages/Tools"));

@@ -1,6 +1,5 @@
-import { jsPDF } from "jspdf";
-
-export function downloadPdf(filename: string, content: string) {
+export async function downloadPdf(filename: string, content: string) {
+  const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "pt", format: "letter" });
 
   const marginLeft = 56;

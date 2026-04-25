@@ -61,11 +61,13 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (!id.includes("node_modules")) return;
-          if (id.includes("html2canvas"))       return "html2canvas";
-          if (id.includes("react-dom"))         return "react-dom";
-          if (id.includes("jspdf"))             return "jspdf";
-          if (id.includes("dompurify"))         return "dompurify";
-          if (id.includes("@tanstack"))         return "react-query";
+          // Keep jspdf and html2canvas out of named chunks so they stay
+          // inside the lazy BusinessStarter/ToolRouter chunks and are NOT
+          // added to the main-page modulepreload list.
+          if (id.includes("jspdf") || id.includes("html2canvas")) return;
+          if (id.includes("react-dom"))   return "react-dom";
+          if (id.includes("dompurify"))   return "dompurify";
+          if (id.includes("@tanstack"))   return "react-query";
           return "vendor";
         },
       },
