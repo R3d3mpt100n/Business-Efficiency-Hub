@@ -188,4 +188,38 @@ for (const url of ROUTES) {
 }
 
 console.log(`\nDone: ${ok} succeeded, ${fail} failed.\n`);
+
+// --- Generate sitemap.xml from ROUTES ---
+
+const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+const TOP_LEVEL = new Set(['/', '/docs', '/tools', '/templates', '/pro']);
+
+function sitemapEntry(url) {
+  const canonical = url === '/' ? '/' : url.replace(/\/?$/, '/');
+  const loc = `${BASE_ORIGIN}${canonical}`;
+  const priority = url === '/' ? '1.0' : TOP_LEVEL.has(url) ? '0.8' : '0.7';
+  const changefreq = url === '/' ? 'weekly' : TOP_LEVEL.has(url) ? 'weekly' : 'monthly';
+  return [
+    '  <url>',
+    `    <loc>${loc}</loc>`,
+    `    <lastmod>${today}</lastmod>`,
+    `    <changefreq>${changefreq}</changefreq>`,
+    `    <priority>${priority}</priority>`,
+    '  </url>',
+  ].join('\n');
+}
+
+const sitemapXml = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...ROUTES.map(sitemapEntry),
+  '</urlset>',
+  '',
+].join('\n');
+
+const sitemapPath = resolve(root, 'dist/public/sitemap.xml');
+writeFileSync(sitemapPath, sitemapXml, 'utf-8');
+console.log(`Sitemap written: ${ROUTES.length} URLs → dist/public/sitemap.xml\n`);
+
 if (fail > 0) process.exit(1);
