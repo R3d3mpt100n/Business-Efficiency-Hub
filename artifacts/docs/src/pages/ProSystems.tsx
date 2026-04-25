@@ -144,13 +144,13 @@ function SystemCard({ system }: { system: SystemDef }) {
         <div className="mt-auto flex gap-2">
           <Link
             href={system.href}
-            className="flex-1 inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+            className="flex-1 inline-flex items-center justify-center rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-800"
           >
             Open System
           </Link>
           <a
             href={stripeUrl}
-            className="inline-flex items-center justify-center rounded-lg bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-300 whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-lg bg-amber-400 px-3 py-2 text-sm font-semibold text-black hover:bg-amber-300 whitespace-nowrap"
           >
             Unlock — $15
           </a>
