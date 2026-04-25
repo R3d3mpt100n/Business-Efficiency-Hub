@@ -1,0 +1,53 @@
+Restructure the Pro Systems gate and access system. Here's the full spec:
+1. Access codes and what they unlock in pro-systems.html:
+ledgely-pro → all 4 systems (admin)
+ledgely-bundle-47 → all 4 systems
+ledgely-starter-15 → Business Starter only
+ledgely-finance-15 → Financial Control only
+ledgely-client-15 → Client & Invoice only
+ledgely-marketing-15 → Marketing & Growth only
+2. Gate logic:
+
+Read the key from the URL ?key= parameter
+Match it against the list above
+Show only the tabs the key unlocks
+Hide and lock tabs the key doesn't cover with a "Upgrade to bundle →" message
+Store the key in localStorage so it persists across sessions
+If no key → show gate screen with Stripe options
+
+3. Gate screen — update to show two options:
+[ Unlock All 4 Systems — $47 ]  ← bundle Stripe link
+[ Unlock one system — $15 ]  ← shows four buttons below:
+  - Business Starter $15
+  - Financial Control $15
+  - Client & Invoice $15
+  - Marketing & Growth $15
+4. Success pages — create one per product:
+
+success-bundle.html → shows code ledgely-bundle-47, link to pro-systems.html?key=ledgely-bundle-47
+success-starter.html → shows code ledgely-starter-15, link to pro-systems.html?key=ledgely-starter-15
+success-finance.html → shows code ledgely-finance-15, link to pro-systems.html?key=ledgely-finance-15
+success-client.html → shows code ledgely-client-15, link to pro-systems.html?key=ledgely-client-15
+success-marketing.html → shows code ledgely-marketing-15, link to pro-systems.html?key=ledgely-marketing-15
+
+Each success page should:
+
+Show the access code clearly in a gold box
+Say "Copy this code and save it — you'll need it to access your system"
+Have a big "Enter Pro Systems →" button with the key in the URL
+Match the dark/gold Ledgely design
+
+5. Stripe — create 5 products via the Stripe MCP:
+
+Ledgely Pro Bundle — $47 — success URL: ledgely.online/success-bundle.html
+Business Starter System — $15 — success URL: ledgely.online/success-starter.html
+Financial Control System — $15 — success URL: ledgely.online/success-finance.html
+Client & Invoice System — $15 — success URL: ledgely.online/success-client.html
+Marketing & Growth System — $15 — success URL: ledgely.online/success-marketing.html
+
+6. Stripe confirmation emails:
+
+Enable Stripe's built-in receipt emails for all 5 products
+Add a custom message to each receipt that includes the access code and the direct URL to enter Pro Systems
+
+Do not change any Pro content inside the systems. Only change the gate, access logic, success pages, and Stripe products.

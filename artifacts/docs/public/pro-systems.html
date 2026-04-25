@@ -240,6 +240,93 @@
   .gate-btn-secondary:hover { background: rgba(201,168,76,0.1); }
   .gate-btn-secondary:active { transform: scale(0.99); }
 
+  .gate-btn-bundle {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0;
+  }
+
+  .gate-single-toggle {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .gate-single-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .gate-single-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.9rem;
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 8px;
+    color: #e5e5e5;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'Outfit', sans-serif;
+    transition: background 0.15s, border-color 0.15s;
+    gap: 0.5rem;
+  }
+
+  .gate-single-btn:hover {
+    background: rgba(201,168,76,0.15);
+    border-color: var(--gold);
+  }
+
+  .gate-single-btn span {
+    color: var(--gold);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* -- LOCKED TABS -- */
+  .tab-btn.tab-locked {
+    opacity: 0.38;
+    cursor: default;
+  }
+
+  .tab-btn.tab-locked::after {
+    content: ' 🔒';
+    font-size: 0.65em;
+  }
+
+  /* -- LOCKED SYSTEM OVERLAY -- */
+  .locked-overlay {
+    background: rgba(19,19,19,0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .locked-overlay-inner { max-width: 480px; }
+
+  .locked-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+  .locked-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .locked-desc {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
   /* -- MAIN APP -- */
   #app { display: none; }
 
@@ -1115,7 +1202,7 @@
     <div class="gate-logo">Ledgely</div>
     <div class="gate-label">Pro Systems</div>
     <div class="gate-heading">Members only access</div>
-    <p class="gate-sub">Enter your access code below, or purchase to get instant access.</p>
+    <p class="gate-sub">Already have a code? Enter it below. Or choose a system to purchase.</p>
     <input
       id="gate-code-input"
       type="password"
@@ -1126,7 +1213,16 @@
     <div id="gate-error" class="gate-error">Incorrect access code. Please try again.</div>
     <button class="gate-btn" onclick="checkAccess()">Enter Pro Systems</button>
     <div class="gate-divider">or</div>
-    <button class="gate-btn-secondary" onclick="window.location.href='https://buy.stripe.com/test_8x200c3OA2w311d9nG7Zu00'">Purchase Access</button>
+    <a href="https://buy.stripe.com/test_28EaEQbh28Ur5ht0Ra7Zu01" class="gate-btn gate-btn-bundle">Unlock All 4 Systems — $47</a>
+    <button class="gate-btn-secondary gate-single-toggle" onclick="toggleSingleOptions(this)">Unlock one system — $15 ▾</button>
+    <div id="gate-single-options" style="display:none;width:100%;margin-top:0.25rem;">
+      <div class="gate-single-grid">
+        <a href="https://buy.stripe.com/test_00w00c1Gs3A7dNZ6bu7Zu04" class="gate-single-btn">Business Starter<span>$15</span></a>
+        <a href="https://buy.stripe.com/test_eVq5kw84Qc6DaBNbvO7Zu02" class="gate-single-btn">Financial Control<span>$15</span></a>
+        <a href="https://buy.stripe.com/test_dRmaEQ4SEb2z25h57q7Zu03" class="gate-single-btn">Client &amp; Invoice<span>$15</span></a>
+        <a href="https://buy.stripe.com/test_8x27sEgBm0nVbFRarK7Zu05" class="gate-single-btn">Marketing &amp; Growth<span>$15</span></a>
+      </div>
+    </div>
     <p class="gate-note">Back to main site? <a href="index.html">See what's included →</a></p>
   </div>
 </div>
@@ -2716,21 +2812,79 @@ FOLLOW UP
 </div><!-- /app -->
 
 <script>
-// -- ACCESS CODE --
-const ACCESS_CODE = 'ledgely-pro';
+// -- ACCESS KEYS --
+const ACCESS_KEYS = {
+  'ledgely-pro':          ['starter', 'financial', 'client', 'marketing'],
+  'ledgely-bundle-47':    ['starter', 'financial', 'client', 'marketing'],
+  'ledgely-starter-15':   ['starter'],
+  'ledgely-finance-15':   ['financial'],
+  'ledgely-client-15':    ['client'],
+  'ledgely-marketing-15': ['marketing'],
+};
 
-function unlockApp() {
+const SYSTEM_NAMES = {
+  starter:   'Business Starter',
+  financial: 'Financial Control',
+  client:    'Client & Invoice',
+  marketing: 'Marketing & Growth',
+};
+
+const SYSTEM_ORDER = ['starter', 'financial', 'client', 'marketing'];
+const BUNDLE_URL = 'https://buy.stripe.com/test_28EaEQbh28Ur5ht0Ra7Zu01';
+
+let currentUnlocked = [];
+
+function unlockApp(systems) {
+  currentUnlocked = systems;
   document.getElementById('gate').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  localStorage.setItem('ledgely-pro-auth', '1');
+
+  // Grey out locked tabs
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const sysId = SYSTEM_ORDER[i];
+    if (!systems.includes(sysId)) {
+      btn.classList.add('tab-locked');
+    }
+  });
+
+  // Add locked overlay to inaccessible system pages
+  SYSTEM_ORDER.forEach(sysId => {
+    if (!systems.includes(sysId)) {
+      const sysEl = document.getElementById('system-' + sysId);
+      if (sysEl && !sysEl.querySelector('.locked-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'locked-overlay';
+        overlay.innerHTML =
+          '<div class="locked-overlay-inner">' +
+          '<div class="locked-icon">🔒</div>' +
+          '<div class="locked-title">' + SYSTEM_NAMES[sysId] + ' System</div>' +
+          '<p class="locked-desc">This system is not included in your current plan.</p>' +
+          '<a href="' + BUNDLE_URL + '" class="gate-btn" style="display:inline-block;max-width:340px;text-align:center;text-decoration:none;margin-top:1.25rem;">Upgrade to bundle — $47 →</a>' +
+          '</div>';
+        sysEl.prepend(overlay);
+      }
+    }
+  });
+
+  // Activate first unlocked system
+  const first = SYSTEM_ORDER.find(id => systems.includes(id));
+  if (first) {
+    document.querySelectorAll('.system-page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('system-' + first).classList.add('active');
+    const firstBtn = document.querySelector('.tab-btn:not(.tab-locked)');
+    if (firstBtn) firstBtn.classList.add('active');
+  }
 }
 
 function checkAccess() {
-  const input = document.getElementById('gate-code-input').value.trim();
+  const input = document.getElementById('gate-code-input').value.trim().toLowerCase();
   const errorEl = document.getElementById('gate-error');
-  if (input === ACCESS_CODE) {
+  const systems = ACCESS_KEYS[input];
+  if (systems) {
     errorEl.style.display = 'none';
-    unlockApp();
+    localStorage.setItem('ledgely-pro-key', input);
+    unlockApp(systems);
   } else {
     errorEl.style.display = 'block';
     document.getElementById('gate-code-input').value = '';
@@ -2738,17 +2892,39 @@ function checkAccess() {
   }
 }
 
-// -- SESSION CHECK --
-if (localStorage.getItem('ledgely-pro-auth') === '1') {
-  unlockApp();
+function toggleSingleOptions(btn) {
+  const el = document.getElementById('gate-single-options');
+  const open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? 'Unlock one system — $15 ▾' : 'Unlock one system — $15 ▴';
 }
+
+// -- SESSION CHECK --
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const urlKey = params.get('key');
+  if (urlKey && ACCESS_KEYS[urlKey]) {
+    localStorage.setItem('ledgely-pro-key', urlKey);
+    unlockApp(ACCESS_KEYS[urlKey]);
+    return;
+  }
+  const savedKey = localStorage.getItem('ledgely-pro-key');
+  if (savedKey && ACCESS_KEYS[savedKey]) {
+    unlockApp(ACCESS_KEYS[savedKey]);
+    return;
+  }
+  // Legacy: old single-code auth
+  if (localStorage.getItem('ledgely-pro-auth') === '1') {
+    unlockApp(ACCESS_KEYS['ledgely-pro']);
+  }
+})();
 
 // -- TABS --
 function showSystem(id) {
   document.querySelectorAll('.system-page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('system-' + id).classList.add('active');
-  event.target.classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
