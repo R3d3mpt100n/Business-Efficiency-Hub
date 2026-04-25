@@ -17,6 +17,8 @@ import { articles } from '@/data/articles';
 import { tools } from '@/data/tools';
 import { proSystems } from '@/data/proSystems';
 
+export { articles, tools, proSystems };
+
 export const ROUTES: string[] = [
   '/',
   '/docs',

@@ -138,7 +138,7 @@ if (typeof globalThis.document === 'undefined') {
 
 // Load the SSR bundle (after all polyfills are applied)
 const serverEntry = resolve(root, 'dist/server/entry-server.js');
-const { render, ROUTES } = await import(serverEntry);
+const { render, ROUTES, articles, tools, proSystems } = await import(serverEntry);
 
 // Read the client build HTML template
 const template = readFileSync(resolve(root, 'dist/public/index.html'), 'utf-8');
@@ -149,6 +149,157 @@ let ok = 0;
 let fail = 0;
 
 const BASE_ORIGIN = 'https://ledgely.online';
+const OG_IMAGE = `${BASE_ORIGIN}/og-image.png`;
+const SITE_NAME = 'Ledgely';
+
+// Build lookup maps
+const articleBySlug = Object.fromEntries(articles.map(a => [a.slug, a]));
+const toolBySlug    = Object.fromEntries(tools.map(t => [t.slug, t]));
+const proBySlug     = Object.fromEntries(proSystems.map(p => [p.slug, p]));
+
+// Static page metadata for non-data-driven routes
+const STATIC_META = {
+  '/': {
+    title: 'Ledgely — Small Business Systems',
+    description: 'Clear answers, simple tools, and templates for small business owners. Step-by-step guides for EIN, ITIN, taxes, and business setup.',
+  },
+  '/docs': {
+    title: 'Free Business Guides | Ledgely',
+    description: 'Step-by-step guides for EIN, ITIN, business registration, expense tracking, invoicing, and financial basics — in plain English.',
+  },
+  '/tools': {
+    title: 'Free Business Tools | Ledgely',
+    description: 'Free in-browser tools for small businesses: budget estimator, invoice generator, expense tracker, and cash flow planner.',
+  },
+  '/templates': {
+    title: 'Free Business Templates | Ledgely',
+    description: 'Ready-to-use templates for small businesses: expense trackers, checklists, cash flow planners, and operational documents.',
+  },
+  '/pro': {
+    title: 'Pro Systems | Ledgely',
+    description: 'Complete step-by-step systems with templates and checklists for serious small business owners. Business Starter, Financial Control, and more.',
+  },
+  '/pro/business-starter': {
+    title: 'Business Starter System | Ledgely Pro',
+    description: 'The complete step-by-step system to legally register your business, get your tax IDs, and set up your finances from scratch.',
+  },
+};
+
+function truncate(str, max = 155) {
+  if (!str) return '';
+  return str.length <= max ? str : str.slice(0, max - 1).trimEnd() + '…';
+}
+
+function escapeAttr(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function getPageMeta(url) {
+  // Article page
+  const articleMatch = url.match(/^\/docs\/(.+)$/);
+  if (articleMatch) {
+    const article = articleBySlug[articleMatch[1]];
+    if (article) {
+      return {
+        title: `${article.title} | Ledgely`,
+        description: truncate(article.description),
+        schema: {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: article.title,
+          description: truncate(article.description),
+          url: `${BASE_ORIGIN}/docs/${article.slug}/`,
+          publisher: {
+            '@type': 'Organization',
+            name: SITE_NAME,
+            url: BASE_ORIGIN,
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${BASE_ORIGIN}/docs/${article.slug}/`,
+          },
+        },
+      };
+    }
+  }
+
+  // Tool page
+  const toolMatch = url.match(/^\/tools\/(.+)$/);
+  if (toolMatch) {
+    const tool = toolBySlug[toolMatch[1]];
+    if (tool) {
+      return {
+        title: `${tool.title} | Ledgely`,
+        description: truncate(tool.description),
+        schema: {
+          '@context': 'https://schema.org',
+          '@type': 'WebApplication',
+          name: tool.title,
+          description: truncate(tool.description),
+          url: `${BASE_ORIGIN}/tools/${tool.slug}/`,
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          provider: { '@type': 'Organization', name: SITE_NAME, url: BASE_ORIGIN },
+        },
+      };
+    }
+  }
+
+  // Pro system page
+  const proMatch = url.match(/^\/pro\/(.+)$/);
+  if (proMatch) {
+    const pro = proBySlug[proMatch[1]];
+    if (pro) {
+      return {
+        title: `${pro.title} | Ledgely Pro`,
+        description: truncate(pro.description),
+        schema: null,
+      };
+    }
+  }
+
+  // Static pages
+  const meta = STATIC_META[url];
+  if (meta) return { ...meta, schema: null };
+
+  return { title: `${SITE_NAME}`, description: '', schema: null };
+}
+
+function buildSeoHead(url, canonicalUrl, meta) {
+  const { title, description, schema } = meta;
+  const safeTitle   = escapeAttr(title);
+  const safeDesc    = escapeAttr(description);
+  const safeUrl     = escapeAttr(canonicalUrl);
+  const safeSite    = escapeAttr(SITE_NAME);
+  const safeImage   = escapeAttr(OG_IMAGE);
+
+  const lines = [
+    `<meta name="description" content="${safeDesc}" />`,
+    `<meta property="og:title" content="${safeTitle}" />`,
+    `<meta property="og:description" content="${safeDesc}" />`,
+    `<meta property="og:url" content="${safeUrl}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${safeSite}" />`,
+    `<meta property="og:image" content="${safeImage}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${safeTitle}" />`,
+    `<meta name="twitter:description" content="${safeDesc}" />`,
+    `<meta name="twitter:image" content="${safeImage}" />`,
+  ];
+
+  if (schema) {
+    lines.push(
+      `<script type="application/ld+json">${JSON.stringify(schema)}</script>`
+    );
+  }
+
+  return lines.join('\n    ');
+}
 
 for (const url of ROUTES) {
   try {
@@ -158,6 +309,9 @@ for (const url of ROUTES) {
     const canonicalPath = url === '/' ? '/' : url.replace(/\/?$/, '/');
     const canonicalUrl = `${BASE_ORIGIN}${canonicalPath}`;
 
+    const meta = getPageMeta(url);
+    const seoHead = buildSeoHead(url, canonicalUrl, meta);
+
     const html = template
       .replace(
         '<div id="root"></div>',
@@ -166,7 +320,12 @@ for (const url of ROUTES) {
       .replace(
         /<link rel="canonical" href="[^"]*"\s*\/>/,
         `<link rel="canonical" href="${canonicalUrl}" />`
-      );
+      )
+      .replace(
+        /<title>[^<]*<\/title>/,
+        `<title>${escapeAttr(meta.title)}</title>`
+      )
+      .replace('<!--SEO_HEAD-->', seoHead);
 
     let filePath;
     if (url === '/') {
