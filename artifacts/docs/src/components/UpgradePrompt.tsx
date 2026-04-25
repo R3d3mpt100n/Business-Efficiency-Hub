@@ -4,11 +4,18 @@ import type { ProSystem } from "@/data/proSystems";
 export function UpgradePrompt({
   system,
   variant = "full",
+  context = "guide",
 }: {
   system?: ProSystem;
   variant?: "full" | "compact";
+  context?: "guide" | "tool";
 }) {
   if (!system) return null;
+
+  const leadIn =
+    context === "tool"
+      ? "This tool is part of the"
+      : "This guide is part of the";
 
   if (variant === "compact") {
     return (
@@ -23,27 +30,25 @@ export function UpgradePrompt({
   }
 
   return (
-    <aside className="mt-10 rounded-lg border border-slate-200 bg-slate-50 p-5 print:hidden">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 bg-slate-200 px-2 py-0.5 rounded">
-          Pro
-        </span>
-        <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-          Upgrade pathway
-        </p>
-      </div>
-      <h3 className="font-semibold text-slate-900 mb-1">
-        Get the complete {system.shortTitle} System
-      </h3>
-      <p className="text-sm text-slate-600 leading-relaxed mb-3">
-        {system.tagline}
+    <aside className="mt-12 rounded-xl bg-slate-900 text-white p-6 sm:p-8 shadow-sm ring-1 ring-slate-800 print:hidden">
+      <p className="text-[10px] font-semibold uppercase tracking-widest text-amber-400 mb-3">
+        Pro System
       </p>
-      <Link
-        href={`/pro/${system.slug}`}
-        className="inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
-      >
-        See what's included &rarr;
-      </Link>
+      <h3 className="text-lg sm:text-xl font-semibold leading-snug">
+        {leadIn}{" "}
+        <span className="text-amber-400">{system.title}</span>
+      </h3>
+      <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+        Get the full step-by-step system — templates, checklists, and walkthrough in one place.
+      </p>
+      <div className="mt-5">
+        <Link
+          href={`/pro/${system.slug}`}
+          className="inline-flex items-center justify-center rounded-md bg-amber-400 px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-amber-300 transition-colors"
+        >
+          Unlock the full system &rarr;
+        </Link>
+      </div>
     </aside>
   );
 }

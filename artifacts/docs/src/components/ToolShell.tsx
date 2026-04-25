@@ -28,7 +28,7 @@ export function ToolShell({
       </header>
       {children}
       <RelatedDocs slugs={relatedSlugs} />
-      {toolSlug && <UpgradePrompt system={proSystemForTool(toolSlug)} />}
+      {toolSlug && <UpgradePrompt system={proSystemForTool(toolSlug)} context="tool" />}
     </div>
   );
 }
