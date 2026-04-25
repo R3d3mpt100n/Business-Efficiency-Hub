@@ -5,11 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/Layout";
 
-// Home is static — it's the primary landing page, no round-trip delay for LCP
-import Home from "@/pages/Home";
-
-// All other routes are lazy — only their code loads when the user navigates there
+// All routes are lazy — prerendered HTML provides the content immediately,
+// so JS doesn't need to be static for LCP. Keeps the main bundle tiny.
 const NotFound        = lazy(() => import("@/pages/not-found"));
+const Home            = lazy(() => import("@/pages/Home"));
 const Docs            = lazy(() => import("@/pages/Docs"));
 const Article         = lazy(() => import("@/pages/Article"));
 const Tools           = lazy(() => import("@/pages/Tools"));

@@ -26,12 +26,41 @@ if (!basePath) {
   );
 }
 
+// Moves the Vite-injected CSS <link> to appear BEFORE all script tags and
+// adds an early <link rel="preload" as="style"> so the browser fetches CSS
+// in parallel with the HTML rather than waiting for JS to be parsed first.
+const cssPriorityPlugin = {
+  name: 'css-first',
+  apply: 'build' as const,
+  transformIndexHtml: {
+    order: 'post' as const,
+    handler(html: string) {
+      const cssLinkRe = /\n?\s*<link rel="stylesheet" crossorigin href="([^"]+)">/;
+      const m = html.match(cssLinkRe);
+      if (!m) return html;
+      const cssHref = m[1];
+      const cssStylesheet = `<link rel="stylesheet" crossorigin href="${cssHref}">`;
+      const cssPreload    = `<link rel="preload" as="style" href="${cssHref}">`;
+      // Remove from current position (after module scripts)
+      html = html.replace(m[0], '');
+      // Insert BEFORE our first inline <script> so the preload scanner finds
+      // it immediately at the top of <head>, well before any JS tags.
+      html = html.replace(
+        '<script>if(location.hostname',
+        `${cssPreload}\n    ${cssStylesheet}\n    <script>if(location.hostname`,
+      );
+      return html;
+    },
+  },
+};
+
 export default defineConfig({
   base: basePath,
   plugins: [
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),
+    cssPriorityPlugin,
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
