@@ -12,6 +12,7 @@ type SystemDef = {
   badgeClass: string;
   statusLabel: string;
   included: string[];
+  unlockBtnClass: string;
 };
 
 const SYSTEMS: SystemDef[] = [
@@ -24,6 +25,7 @@ const SYSTEMS: SystemDef[] = [
     accentClass: "border-t-blue-500",
     badgeClass: "bg-blue-50 text-blue-700 border-blue-200",
     statusLabel: "Setup",
+    unlockBtnClass: "bg-blue-600 text-white hover:bg-blue-500",
     included: [
       "Structure decision tool",
       "EIN checklist",
@@ -40,6 +42,7 @@ const SYSTEMS: SystemDef[] = [
     accentClass: "border-t-emerald-500",
     badgeClass: "bg-emerald-50 text-emerald-700 border-emerald-200",
     statusLabel: "Finance",
+    unlockBtnClass: "bg-emerald-600 text-white hover:bg-emerald-500",
     included: [
       "Profit calculator",
       "Expense tracker",
@@ -56,6 +59,7 @@ const SYSTEMS: SystemDef[] = [
     accentClass: "border-t-amber-500",
     badgeClass: "bg-amber-50 text-amber-700 border-amber-200",
     statusLabel: "Clients",
+    unlockBtnClass: "bg-amber-500 text-white hover:bg-amber-400",
     included: [
       "Invoice builder",
       "Tracking sheet",
@@ -72,6 +76,7 @@ const SYSTEMS: SystemDef[] = [
     accentClass: "border-t-purple-500",
     badgeClass: "bg-purple-50 text-purple-700 border-purple-200",
     statusLabel: "Marketing",
+    unlockBtnClass: "bg-purple-600 text-white hover:bg-purple-500",
     included: [
       "ICP worksheet",
       "Offer template",
@@ -150,7 +155,7 @@ function SystemCard({ system }: { system: SystemDef }) {
           </Link>
           <a
             href={stripeUrl}
-            className="inline-flex items-center justify-center rounded-lg bg-amber-400 px-3 py-2 text-sm font-semibold text-black hover:bg-amber-300 whitespace-nowrap"
+            className={`inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold whitespace-nowrap ${system.unlockBtnClass}`}
           >
             Unlock — $15
           </a>
@@ -183,14 +188,14 @@ export default function ProSystems() {
           </p>
 
           {/* Bundle CTA */}
-          <div className="mt-6 inline-flex items-center gap-4 bg-slate-900 rounded-xl px-5 py-3.5">
+          <div className="mt-6 inline-flex items-center gap-4 bg-white border border-slate-200 rounded-xl px-5 py-3.5 shadow-sm">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-0.5">Best value</p>
-              <p className="text-white font-semibold text-sm">All 4 systems for $47</p>
+              <p className="text-slate-900 font-semibold text-sm">All 4 systems for $47</p>
             </div>
             <a
               href={STRIPE_BUNDLE_URL}
-              className="flex-none inline-flex items-center justify-center rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-sm px-4 py-2 whitespace-nowrap"
+              className="flex-none inline-flex items-center justify-center rounded-lg bg-black hover:bg-zinc-800 text-white font-bold text-sm px-4 py-2 whitespace-nowrap"
             >
               Unlock bundle →
             </a>
