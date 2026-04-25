@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { PRO_SYSTEMS_URL } from "@/data/checkout";
+import { STRIPE_BUNDLE_URL, STRIPE_URLS, PRO_SYSTEMS_URL } from "@/data/checkout";
 
 type SystemDef = {
   slug: string;
@@ -83,6 +83,7 @@ const SYSTEMS: SystemDef[] = [
 
 function SystemCard({ system }: { system: SystemDef }) {
   const [open, setOpen] = useState(false);
+  const stripeUrl = STRIPE_URLS[system.slug];
 
   return (
     <div
@@ -148,10 +149,10 @@ function SystemCard({ system }: { system: SystemDef }) {
             Open System
           </Link>
           <a
-            href={PRO_SYSTEMS_URL}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+            href={stripeUrl}
+            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap"
           >
-            Unlock
+            Unlock — $15
           </a>
         </div>
       </div>
@@ -180,19 +181,49 @@ export default function ProSystems() {
             Structured, done-for-you execution kits for every key area of your
             business — from setup to financial control to getting paid.
           </p>
+
+          {/* Bundle CTA */}
+          <div className="mt-6 inline-flex items-center gap-4 bg-slate-900 rounded-xl px-5 py-3.5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-0.5">Best value</p>
+              <p className="text-white font-semibold text-sm">All 4 systems for $47</p>
+            </div>
+            <a
+              href={STRIPE_BUNDLE_URL}
+              className="flex-none inline-flex items-center justify-center rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-sm px-4 py-2 transition-colors whitespace-nowrap"
+            >
+              Unlock bundle →
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Card grid */}
       <div className="max-w-5xl mx-auto px-6 py-10">
+        <p className="text-xs font-medium uppercase tracking-widest text-slate-400 mb-5">
+          Or unlock individual systems — $15 each
+        </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SYSTEMS.map((s) => (
             <SystemCard key={s.slug} system={s} />
           ))}
         </div>
 
+        {/* Already have a code */}
+        <div className="mt-6 rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between gap-4">
+          <p className="text-sm text-slate-600">
+            Already purchased? Use your access code to enter.
+          </p>
+          <a
+            href={PRO_SYSTEMS_URL}
+            className="flex-none inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap"
+          >
+            Enter code →
+          </a>
+        </div>
+
         {/* How it works footer note */}
-        <div className="mt-8 rounded-xl border border-slate-200 bg-white p-5 flex items-start gap-4">
+        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5 flex items-start gap-4">
           <div className="flex-none w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
