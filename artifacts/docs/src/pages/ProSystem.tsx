@@ -29,6 +29,13 @@ const SYSTEM_META: Record<string, { outcome: string; meta: string; accentClass: 
     badgeClass: "bg-blue-50 text-blue-700 border-blue-200",
     statusLabel: "Setup",
   },
+  "marketing-growth": {
+    outcome: "Repeatable customer acquisition",
+    meta: "4 phases  ·  offer + channels + referrals",
+    accentClass: "border-t-purple-500",
+    badgeClass: "bg-purple-50 text-purple-700 border-purple-200",
+    statusLabel: "Marketing",
+  },
 };
 
 export default function ProSystem() {

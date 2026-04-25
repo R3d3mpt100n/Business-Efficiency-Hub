@@ -80,6 +80,54 @@ kind = "web"
       to = "/docs/basic-client-follow-up-system-to-avoid-lost-sales/index.html"
 
       [[services.production.rewrites]]
+      from = "/docs/how-to-get-your-first-10-customers"
+      to = "/docs/how-to-get-your-first-10-customers/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-get-your-first-10-customers/"
+      to = "/docs/how-to-get-your-first-10-customers/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/free-marketing-channels-for-a-new-small-business"
+      to = "/docs/free-marketing-channels-for-a-new-small-business/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/free-marketing-channels-for-a-new-small-business/"
+      to = "/docs/free-marketing-channels-for-a-new-small-business/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-write-an-offer-people-actually-respond-to"
+      to = "/docs/how-to-write-an-offer-people-actually-respond-to/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-write-an-offer-people-actually-respond-to/"
+      to = "/docs/how-to-write-an-offer-people-actually-respond-to/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/word-of-mouth-referral-system"
+      to = "/docs/word-of-mouth-referral-system/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/word-of-mouth-referral-system/"
+      to = "/docs/word-of-mouth-referral-system/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/simple-social-media-for-small-businesses-with-no-budget"
+      to = "/docs/simple-social-media-for-small-businesses-with-no-budget/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/simple-social-media-for-small-businesses-with-no-budget/"
+      to = "/docs/simple-social-media-for-small-businesses-with-no-budget/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-price-your-services"
+      to = "/docs/how-to-price-your-services/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-price-your-services/"
+      to = "/docs/how-to-price-your-services/index.html"
+
+      [[services.production.rewrites]]
       from = "/docs/basic-compliance-checklist"
       to = "/docs/basic-compliance-checklist/index.html"
 
@@ -262,6 +310,14 @@ kind = "web"
       [[services.production.rewrites]]
       from = "/pro/financial-control/"
       to = "/pro/financial-control/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/marketing-growth"
+      to = "/pro/marketing-growth/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/marketing-growth/"
+      to = "/pro/marketing-growth/index.html"
 
       # SPA fallback for any paths not covered above
       [[services.production.rewrites]]

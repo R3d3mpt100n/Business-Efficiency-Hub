@@ -36,6 +36,7 @@ export const CATEGORY_ORDER = [
   "Money & Profit",
   "Operations",
   "Sales & Clients",
+  "Marketing & Growth",
 ];
 
 export const articles: Article[] = [
@@ -1058,6 +1059,361 @@ export const articles: Article[] = [
       "Block 15 minutes a day for follow-ups. Consistency is the whole game.",
     ],
   },
+  // ========================= MARKETING & GROWTH CLUSTER =========================
+  {
+    slug: "how-to-get-your-first-10-customers",
+    title: "How to get your first 10 customers",
+    description:
+      "A simple, no-budget plan for getting your first paying customers from people and communities you already have access to.",
+    category: "Marketing & Growth",
+    readTime: "5 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "Your first 10 customers almost never come from ads, SEO, or social media. They come from people you already know, communities you already belong to, and direct outreach with a clear offer. Make a list of everyone who could buy from you (or refer someone who could), then talk to them one by one.",
+    problemLabel: "Simple explanation",
+    problem:
+      "New owners assume they need a marketing strategy before they have customers. The opposite is true: you need 5–10 real conversations with potential buyers before you know what to market, what to say, or what to charge. The fastest path to revenue is direct, personal outreach to people who already trust you.",
+    solutionLabel: "How to get your first 10 customers",
+    solution: [
+      {
+        step: "Write down exactly what you're offering and to whom",
+        detail:
+          "One sentence: 'I help [type of person] do [specific outcome] for [price].' Without this, every conversation gets vague and people don't know how to refer you.",
+      },
+      {
+        step: "Make a list of 50 people you can contact directly",
+        detail:
+          "Past clients or colleagues, friends in your industry, neighbors, parents from your kids' school, members of any group you already belong to. The list is your starting market.",
+      },
+      {
+        step: "Send a short, personal message to each one",
+        detail:
+          "Two or three sentences: what you're doing, who it's for, and a direct ask — either to buy, to refer, or to give feedback. No marketing language. No pitch deck. Just a real message from you.",
+      },
+      {
+        step: "Show up where your buyers already gather",
+        detail:
+          "Local Facebook groups, subreddits, neighborhood apps, industry Slack groups, in-person meetups. Don't pitch — answer questions and be useful. People will check your profile and reach out.",
+      },
+      {
+        step: "Track every conversation in a simple spreadsheet",
+        detail:
+          "Name, what they said, what they asked, next step, and date. Most first sales take 2–4 follow-ups. Without tracking, you forget who to circle back to.",
+      },
+    ],
+    summary: [
+      "Your first customers come from your existing network and direct outreach.",
+      "Write a one-sentence offer before you contact anyone.",
+      "Personal messages convert; marketing copy doesn't.",
+      "Track every conversation — most sales take more than one touch.",
+    ],
+    nextStep: {
+      label: "Free marketing channels for a new small business",
+      href: "/docs/free-marketing-channels-for-a-new-small-business",
+      description:
+        "Once your first 10 customers are in motion, expand into the free channels that compound over time.",
+    },
+    relatedSlugs: [
+      "free-marketing-channels-for-a-new-small-business",
+      "how-to-write-an-offer-people-actually-respond-to",
+      "word-of-mouth-referral-system",
+    ],
+  },
+  {
+    slug: "free-marketing-channels-for-a-new-small-business",
+    title: "Free marketing channels for a new small business",
+    description:
+      "The free, sustainable marketing channels that actually work for small businesses without a budget or marketing team.",
+    category: "Marketing & Growth",
+    readTime: "5 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "The free marketing channels that work for new small businesses are: Google Business Profile, a basic website with one clear page, niche communities (Facebook groups, subreddits, local forums), referrals from past customers, and short-form content that answers real questions. Pick one or two and be consistent — not all of them.",
+    problemLabel: "Simple explanation",
+    problem:
+      "There is no shortage of free marketing advice; there is a shortage of focus. Most owners try five channels for two weeks each, see no results, and conclude marketing doesn't work. Free channels work — but only if you stay on them long enough to build momentum, which usually takes 60–90 days.",
+    solutionLabel: "The free channels that actually work",
+    solution: [
+      {
+        step: "Set up a Google Business Profile (if you serve a local market)",
+        detail:
+          "Free, fast, and the single highest-leverage channel for any local service business. Add photos, ask 5 customers for reviews, keep your hours updated. You'll start showing up in Google Maps within weeks.",
+      },
+      {
+        step: "Build one simple website page",
+        detail:
+          "Who you help, what you do for them, how to contact you, and proof (testimonials or before/after). One clear page beats a five-page site nobody scrolls.",
+      },
+      {
+        step: "Join 2–3 niche communities where your buyers already are",
+        detail:
+          "A local Facebook group, a subreddit for your industry, a Slack community. Read for a week first. Then answer questions consistently. People will reach out — they almost always do.",
+      },
+      {
+        step: "Ask every happy customer for a referral or review",
+        detail:
+          "The single line: 'If you know anyone else who could use this, would you mind sending them my way?' Plus a Google review request. Both should be standard at the end of every job.",
+      },
+      {
+        step: "Publish short content that answers one real question",
+        detail:
+          "A LinkedIn post, a TikTok, a blog post — pick one. Format: a question your customer just asked you, then your two-paragraph answer. Aim for one piece a week for 90 days.",
+      },
+    ],
+    summary: [
+      "Pick 1–2 free channels and commit for 60–90 days.",
+      "Google Business Profile is the highest-leverage channel for local businesses.",
+      "One simple website page beats a five-page site no one reads.",
+      "Niche communities and customer referrals beat broad social media.",
+    ],
+    nextStep: {
+      label: "How to write an offer people actually respond to",
+      href: "/docs/how-to-write-an-offer-people-actually-respond-to",
+      description:
+        "Channels only work when the offer is clear. Tighten the message before you scale the reach.",
+    },
+    relatedSlugs: [
+      "how-to-get-your-first-10-customers",
+      "how-to-write-an-offer-people-actually-respond-to",
+      "simple-social-media-for-small-businesses-with-no-budget",
+    ],
+  },
+  {
+    slug: "how-to-write-an-offer-people-actually-respond-to",
+    title: "How to write an offer people actually respond to",
+    description:
+      "A simple framework for writing a clear, specific offer that converts conversations into customers.",
+    category: "Marketing & Growth",
+    readTime: "4 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "An offer that converts has four parts: who it's for, what specific outcome it delivers, what's included, and the price. If a stranger can't repeat your offer back to you in one sentence after reading it, it's too vague — and vague offers get ignored.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Most small business owners describe what they do, not what they sell. 'I do bookkeeping for small businesses' is a description. 'I clean up 12 months of messy books for solo service businesses for $1,200, in 3 weeks' is an offer. The first gets a polite nod. The second gets a yes or no.",
+    solutionLabel: "How to write an offer that converts",
+    solution: [
+      {
+        step: "Name the exact person it's for",
+        detail:
+          "Not 'small businesses' — be specific. 'Solo lawyers in their first 2 years.' 'New parents in our zip code.' The narrower you go, the easier you are to refer.",
+      },
+      {
+        step: "State the specific outcome they get",
+        detail:
+          "Not 'better marketing' — write the result they can picture. '5 new local customers a month.' 'A clean P&L every month, ready for your accountant.' Outcomes sell. Features don't.",
+      },
+      {
+        step: "List what's included in plain language",
+        detail:
+          "3–5 concrete items, not a long bulleted list. The buyer wants to know what they get and what they don't. Ambiguity kills conversion.",
+      },
+      {
+        step: "Put the price (or a clear price range) in the offer",
+        detail:
+          "Hiding price loses you the buyers who can afford you and wastes time on the ones who can't. A range is fine: 'Starting at $X' or '$X–$Y depending on scope.'",
+      },
+      {
+        step: "Test it on 5 real people and rewrite",
+        detail:
+          "Send it to 5 potential buyers and ask: 'Does this make sense? Would you buy this? What's missing?' Rewrite based on the patterns. Don't guess — your buyers will tell you exactly what to change.",
+      },
+    ],
+    summary: [
+      "An offer = who + outcome + what's included + price.",
+      "Specific beats clever every time.",
+      "Hiding price filters out your best buyers, not your worst.",
+      "Test the offer on 5 real people before publishing it anywhere.",
+    ],
+    nextStep: {
+      label: "Word of mouth — how to build a referral system for free",
+      href: "/docs/word-of-mouth-referral-system",
+      description:
+        "Once your offer is clear, referrals get dramatically easier — because your customers can finally describe you.",
+    },
+    relatedSlugs: [
+      "how-to-get-your-first-10-customers",
+      "how-to-price-your-services",
+      "word-of-mouth-referral-system",
+    ],
+  },
+  {
+    slug: "word-of-mouth-referral-system",
+    title: "Word of mouth — how to build a referral system for free",
+    description:
+      "Word of mouth doesn't need to stay random. A simple referral system turns your best customers into a steady source of new ones.",
+    category: "Marketing & Growth",
+    readTime: "4 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "Most word of mouth dies in silence — happy customers would refer you if you made it easy and asked at the right moment. A simple referral system has three parts: a clear ask script, a good moment to use it, and an easy way for the referrer to make the introduction.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Owners assume referrals are passive: do good work, and customers tell their friends. In reality, even thrilled customers rarely refer unless prompted. They forget, they're busy, or they don't know exactly who to send. A 30-second ask after a successful project usually doubles your referral rate.",
+    solutionLabel: "Build a free referral system in 5 steps",
+    solution: [
+      {
+        step: "Identify your best 'referral moments'",
+        detail:
+          "Right after a project finishes, after positive feedback, or when a customer thanks you. These are the moments people are most willing to refer — and most likely to forget if you don't ask now.",
+      },
+      {
+        step: "Write one short referral ask script",
+        detail:
+          "Two sentences: 'Glad this worked for you. If you know anyone else who [specific situation], would you mind sending them my way?' Specific beats generic — 'a friend' isn't a person, but 'a friend starting a business' is.",
+      },
+      {
+        step: "Make it effortless for the referrer",
+        detail:
+          "Send a short, copy-pasteable intro they can forward: who you are, what you do, and how to reach you. The easier you make it, the more they'll do it.",
+      },
+      {
+        step: "Track every referral source",
+        detail:
+          "A simple column in your customer sheet: 'How did they hear about us?' Within 6 months you'll know who your top referrers are — and you can thank them properly.",
+      },
+      {
+        step: "Close the loop and say thank you",
+        detail:
+          "Tell the referrer when their referral became a customer. A handwritten note, a small gift, or just a personal thank-you message. People who get acknowledged refer again.",
+      },
+    ],
+    summary: [
+      "Referrals are usually lost to silence, not unwillingness.",
+      "Ask at the moment of success, with a specific script.",
+      "Give the referrer a copy-paste intro to make it easy.",
+      "Track sources and thank people — they'll refer again.",
+    ],
+    nextStep: {
+      label: "Simple social media for small businesses with no budget",
+      href: "/docs/simple-social-media-for-small-businesses-with-no-budget",
+      description:
+        "Referrals work even better when prospects can find you online and verify you're real.",
+    },
+    relatedSlugs: [
+      "how-to-get-your-first-10-customers",
+      "how-to-write-an-offer-people-actually-respond-to",
+      "free-marketing-channels-for-a-new-small-business",
+    ],
+  },
+  {
+    slug: "simple-social-media-for-small-businesses-with-no-budget",
+    title: "Simple social media for small businesses with no budget",
+    description:
+      "A no-budget social media plan that takes 30 minutes a week and works without ads, agencies, or daily posting.",
+    category: "Marketing & Growth",
+    readTime: "4 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "You don't need to post every day on every platform. Pick one platform where your customers actually spend time, post one useful thing a week, and reply to every comment and DM. That's the entire plan for a small business with no budget.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Small business owners burn out on social media because they treat it like a full-time job. The truth is most small businesses don't need a content strategy — they need a presence: a profile that proves they're real, a few posts that show they know their craft, and someone who replies when a real person reaches out.",
+    solutionLabel: "A 30-minute-a-week social media plan",
+    solution: [
+      {
+        step: "Pick one platform where your customers actually are",
+        detail:
+          "Local services → Instagram or Facebook. B2B services → LinkedIn. Visual products → Instagram or TikTok. One platform, done well, beats five done badly.",
+      },
+      {
+        step: "Set up the profile so it converts",
+        detail:
+          "Clear photo, clear description of who you help and how, link to your one website page or Google Business Profile, contact info visible. Most lost customers come from confusing profiles, not bad content.",
+      },
+      {
+        step: "Post one useful thing a week",
+        detail:
+          "Format: take a question a customer just asked you and answer it in 4–6 sentences. That's it. You're not entertaining — you're proving you know your work.",
+      },
+      {
+        step: "Reply to every comment and DM the same day",
+        detail:
+          "This is where customers actually convert. A 30-second response to a real question converts faster than 30 posts. Treat replies as a sales channel, not customer service.",
+      },
+      {
+        step: "Skip the ads until your offer is proven",
+        detail:
+          "Paid ads amplify what already works. If your free posts and DMs aren't generating customers, ads won't fix it — they'll just burn cash. Get the offer right first.",
+      },
+    ],
+    summary: [
+      "One platform, one weekly post, fast replies — that's the plan.",
+      "A clear profile converts more than clever content.",
+      "Answer real customer questions in your posts.",
+      "Don't spend on ads until the free version is working.",
+    ],
+    nextStep: {
+      label: "How to price your services (and stop undercharging)",
+      href: "/docs/how-to-price-your-services",
+      description:
+        "Reach is wasted if your prices don't sustain the business. Fix pricing before scaling marketing.",
+    },
+    relatedSlugs: [
+      "free-marketing-channels-for-a-new-small-business",
+      "how-to-write-an-offer-people-actually-respond-to",
+      "word-of-mouth-referral-system",
+    ],
+  },
+  {
+    slug: "how-to-price-your-services",
+    title: "How to price your services (and stop undercharging)",
+    description:
+      "A practical method for setting service prices that cover your costs, reflect your value, and don't scare off the right customers.",
+    category: "Marketing & Growth",
+    readTime: "5 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "Most service businesses undercharge because they price based on what they think customers will accept, not on what the work actually costs. Set your price based on three things: your real hourly cost, the value of the outcome to the customer, and what comparable providers charge. Then add a margin — never sell at break-even.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Underpricing feels safer because it makes the 'yes' easier — but it traps you. Low prices mean more customers to pay your bills, less time per customer, lower quality, more burnout, and no margin to invest in growth. Owners who raise prices once usually wish they'd done it 12 months earlier.",
+    solutionLabel: "How to set a price that actually works",
+    solution: [
+      {
+        step: "Calculate your real hourly cost (not your wage)",
+        detail:
+          "Add up everything: target salary, taxes, software, insurance, equipment, time off, admin time. Divide by your actual billable hours per year (usually 1,000–1,200, not 2,000). That's your true minimum hourly cost.",
+      },
+      {
+        step: "Estimate the customer's outcome value",
+        detail:
+          "What does this work save or earn the customer? A bookkeeper who saves a business owner 6 hours a month at $100/hr is worth more than $50/hr. Value-based pricing starts here.",
+      },
+      {
+        step: "Check what comparable providers charge",
+        detail:
+          "Look at 5 similar providers in your market. Don't undercut them — match or exceed if you have a reason to. Being the cheapest signals lower quality, not better value.",
+      },
+      {
+        step: "Pick a price and write the offer at that price",
+        detail:
+          "Combine cost, value, and market rate. Round up — $1,200 lands better than $1,150. Write the offer and use it for the next 5 conversations. Don't negotiate against yourself.",
+      },
+      {
+        step: "Raise prices on new customers every 6–12 months",
+        detail:
+          "Existing customers can stay on their current price for a cycle. New customers should always pay the current rate — which should grow as your skills, results, and demand grow.",
+      },
+    ],
+    summary: [
+      "Underpricing is the most common (and most fixable) small business mistake.",
+      "Start with your true hourly cost, then layer in value and market.",
+      "Don't be the cheapest — it signals lower quality.",
+      "Raise prices for new customers regularly. Existing ones can lag a cycle.",
+    ],
+    nextStep: {
+      label: "How to write an offer people actually respond to",
+      href: "/docs/how-to-write-an-offer-people-actually-respond-to",
+      description:
+        "Once your price is set, package it inside a clear offer so customers can decide quickly.",
+    },
+    relatedSlugs: [
+      "how-to-write-an-offer-people-actually-respond-to",
+      "how-to-get-your-first-10-customers",
+      "free-marketing-channels-for-a-new-small-business",
+    ],
+  },
 ];
 
 export function findArticle(slug: string): Article | undefined {
@@ -1102,6 +1458,12 @@ const CATEGORY_NEXT_STEP: Record<string, NextStep> = {
     href: "/tools/invoice",
     description:
       "Send a clean, professional invoice in minutes so clients pay you faster.",
+  },
+  "Marketing & Growth": {
+    label: "How to get your first 10 customers",
+    href: "/docs/how-to-get-your-first-10-customers",
+    description:
+      "Start at the beginning of the marketing path: a no-budget plan to land your first paying customers.",
   },
 };
 

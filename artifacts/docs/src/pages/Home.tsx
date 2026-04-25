@@ -48,6 +48,17 @@ const HOME_PRO_CARDS: HomeProCardDef[] = [
     statusLabel: "Clients",
     included: ["Invoice builder", "Tracking sheet", "Follow-up templates", "Escalation timeline"],
   },
+  {
+    slug: "marketing-growth",
+    title: "Marketing & Growth",
+    outcome: "Repeatable customer acquisition",
+    meta: "4 phases  ·  offer + channels + referrals",
+    href: "/pro/marketing-growth",
+    accentClass: "border-t-purple-500",
+    badgeClass: "bg-purple-50 text-purple-700 border-purple-200",
+    statusLabel: "Marketing",
+    included: ["ICP worksheet", "Offer template", "Referral script", "30-day plan"],
+  },
 ];
 
 function HomeProCard({ card }: { card: HomeProCardDef }) {
@@ -277,11 +288,11 @@ export default function Home() {
       <section className="border-b border-slate-200 bg-white">
         <div className="max-w-5xl mx-auto px-6 py-4">
           <p className="text-center text-xs sm:text-sm text-slate-500">
-            <span>16 free guides</span>
+            <span>23 free guides</span>
             <span className="mx-2 sm:mx-3 text-slate-300">·</span>
             <span>4 free tools</span>
             <span className="mx-2 sm:mx-3 text-slate-300">·</span>
-            <span>3 ready-to-use templates</span>
+            <span>9 ready-to-use templates</span>
             <span className="mx-2 sm:mx-3 text-slate-300">·</span>
             <span>No account needed</span>
           </p>
@@ -497,7 +508,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {HOME_PRO_CARDS.map((card) => (
               <HomeProCard key={card.slug} card={card} />
             ))}

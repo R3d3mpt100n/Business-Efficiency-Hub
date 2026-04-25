@@ -38,6 +38,13 @@ export const KEY_BENEFITS: Record<string, string[]> = {
     "Keep all client activity organized in one place",
     "Simplify tax season with clean records",
   ],
+  "marketing-growth": [
+    "Get a repeatable process for finding new customers",
+    "Write offers that actually convert conversations into sales",
+    "Build a referral system that compounds over time",
+    "Run free marketing channels without burnout",
+    "Turn first-time buyers into repeat customers",
+  ],
 };
 
 export const proSystems: ProSystem[] = [
@@ -230,6 +237,78 @@ export const proSystems: ProSystem[] = [
     freeToolSlugs: ["invoice"],
     freeTemplateSlugs: ["invoice"],
   },
+  {
+    slug: "marketing-growth",
+    title: "Marketing & Growth System (Pro)",
+    shortTitle: "Marketing & Growth",
+    tagline:
+      "A repeatable process for finding customers, converting them, and keeping them — without an agency or ad budget.",
+    description:
+      "Most small businesses get stuck at word of mouth. This system gives you a repeatable process for finding customers, converting them, and keeping them — without a marketing budget or agency.",
+    purpose:
+      "A four-phase marketing workflow: define the offer and ideal customer, build one acquisition channel, convert and follow up, then retain and earn referrals — all built for owners without a marketing team.",
+    sections: [
+      {
+        heading: "Phase 1 — Define your offer and ideal customer",
+        items: [
+          "Ideal customer profile worksheet",
+          "One-sentence offer builder with examples",
+          "Pricing decision framework so you stop undercharging",
+          "Pre-launch validation script for 5 buyer conversations",
+        ],
+      },
+      {
+        heading: "Phase 2 — Build your first acquisition channel",
+        items: [
+          "Channel decision matrix (local, B2B, online, in-person)",
+          "Google Business Profile setup walkthrough",
+          "One-page website starter and what to put on it",
+          "Niche community playbook (where to show up, how often)",
+        ],
+      },
+      {
+        heading: "Phase 3 — Convert and follow up",
+        items: [
+          "Reply scripts for inbound DMs and inquiries",
+          "First-call outline and qualification questions",
+          "Quote / proposal template with clear scope and price",
+          "Multi-touch follow-up cadence (2 days, 7 days, 14 days, monthly)",
+        ],
+      },
+      {
+        heading: "Phase 4 — Retain and get referrals",
+        items: [
+          "Referral ask script and timing playbook",
+          "Customer thank-you and check-in templates",
+          "Win-back message for past customers",
+          "30-day marketing action plan to keep momentum going",
+        ],
+      },
+      {
+        heading: "Downloadable templates",
+        items: [
+          "Ideal customer profile worksheet",
+          "Offer writing template",
+          "Referral ask script",
+          "30-day marketing action plan",
+        ],
+      },
+    ],
+    freeDocSlugs: [
+      "how-to-get-your-first-10-customers",
+      "free-marketing-channels-for-a-new-small-business",
+      "how-to-write-an-offer-people-actually-respond-to",
+      "word-of-mouth-referral-system",
+      "simple-social-media-for-small-businesses-with-no-budget",
+      "how-to-price-your-services",
+    ],
+    freeTemplateSlugs: [
+      "ideal-customer-profile",
+      "offer-writing",
+      "referral-script",
+      "marketing-action-plan",
+    ],
+  },
 ];
 
 export function findProSystem(slug: string): ProSystem | undefined {
@@ -243,6 +322,7 @@ const CATEGORY_TO_PRO: Record<string, string> = {
   "Financial Systems": "financial-control",
   "Money & Profit": "financial-control",
   "Sales & Clients": "client-invoice",
+  "Marketing & Growth": "marketing-growth",
 };
 
 const TOOL_TO_PRO: Record<string, string> = {

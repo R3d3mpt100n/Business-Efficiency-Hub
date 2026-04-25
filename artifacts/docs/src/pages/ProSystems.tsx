@@ -63,6 +63,22 @@ const SYSTEMS: SystemDef[] = [
       "Escalation timeline",
     ],
   },
+  {
+    slug: "marketing-growth",
+    title: "Marketing & Growth",
+    outcome: "Repeatable customer acquisition",
+    meta: "4 phases  ·  offer + channels + referrals",
+    href: "/pro/marketing-growth",
+    accentClass: "border-t-purple-500",
+    badgeClass: "bg-purple-50 text-purple-700 border-purple-200",
+    statusLabel: "Marketing",
+    included: [
+      "ICP worksheet",
+      "Offer template",
+      "Referral script",
+      "30-day plan",
+    ],
+  },
 ];
 
 function SystemCard({ system }: { system: SystemDef }) {
@@ -169,7 +185,7 @@ export default function ProSystems() {
 
       {/* Card grid */}
       <div className="max-w-5xl mx-auto px-6 py-10">
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {SYSTEMS.map((s) => (
             <SystemCard key={s.slug} system={s} />
           ))}
