@@ -1,0 +1,389 @@
+
+Use efficient cache lifetimes Est savings of 650 KiB
+A long cache lifetime can speed up repeat visits to your page. Learn more about caching.LCPFCPUnscored
+Request
+Cache TTL
+Transfer Size
+ledgely.online 1st party
+633 KiB
+/assets/vendor-CDandLuC.js(ledgely.online)
+None
+271 KiB
+/assets/react-dom-DP_650Lm.js(ledgely.online)
+None
+201 KiB
+/assets/index-BmnyWPL3.css(ledgely.online)
+None
+103 KiB
+/assets/react-que….js(ledgely.online)
+None
+24 KiB
+/assets/Home-CFl8u8h4.js(ledgely.online)
+None
+21 KiB
+/assets/index-B98FVumy.js(ledgely.online)
+None
+13 KiB
+Google/Doubleclick Ads ad 
+178 KiB
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+14d
+178 KiB
+…js/google_top_exp.js?fcd=true(pagead2.googlesyndication.com)
+14d
+1 KiB
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 1,133 ms
+Initial Navigation
+https://ledgely.online - 256 ms, 36.19 KiB
+/assets/index-B98FVumy.js(ledgely.online) - 1,133 ms, 12.68 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+Origin
+Source
+https://fonts.googleapis.com/
+head > link
+<link rel="preconnect" href="https://fonts.googleapis.com">
+https://fonts.gstatic.com/
+head > link
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+https://fundingchoicesmessages.google.com/
+head > link
+<link rel="preconnect" href="https://fundingchoicesmessages.google.com">
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Document request latency Est savings of 24 KiB
+Your first network request is the most important. Reduce its latency by avoiding redirects, ensuring a fast server response, and enabling text compression.LCPFCPUnscored
+Avoids redirects
+Server responds quickly (observed 30 ms)
+No compression applied
+LCP breakdown
+Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored
+Subpart
+Duration
+Time to first byte
+0 ms
+Element render delay
+1,640 ms
+Ledgely is a focused library of plain-English documentation, free in-browser to…
+<p class="mt-5 text-lg text-slate-600 max-w-2xl leading-relaxed">
+3rd parties
+3rd party code can significantly impact load performance. Reduce and defer loading of 3rd party code to prioritize your page's content.Unscored
+3rd party
+Transfer size
+Main thread time
+Google/Doubleclick Ads ad 
+261 KiB	184 ms
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+178 KiB
+92 ms
+…js/adsbygoogle.js?client=ca-pub-980…(pagead2.googlesyndication.com)
+55 KiB
+72 ms
+/bg/RiK6ZWktS….js(pagead2.googlesyndication.com)
+23 KiB
+16 ms
+…r20190131/zrt_lookup_fy2021.html(googleads.g.doubleclick.net)
+4 KiB
+4 ms
+…js/google_top_exp.js?fcd=true(pagead2.googlesyndication.com)
+1 KiB
+0 ms
+/pagead/ads?gdpr=…(googleads.g.doubleclick.net)
+1 KiB
+0 ms
+/pagead/sodar?id=sodar2&v=254&li=gda_r20260423&jk=109…&rc=(pagead2.googlesyndication.com)
+0 KiB
+0 ms
+Google FundingChoices consent-provider 
+103 KiB	49 ms
+/i/ca-pub-98…?href=https%3A%2F%2Fledgely.online&ers=2(fundingchoicesmessages.google.com)
+70 KiB
+43 ms
+/f/AGSKWxVFs…==?fccs=W251bGwsb…(fundingchoicesmessages.google.com)
+6 KiB
+2 ms
+/f/AGSKWxV4p…==?fccs=W251bGwsb…(fundingchoicesmessages.google.com)
+3 KiB
+1 ms
+/f/AGSKWxV9p…==?fccs=W251bGwsb…(fundingchoicesmessages.google.com)
+3 KiB
+1 ms
+/el/AGSKWxUXW…==(fundingchoicesmessages.google.com)
+14 KiB
+1 ms
+…house_ad_/728x180--ad-reload.(fundingchoicesmessages.google.com)
+2 KiB
+0 ms
+/el/AGSKWxX05…==(fundingchoicesmessages.google.com)
+2 KiB
+0 ms
+/el/AGSKWxW7f…==(fundingchoicesmessages.google.com)
+2 KiB
+0 ms
+adtrafficquality.google
+28 KiB	27 ms
+/sodar/sodar2.js(ep2.adtrafficquality.google)
+8 KiB
+20 ms
+…254/runner.html(ep2.adtrafficquality.google)
+6 KiB
+7 ms
+/getconfig/sodar?sv=200&tid=gda&tv=r20260423&st=env&sjk=109…(ep1.adtrafficquality.google)
+14 KiB
+0 ms
+/pagead/sodar?id=…(ep1.adtrafficquality.google)
+0 KiB
+0 ms
+/generate_204?Ax0GfQ(ep2.adtrafficquality.google)
+0 KiB
+0 ms
+Other Google APIs/SDKs utility 
+2 KiB	2 ms
+…api2/aframe(www.google.com)
+2 KiB
+2 ms
+Google Fonts cdn 
+50 KiB	0 ms
+…v20/UcC73FwrK….woff2(fonts.gstatic.com)
+48 KiB
+0 ms
+/css2?family=Inter:wght@400;500;600;700&display=optional(fonts.googleapis.com)
+1 KiB
+0 ms
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Reduce unused JavaScript Est savings of 484 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+ledgely.online 1st party
+494.7 KiB	288.0 KiB
+/assets/vendor-CDandLuC.js(ledgely.online)
+270.7 KiB
+185.3 KiB
+/assets/react-dom-DP_650Lm.js(ledgely.online)
+200.4 KiB
+81.0 KiB
+/assets/react-que….js(ledgely.online)
+23.6 KiB
+21.8 KiB
+Google/Doubleclick Ads ad 
+231.0 KiB	160.5 KiB
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+177.0 KiB
+131.9 KiB
+…js/adsbygoogle.js?client=ca-pub-980…(pagead2.googlesyndication.com)
+54.0 KiB
+28.6 KiB
+Google FundingChoices consent-provider 
+68.4 KiB	35.6 KiB
+/i/ca-pub-98…?href=https%3A%2F%2Fledgely.online&ers=2(fundingchoicesmessages.google.com)
+68.4 KiB
+35.6 KiB
+Avoid long main-thread tasks 5 long tasks found
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored
+URL
+Start Time
+Duration
+Google/Doubleclick Ads ad 
+235 ms
+…m202…/show_ads_impl_fy2021.js(pagead2.googlesyndication.com)
+7,231 ms
+149 ms
+…js/adsbygoogle.js?client=ca-pub-980…(pagead2.googlesyndication.com)
+6,245 ms
+86 ms
+ledgely.online 1st party
+127 ms
+/assets/vendor-CDandLuC.js(ledgely.online)
+5,193 ms
+64 ms
+/assets/react-dom-DP_650Lm.js(ledgely.online)
+5,130 ms
+63 ms
+Google FundingChoices consent-provider 
+101 ms
+/i/ca-pub-98…?href=https%3A%2F%2Fledgely.online&ers=2(fundingchoicesmessages.google.com)
+8,581 ms
+101 ms
+Avoid non-composited animations 23 animated elements found
+Animations which are not composited can be janky and increase CLS. Learn how to avoid non-composited animationsCLSUnscored
+Element
+Name
+Cash Flow Planner Predict future cash shortages before they happen.
+<a href="/tools/forecast" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 transi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+CLUSTER ITIN The individual tax ID for those without an SSN.
+<a href="/docs/what-is-an-itin" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Business Expense Tracker See exactly where your money goes and what to cut imm…
+<a href="/tools/expenses" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 transi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+EIN Who needs an EIN? A quick rundown of which small businesses are required …
+<a href="/docs/who-needs-an-ein" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+CLUSTER Business Setup Register, organize documents, and stay compliant.
+<a href="/docs/how-to-register-a-small-business" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Get Paid Invoice System Send professional invoices that make clients take paym…
+<a href="/tools/invoice" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 transi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+CLUSTER EIN Understand and prepare for the federal business tax ID.
+<a href="/docs/what-is-an-ein" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+CLUSTER Financial Systems Track expenses, understand profit, and manage cash …
+<a href="/docs/how-to-track-business-expenses" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+EIN EIN Application Preparation Checklist (Business Tax ID) Organize the info…
+<a href="/docs/ein-application-preparation-checklist" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Monthly Profit Estimator Know your real monthly profit after expenses in secon…
+<a href="/tools/budget" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 transi…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+EIN What is an EIN? A clear, plain-English explanation of the Employer Identi…
+<a href="/docs/what-is-an-ein" class="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:…">
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: color
+color
+Ledgely Home Docs Tools Templates Pro Systems
+<header class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950…">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: border-top-color
+border-top-color
+Switch to dark mode
+<button aria-label="Switch to dark mode" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:t…">
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: border-top-color
+border-top-color
+Home
+<a href="/" class="text-sm font-medium transition-colors text-slate-900 dark:text-slate-100">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: border-top-color
+border-top-color
+Templates
+<a href="/templates" class="text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 …">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: border-top-color
+border-top-color
+Ledgely · Practical systems for small business owners. Docs Tools Templates Pro…
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-…">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: border-top-color
+border-top-color
+Tools
+<a href="/tools" class="text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 …">
+Unsupported CSS Property: border-bottom-color
+border-bottom-color
+Unsupported CSS Property: border-left-color
+border-left-color
+Unsupported CSS Property: border-right-color
+border-right-color
+Unsupported CSS Property: color
+color
+Unsupported CSS Property: border-top-color
+border-top-color
+2 Step 2: EIN Preparation NEXT MILESTONE Gather every detail you need before y…
+<li class="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 tra…">
+Unsupported CSS Property: color
+color
+4 Step 4: Financial Tracking UNDERSTAND YOUR MONEY Track expenses and see your…
+<li class="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 tra…">
+Unsupported CSS Property: color
+color
+3 Step 3: Business Setup REGISTER YOUR BUSINESS Form your entity, organize doc…
+<li class="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 tra…">
+Unsupported CSS Property: color
+color
+6 Step 6: Templates FINAL SETUP TOOLS Grab ready-to-use templates and checklis…
+<li class="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 tra…">
+Unsupported CSS Property: color
+color
+5 Step 5: Invoice System START GETTING PAID Send a clean, professional invoice…
+<li class="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 tra…">
+Unsupported CSS Property: color
+color
+1 Step 1: EIN Decision START HERE Find out if your business actually needs an …
+<li class="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 tra…">
+Unsupported CSS Property: color
+color
+More information about the performance of your application. These numbers don't directly affect the Performance score.

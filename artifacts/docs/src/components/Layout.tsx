@@ -28,7 +28,7 @@ export function Layout({ children }: { children: ReactNode }) {
     return (
       <Link
         href={href}
-        className={`text-sm font-medium transition-colors ${
+        className={`text-sm font-medium ${
           active
             ? "text-slate-900 dark:text-slate-100"
             : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
@@ -40,8 +40,8 @@ export function Layout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200">
-      <header className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 sticky top-0 z-10 transition-colors duration-200">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col">
+      <header className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100">
             <span className="inline-block w-6 h-6 rounded-md bg-slate-900 dark:bg-slate-100" />
@@ -57,7 +57,7 @@ export function Layout({ children }: { children: ReactNode }) {
               suppressHydrationWarning
               onClick={() => setDark(!dark)}
               aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-              className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800"
             >
               {dark ? <SunIcon /> : <MoonIcon />}
             </button>
@@ -67,7 +67,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
       <main className="flex-1" style={{ minHeight: "80vh" }}>{children}</main>
 
-      <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 transition-colors duration-200 min-h-[88px]">
+      <footer className="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 min-h-[88px]">
         <div className="max-w-5xl mx-auto px-6 py-8 text-sm text-slate-500 dark:text-slate-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
             Ledgely &middot; Practical systems for small business owners.

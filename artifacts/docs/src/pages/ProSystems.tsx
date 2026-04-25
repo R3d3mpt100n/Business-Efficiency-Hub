@@ -115,7 +115,7 @@ function SystemCard({ system }: { system: SystemDef }) {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 transition-colors"
+            className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100"
           >
             <span>What's included</span>
             <svg
@@ -144,13 +144,13 @@ function SystemCard({ system }: { system: SystemDef }) {
         <div className="mt-auto flex gap-2">
           <Link
             href={system.href}
-            className="flex-1 inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+            className="flex-1 inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
           >
             Open System
           </Link>
           <a
             href={stripeUrl}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 whitespace-nowrap"
           >
             Unlock — $15
           </a>
@@ -190,7 +190,7 @@ export default function ProSystems() {
             </div>
             <a
               href={STRIPE_BUNDLE_URL}
-              className="flex-none inline-flex items-center justify-center rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-sm px-4 py-2 transition-colors whitespace-nowrap"
+              className="flex-none inline-flex items-center justify-center rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-sm px-4 py-2 whitespace-nowrap"
             >
               Unlock bundle →
             </a>
@@ -216,7 +216,7 @@ export default function ProSystems() {
           </p>
           <a
             href={PRO_SYSTEMS_URL}
-            className="flex-none inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors whitespace-nowrap"
+            className="flex-none inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 whitespace-nowrap"
           >
             Enter code →
           </a>

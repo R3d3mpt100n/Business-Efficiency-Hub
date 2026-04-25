@@ -21,7 +21,7 @@ export function UpgradePrompt({
     return (
       <Link
         href={`/pro/${system.slug}`}
-        className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:border-slate-400 transition-colors print:hidden"
+        className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:shadow-sm print:hidden"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-slate-900" />
         Upgrade to {system.shortTitle}

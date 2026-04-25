@@ -79,7 +79,7 @@ function HomeProCard({ card }: { card: HomeProCardDef }) {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100"
           >
             <span>What's included</span>
             <svg className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -101,7 +101,7 @@ function HomeProCard({ card }: { card: HomeProCardDef }) {
         <div className="mt-auto">
           <Link
             href={card.href}
-            className="inline-flex items-center justify-center w-full rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+            className="inline-flex items-center justify-center w-full rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
           >
             Open System
           </Link>
@@ -220,19 +220,19 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/docs/who-needs-an-ein"
-              className="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800 transition-colors"
+              className="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
             >
               Start here &rarr;
             </Link>
             <Link
               href="/docs"
-              className="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50 transition-colors"
+              className="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50"
             >
               Browse the docs
             </Link>
             <Link
               href="/tools"
-              className="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50 transition-colors"
+              className="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50"
             >
               Open the tools
             </Link>
@@ -359,7 +359,7 @@ export default function Home() {
               return (
                 <li
                   key={m.n}
-                  className="rounded-lg border border-slate-200 bg-white p-5 hover:border-slate-400 transition-colors"
+                  className="rounded-lg border border-slate-200 bg-white p-5 hover:shadow-sm"
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-none flex flex-col items-center">
@@ -443,7 +443,7 @@ export default function Home() {
               <Link
                 key={t.slug}
                 href={`/tools/${t.slug}`}
-                className="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 transition-colors"
+                className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
               >
                 <h3 className="font-semibold text-slate-900">{t.title}</h3>
                 <p className="mt-1 text-sm text-slate-600 leading-relaxed">
@@ -530,7 +530,7 @@ export default function Home() {
             <Link
               key={c.name}
               href={`/docs/${c.catalogSlug}`}
-              className="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:shadow-sm transition-all"
+              className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
             >
               <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-1">
                 Cluster
@@ -561,7 +561,7 @@ export default function Home() {
               <Link
                 key={a.slug}
                 href={`/docs/${a.slug}`}
-                className="block rounded-lg border border-slate-200 p-5 hover:border-slate-400 hover:shadow-sm transition-all"
+                className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
               >
                 <p className="text-xs font-medium text-slate-500 mb-2">{a.category}</p>
                 <h3 className="font-semibold text-slate-900 leading-snug mb-2">

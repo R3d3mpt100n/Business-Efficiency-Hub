@@ -15,7 +15,7 @@ export function RelatedDocs({ slugs }: { slugs?: string[] }) {
           <Link
             key={a.slug}
             href={`/docs/${a.slug}`}
-            className="block rounded-md border border-slate-200 p-4 hover:border-slate-400 transition-colors"
+            className="block rounded-md border border-slate-200 p-4 hover:shadow-sm"
           >
             <p className="text-xs text-slate-500 mb-1">{a.category}</p>
             <h3 className="text-sm font-semibold text-slate-900 leading-snug">

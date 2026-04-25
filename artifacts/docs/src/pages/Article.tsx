@@ -197,7 +197,7 @@ export default function Article() {
               <Link
                 key={o.slug}
                 href={`/docs/${o.slug}`}
-                className="block rounded-lg border border-slate-200 p-4 hover:border-slate-400 transition-colors"
+                className="block rounded-lg border border-slate-200 p-4 hover:shadow-sm"
               >
                 <p className="text-xs text-slate-500 mb-1">{o.category}</p>
                 <h3 className="font-semibold text-slate-900 leading-snug">
