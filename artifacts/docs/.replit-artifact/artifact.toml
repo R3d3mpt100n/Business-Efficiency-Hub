@@ -1,31 +1,48 @@
 kind = "web"
-previewPath = "/"
-title = "Small Business Systems Docs"
-version = "1.0.0"
-id = "artifacts/docs"
-router = "path"
+  previewPath = "/"
+  title = "Small Business Systems Docs"
+  version = "1.0.0"
+  id = "artifacts/docs"
+  router = "path"
 
-[[integratedSkills]]
-name = "react-vite"
-version = "1.0.0"
+  [[integratedSkills]]
+  name = "react-vite"
+  version = "1.0.0"
 
-[[services]]
-name = "web"
-paths = [ "/" ]
-localPort = 21121
+  [[services]]
+  name = "web"
+  paths = [ "/" ]
+  localPort = 21121
 
-[services.development]
-run = "pnpm --filter @workspace/docs run dev"
+  [services.development]
+  run = "pnpm --filter @workspace/docs run dev"
 
-[services.production]
-build = [ "pnpm", "--filter", "@workspace/docs", "run", "build" ]
-publicDir = "artifacts/docs/dist/public"
-serve = "static"
+  [services.production]
+  build = [ "pnpm", "--filter", "@workspace/docs", "run", "build" ]
+  publicDir = "artifacts/docs/dist/public"
+  serve = "static"
 
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+  [[services.production.rewrites]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
 
-[services.env]
-PORT = "21121"
-BASE_PATH = "/"
+  [[services.production.rewrites]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+
+  [[services.production.rewrites]]
+  from = "/favicon.svg"
+  to = "/favicon.svg"
+
+  [[services.production.rewrites]]
+  from = "/googled6d1c917ff22e5a2.html"
+  to = "/googled6d1c917ff22e5a2.html"
+
+  [[services.production.rewrites]]
+  from = "/*"
+  to = "/index.html"
+
+  [services.env]
+  PORT = "21121"
+  BASE_PATH = "/"
+  
