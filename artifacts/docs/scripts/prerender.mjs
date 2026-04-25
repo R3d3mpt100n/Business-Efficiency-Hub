@@ -148,14 +148,25 @@ console.log(`\nPrerendering ${ROUTES.length} routes...\n`);
 let ok = 0;
 let fail = 0;
 
+const BASE_ORIGIN = 'https://ledgely.online';
+
 for (const url of ROUTES) {
   try {
     const appHtml = render(url);
 
-    const html = template.replace(
-      '<div id="root"></div>',
-      `<div id="root">${appHtml}</div>`
-    );
+    // Canonical: always use trailing-slash form (matches server redirect behaviour)
+    const canonicalPath = url === '/' ? '/' : url.replace(/\/?$/, '/');
+    const canonicalUrl = `${BASE_ORIGIN}${canonicalPath}`;
+
+    const html = template
+      .replace(
+        '<div id="root"></div>',
+        `<div id="root">${appHtml}</div>`
+      )
+      .replace(
+        /<link rel="canonical" href="[^"]*"\s*\/>/,
+        `<link rel="canonical" href="${canonicalUrl}" />`
+      );
 
     let filePath;
     if (url === '/') {
