@@ -1,80 +1,274 @@
 kind = "web"
-    previewPath = "/"
-    title = "Small Business Systems Docs"
-    version = "1.0.0"
-    id = "artifacts/docs"
-    router = "path"
+      previewPath = "/"
+      title = "Small Business Systems Docs"
+      version = "1.0.0"
+      id = "artifacts/docs"
+      router = "path"
 
-    [[integratedSkills]]
-    name = "react-vite"
-    version = "1.0.0"
+      [[integratedSkills]]
+      name = "react-vite"
+      version = "1.0.0"
 
-    [[services]]
-    name = "web"
-    paths = [ "/" ]
-    localPort = 21121
+      [[services]]
+      name = "web"
+      paths = [ "/" ]
+      localPort = 21121
 
-    [services.development]
-    run = "pnpm --filter @workspace/docs run dev"
+      [services.development]
+      run = "pnpm --filter @workspace/docs run dev"
 
-    [services.production]
-    build = [ "pnpm", "--filter", "@workspace/docs", "run", "build" ]
-    publicDir = "artifacts/docs/dist/public"
-    serve = "static"
+      [services.production]
+      build = [ "pnpm", "--filter", "@workspace/docs", "run", "build" ]
+      publicDir = "artifacts/docs/dist/public"
+      serve = "static"
 
-    # Static assets (pass-through, must come before wildcards)
-    [[services.production.rewrites]]
-    from = "/sitemap.xml"
-    to = "/sitemap.xml"
+      # Static assets (pass-through, must come before wildcards)
+      [[services.production.rewrites]]
+      from = "/sitemap.xml"
+      to = "/sitemap.xml"
 
-    [[services.production.rewrites]]
-    from = "/robots.txt"
-    to = "/robots.txt"
+      [[services.production.rewrites]]
+      from = "/robots.txt"
+      to = "/robots.txt"
 
-    [[services.production.rewrites]]
-    from = "/favicon.svg"
-    to = "/favicon.svg"
+      [[services.production.rewrites]]
+      from = "/favicon.svg"
+      to = "/favicon.svg"
 
-    [[services.production.rewrites]]
-    from = "/googled6d1c917ff22e5a2.html"
-    to = "/googled6d1c917ff22e5a2.html"
+      [[services.production.rewrites]]
+      from = "/googled6d1c917ff22e5a2.html"
+      to = "/googled6d1c917ff22e5a2.html"
 
-    # Prerendered section pages
-    [[services.production.rewrites]]
-    from = "/docs"
-    to = "/docs/index.html"
+      [[services.production.rewrites]]
+      from = "/docs"
+      to = "/docs/index.html"
 
-    [[services.production.rewrites]]
-    from = "/tools"
-    to = "/tools/index.html"
+      [[services.production.rewrites]]
+      from = "/docs/"
+      to = "/docs/index.html"
 
-    [[services.production.rewrites]]
-    from = "/templates"
-    to = "/templates/index.html"
+      [[services.production.rewrites]]
+      from = "/tools"
+      to = "/tools/index.html"
 
-    [[services.production.rewrites]]
-    from = "/pro"
-    to = "/pro/index.html"
+      [[services.production.rewrites]]
+      from = "/tools/"
+      to = "/tools/index.html"
 
-    # Prerendered dynamic routes (slug -> per-route index.html)
-    [[services.production.rewrites]]
-    from = "/docs/:slug"
-    to = "/docs/:slug/index.html"
+      [[services.production.rewrites]]
+      from = "/templates"
+      to = "/templates/index.html"
 
-    [[services.production.rewrites]]
-    from = "/tools/:slug"
-    to = "/tools/:slug/index.html"
+      [[services.production.rewrites]]
+      from = "/templates/"
+      to = "/templates/index.html"
 
-    [[services.production.rewrites]]
-    from = "/pro/:slug"
-    to = "/pro/:slug/index.html"
+      [[services.production.rewrites]]
+      from = "/pro"
+      to = "/pro/index.html"
 
-    # SPA fallback for any paths not covered above
-    [[services.production.rewrites]]
-    from = "/*"
-    to = "/index.html"
+      [[services.production.rewrites]]
+      from = "/pro/"
+      to = "/pro/index.html"
 
-    [services.env]
-    PORT = "21121"
-    BASE_PATH = "/"
+      [[services.production.rewrites]]
+      from = "/docs/basic-client-follow-up-system-to-avoid-lost-sales"
+      to = "/docs/basic-client-follow-up-system-to-avoid-lost-sales/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/basic-client-follow-up-system-to-avoid-lost-sales/"
+      to = "/docs/basic-client-follow-up-system-to-avoid-lost-sales/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/basic-compliance-checklist"
+      to = "/docs/basic-compliance-checklist/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/basic-compliance-checklist/"
+      to = "/docs/basic-compliance-checklist/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/common-ein-mistakes"
+      to = "/docs/common-ein-mistakes/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/common-ein-mistakes/"
+      to = "/docs/common-ein-mistakes/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/ein-application-preparation-checklist"
+      to = "/docs/ein-application-preparation-checklist/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/ein-application-preparation-checklist/"
+      to = "/docs/ein-application-preparation-checklist/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-small-businesses-lose-money-without-noticing"
+      to = "/docs/how-small-businesses-lose-money-without-noticing/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-small-businesses-lose-money-without-noticing/"
+      to = "/docs/how-small-businesses-lose-money-without-noticing/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-register-a-small-business"
+      to = "/docs/how-to-register-a-small-business/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-register-a-small-business/"
+      to = "/docs/how-to-register-a-small-business/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-track-business-expenses"
+      to = "/docs/how-to-track-business-expenses/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/how-to-track-business-expenses/"
+      to = "/docs/how-to-track-business-expenses/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/itin-application-checklist"
+      to = "/docs/itin-application-checklist/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/itin-application-checklist/"
+      to = "/docs/itin-application-checklist/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/itin-vs-ein"
+      to = "/docs/itin-vs-ein/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/itin-vs-ein/"
+      to = "/docs/itin-vs-ein/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/profit-and-loss-basics"
+      to = "/docs/profit-and-loss-basics/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/profit-and-loss-basics/"
+      to = "/docs/profit-and-loss-basics/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/required-startup-documents"
+      to = "/docs/required-startup-documents/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/required-startup-documents/"
+      to = "/docs/required-startup-documents/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/simple-cash-flow-overview"
+      to = "/docs/simple-cash-flow-overview/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/simple-cash-flow-overview/"
+      to = "/docs/simple-cash-flow-overview/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/tax-setup-document-organizer"
+      to = "/docs/tax-setup-document-organizer/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/tax-setup-document-organizer/"
+      to = "/docs/tax-setup-document-organizer/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/what-is-an-ein"
+      to = "/docs/what-is-an-ein/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/what-is-an-ein/"
+      to = "/docs/what-is-an-ein/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/what-is-an-itin"
+      to = "/docs/what-is-an-itin/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/what-is-an-itin/"
+      to = "/docs/what-is-an-itin/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/who-needs-an-ein"
+      to = "/docs/who-needs-an-ein/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/who-needs-an-ein/"
+      to = "/docs/who-needs-an-ein/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/who-needs-an-itin"
+      to = "/docs/who-needs-an-itin/index.html"
+
+      [[services.production.rewrites]]
+      from = "/docs/who-needs-an-itin/"
+      to = "/docs/who-needs-an-itin/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/budget"
+      to = "/tools/budget/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/budget/"
+      to = "/tools/budget/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/expenses"
+      to = "/tools/expenses/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/expenses/"
+      to = "/tools/expenses/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/forecast"
+      to = "/tools/forecast/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/forecast/"
+      to = "/tools/forecast/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/invoice"
+      to = "/tools/invoice/index.html"
+
+      [[services.production.rewrites]]
+      from = "/tools/invoice/"
+      to = "/tools/invoice/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/business-starter"
+      to = "/pro/business-starter/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/business-starter/"
+      to = "/pro/business-starter/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/client-invoice"
+      to = "/pro/client-invoice/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/client-invoice/"
+      to = "/pro/client-invoice/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/financial-control"
+      to = "/pro/financial-control/index.html"
+
+      [[services.production.rewrites]]
+      from = "/pro/financial-control/"
+      to = "/pro/financial-control/index.html"
+
+      # SPA fallback for any paths not covered above
+      [[services.production.rewrites]]
+      from = "/*"
+      to = "/index.html"
+
+      [services.env]
+      PORT = "21121"
+      BASE_PATH = "/"
   
