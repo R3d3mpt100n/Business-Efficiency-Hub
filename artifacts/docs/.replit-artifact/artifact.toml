@@ -1,48 +1,80 @@
 kind = "web"
-  previewPath = "/"
-  title = "Small Business Systems Docs"
-  version = "1.0.0"
-  id = "artifacts/docs"
-  router = "path"
+    previewPath = "/"
+    title = "Small Business Systems Docs"
+    version = "1.0.0"
+    id = "artifacts/docs"
+    router = "path"
 
-  [[integratedSkills]]
-  name = "react-vite"
-  version = "1.0.0"
+    [[integratedSkills]]
+    name = "react-vite"
+    version = "1.0.0"
 
-  [[services]]
-  name = "web"
-  paths = [ "/" ]
-  localPort = 21121
+    [[services]]
+    name = "web"
+    paths = [ "/" ]
+    localPort = 21121
 
-  [services.development]
-  run = "pnpm --filter @workspace/docs run dev"
+    [services.development]
+    run = "pnpm --filter @workspace/docs run dev"
 
-  [services.production]
-  build = [ "pnpm", "--filter", "@workspace/docs", "run", "build" ]
-  publicDir = "artifacts/docs/dist/public"
-  serve = "static"
+    [services.production]
+    build = [ "pnpm", "--filter", "@workspace/docs", "run", "build" ]
+    publicDir = "artifacts/docs/dist/public"
+    serve = "static"
 
-  [[services.production.rewrites]]
-  from = "/sitemap.xml"
-  to = "/sitemap.xml"
+    # Static assets (pass-through, must come before wildcards)
+    [[services.production.rewrites]]
+    from = "/sitemap.xml"
+    to = "/sitemap.xml"
 
-  [[services.production.rewrites]]
-  from = "/robots.txt"
-  to = "/robots.txt"
+    [[services.production.rewrites]]
+    from = "/robots.txt"
+    to = "/robots.txt"
 
-  [[services.production.rewrites]]
-  from = "/favicon.svg"
-  to = "/favicon.svg"
+    [[services.production.rewrites]]
+    from = "/favicon.svg"
+    to = "/favicon.svg"
 
-  [[services.production.rewrites]]
-  from = "/googled6d1c917ff22e5a2.html"
-  to = "/googled6d1c917ff22e5a2.html"
+    [[services.production.rewrites]]
+    from = "/googled6d1c917ff22e5a2.html"
+    to = "/googled6d1c917ff22e5a2.html"
 
-  [[services.production.rewrites]]
-  from = "/*"
-  to = "/index.html"
+    # Prerendered section pages
+    [[services.production.rewrites]]
+    from = "/docs"
+    to = "/docs/index.html"
 
-  [services.env]
-  PORT = "21121"
-  BASE_PATH = "/"
+    [[services.production.rewrites]]
+    from = "/tools"
+    to = "/tools/index.html"
+
+    [[services.production.rewrites]]
+    from = "/templates"
+    to = "/templates/index.html"
+
+    [[services.production.rewrites]]
+    from = "/pro"
+    to = "/pro/index.html"
+
+    # Prerendered dynamic routes (slug -> per-route index.html)
+    [[services.production.rewrites]]
+    from = "/docs/:slug"
+    to = "/docs/:slug/index.html"
+
+    [[services.production.rewrites]]
+    from = "/tools/:slug"
+    to = "/tools/:slug/index.html"
+
+    [[services.production.rewrites]]
+    from = "/pro/:slug"
+    to = "/pro/:slug/index.html"
+
+    # SPA fallback for any paths not covered above
+    [[services.production.rewrites]]
+    from = "/*"
+    to = "/index.html"
+
+    [services.env]
+    PORT = "21121"
+    BASE_PATH = "/"
   

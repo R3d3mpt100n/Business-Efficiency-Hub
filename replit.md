@@ -28,4 +28,16 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ## Artifacts
 
-- `docs` (`@workspace/docs`) — React + Vite documentation site for small business systems & efficiency. Pages: Home (`/`), Docs index (`/docs`), Article (`/docs/:slug`). Articles defined in `src/data/articles.ts`. Includes search/filter, category sidebar, and reserved layout slots for future affiliate links and resource sections.
+- `docs` (`@workspace/docs`) — React + Vite documentation site for small business systems & efficiency. Pages: Home (`/`), Docs index (`/docs`), Article (`/docs/:slug`), Tools (`/tools`, `/tools/:slug`), Templates (`/templates`), Pro Systems (`/pro`, `/pro/:slug`). Articles defined in `src/data/articles.ts`. Includes search/filter, category sidebar, and reserved layout slots for future affiliate links and resource sections.
+
+### Prerendering
+
+Build generates full static HTML for all 29 routes using Vite SSR:
+- `src/entry-server.tsx` — SSR entry point; exports `render(url)` and `ROUTES`
+- `vite.ssr.config.ts` — Vite SSR build config (outputs to `dist/server/`)
+- `scripts/prerender.mjs` — Iterates all routes, calls `render()`, injects into `index.html` template, writes `dist/public/{route}/index.html`
+- `src/main.tsx` — Uses `hydrateRoot` when prerendered content exists, `createRoot` otherwise
+
+Build order: `vite build (client)` → `vite build --ssr (server bundle)` → `node scripts/prerender.mjs`
+
+The artifact.toml routing rules send `/docs/:slug`, `/tools/:slug`, `/pro/:slug` to their respective prerendered `index.html` files before falling back to the SPA shell.
