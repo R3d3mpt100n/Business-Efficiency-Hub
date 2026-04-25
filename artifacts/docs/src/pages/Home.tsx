@@ -251,6 +251,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUST SIGNAL — STATS BAR */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="max-w-5xl mx-auto px-6 py-4">
+          <p className="text-center text-xs sm:text-sm text-slate-500">
+            <span>16 free guides</span>
+            <span className="mx-2 sm:mx-3 text-slate-300">·</span>
+            <span>4 free tools</span>
+            <span className="mx-2 sm:mx-3 text-slate-300">·</span>
+            <span>3 ready-to-use templates</span>
+            <span className="mx-2 sm:mx-3 text-slate-300">·</span>
+            <span>No account needed</span>
+          </p>
+        </div>
+      </section>
+
       {/* WHY LEDGELY EXISTS */}
       <section className="border-b border-slate-200 bg-white">
         <div className="max-w-5xl mx-auto px-6 py-12">
@@ -522,6 +537,44 @@ export default function Home() {
                 <p className="text-sm text-slate-600 leading-relaxed">{a.description}</p>
                 <p className="mt-4 text-xs text-slate-500">{a.readTime}</p>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY PEOPLE USE LEDGELY */}
+      <section className="border-t border-slate-200 bg-white">
+        <div className="max-w-5xl mx-auto px-6 py-16">
+          <h2 className="text-2xl font-semibold text-slate-900 mb-3">
+            Why people use Ledgely
+          </h2>
+          <p className="text-slate-600 max-w-2xl mb-8 leading-relaxed">
+            What makes Ledgely different from the usual small business advice you'll find online.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              {
+                t: "Plain English, no jargon",
+                d: "Every guide is written to give you a direct answer in the first two sentences — no filler, no upselling you on software.",
+              },
+              {
+                t: "Free tools that work in your browser",
+                d: "No account, no download, no signup. Open a tool and use it immediately.",
+              },
+              {
+                t: "Built around the real order of operations",
+                d: "Most business setup advice skips steps or gets the order wrong. Ledgely follows the actual sequence — structure first, EIN second, bank account third.",
+              },
+            ].map((b) => (
+              <div
+                key={b.t}
+                className="rounded-lg border border-slate-200 bg-white p-5"
+              >
+                <h3 className="font-semibold text-slate-900 mb-2 leading-snug">
+                  {b.t}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{b.d}</p>
+              </div>
             ))}
           </div>
         </div>
