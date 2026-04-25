@@ -9,6 +9,26 @@
     <!--SEO_HEAD-->
     <script>if(location.hostname.endsWith('.replit.app')){location.replace('https://ledgely.online'+location.pathname+location.search+location.hash);}</script>
 
+    <!-- Dark mode: apply class BEFORE React hydrates to prevent mismatch (#418) -->
+    <script>
+      (function(){
+        var s = localStorage.getItem('ledgely-dark');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (s === '1' || (s === null && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Critical inline CSS: prevents FOUC while full stylesheet loads async -->
+    <style>
+      *,::after,::before{box-sizing:border-box;border-width:0;border-style:solid}
+      html{background:#fff;line-height:1.5;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+      html.dark{background:#020617;color:#f1f5f9}
+      body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;color:#0f172a}
+      #root{min-height:100vh}
+    </style>
+
     <!-- DNS preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

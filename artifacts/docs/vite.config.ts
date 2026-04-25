@@ -26,11 +26,12 @@ if (!basePath) {
   );
 }
 
-// Moves the Vite-injected CSS <link> to appear BEFORE all script tags and
-// adds an early <link rel="preload" as="style"> so the browser fetches CSS
-// in parallel with the HTML rather than waiting for JS to be parsed first.
+// Makes the Vite-injected CSS non-render-blocking using the rel=preload+onload
+// trick. The browser fetches CSS at high priority without blocking paint, then
+// applies it as soon as it arrives. A minimal critical CSS in index.html keeps
+// the page usable during the load. A <noscript> fallback covers no-JS users.
 const cssPriorityPlugin = {
-  name: 'css-first',
+  name: 'css-async',
   apply: 'build' as const,
   transformIndexHtml: {
     order: 'post' as const,
@@ -39,15 +40,14 @@ const cssPriorityPlugin = {
       const m = html.match(cssLinkRe);
       if (!m) return html;
       const cssHref = m[1];
-      const cssStylesheet = `<link rel="stylesheet" crossorigin href="${cssHref}">`;
-      const cssPreload    = `<link rel="preload" as="style" href="${cssHref}">`;
-      // Remove from current position (after module scripts)
+      // Non-render-blocking: preload at high priority, apply via onload
+      const cssAsync = `<link rel="preload" as="style" fetchpriority="high" href="${cssHref}" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="${cssHref}"></noscript>`;
+      // Remove the render-blocking <link rel="stylesheet"> Vite injected
       html = html.replace(m[0], '');
-      // Insert BEFORE our first inline <script> so the preload scanner finds
-      // it immediately at the top of <head>, well before any JS tags.
+      // Insert the async version as early as possible in <head>
       html = html.replace(
         '<script>if(location.hostname',
-        `${cssPreload}\n    ${cssStylesheet}\n    <script>if(location.hostname`,
+        `${cssAsync}\n    <script>if(location.hostname`,
       );
       return html;
     },
