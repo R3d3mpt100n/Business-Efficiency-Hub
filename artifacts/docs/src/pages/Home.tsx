@@ -251,6 +251,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FOUNDER NOTE */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="max-w-5xl mx-auto px-6 py-12">
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-3">
+            A note from the founder
+          </p>
+          <blockquote className="border-l-2 border-amber-400 pl-5 max-w-2xl">
+            <p className="text-slate-700 leading-relaxed">
+              I built Ledgely because every time I looked up something simple — like
+              how to get an EIN or what documents to keep on file — I either got a
+              law firm blog trying to sell me services, or a Reddit thread from
+              2019 with conflicting answers.
+            </p>
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              Ledgely is the resource I wished existed. Plain answers, correct
+              order of operations, no agenda.
+            </p>
+            <footer className="mt-4 text-sm text-slate-500">— The Ledgely Team</footer>
+          </blockquote>
+        </div>
+      </section>
+
       {/* TRUST SIGNAL — STATS BAR */}
       <section className="border-b border-slate-200 bg-white">
         <div className="max-w-5xl mx-auto px-6 py-4">

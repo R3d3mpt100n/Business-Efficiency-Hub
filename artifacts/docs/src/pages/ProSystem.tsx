@@ -5,6 +5,7 @@ import { articlesBySlugs } from "@/data/articles";
 import { tools } from "@/data/tools";
 import { templates } from "@/data/templates";
 import { PRO_SYSTEMS_URL } from "@/data/checkout";
+import { EarlyAccessNote } from "@/components/EarlyAccessNote";
 
 const SYSTEM_META: Record<string, { outcome: string; meta: string; accentClass: string; badgeClass: string; statusLabel: string }> = {
   "financial-control": {
@@ -81,12 +82,15 @@ export default function ProSystem() {
                 <p className="mt-1 text-slate-500">{meta?.outcome ?? system.tagline}</p>
                 <p className="mt-3 text-sm text-slate-700 leading-relaxed max-w-xl">{system.description}</p>
               </div>
-              <a
-                href={PRO_SYSTEMS_URL}
-                className="flex-none inline-flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
-              >
-                Unlock full system →
-              </a>
+              <div className="flex-none flex flex-col items-end gap-2">
+                <a
+                  href={PRO_SYSTEMS_URL}
+                  className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+                >
+                  Unlock full system →
+                </a>
+                <EarlyAccessNote className="text-right" />
+              </div>
             </div>
           </div>
         </div>
@@ -138,12 +142,15 @@ export default function ProSystem() {
               Complete workflow, downloadable templates, and ongoing access.
             </p>
           </div>
-          <a
-            href={PRO_SYSTEMS_URL}
-            className="flex-none inline-flex items-center justify-center rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100 transition-colors"
-          >
-            Unlock full system →
-          </a>
+          <div className="flex-none flex flex-col items-end gap-2">
+            <a
+              href={PRO_SYSTEMS_URL}
+              className="inline-flex items-center justify-center rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100 transition-colors"
+            >
+              Unlock full system →
+            </a>
+            <EarlyAccessNote className="text-right" />
+          </div>
         </section>
 
         {/* Related free content */}

@@ -10,6 +10,7 @@ import {
 } from "@/data/articles";
 import { proSystemForCategory } from "@/data/proSystems";
 import { UpgradePrompt } from "@/components/UpgradePrompt";
+import { FeedbackPrompt } from "@/components/FeedbackPrompt";
 
 export default function Article() {
   const [, params] = useRoute("/docs/:slug");
@@ -167,6 +168,8 @@ export default function Article() {
           </aside>
         );
       })()}
+
+      <FeedbackPrompt />
 
       <UpgradePrompt system={proSystemForCategory(article.category)} />
 

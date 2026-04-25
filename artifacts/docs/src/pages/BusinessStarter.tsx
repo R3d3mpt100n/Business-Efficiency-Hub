@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import { PRO_SYSTEMS_URL } from "@/data/checkout";
+import { EarlyAccessNote } from "@/components/EarlyAccessNote";
 import { downloadPdf, BUSINESS_STARTER_FILES } from "@/data/downloads";
 import { W7Module } from "@/components/W7Module";
 import { KEY_BENEFITS } from "@/data/proSystems";
@@ -198,12 +199,15 @@ export default function BusinessStarter() {
                   A clear, ordered path from idea → decision → legal setup → banking → completion. Make each decision once, then move directly to the next step.
                 </p>
               </div>
-              <a
-                href={PRO_SYSTEMS_URL}
-                className="flex-none inline-flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
-              >
-                Unlock full system →
-              </a>
+              <div className="flex-none flex flex-col items-end gap-2">
+                <a
+                  href={PRO_SYSTEMS_URL}
+                  className="inline-flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
+                >
+                  Unlock full system →
+                </a>
+                <EarlyAccessNote className="text-right" />
+              </div>
             </div>
           </div>
         </div>
@@ -700,6 +704,7 @@ ${nextActions.map((s, i) => `${i + 1}. ${s}`).join("\n")}
         >
           Unlock full system &rarr;
         </a>
+        <EarlyAccessNote className="mt-3" />
       </section>
     </article>
     </div>
