@@ -150,7 +150,7 @@ function SystemCard({ system }: { system: SystemDef }) {
           </Link>
           <a
             href={stripeUrl}
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-lg bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-300 whitespace-nowrap"
           >
             Unlock — $15
           </a>
