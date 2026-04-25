@@ -56,10 +56,11 @@ export function Layout({ children }: { children: ReactNode }) {
             <button
               suppressHydrationWarning
               onClick={() => setDark(!dark)}
-              aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+              aria-label="Toggle dark mode"
               className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-800"
             >
-              {dark ? <SunIcon /> : <MoonIcon />}
+              <span className="icon-moon"><MoonIcon /></span>
+              <span className="icon-sun"><SunIcon /></span>
             </button>
           </nav>
         </div>
