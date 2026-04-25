@@ -1,0 +1,66 @@
+What is an EIN?
+A clear, plain-English explanation of the Employer Identification Number and what it's used for.
+
+Direct answer
+
+An EIN (Employer Identification Number) is a unique nine-digit number issued by the IRS to identify a business for federal tax purposes. Think of it as a Social Security number, but for your business. It's free to obtain directly from the IRS.
+
+Simple explanation
+When the IRS or a bank needs to identify your business, they use the EIN. It appears on tax filings, payroll forms, business bank accounts, and many state and local registrations. It does not expire, and a business keeps the same EIN for its entire life unless its structure fundamentally changes.
+
+How an EIN gets used in practice
+1
+Filing federal business taxes
+Your EIN appears on the business's federal tax return and most related filings.
+
+2
+Opening a business bank account
+Banks require an EIN (or sometimes an SSN for sole proprietors) to open a business account.
+
+3
+Hiring and paying employees
+Payroll, W-2s, and employment tax filings all reference the EIN.
+
+4
+Applying for licenses and permits
+Many state and local agencies ask for your EIN during registration.
+
+Summary
+•
+An EIN is a nine-digit federal tax ID for your business.
+•
+It's free directly from the IRS — beware of paid lookalike sites.
+•
+You'll need it for taxes, banking, payroll, and many registrations.
+•
+The official application is IRS Form SS-4. Get it from IRS.gov.
+Next step
+
+EIN Preparation Checklist →
+Have everything ready before you apply — names, addresses, responsible party, and entity details.
+
+Was this guide helpful?
+
+Yes, it helped
+Somewhat
+Not really
+Pro System
+
+This guide is part of the Business Starter System (Pro)
+Get the full step-by-step system — templates, checklists, and walkthrough in one place.
+
+Unlock the full system →
+Legal disclaimer
+
+This content is for educational and informational purposes only. It does not constitute legal, tax, or financial advice. Users should consult a qualified professional for advice specific to their situation. We do not provide official government forms or services.
+
+Related guides
+EIN
+
+Who needs an EIN?
+EIN
+
+EIN Application Preparation Checklist (Business Tax ID)
+EIN
+
+Common EIN mistakes to avoid
