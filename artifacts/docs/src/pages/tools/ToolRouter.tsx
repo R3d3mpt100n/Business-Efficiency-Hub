@@ -22,7 +22,7 @@ export default function ToolRouter() {
         <div className="max-w-3xl mx-auto px-6 py-20 text-center">
           <h1 className="text-2xl font-semibold text-slate-900">Tool not found</h1>
           <Link
-            href="/tools/"
+            href="/tools"
             className="inline-block mt-6 text-sm font-medium text-slate-900 underline"
           >
             Back to tools

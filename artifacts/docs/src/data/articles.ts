@@ -1109,7 +1109,7 @@ export const articles: Article[] = [
     ],
     nextStep: {
       label: "Free marketing channels for a new small business",
-      href: "/docs/free-marketing-channels-for-a-new-small-business/",
+      href: "/docs/free-marketing-channels-for-a-new-small-business",
       description:
         "Once your first 10 customers are in motion, expand into the free channels that compound over time.",
     },
@@ -1168,7 +1168,7 @@ export const articles: Article[] = [
     ],
     nextStep: {
       label: "How to write an offer people actually respond to",
-      href: "/docs/how-to-write-an-offer-people-actually-respond-to/",
+      href: "/docs/how-to-write-an-offer-people-actually-respond-to",
       description:
         "Channels only work when the offer is clear. Tighten the message before you scale the reach.",
     },
@@ -1227,7 +1227,7 @@ export const articles: Article[] = [
     ],
     nextStep: {
       label: "Word of mouth — how to build a referral system for free",
-      href: "/docs/word-of-mouth-referral-system/",
+      href: "/docs/word-of-mouth-referral-system",
       description:
         "Once your offer is clear, referrals get dramatically easier — because your customers can finally describe you.",
     },
@@ -1286,7 +1286,7 @@ export const articles: Article[] = [
     ],
     nextStep: {
       label: "Simple social media for small businesses with no budget",
-      href: "/docs/simple-social-media-for-small-businesses-with-no-budget/",
+      href: "/docs/simple-social-media-for-small-businesses-with-no-budget",
       description:
         "Referrals work even better when prospects can find you online and verify you're real.",
     },
@@ -1345,7 +1345,7 @@ export const articles: Article[] = [
     ],
     nextStep: {
       label: "How to price your services (and stop undercharging)",
-      href: "/docs/how-to-price-your-services/",
+      href: "/docs/how-to-price-your-services",
       description:
         "Reach is wasted if your prices don't sustain the business. Fix pricing before scaling marketing.",
     },
@@ -1404,7 +1404,7 @@ export const articles: Article[] = [
     ],
     nextStep: {
       label: "How to write an offer people actually respond to",
-      href: "/docs/how-to-write-an-offer-people-actually-respond-to/",
+      href: "/docs/how-to-write-an-offer-people-actually-respond-to",
       description:
         "Once your price is set, package it inside a clear offer so customers can decide quickly.",
     },
@@ -1425,43 +1425,43 @@ type NextStep = { label: string; href: string; description: string };
 const CATEGORY_NEXT_STEP: Record<string, NextStep> = {
   EIN: {
     label: "EIN Preparation Checklist",
-    href: "/docs/ein-application-preparation-checklist/",
+    href: "/docs/ein-application-preparation-checklist",
     description:
       "Have everything ready before you apply — names, addresses, responsible party, and entity details.",
   },
   ITIN: {
     label: "ITIN Application Checklist",
-    href: "/docs/itin-application-checklist/",
+    href: "/docs/itin-application-checklist",
     description:
       "Gather the documents and information you'll need for the W-7 application.",
   },
   "Business Setup": {
     label: "Basic compliance checklist",
-    href: "/docs/basic-compliance-checklist/",
+    href: "/docs/basic-compliance-checklist",
     description:
       "Lock in the recurring obligations that keep your business in good standing.",
   },
   "Financial Systems": {
     label: "Open the Business Expense Tracker",
-    href: "/tools/expenses/",
+    href: "/tools/expenses",
     description:
       "Put what you just learned into practice and start tracking expenses in your browser.",
   },
   "Money & Profit": {
     label: "Open the Monthly Profit Estimator",
-    href: "/tools/budget/",
+    href: "/tools/budget",
     description:
       "See how much profit you actually keep each month after expenses.",
   },
   "Sales & Clients": {
     label: "Open the Get Paid Invoice System",
-    href: "/tools/invoice/",
+    href: "/tools/invoice",
     description:
       "Send a clean, professional invoice in minutes so clients pay you faster.",
   },
   "Marketing & Growth": {
     label: "How to get your first 10 customers",
-    href: "/docs/how-to-get-your-first-10-customers/",
+    href: "/docs/how-to-get-your-first-10-customers",
     description:
       "Start at the beginning of the marketing path: a no-budget plan to land your first paying customers.",
   },

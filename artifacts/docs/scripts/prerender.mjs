@@ -308,8 +308,8 @@ for (const url of ROUTES) {
   try {
     const appHtml = render(url);
 
-    // Canonical: always use trailing-slash form (matches server redirect behaviour)
-    const canonicalPath = url === '/' ? '/' : url.replace(/\/?$/, '/');
+    // Canonical: no trailing slash (served as 200 directly, no redirect)
+    const canonicalPath = url === '/' ? '/' : url.replace(/\/+$/, '');
     const canonicalUrl = `${BASE_ORIGIN}${canonicalPath}`;
 
     const meta = getPageMeta(url);
@@ -358,7 +358,7 @@ const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 const TOP_LEVEL = new Set(['/', '/docs', '/tools', '/templates', '/pro']);
 
 function sitemapEntry(url) {
-  const canonical = url === '/' ? '/' : url.replace(/\/?$/, '/');
+  const canonical = url === '/' ? '/' : url.replace(/\/+$/, '');
   const loc = `${BASE_ORIGIN}${canonical}`;
   const priority = url === '/' ? '1.0' : TOP_LEVEL.has(url) ? '0.8' : '0.7';
   const changefreq = url === '/' ? 'weekly' : TOP_LEVEL.has(url) ? 'weekly' : 'monthly';

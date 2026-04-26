@@ -14,7 +14,7 @@ export function RelatedDocs({ slugs }: { slugs?: string[] }) {
         {related.map((a) => (
           <Link
             key={a.slug}
-            href={`/docs/${a.slug}/`}
+            href={`/docs/${a.slug}`}
             className="block rounded-md border border-slate-200 p-4 hover:shadow-sm"
           >
             <p className="text-xs text-slate-500 mb-1">{a.category}</p>

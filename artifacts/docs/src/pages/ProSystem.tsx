@@ -68,7 +68,7 @@ export default function ProSystem() {
     return (
       <div className="max-w-3xl mx-auto px-6 py-20 text-center">
         <h1 className="text-2xl font-semibold text-slate-900">System not found</h1>
-        <Link href="/pro/" className="inline-block mt-6 text-sm font-medium text-slate-900 underline">
+        <Link href="/pro" className="inline-block mt-6 text-sm font-medium text-slate-900 underline">
           Back to Pro Systems
         </Link>
       </div>
@@ -85,7 +85,7 @@ export default function ProSystem() {
       {/* Page header card */}
       <div className="border-b border-slate-200 bg-slate-50">
         <div className="max-w-5xl mx-auto px-6 py-10">
-          <Link href="/pro/" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 mb-6">
+          <Link href="/pro" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 mb-6">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -196,7 +196,7 @@ export default function ProSystem() {
               {docs.map((a) => (
                 <Link
                   key={a.slug}
-                  href={`/docs/${a.slug}/`}
+                  href={`/docs/${a.slug}`}
                   className="block rounded-lg border border-slate-200 bg-white p-4 hover:border-slate-400 transition-colors"
                 >
                   <p className="text-xs text-slate-400 mb-1">{a.category}</p>
@@ -216,7 +216,7 @@ export default function ProSystem() {
               {linkedTools.map((t) => (
                 <Link
                   key={t.slug}
-                  href={`/tools/${t.slug}/`}
+                  href={`/tools/${t.slug}`}
                   className="block rounded-lg border border-slate-200 bg-white p-4 hover:border-slate-400 transition-colors"
                 >
                   <h3 className="text-sm font-semibold text-slate-900">{t.title}</h3>
@@ -236,7 +236,7 @@ export default function ProSystem() {
               {linkedTemplates.map((t) => (
                 <Link
                   key={t.slug}
-                  href="/templates/"
+                  href="/templates"
                   className="block rounded-lg border border-slate-200 bg-white p-4 hover:border-slate-400 transition-colors"
                 >
                   <h3 className="text-sm font-semibold text-slate-900">{t.title}</h3>

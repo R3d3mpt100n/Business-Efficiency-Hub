@@ -77,16 +77,16 @@ export function Layout({ children }: { children: ReactNode }) {
             Ledgely &middot; Practical systems for small business owners.
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/docs/" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/docs" className="hover:text-slate-900 dark:hover:text-slate-100">
               Docs
             </Link>
-            <Link href="/tools/" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/tools" className="hover:text-slate-900 dark:hover:text-slate-100">
               Tools
             </Link>
-            <Link href="/templates/" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/templates" className="hover:text-slate-900 dark:hover:text-slate-100">
               Templates
             </Link>
-            <Link href="/pro/" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/pro" className="hover:text-slate-900 dark:hover:text-slate-100">
               Pro Systems
             </Link>
           </div>

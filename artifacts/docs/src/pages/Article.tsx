@@ -25,7 +25,7 @@ export default function Article() {
           The guide you're looking for doesn't exist.
         </p>
         <Link
-          href="/docs/"
+          href="/docs"
           className="inline-block mt-6 text-sm font-medium text-slate-900 underline"
         >
           Back to all guides
@@ -41,7 +41,7 @@ export default function Article() {
 
   return (
     <article className="max-w-3xl mx-auto px-6 py-12">
-      <Link href="/docs/" className="text-sm text-slate-500 hover:text-slate-900">
+      <Link href="/docs" className="text-sm text-slate-500 hover:text-slate-900">
         &larr; Back to docs
       </Link>
 
@@ -196,7 +196,7 @@ export default function Article() {
             {related.map((o) => (
               <Link
                 key={o.slug}
-                href={`/docs/${o.slug}/`}
+                href={`/docs/${o.slug}`}
                 className="block rounded-lg border border-slate-200 p-4 hover:shadow-sm"
               >
                 <p className="text-xs text-slate-500 mb-1">{o.category}</p>
