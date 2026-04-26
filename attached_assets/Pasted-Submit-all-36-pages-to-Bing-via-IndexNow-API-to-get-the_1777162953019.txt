@@ -1,0 +1,52 @@
+Submit all 36 pages to Bing via IndexNow API to get them indexed immediately.
+
+Get your IndexNow key from Bing Webmaster Tools (if you haven't already)
+Submit all 36 pages at once via the IndexNow API:
+
+POST to https://www.bing.com/indexnow
+Content-Type: application/json
+
+{
+  "host": "ledgely.online",
+  "key": "[your-indexnow-key-here]",
+  "urlList": [
+      "https://ledgely.online/",
+      "https://ledgely.online/docs/what-is-an-ein",
+      "https://ledgely.online/docs/who-needs-an-ein",
+      "https://ledgely.online/docs/ein-application-preparation-checklist",
+      "https://ledgely.online/docs/common-ein-mistakes",
+      "https://ledgely.online/docs/what-is-an-itin",
+      "https://ledgely.online/docs/who-needs-an-itin",
+      "https://ledgely.online/docs/itin-application-checklist",
+      "https://ledgely.online/docs/itin-vs-ein",
+      "https://ledgely.online/docs/how-to-register-a-small-business",
+      "https://ledgely.online/docs/required-startup-documents",
+      "https://ledgely.online/docs/basic-compliance-checklist",
+      "https://ledgely.online/docs/tax-setup-document-organizer",
+      "https://ledgely.online/docs/how-to-track-business-expenses",
+      "https://ledgely.online/docs/profit-and-loss-basics",
+      "https://ledgely.online/docs/simple-cash-flow-overview",
+      "https://ledgely.online/docs/how-small-businesses-lose-money-without-noticing",
+      "https://ledgely.online/docs/basic-client-follow-up-system-to-avoid-lost-sales",
+      "https://ledgely.online/docs/how-to-get-your-first-10-customers",
+      "https://ledgely.online/docs/free-marketing-channels-for-a-new-small-business",
+      "https://ledgely.online/docs/how-to-write-an-offer-people-respond-to",
+      "https://ledgely.online/docs/word-of-mouth-how-to-build-a-referral-system",
+      "https://ledgely.online/docs/simple-social-media-for-small-businesses",
+      "https://ledgely.online/docs/how-to-price-your-services",
+      "https://ledgely.online/pro/business-starter",
+      "https://ledgely.online/pro/financial-control",
+      "https://ledgely.online/pro/client-invoice",
+      "https://ledgely.online/pro/marketing-growth",
+      "https://ledgely.online/tools",
+      "https://ledgely.online/tools/invoice",
+      "https://ledgely.online/tools/expense-tracker",
+      "https://ledgely.online/tools/cash-flow",
+      "https://ledgely.online/tools/profit-calculator",
+      "https://ledgely.online/pro-systems.html"
+  ]
+}
+
+Paste your IndexNow key where it says [your-indexnow-key-here]
+Execute the request and confirm success
+
