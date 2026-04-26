@@ -279,6 +279,9 @@ function buildSeoHead(url, canonicalUrl, meta) {
   const safeImage   = escapeAttr(OG_IMAGE);
 
   const lines = [
+    `<meta name="robots" content="index, follow" />`,
+    `<meta name="googlebot" content="index, follow" />`,
+    `<meta name="bingbot" content="index, follow" />`,
     `<meta name="description" content="${safeDesc}" />`,
     `<meta property="og:title" content="${safeTitle}" />`,
     `<meta property="og:description" content="${safeDesc}" />`,
