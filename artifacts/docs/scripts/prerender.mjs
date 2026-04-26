@@ -386,4 +386,35 @@ const sitemapPath = resolve(root, 'dist/public/sitemap.xml');
 writeFileSync(sitemapPath, sitemapXml, 'utf-8');
 console.log(`Sitemap written: ${ROUTES.length} URLs → dist/public/sitemap.xml\n`);
 
+// --- Bing Webmaster API: submit all URLs on every build ---
+const BING_API_KEY = process.env.BING_WEBMASTER_API_KEY;
+if (BING_API_KEY) {
+  // Bing daily quota is 10–100 URLs depending on account tier.
+  // Prioritise: home, top-level sections, then article pages.
+  const BING_QUOTA = 100;
+  const priority = (r) => (r === '/' ? 0 : TOP_LEVEL.has(r) ? 1 : 2);
+  const sorted = [...ROUTES].sort((a, b) => priority(a) - priority(b));
+  const urlList = sorted.slice(0, BING_QUOTA).map(r => `${BASE_ORIGIN}${r === '/' ? '' : r}`);
+  try {
+    const res = await fetch(
+      `https://ssl.bing.com/webmaster/api.svc/json/SubmitUrlbatch?apikey=${BING_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({ siteUrl: BASE_ORIGIN, urlList }),
+      }
+    );
+    const text = await res.text();
+    if (res.ok) {
+      console.log(`Bing: submitted ${urlList.length} URLs → HTTP ${res.status} ${text}`);
+    } else {
+      console.warn(`Bing: submission failed → HTTP ${res.status} ${text}`);
+    }
+  } catch (err) {
+    console.warn(`Bing: submission error → ${err.message}`);
+  }
+} else {
+  console.log('Bing: BING_WEBMASTER_API_KEY not set — skipping URL submission.');
+}
+
 if (fail > 0) process.exit(1);
