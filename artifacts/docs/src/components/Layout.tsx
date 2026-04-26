@@ -52,10 +52,10 @@ export function Layout({ children }: { children: ReactNode }) {
           </Link>
           <nav className="flex items-center gap-6">
             {navLink("/", "Home")}
-            {navLink("/docs/", "Docs")}
-            {navLink("/tools/", "Tools")}
-            {navLink("/templates/", "Templates")}
-            {navLink("/pro/", "Pro Systems")}
+            {navLink("/docs", "Docs")}
+            {navLink("/tools", "Tools")}
+            {navLink("/templates", "Templates")}
+            {navLink("/pro", "Pro Systems")}
             <button
               suppressHydrationWarning
               onClick={() => setDark(!dark)}
