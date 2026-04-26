@@ -330,14 +330,14 @@ for (const url of ROUTES) {
       )
       .replace('<!--SEO_HEAD-->', seoHead);
 
-    // Write flat .html files so Replit's static server serves them at clean
-    // URLs (/docs/what-is-an-ein → what-is-an-ein.html) with no 301 redirect.
+    // Write dir/index.html — artifact.toml rewrites serve both /slug and /slug/
+    // as 200 directly (no redirect).
     let filePath;
     if (url === '/') {
       filePath = resolve(root, 'dist/public/index.html');
     } else {
-      const bare = url.replace(/^\/|\/$/g, ''); // strip leading+trailing slashes
-      filePath = resolve(root, 'dist/public', bare + '.html');
+      const segments = url.replace(/^\//, '').split('/');
+      filePath = resolve(root, 'dist/public', ...segments, 'index.html');
     }
 
     mkdirSync(dirname(filePath), { recursive: true });
