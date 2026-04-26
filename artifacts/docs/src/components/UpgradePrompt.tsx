@@ -20,7 +20,7 @@ export function UpgradePrompt({
   if (variant === "compact") {
     return (
       <Link
-        href={`/pro/${system.slug}`}
+        href={`/pro/${system.slug}/`}
         className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:shadow-sm print:hidden"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-slate-900" />
@@ -43,7 +43,7 @@ export function UpgradePrompt({
       </p>
       <div className="mt-5">
         <Link
-          href={`/pro/${system.slug}`}
+          href={`/pro/${system.slug}/`}
           className="inline-flex items-center justify-center rounded-md bg-amber-400 px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-amber-300 transition-colors"
         >
           Unlock the full system &rarr;

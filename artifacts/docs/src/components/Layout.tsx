@@ -23,8 +23,11 @@ export function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
   const [dark, setDark] = useDarkMode();
 
+  const norm = (p: string) => (p === "/" ? "/" : p.replace(/\/$/, ""));
   const navLink = (href: string, label: string) => {
-    const active = location === href || (href !== "/" && location.startsWith(href));
+    const n = norm(location);
+    const h = norm(href);
+    const active = n === h || (h !== "/" && n.startsWith(h));
     return (
       <Link
         href={href}
@@ -49,10 +52,10 @@ export function Layout({ children }: { children: ReactNode }) {
           </Link>
           <nav className="flex items-center gap-6">
             {navLink("/", "Home")}
-            {navLink("/docs", "Docs")}
-            {navLink("/tools", "Tools")}
-            {navLink("/templates", "Templates")}
-            {navLink("/pro", "Pro Systems")}
+            {navLink("/docs/", "Docs")}
+            {navLink("/tools/", "Tools")}
+            {navLink("/templates/", "Templates")}
+            {navLink("/pro/", "Pro Systems")}
             <button
               suppressHydrationWarning
               onClick={() => setDark(!dark)}
@@ -74,16 +77,16 @@ export function Layout({ children }: { children: ReactNode }) {
             Ledgely &middot; Practical systems for small business owners.
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/docs" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/docs/" className="hover:text-slate-900 dark:hover:text-slate-100">
               Docs
             </Link>
-            <Link href="/tools" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/tools/" className="hover:text-slate-900 dark:hover:text-slate-100">
               Tools
             </Link>
-            <Link href="/templates" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/templates/" className="hover:text-slate-900 dark:hover:text-slate-100">
               Templates
             </Link>
-            <Link href="/pro" className="hover:text-slate-900 dark:hover:text-slate-100">
+            <Link href="/pro/" className="hover:text-slate-900 dark:hover:text-slate-100">
               Pro Systems
             </Link>
           </div>

@@ -225,13 +225,13 @@ export default function Home() {
               Start here &rarr;
             </Link>
             <Link
-              href="/docs"
+              href="/docs/"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50"
             >
               Browse the docs
             </Link>
             <Link
-              href="/tools"
+              href="/tools/"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-900 hover:bg-slate-50"
             >
               Open the tools
@@ -427,7 +427,7 @@ export default function Home() {
               </p>
             </div>
             <Link
-              href="/tools"
+              href="/tools/"
               className="text-sm font-medium text-slate-600 hover:text-slate-900"
             >
               View all tools &rarr;
@@ -442,7 +442,7 @@ export default function Home() {
             ].map((t) => (
               <Link
                 key={t.slug}
-                href={`/tools/${t.slug}`}
+                href={`/tools/${t.slug}/`}
                 className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
               >
                 <h3 className="font-semibold text-slate-900">{t.title}</h3>
@@ -470,7 +470,7 @@ export default function Home() {
               </p>
             </div>
             <Link
-              href="/templates"
+              href="/templates/"
               className="inline-flex items-center justify-center rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-900 hover:bg-slate-50"
             >
               Browse templates &rarr;
@@ -501,7 +501,7 @@ export default function Home() {
               </p>
             </div>
             <Link
-              href="/pro"
+              href="/pro/"
               className="text-sm font-medium text-slate-600 hover:text-slate-900"
             >
               Browse all systems &rarr;
@@ -529,7 +529,7 @@ export default function Home() {
           {CLUSTERS.map((c) => (
             <Link
               key={c.name}
-              href={`/docs/${c.catalogSlug}`}
+              href={`/docs/${c.catalogSlug}/`}
               className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
             >
               <p className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-1">
@@ -551,7 +551,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 py-16">
           <div className="flex items-end justify-between mb-8">
             <h2 className="text-2xl font-semibold text-slate-900">Latest guides</h2>
-            <Link href="/docs" className="text-sm font-medium text-slate-600 hover:text-slate-900">
+            <Link href="/docs/" className="text-sm font-medium text-slate-600 hover:text-slate-900">
               View all
             </Link>
           </div>
@@ -560,7 +560,7 @@ export default function Home() {
             {featured.map((a) => (
               <Link
                 key={a.slug}
-                href={`/docs/${a.slug}`}
+                href={`/docs/${a.slug}/`}
                 className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
               >
                 <p className="text-xs font-medium text-slate-500 mb-2">{a.category}</p>

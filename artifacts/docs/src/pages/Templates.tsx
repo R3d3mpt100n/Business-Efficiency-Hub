@@ -35,7 +35,7 @@ function TemplateCard({ template }: { template: Template }) {
 
       {template.kind === "tool" && (
         <Link
-          href={`/tools/${template.toolSlug}`}
+          href={`/tools/${template.toolSlug}/`}
           className="inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
         >
           Open the {template.title.toLowerCase()}
@@ -53,7 +53,7 @@ function TemplateCard({ template }: { template: Template }) {
             {related.map((a) => (
               <li key={a.slug}>
                 <Link
-                  href={`/docs/${a.slug}`}
+                  href={`/docs/${a.slug}/`}
                   className="text-slate-700 hover:text-slate-900 underline-offset-2 hover:underline"
                 >
                   {a.title}

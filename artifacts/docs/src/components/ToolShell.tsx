@@ -19,7 +19,7 @@ export function ToolShell({
 }) {
   return (
     <div className="max-w-3xl mx-auto px-6 py-12">
-      <Link href="/tools" className="text-sm text-slate-500 hover:text-slate-900">
+      <Link href="/tools/" className="text-sm text-slate-500 hover:text-slate-900">
         &larr; Back to tools
       </Link>
       <header className="mt-6 mb-8">

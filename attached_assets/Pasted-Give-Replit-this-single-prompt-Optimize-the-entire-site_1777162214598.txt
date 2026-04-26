@@ -1,0 +1,35 @@
+Give Replit this single prompt:
+
+Optimize the entire site to comply with Bing's SEO guidelines and fix the indexation issues. Do all of this:
+
+1. Fix client-side rendering (Guideline #8 — THE CRITICAL ISSUE): Run these diagnostics and fix any problems:
+
+curl https://ledgely.online/docs/what-is-an-ein | head -200
+curl https://ledgely.online/docs/how-to-register-a-small-business | head -200
+curl -I https://ledgely.online/docs/what-is-an-ein
+curl -I https://ledgely.online/docs/how-to-register-a-small-business
+If these show only <div id="root"></div>, prerendering is broken and must be fixed so crawlers see full page content without JavaScript. If robots.txt is blocking Bingbot, remove those blocks. If there are excessive redirects, fix them.
+
+2. Fix canonical tags (Guideline #6): Every page must have a unique canonical matching its own URL. No page should have canonical: ledgely.online/. Verify all 36 pages have correct canonicals.
+
+3. Update sitemap.xml with freshness (Guideline #3): Add <lastmod> dates to every URL in sitemap.xml showing when it was last updated.
+
+4. Fix robots.txt (Guideline #8, #10): Ensure Bingbot and all crawlers are allowed. Current robots.txt:
+
+User-agent: *
+Allow: /
+Sitemap: https://ledgely.online/sitemap.xml
+5. Ensure unique title tags and meta descriptions (Guideline #13): Every page needs a unique, under-155 character meta description. Check all 36 pages.
+
+6. Verify HTML structure (Guideline #13): Use proper H1, H2, H3 hierarchy and semantic HTML throughout.
+
+7. Verify key info appears early (Guideline #18): On guide pages, the direct answer appears at the top before long explanations.
+
+After making fixes, run these diagnostics again and paste results:
+
+curl https://ledgely.online/docs/what-is-an-ein | grep -i "irs\|employer" | head -5
+curl https://ledgely.online/ | wc -c
+If the first command returns guide text (not just a div), Bing can now crawl it.
+If the second returns 27000+ bytes, content is being served.
+
+Priority: Fix #1 (client-side rendering) first — that's blocking everything else.

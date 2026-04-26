@@ -119,7 +119,7 @@ export default function Docs() {
                     {grouped[cat].map((a) => (
                       <li key={a.slug}>
                         <Link
-                          href={`/docs/${a.slug}`}
+                          href={`/docs/${a.slug}/`}
                           className="block py-5 hover:bg-slate-50 -mx-2 px-2 rounded"
                         >
                           <div className="flex items-center gap-3 mb-1">

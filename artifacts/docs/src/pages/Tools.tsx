@@ -17,7 +17,7 @@ export default function Tools() {
         {tools.map((t) => (
           <Link
             key={t.slug}
-            href={`/tools/${t.slug}`}
+            href={`/tools/${t.slug}/`}
             className="block rounded-lg border border-slate-200 p-5 hover:shadow-sm"
           >
             <h2 className="font-semibold text-slate-900 mb-1">{t.title}</h2>
