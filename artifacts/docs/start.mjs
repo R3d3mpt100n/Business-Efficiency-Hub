@@ -15,6 +15,22 @@ if (isProduction) {
   const app = express();
   const distDir = join(__dirname, 'dist/public');
 
+  // Known old / misspelled URLs — permanent redirect to the correct canonical page
+  const PERMANENT_REDIRECTS = {
+    '/pro-systems.html': '/pro',
+    '/pro-systems':      '/pro',
+    '/index.html':       '/',
+    '/docs.html':        '/docs',
+    '/tools.html':       '/tools',
+    '/templates.html':   '/templates',
+  };
+
+  app.use((req, res, next) => {
+    const target = PERMANENT_REDIRECTS[req.path];
+    if (target) return res.redirect(301, target);
+    next();
+  });
+
   // 1. Serve real files (js, css, images, etc.) directly — no redirect for dirs
   app.use(serveStatic(distDir, { redirect: false, index: false }));
 
@@ -31,12 +47,17 @@ if (isProduction) {
         return res.sendFile(file);
       }
     }
-    // Root
-    const rootIndex = join(distDir, 'index.html');
-    if (existsSync(rootIndex)) {
-      return res.sendFile(rootIndex);
-    }
     next();
+  });
+
+  // 3. Everything else is a real 404 — do NOT silently serve the home page.
+  //    This prevents search engines treating ghost URLs as real pages.
+  app.use((req, res) => {
+    const notFoundFile = join(distDir, '404', 'index.html');
+    if (existsSync(notFoundFile)) {
+      return res.status(404).sendFile(notFoundFile);
+    }
+    res.status(404).send('<!doctype html><html><head><title>404 Not Found | Ledgely</title><meta name="robots" content="noindex"></head><body><h1>Page not found</h1><p><a href="/">Go to Ledgely home</a></p></body></html>');
   });
 
   app.listen(port, '0.0.0.0', () => {
