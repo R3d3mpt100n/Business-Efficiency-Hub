@@ -44,6 +44,8 @@ export const KEY_BENEFITS: Record<string, string[]> = {
     "Build a referral system that compounds over time",
     "Run free marketing channels without burnout",
     "Turn first-time buyers into repeat customers",
+    "Start with one niche audience, dominate it, then expand",
+    "Build a brand — not just a business — so customers choose you before the conversation starts",
   ],
 };
 

@@ -256,6 +256,16 @@ export default function BusinessStarter() {
         </div>
       </section>
 
+      {/* PLANNING NOTE */}
+      <section className="mb-8 rounded-lg border border-slate-200 bg-white p-5">
+        <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500 mb-2">
+          Before you write a business plan
+        </p>
+        <p className="text-sm text-slate-700 leading-relaxed">
+          Skip the 20-page business plan. Nobody reads it twice, and it's usually outdated before you finish writing it. Instead, draw a mind map: your idea in the center, then branch out every possibility — customers, problems you solve, revenue streams, risks, and competitors. It forces clarity in 30 minutes instead of 30 days, and you can update it as you learn. Once your thinking is clear, the setup steps below will make far more sense.
+        </p>
+      </section>
+
       {/* 1. DECISION GATE */}
       <section className="mb-10 rounded-lg border border-slate-900 bg-slate-50 p-6">
         <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-900 mb-2">
@@ -531,6 +541,7 @@ export default function BusinessStarter() {
             "Applying for an EIN at the wrong stage — before the entity is formed, or under the wrong responsible party.",
             "Mixing personal and business finances from day one — making bookkeeping and taxes painful later.",
             "Skipping compliance requirements — annual reports, local licenses, sales tax registration.",
+            "When you eventually hire: keeping mediocre performers too long. The top performers and the clear problems both handle themselves. The real trap is the middle — people who aren't bad enough to let go but aren't good enough to move the business forward. Most owners carry too many of them out of discomfort, and it costs the whole team.",
           ].map((m) => (
             <li key={m} className="flex gap-3">
               <span className="text-slate-400">&bull;</span>

@@ -772,6 +772,9 @@ export const articles: Article[] = [
     problemLabel: "Simple explanation",
     problem:
       "Receipts pile up, personal and business spending get mixed, and at tax time owners scramble to reconstruct months of activity. The fix isn't a fancier tool — it's a small weekly habit using a few simple categories.",
+    whyItHappensLabel: "The principle behind the habit",
+    whyItHappens:
+      "Most businesses fail financially not because they didn't earn enough, but because they spent everything the moment it came in. The businesses that build lasting financial health track their money closely in the early days — not to hoard it, but to know exactly what they can afford to reinvest. Discipline with money in year one creates options in year two and beyond.",
     solutionLabel: "Step-by-step",
     solution: [
       {
@@ -1010,8 +1013,13 @@ export const articles: Article[] = [
     problem:
       "A potential client reaches out, gets a quote, and goes quiet. The owner gets busy and forgets to follow up. Weeks later, that prospect hires someone else. Multiply this by every quote sent and the lost revenue is significant — but invisible.",
     whyItHappens:
-      "Sales follow-up isn't urgent until it's too late. There's no reminder, no list, and no defined moment to reach back out. The owner relies on memory, and memory loses to a busy week every time.",
+      "Sales follow-up isn't urgent until it's too late. There's no reminder, no list, and no defined moment to reach back out. The owner relies on memory, and memory loses to a busy week every time. It's also worth knowing that some clients take years to convert — not because they weren't interested, but because the timing wasn't right. Staying visible and consistently useful over months and years beats aggressive pitching every time.",
     solution: [
+      {
+        step: "Qualify before you pitch: Need → Like → Deal",
+        detail:
+          "Before chasing any lead, answer three questions in order. Does this person actually need what you offer? If not, no amount of follow-up fixes a bad fit — move on. Do you genuinely like each other? Clients you dread working with cost more than they earn. Can you agree on terms that work for both sides? If all three are yes, the close is easy. If any are no, no follow-up cadence will save it.",
+      },
       {
         step: "Capture every lead in one place",
         detail:
@@ -1053,10 +1061,11 @@ export const articles: Article[] = [
       },
     ],
     summary: [
+      "Qualify first: does the client need you, do you like each other, can you agree on a deal?",
       "Most lost sales are forgotten, not rejected.",
       "Capture every lead with a planned next-contact date.",
       "Use a simple cadence: 2 days, 7 days, 14 days, then monthly.",
-      "Block 15 minutes a day for follow-ups. Consistency is the whole game.",
+      "Block 15 minutes a day for follow-ups. Some relationships take years — stay consistent.",
     ],
   },
   // ========================= MARKETING & GROWTH CLUSTER =========================
@@ -1072,7 +1081,7 @@ export const articles: Article[] = [
       "Your first 10 customers almost never come from ads, SEO, or social media. They come from people you already know, communities you already belong to, and direct outreach with a clear offer. Make a list of everyone who could buy from you (or refer someone who could), then talk to them one by one.",
     problemLabel: "Simple explanation",
     problem:
-      "New owners assume they need a marketing strategy before they have customers. The opposite is true: you need 5–10 real conversations with potential buyers before you know what to market, what to say, or what to charge. The fastest path to revenue is direct, personal outreach to people who already trust you.",
+      "New owners assume they need a marketing strategy before they have customers. The opposite is true: you need 5–10 real conversations with potential buyers before you know what to market, what to say, or what to charge. The fastest path to revenue is direct, personal outreach to people who already trust you. Start with one very specific audience — new LLC owners, local contractors, freelance designers — and focus entirely on them. Once one type of customer knows and trusts you, reaching the next type becomes dramatically easier.",
     solutionLabel: "How to get your first 10 customers",
     solution: [
       {
@@ -1131,7 +1140,7 @@ export const articles: Article[] = [
       "The free marketing channels that work for new small businesses are: Google Business Profile, a basic website with one clear page, niche communities (Facebook groups, subreddits, local forums), referrals from past customers, and short-form content that answers real questions. Pick one or two and be consistent — not all of them.",
     problemLabel: "Simple explanation",
     problem:
-      "There is no shortage of free marketing advice; there is a shortage of focus. Most owners try five channels for two weeks each, see no results, and conclude marketing doesn't work. Free channels work — but only if you stay on them long enough to build momentum, which usually takes 60–90 days.",
+      "There is no shortage of free marketing advice; there is a shortage of focus. Most owners try five channels for two weeks each, see no results, and conclude marketing doesn't work. Free channels work — but only if you stay on them long enough to build momentum, which usually takes 60–90 days. The deeper issue is that most small businesses compete like businesses — on price and availability — instead of building a brand. A brand means people recognise you, trust you, and choose you before the conversation even starts. That takes longer to build, but it compounds in a way that advertising never does.",
     solutionLabel: "The free channels that actually work",
     solution: [
       {
@@ -1165,6 +1174,8 @@ export const articles: Article[] = [
       "Google Business Profile is the highest-leverage channel for local businesses.",
       "One simple website page beats a five-page site no one reads.",
       "Niche communities and customer referrals beat broad social media.",
+      "Build a brand, not just a business — people buy from businesses they recognise and trust.",
+      "Your personal story is your competitive advantage. Share it. No one can copy who you are.",
     ],
     nextStep: {
       label: "How to write an offer people actually respond to",

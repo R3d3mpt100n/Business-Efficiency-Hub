@@ -279,6 +279,12 @@ export default function Home() {
               Ledgely is the resource I wished existed. Plain answers, correct
               order of operations, no agenda.
             </p>
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              I also believe the businesses that win long-term are the ones that give first — genuinely, without expecting anything back. That's why everything here is free to read, no forms, no paywalls. If it helps you, it was worth publishing.
+            </p>
+            <p className="mt-4 text-slate-700 leading-relaxed">
+              Your personal story is your most defensible competitive advantage — nobody can copy who you are or how you think. Build a brand, not just a business.
+            </p>
             <footer className="mt-4 text-sm text-slate-500">— The Ledgely Team</footer>
           </blockquote>
         </div>
