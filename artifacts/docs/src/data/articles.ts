@@ -3,6 +3,11 @@ export type ChecklistGroup = {
   items: string[];
 };
 
+export type FAQ = {
+  question: string;
+  answer: string;
+};
+
 export type Article = {
   slug: string;
   title: string;
@@ -20,6 +25,7 @@ export type Article = {
   tools?: { name: string; note: string }[];
   toolsLabel?: string;
   summary: string[];
+  faq?: FAQ[];
   relatedSlugs?: string[];
   showDisclaimer?: boolean;
   nextStep?: { label: string; href: string; description?: string };
@@ -82,6 +88,28 @@ export const articles: Article[] = [
       "It's free directly from the IRS — beware of paid lookalike sites.",
       "You'll need it for taxes, banking, payroll, and many registrations.",
       "The official application is IRS Form SS-4. Get it from IRS.gov.",
+    ],
+    faq: [
+      {
+        question: "Is an EIN the same as a tax ID number?",
+        answer:
+          "Yes. EIN stands for Employer Identification Number. It's sometimes called a Federal Tax ID Number or FTIN. They all refer to the same nine-digit number issued by the IRS.",
+      },
+      {
+        question: "How long does it take to get an EIN?",
+        answer:
+          "If you apply online at IRS.gov, you receive your EIN immediately after completing the application — typically in under 15 minutes. Mail and fax applications take 4–8 weeks.",
+      },
+      {
+        question: "Does an EIN expire?",
+        answer:
+          "No. An EIN never expires and is permanent for the life of the business. If you close the business or change its structure significantly, the old EIN is retired but not reused.",
+      },
+      {
+        question: "Can a sole proprietor get an EIN?",
+        answer:
+          "Yes. Sole proprietors are not required to have an EIN unless they have employees or file certain excise tax returns, but many choose to get one to protect their SSN and open a business bank account.",
+      },
     ],
     relatedSlugs: [
       "who-needs-an-ein",
@@ -566,6 +594,28 @@ export const articles: Article[] = [
       "Get the EIN directly from IRS.gov — it's always free.",
       "Open the business bank account before taking any business payments.",
     ],
+    faq: [
+      {
+        question: "Do I need an LLC to start a business?",
+        answer:
+          "No. Most businesses start as sole proprietorships, which require no state filing. An LLC adds a layer of liability protection but also adds cost and paperwork. Many businesses operate successfully as sole proprietors for years before forming an LLC.",
+      },
+      {
+        question: "How much does it cost to register a small business?",
+        answer:
+          "State LLC filing fees range from $40 to $500 depending on the state. The EIN from the IRS is always free. Licenses and permits vary by location and industry. A sole proprietorship in most states has no upfront registration fee.",
+      },
+      {
+        question: "Do I need a lawyer to register my business?",
+        answer:
+          "No, for most simple structures. Sole proprietorships, single-member LLCs, and even multi-member LLCs are commonly formed by owners directly through their state's Secretary of State website. Lawyers are advisable for complex arrangements, investor agreements, or industries with high regulatory requirements.",
+      },
+      {
+        question: "What's the difference between a sole proprietorship and an LLC?",
+        answer:
+          "A sole proprietorship is the default structure — no state filing required, all income is personal income, and you have unlimited personal liability. An LLC (Limited Liability Company) separates your business and personal legal identities, potentially protecting personal assets from business debts and lawsuits. See our full guide for a detailed comparison.",
+      },
+    ],
     relatedSlugs: [
       "required-startup-documents",
       "basic-compliance-checklist",
@@ -875,6 +925,28 @@ export const articles: Article[] = [
       "Gross profit shows how healthy the core offer is.",
       "Net profit is the true bottom line for the period.",
     ],
+    faq: [
+      {
+        question: "How often should a small business run a P&L?",
+        answer:
+          "Monthly at minimum. A monthly P&L lets you catch trends — rising costs, falling revenue — before they become real problems. Quarterly review is the absolute minimum; annual-only means you're always looking backward.",
+      },
+      {
+        question: "Is a P&L the same as an income statement?",
+        answer:
+          "Yes. Profit and loss statement, income statement, and statement of operations all refer to the same document. The terms are used interchangeably.",
+      },
+      {
+        question: "Can a business be profitable but still fail?",
+        answer:
+          "Yes — this is one of the most common ways businesses fail. A business can show profit on a P&L (because revenue exceeds expenses over a period) but still run out of cash if payments come in slower than bills go out. This is a cash flow problem, not a profitability problem.",
+      },
+      {
+        question: "Do I need accounting software to create a P&L?",
+        answer:
+          "No. A simple spreadsheet with your income and expense categories is enough for most small businesses. Software like QuickBooks or Wave can automate it, but the underlying math — revenue minus expenses equals profit — is the same regardless of tool.",
+      },
+    ],
     relatedSlugs: [
       "simple-cash-flow-overview",
       "how-to-track-business-expenses",
@@ -1115,6 +1187,28 @@ export const articles: Article[] = [
       "Write a one-sentence offer before you contact anyone.",
       "Personal messages convert; marketing copy doesn't.",
       "Track every conversation — most sales take more than one touch.",
+    ],
+    faq: [
+      {
+        question: "How long does it take to get your first 10 customers?",
+        answer:
+          "Most service-based businesses land their first 10 customers within 4–12 weeks of consistent direct outreach. Product businesses can take longer depending on market awareness. The speed depends almost entirely on how quickly and consistently you reach out.",
+      },
+      {
+        question: "Do I need a website to get my first customers?",
+        answer:
+          "No. Most first customers come through personal outreach, not inbound traffic. A website is useful for credibility but it's not required to close your first 10 clients. Build your contact list and start messaging before you build a website.",
+      },
+      {
+        question: "What should I say when reaching out to potential customers?",
+        answer:
+          "Keep it short and personal: what you're doing, who it's for, and a simple ask — either to buy, to refer, or to give feedback. Avoid sales language. Write like you're texting a friend who you think could benefit.",
+      },
+      {
+        question: "What if I don't know 50 people I can contact?",
+        answer:
+          "Start smaller. Even 10–15 genuine contacts is enough to get started. Expand into niche communities (Facebook groups, subreddits, local meetups) where your target customers already spend time. Answer their questions genuinely and visibility follows.",
+      },
     ],
     nextStep: {
       label: "Free marketing channels for a new small business",
@@ -1423,6 +1517,594 @@ export const articles: Article[] = [
       "how-to-write-an-offer-people-actually-respond-to",
       "how-to-get-your-first-10-customers",
       "free-marketing-channels-for-a-new-small-business",
+    ],
+  },
+
+  // ========================= NEW ARTICLES — SEO EXPANSION =========================
+  {
+    slug: "llc-vs-sole-proprietorship",
+    title: "LLC vs sole proprietorship: which is right for your small business?",
+    description:
+      "A plain-English comparison of the two most common small business structures — what each one means, costs, and when to choose one over the other.",
+    category: "Business Setup",
+    readTime: "5 min read",
+    showDisclaimer: true,
+    directAnswer:
+      "A sole proprietorship is the default structure — no paperwork required, income flows directly to you, and you have full personal liability. An LLC (Limited Liability Company) separates your business legally from you personally, potentially protecting your personal assets if the business is sued or owes debts. Most new small businesses start as sole proprietors and form an LLC once they have regular revenue or clients.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Choosing the wrong structure doesn't usually destroy a business, but it can cost you money in taxes, expose you to unnecessary legal risk, or require expensive restructuring later. The good news: most small businesses have a clear answer once you understand the two options.",
+    solutionLabel: "How to choose",
+    solution: [
+      {
+        step: "Choose sole proprietorship if you're just starting and have low risk",
+        detail:
+          "No state filing, no formation cost, no ongoing compliance fees. Your business income is your personal income. Best for: freelancers, consultants, solo service providers testing a new idea, or anyone generating under $30K/year.",
+      },
+      {
+        step: "Choose an LLC if liability is a real concern",
+        detail:
+          "If a client could sue you for damages, if you have employees, if you work in a regulated field, or if you store customer data — an LLC creates a legal wall between your business assets and your personal ones.",
+      },
+      {
+        step: "Consider an LLC for credibility and banking",
+        detail:
+          "Some clients, larger contracts, and payment processors prefer or require a registered entity. An LLC gives you a formal business name on your bank account and contracts.",
+      },
+      {
+        step: "Tax treatment is similar at the start — but can change",
+        detail:
+          "Both structures default to pass-through taxation (profit is your personal income). Once an LLC earns over roughly $40–50K/year in net profit, electing S-corp status can reduce self-employment tax. That's a separate step and worth discussing with a tax professional.",
+      },
+    ],
+    summary: [
+      "Sole proprietorship = simplest, no cost, full personal liability.",
+      "LLC = legal separation between you and the business, costs $40–$500 to form.",
+      "Both are pass-through for taxes by default.",
+      "Start as a sole proprietor if you're testing. Form an LLC once you have regular clients or real risk.",
+    ],
+    faq: [
+      {
+        question: "Can I convert a sole proprietorship to an LLC later?",
+        answer:
+          "Yes, and it's common. You file formation paperwork with your state, get a new EIN (or keep your existing one in some cases), update your bank account, and notify clients. There's no continuity issue — many businesses make this transition in their first 1–2 years.",
+      },
+      {
+        question: "Does an LLC protect personal assets?",
+        answer:
+          "An LLC provides a liability shield, meaning your personal bank accounts, home, and other assets are generally protected from business debts or lawsuits — but only if you maintain proper separation (separate bank account, proper contracts, no commingling of funds). The protection can be 'pierced' if the business and personal finances are mixed.",
+      },
+      {
+        question: "Is an LLC or sole proprietorship better for taxes?",
+        answer:
+          "At low income levels, they're effectively the same — both are pass-through entities. The tax advantage of an LLC comes when you elect S-corp status (typically at $40K+ net profit), which can reduce self-employment taxes. A tax professional can run the numbers for your specific situation.",
+      },
+      {
+        question: "What is an operating agreement and do I need one?",
+        answer:
+          "An operating agreement is a document that describes how your LLC is run — ownership percentages, how decisions are made, what happens if a member leaves. Some states require one; others don't. Even when not required, it's strongly recommended for any multi-member LLC.",
+      },
+    ],
+    relatedSlugs: [
+      "how-to-register-a-small-business",
+      "what-is-an-ein",
+      "required-startup-documents",
+    ],
+  },
+  {
+    slug: "how-to-open-a-business-bank-account",
+    title: "How to open a business bank account",
+    description:
+      "What you need, where to go, and why separating your business and personal finances from day one saves significant time and money.",
+    category: "Financial Systems",
+    readTime: "4 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "To open a business bank account you'll typically need: your EIN (or SSN for sole proprietors), state formation documents (for LLCs and corporations), a government-issued ID, and an initial deposit. Most banks can open a business account in 30–60 minutes in person, or online in some cases.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Mixing business and personal money is the single most common bookkeeping mistake small business owners make. It makes taxes harder, makes audits more likely, and makes it nearly impossible to actually know if your business is profitable. A separate business account costs nothing extra and fixes all three problems.",
+    solutionLabel: "How to open a business bank account",
+    solution: [
+      {
+        step: "Get your EIN first",
+        detail:
+          "Most banks require an EIN for any business account. Apply directly at IRS.gov — it takes under 15 minutes and is free. Sole proprietors can sometimes use an SSN but an EIN is strongly preferred.",
+      },
+      {
+        step: "Gather your documents",
+        detail:
+          "EIN confirmation letter, state formation documents (Articles of Organization for LLCs), your government ID, and business name registration (if operating under a DBA). Call ahead to confirm the specific list your chosen bank requires.",
+      },
+      {
+        step: "Choose a bank type",
+        detail:
+          "Local credit unions and community banks often have lower fees and more flexibility for small businesses. National banks (Chase, Bank of America, Wells Fargo) offer extensive ATM networks and integrations. Online banks (Relay, Mercury, Bluevine) have no monthly fees and fast setup.",
+      },
+      {
+        step: "Set up direct deposit and payment routing",
+        detail:
+          "Once the account is open, update all clients and payment processors (Stripe, PayPal, Square) to deposit into the business account. Never deposit business income into a personal account after this point.",
+      },
+    ],
+    summary: [
+      "Get your EIN before visiting a bank — almost all business accounts require it.",
+      "Bring: EIN, state formation docs, government ID, initial deposit.",
+      "Online banks (Relay, Mercury) have no monthly fees and are easy to open.",
+      "All business income should flow through the business account from day one.",
+    ],
+    faq: [
+      {
+        question: "Can I use my personal bank account for business?",
+        answer:
+          "Technically yes, but it's strongly discouraged. Mixing accounts makes bookkeeping and taxes significantly harder, can create legal problems for LLCs (undermining the liability shield), and makes it impossible to see your true business profit at a glance.",
+      },
+      {
+        question: "What's the best bank for a small business?",
+        answer:
+          "It depends on your needs. For zero fees: Relay or Mercury (online). For in-person banking: local credit unions often beat national banks on service and fees. For integrations with accounting software: Chase and Bank of America have strong connections to QuickBooks. Compare monthly fees, minimum balances, and transaction limits before choosing.",
+      },
+      {
+        question: "Do I need a business bank account to accept payments?",
+        answer:
+          "No — you can accept payments into a personal account, but it's a bad practice. Most payment processors (Stripe, Square, PayPal Business) let you link either type. Linking a dedicated business account keeps your records clean from the start.",
+      },
+      {
+        question: "How long does it take to open a business bank account?",
+        answer:
+          "In-person at a major bank: 30–60 minutes if you have all documents. Online banks (Mercury, Relay): typically 1–3 business days for approval and account activation. The main delay is usually gathering the required documents beforehand.",
+      },
+    ],
+    relatedSlugs: [
+      "what-is-an-ein",
+      "how-to-register-a-small-business",
+      "how-to-track-business-expenses",
+    ],
+  },
+  {
+    slug: "self-employed-tax-deductions",
+    title: "Self-employed tax deductions: what small business owners can write off",
+    description:
+      "A plain-English list of the most common and valuable tax deductions available to self-employed individuals and small business owners.",
+    category: "Financial Systems",
+    readTime: "6 min read",
+    showDisclaimer: true,
+    directAnswer:
+      "Self-employed individuals can deduct ordinary and necessary business expenses — things like home office space, business mileage, health insurance premiums, software, equipment, professional services, and half of self-employment tax. Keeping records throughout the year makes these deductions straightforward at tax time.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Most self-employed people overpay on taxes because they either don't know what's deductible or don't keep records that support the deduction. The IRS allows deductions for any expense that is 'ordinary and necessary' for your business — but you have to claim them, and you have to document them.",
+    solutionLabel: "Common deductions to track",
+    solution: [
+      {
+        step: "Home office deduction",
+        detail:
+          "If you use a dedicated space in your home exclusively and regularly for business, you can deduct either a simplified rate ($5 per square foot, up to 300 sq ft) or actual expenses (a proportional share of rent/mortgage, utilities, and insurance). The space must be used only for business.",
+      },
+      {
+        step: "Business mileage",
+        detail:
+          "Every mile driven for business purposes is deductible. The IRS standard mileage rate changes annually (67 cents per mile in 2024). Track every business trip — client visits, supply runs, bank trips. A mileage log app is the easiest way.",
+      },
+      {
+        step: "Health insurance premiums",
+        detail:
+          "Self-employed individuals can deduct 100% of health, dental, and vision insurance premiums paid for themselves and their families — as long as you're not eligible for coverage through an employer (or spouse's employer).",
+      },
+      {
+        step: "Equipment and technology",
+        detail:
+          "Computers, phones (business-use percentage), cameras, tools, office furniture, and software subscriptions used for business are deductible. Large equipment may be deducted all at once under Section 179 or depreciated over time.",
+      },
+      {
+        step: "Professional services",
+        detail:
+          "Accountant fees, legal fees, consulting fees paid for business purposes are fully deductible. So are bank fees, merchant processing fees (Stripe, Square), and professional memberships.",
+      },
+      {
+        step: "Half of self-employment tax",
+        detail:
+          "Self-employed individuals pay both the employee and employer portions of Social Security and Medicare taxes (15.3% total). The IRS lets you deduct half of that (the employer portion) from your taxable income.",
+      },
+    ],
+    summary: [
+      "Track all business expenses throughout the year — deductions require documentation.",
+      "Home office, mileage, health insurance, and software are commonly missed.",
+      "You can deduct half of your self-employment tax from your income.",
+      "Consult a tax professional for situation-specific advice — the savings often outweigh the cost.",
+    ],
+    faq: [
+      {
+        question: "Can I deduct my phone as a business expense?",
+        answer:
+          "Yes, but only the business-use percentage. If you use your phone 60% for business, you can deduct 60% of the monthly bill and 60% of the phone's cost. Keeping a reasonable estimate and being consistent year to year is the key.",
+      },
+      {
+        question: "What records do I need to support a deduction?",
+        answer:
+          "For most expenses: a receipt or bank statement showing the amount, the vendor name, and the date. For mileage: a log showing the date, destination, business purpose, and miles driven. For home office: a floor plan showing the dedicated space and its square footage.",
+      },
+      {
+        question: "Can I deduct meals as a business expense?",
+        answer:
+          "Business meals where a business topic is genuinely discussed are 50% deductible. The meal must have a clear business purpose, and you should note who attended and what was discussed. Personal meals are not deductible, even if you ate while working.",
+      },
+      {
+        question: "Do I need to be profitable to claim deductions?",
+        answer:
+          "No. You can claim deductions even in a loss year. However, if your business shows a loss in more than 3 of 5 consecutive years, the IRS may classify it as a hobby and disallow deductions. Maintaining a genuine profit motive (and documenting it) protects you.",
+      },
+    ],
+    relatedSlugs: [
+      "how-to-track-business-expenses",
+      "profit-and-loss-basics",
+      "quarterly-estimated-taxes-for-small-businesses",
+    ],
+  },
+  {
+    slug: "quarterly-estimated-taxes-for-small-businesses",
+    title: "Quarterly estimated taxes for small businesses",
+    description:
+      "How self-employed individuals and small business owners pay taxes during the year — and how to avoid underpayment penalties.",
+    category: "Financial Systems",
+    readTime: "5 min read",
+    showDisclaimer: true,
+    directAnswer:
+      "If you expect to owe $1,000 or more in federal taxes for the year, the IRS requires you to pay estimated taxes quarterly — in April, June, September, and January. Missing or underpaying these installments results in an underpayment penalty. The simplest approach is to pay 100% of last year's tax bill across four equal payments.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Employees have taxes withheld from every paycheck. Self-employed people don't — so the IRS requires them to estimate and pre-pay taxes four times a year. Most first-year business owners don't know this and get hit with a penalty when they file their annual return.",
+    solutionLabel: "How to handle quarterly estimated taxes",
+    solution: [
+      {
+        step: "Understand who needs to pay",
+        detail:
+          "If you expect to owe $1,000 or more in federal income tax for the year (after credits and withholding), you're required to pay quarterly. This includes self-employed individuals, freelancers, sole proprietors, and business owners who take distributions.",
+      },
+      {
+        step: "Know the four due dates",
+        detail:
+          "Q1 (Jan–Mar): April 15. Q2 (Apr–May): June 15. Q3 (Jun–Aug): September 15. Q4 (Sep–Dec): January 15 of the following year. Mark these on your calendar and set reminders.",
+      },
+      {
+        step: "Calculate a safe payment amount",
+        detail:
+          "The safest method: pay 100% of last year's total tax bill in equal quarterly installments (110% if last year's adjusted gross income exceeded $150,000). This is the 'safe harbor' rule — if you hit it, no penalty applies even if you end up owing more.",
+      },
+      {
+        step: "Pay directly at IRS.gov",
+        detail:
+          "Use IRS Direct Pay (free) or the Electronic Federal Tax Payment System (EFTPS) to make payments online. Keep your confirmation numbers.",
+      },
+      {
+        step: "Set aside money monthly",
+        detail:
+          "A practical rule: set aside 25–30% of every payment you receive into a separate savings account labeled 'taxes.' This removes the quarterly payment from your operating cash flow and prevents surprise shortfalls.",
+      },
+    ],
+    summary: [
+      "Pay quarterly if you expect to owe $1,000+ in federal taxes.",
+      "Due dates: April 15, June 15, September 15, January 15.",
+      "Safe harbor: pay 100% of last year's tax in equal installments.",
+      "Set aside 25–30% of income monthly so the payment isn't a surprise.",
+    ],
+    faq: [
+      {
+        question: "What happens if I miss a quarterly tax payment?",
+        answer:
+          "The IRS charges an underpayment penalty — currently calculated at the federal short-term interest rate plus 3%. It's not a massive amount but it adds up, and it's completely avoidable by making the four payments on time.",
+      },
+      {
+        question: "Do I have to pay state estimated taxes too?",
+        answer:
+          "In most states, yes. State estimated tax rules mirror the federal system but the thresholds and due dates vary. Check your state's department of revenue website for the specific rules — most states follow the same quarterly schedule.",
+      },
+      {
+        question: "Can I pay more than required to avoid any surprise at filing?",
+        answer:
+          "Yes, and many business owners do. Overpaying results in a refund when you file your annual return. Some owners prefer to slightly overpay each quarter and treat the refund as a forced savings buffer.",
+      },
+      {
+        question: "How do I know how much I'll owe for the year?",
+        answer:
+          "If it's your first year in business, estimate based on your projected net profit. Multiply net profit by your expected effective tax rate (roughly 25–30% for most self-employed individuals when you include self-employment tax). A tax professional can give you a more precise estimate.",
+      },
+    ],
+    relatedSlugs: [
+      "self-employed-tax-deductions",
+      "how-to-track-business-expenses",
+      "profit-and-loss-basics",
+    ],
+  },
+  {
+    slug: "what-is-a-w9-form",
+    title: "What is a W-9 form and when do you need one?",
+    description:
+      "A plain-English explanation of IRS Form W-9 — what it is, who fills it out, who requests it, and when it's required.",
+    category: "Financial Systems",
+    readTime: "3 min read",
+    showDisclaimer: true,
+    directAnswer:
+      "A W-9 is an IRS form that collects your name, business name, and taxpayer identification number (SSN or EIN) so the person or company paying you can report that income to the IRS. You fill it out and give it to whoever is paying you — you don't file it with the IRS yourself.",
+    problemLabel: "Simple explanation",
+    problem:
+      "When a business pays a contractor, freelancer, or vendor $600 or more in a year, it's required to report that payment to the IRS using Form 1099. To file the 1099, they need your tax information — that's what the W-9 collects. As a self-employed person, you'll be asked for a W-9 regularly.",
+    solutionLabel: "How it works in practice",
+    solution: [
+      {
+        step: "A client or company asks you to fill out a W-9",
+        detail:
+          "This happens before or shortly after you start doing paid work for them. It's a standard request and a sign they intend to report your payment correctly.",
+      },
+      {
+        step: "You fill in your legal name, business name, and TIN",
+        detail:
+          "For most self-employed individuals: your legal name, business name (if different), and either your SSN or EIN. Using an EIN instead of your SSN protects your personal information.",
+      },
+      {
+        step: "You give the completed W-9 back to the requester",
+        detail:
+          "You do not send it to the IRS. The requester keeps it on file and uses the information to prepare your 1099 at year-end.",
+      },
+      {
+        step: "You receive a 1099 if payments exceeded $600",
+        detail:
+          "In January of the following year, any company that paid you $600+ will send you (and the IRS) a Form 1099-NEC or 1099-MISC. You use this when filing your annual tax return.",
+      },
+    ],
+    summary: [
+      "A W-9 collects your tax ID so payers can file a 1099 reporting your income.",
+      "You fill it out and give it to the payer — you don't send it to the IRS.",
+      "Use your EIN instead of your SSN on W-9s to protect your personal info.",
+      "Required when a business plans to pay you $600+ in a calendar year.",
+    ],
+    faq: [
+      {
+        question: "Do I have to fill out a W-9?",
+        answer:
+          "If a legitimate payer requests one before making a business payment, yes. Refusing can result in them withholding a flat 24% backup withholding from your payment. There's no reason to refuse — a W-9 simply allows them to report the income correctly.",
+      },
+      {
+        question: "Should I use my SSN or EIN on a W-9?",
+        answer:
+          "If you have an EIN, use it. Using your EIN instead of your SSN reduces exposure of your Social Security number, which is valuable for identity protection. Sole proprietors can get a free EIN from IRS.gov in minutes.",
+      },
+      {
+        question: "Is a W-9 the same as a W-2?",
+        answer:
+          "No. A W-2 is issued by an employer to an employee and reports wages and taxes withheld. A W-9 is filled out by a contractor or vendor — it's not a tax statement, it's a form that collects your information so a 1099 can be prepared later.",
+      },
+      {
+        question: "What if I make a mistake on a W-9?",
+        answer:
+          "Ask the requester for a new blank form and fill it out again. W-9s are not filed with the IRS directly, so there's no 'correction' process — just submit an accurate one.",
+      },
+    ],
+    relatedSlugs: [
+      "what-is-an-ein",
+      "self-employed-tax-deductions",
+      "quarterly-estimated-taxes-for-small-businesses",
+    ],
+  },
+  {
+    slug: "what-is-a-dba",
+    title: "What is a DBA (doing business as) and do you need one?",
+    description:
+      "A clear explanation of trade names, assumed names, and DBAs — what they are, when you need one, and how to file.",
+    category: "Business Setup",
+    readTime: "4 min read",
+    showDisclaimer: true,
+    directAnswer:
+      "A DBA (Doing Business As) — also called a trade name, fictitious name, or assumed name — lets you operate your business under a name other than your legal name or the name you filed with the state. Example: John Smith, sole proprietor, files a DBA to operate as 'Sunrise Plumbing.' Most states require a DBA filing to use a business name publicly.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Without a DBA, a sole proprietor can only legally operate under their own full legal name. If you want to use a business name on your invoices, website, or signage, a DBA is usually required and often necessary to open a bank account under that name.",
+    solutionLabel: "When you need a DBA and how to get one",
+    solution: [
+      {
+        step: "Sole proprietors and general partnerships operating under a trade name",
+        detail:
+          "If you're John Smith and you want to operate as 'Smith's Auto Repair,' most states require you to file a DBA. Without it, you can't legally advertise or enter contracts under that name.",
+      },
+      {
+        step: "LLCs or corporations operating under a different brand name",
+        detail:
+          "If your registered LLC is 'Sunrise Digital LLC' but you market under 'Sunrise Studios,' you'll likely need a DBA for the secondary name. Check your state's rules.",
+      },
+      {
+        step: "To open a business bank account under the business name",
+        detail:
+          "Banks typically require a DBA certificate or state registration to open an account under a name other than your personal name.",
+      },
+      {
+        step: "How to file",
+        detail:
+          "DBA filings are usually done at the county or state level, depending on your state. Fees range from $10 to $100. Search '[your state] DBA filing' to find the official form. Some states also require a newspaper publication notice.",
+      },
+    ],
+    summary: [
+      "A DBA lets you operate under a name other than your legal or registered business name.",
+      "Required in most states to use a trade name on invoices, signage, or contracts.",
+      "Filed at the county or state level — fees typically $10–$100.",
+      "Banks often require a DBA certificate to open an account under the business name.",
+    ],
+    faq: [
+      {
+        question: "Does a DBA protect my business name?",
+        answer:
+          "No. A DBA registers a name for use in commerce but does not give you exclusive rights to it. Only a federal trademark can do that. Two businesses in the same state can hold DBAs for similar names — a trademark is the only way to protect the name nationally.",
+      },
+      {
+        question: "Does an LLC need a DBA?",
+        answer:
+          "Only if it operates under a name different from its registered LLC name. If your LLC is filed as 'Riverside Consulting LLC' and you market exclusively as that, no DBA is needed. If you run a second brand or use a shortened version of the name publicly, a DBA may be required.",
+      },
+      {
+        question: "How long does a DBA last?",
+        answer:
+          "DBA registrations typically expire and must be renewed every 5 years, depending on the state. Some states require renewal every 1–3 years. Check with your county clerk or state business agency for the renewal schedule.",
+      },
+      {
+        question: "Can I have multiple DBAs?",
+        answer:
+          "Yes. A single business entity can file multiple DBAs to operate under different brand names. This is common for businesses running multiple service lines or targeting different customer segments under separate names.",
+      },
+    ],
+    relatedSlugs: [
+      "how-to-register-a-small-business",
+      "required-startup-documents",
+      "llc-vs-sole-proprietorship",
+    ],
+  },
+  {
+    slug: "how-to-write-a-business-invoice",
+    title: "How to write a business invoice that gets paid faster",
+    description:
+      "What to include on a professional invoice, how to structure it, and practical steps that reduce the time between sending and getting paid.",
+    category: "Sales & Clients",
+    readTime: "5 min read",
+    showDisclaimer: false,
+    directAnswer:
+      "A professional business invoice needs: your business name and contact info, the client's name and address, a unique invoice number, the invoice date and payment due date, an itemized list of services or products with quantities and rates, the total amount due, and accepted payment methods. Simple, clear, and sent the day work is delivered.",
+    problemLabel: "Simple explanation",
+    problem:
+      "The longer you wait to invoice, the longer you wait to get paid — and sometimes payment never comes at all. A professional invoice sent immediately after delivery, with clear terms and a specific due date, gets paid significantly faster than a vague request sent 'whenever you get to it.'",
+    solutionLabel: "What to include on every invoice",
+    solution: [
+      {
+        step: "Your business name, logo, and contact information",
+        detail:
+          "Name, address (or city/state at minimum), email, and phone. Make it easy for the client to reach you with questions without having to dig through old emails.",
+      },
+      {
+        step: "Client name and billing address",
+        detail:
+          "Use the exact legal name of the person or company you're billing. If they need to process it through accounts payable, the name must match their records.",
+      },
+      {
+        step: "Unique invoice number and date",
+        detail:
+          "Invoice numbers create a paper trail for both parties. A simple sequential system (INV-001, INV-002) works fine. Include both the invoice date and the payment due date — 'Net 15' or 'Net 30' in addition to an explicit date.",
+      },
+      {
+        step: "Itemized list of services or products",
+        detail:
+          "Description, quantity, unit rate, and line total for each item. Avoid vague descriptions like 'services rendered' — specificity builds trust and reduces back-and-forth.",
+      },
+      {
+        step: "Total amount due and accepted payment methods",
+        detail:
+          "Show subtotal, any applicable taxes, and the final total clearly. List how you accept payment: bank transfer (include routing/account number or use a payment link), check, Stripe, PayPal, etc.",
+      },
+      {
+        step: "Late payment policy",
+        detail:
+          "Include a simple statement: 'A 1.5% monthly fee applies to invoices unpaid after 30 days.' You don't have to enforce it every time — but having it written creates leverage.",
+      },
+    ],
+    summary: [
+      "Invoice the day work is delivered — every day you wait adds days to payment.",
+      "Include a specific due date, not just 'Net 30.'",
+      "Itemize clearly — vague descriptions create questions that delay payment.",
+      "Add your payment methods prominently so clients don't have to ask.",
+      "A stated late fee policy speeds up payments even if you rarely enforce it.",
+    ],
+    faq: [
+      {
+        question: "What payment terms should I use on an invoice?",
+        answer:
+          "For most small service businesses, Net 15 (payment due 15 days after invoice date) is reasonable. Net 30 is standard for larger contracts. For new clients or high-value projects, consider requiring a 50% deposit upfront, with the remainder due on delivery.",
+      },
+      {
+        question: "Do I need invoicing software?",
+        answer:
+          "No. A Word doc, Google Doc, or spreadsheet formatted properly works perfectly. However, tools like Wave (free), QuickBooks, or FreshBooks automate reminders, track payment status, and make it easy to send professional PDFs — worth considering once you're invoicing regularly.",
+      },
+      {
+        question: "What should I do if a client doesn't pay an invoice?",
+        answer:
+          "Send a polite reminder 1–2 days before the due date, then again on the due date. After 7 days past due, send a firmer follow-up referencing the invoice number and late fee policy. After 30 days, consider a collections call or small claims court for smaller amounts.",
+      },
+      {
+        question: "Can I charge sales tax on a business invoice?",
+        answer:
+          "It depends on what you're selling and where. Tangible products are taxable in most states. Services vary widely — some states tax services, most don't. Check your state's sales tax rules for your specific service type, and register with your state if you're required to collect.",
+      },
+    ],
+    relatedSlugs: [
+      "basic-client-follow-up-system-to-avoid-lost-sales",
+      "how-to-price-your-services",
+      "how-to-track-business-expenses",
+    ],
+  },
+  {
+    slug: "business-mileage-deduction",
+    title: "Business mileage deduction: how to track and claim it",
+    description:
+      "How the IRS business mileage deduction works, what counts as a deductible trip, and the simplest way to keep a compliant mileage log.",
+    category: "Financial Systems",
+    readTime: "4 min read",
+    showDisclaimer: true,
+    directAnswer:
+      "The IRS allows self-employed individuals and small business owners to deduct business miles driven at the standard mileage rate (67 cents per mile for 2024). You can also use the actual expense method (tracking real fuel, insurance, and depreciation costs). Most small businesses use the standard rate — it's simpler and often yields a higher deduction.",
+    problemLabel: "Simple explanation",
+    problem:
+      "Business mileage is one of the most commonly missed small business deductions. Every trip to a client's office, supply store, bank, or job site is potentially deductible — but only if you document it. The IRS requires a contemporaneous mileage log, meaning records kept at or near the time of each trip, not reconstructed months later.",
+    solutionLabel: "How to track and claim business mileage",
+    solution: [
+      {
+        step: "Know what qualifies as a business mile",
+        detail:
+          "Driving to a client meeting, job site, bank for a business deposit, office supply store, or business networking event qualifies. Commuting from home to a regular office does not. If your home office is your principal place of business, then driving from home to any business destination qualifies.",
+      },
+      {
+        step: "Keep a mileage log",
+        detail:
+          "For each trip record: the date, starting and ending location, business purpose, and miles driven. A small notebook works, but a mileage tracking app (MileIQ, Everlance, or Google Maps history) is much easier and creates an audit-ready log automatically.",
+      },
+      {
+        step: "Calculate your deduction",
+        detail:
+          "Multiply total business miles by the IRS standard rate for that year. For 2024: total business miles × $0.67. Example: 3,000 business miles × $0.67 = $2,010 deduction. Claim this on Schedule C (for sole proprietors) or your business return.",
+      },
+      {
+        step: "Track total odometer readings at year-start and year-end",
+        detail:
+          "The IRS may ask for your total vehicle mileage for the year to verify the business percentage. Note your odometer at January 1 and December 31.",
+      },
+    ],
+    summary: [
+      "The 2024 IRS standard mileage rate is 67 cents per business mile.",
+      "Record date, destination, purpose, and miles for every business trip.",
+      "Commuting to a regular office doesn't count — client and errand trips do.",
+      "A mileage app creates an automatic, audit-ready log with minimal effort.",
+    ],
+    faq: [
+      {
+        question: "Can I deduct mileage if I drive a personal vehicle for business?",
+        answer:
+          "Yes. The standard mileage rate is specifically designed for personal vehicles used for business. You don't need a dedicated business vehicle to claim the deduction — just a reliable mileage log separating business and personal trips.",
+      },
+      {
+        question: "What's the difference between the standard mileage rate and actual expenses?",
+        answer:
+          "Standard mileage rate: multiply business miles by the IRS rate ($0.67/mile in 2024). Simple, and covers gas, wear, depreciation, and insurance proportionally. Actual expenses: track and deduct the real cost of gas, insurance, repairs, and depreciation, then multiply by your business-use percentage. Actual expenses can yield a higher deduction for high-cost vehicles but requires more recordkeeping.",
+      },
+      {
+        question: "What counts as a deductible business purpose?",
+        answer:
+          "Travel to meet clients, deliver goods, pick up supplies, make business bank deposits, attend business-related meetings or training, and travel to temporary work sites. The trip must have a genuine business purpose — personal errands combined with a small business detour are only partially deductible.",
+      },
+      {
+        question: "How far back can the IRS audit mileage records?",
+        answer:
+          "The standard IRS audit window is 3 years from when you file. Keep all mileage logs, receipts, and odometer records for at least 3 years — 6 years if there's any chance of underreporting income by more than 25%.",
+      },
+    ],
+    relatedSlugs: [
+      "self-employed-tax-deductions",
+      "how-to-track-business-expenses",
+      "quarterly-estimated-taxes-for-small-businesses",
     ],
   },
 ];

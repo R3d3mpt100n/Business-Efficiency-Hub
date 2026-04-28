@@ -204,10 +204,8 @@ function getPageMeta(url) {
   if (articleMatch) {
     const article = articleBySlug[articleMatch[1]];
     if (article) {
-      return {
-        title: `${article.title} | Ledgely`,
-        description: truncate(article.description),
-        schema: {
+      const schemas = [
+        {
           '@context': 'https://schema.org',
           '@type': 'Article',
           headline: article.title,
@@ -223,6 +221,22 @@ function getPageMeta(url) {
             '@id': `${BASE_ORIGIN}/docs/${article.slug}/`,
           },
         },
+      ];
+      if (article.faq && article.faq.length > 0) {
+        schemas.push({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: article.faq.map(f => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        });
+      }
+      return {
+        title: `${article.title} | Ledgely`,
+        description: truncate(article.description),
+        schemas,
       };
     }
   }
@@ -235,17 +249,19 @@ function getPageMeta(url) {
       return {
         title: `${tool.title} | Ledgely`,
         description: truncate(tool.description),
-        schema: {
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: tool.title,
-          description: truncate(tool.description),
-          url: `${BASE_ORIGIN}/tools/${tool.slug}/`,
-          applicationCategory: 'BusinessApplication',
-          operatingSystem: 'Web',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-          provider: { '@type': 'Organization', name: SITE_NAME, url: BASE_ORIGIN },
-        },
+        schemas: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebApplication',
+            name: tool.title,
+            description: truncate(tool.description),
+            url: `${BASE_ORIGIN}/tools/${tool.slug}/`,
+            applicationCategory: 'BusinessApplication',
+            operatingSystem: 'Web',
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+            provider: { '@type': 'Organization', name: SITE_NAME, url: BASE_ORIGIN },
+          },
+        ],
       };
     }
   }
@@ -258,20 +274,20 @@ function getPageMeta(url) {
       return {
         title: `${pro.title} | Ledgely Pro`,
         description: truncate(pro.description),
-        schema: null,
+        schemas: [],
       };
     }
   }
 
   // Static pages
   const meta = STATIC_META[url];
-  if (meta) return { ...meta, schema: null };
+  if (meta) return { ...meta, schemas: [] };
 
-  return { title: `${SITE_NAME}`, description: '', schema: null };
+  return { title: `${SITE_NAME}`, description: '', schemas: [] };
 }
 
 function buildSeoHead(url, canonicalUrl, meta) {
-  const { title, description, schema } = meta;
+  const { title, description, schemas = [] } = meta;
   const safeTitle   = escapeAttr(title);
   const safeDesc    = escapeAttr(description);
   const safeUrl     = escapeAttr(canonicalUrl);
@@ -295,7 +311,7 @@ function buildSeoHead(url, canonicalUrl, meta) {
     `<meta name="twitter:image" content="${safeImage}" />`,
   ];
 
-  if (schema) {
+  for (const schema of schemas) {
     lines.push(
       `<script type="application/ld+json">${JSON.stringify(schema)}</script>`
     );

@@ -7,6 +7,7 @@ import {
   getNextStep,
   LEGAL_DISCLAIMER,
   type ChecklistGroup,
+  type FAQ,
 } from "@/data/articles";
 import { proSystemForCategory } from "@/data/proSystems";
 import { UpgradePrompt } from "@/components/UpgradePrompt";
@@ -144,6 +145,16 @@ export default function Article() {
         </ul>
       </Section>
 
+      {article.faq && article.faq.length > 0 && (
+        <Section title="Frequently asked questions">
+          <div className="space-y-4">
+            {article.faq.map((item, i) => (
+              <FAQItem key={i} item={item} />
+            ))}
+          </div>
+        </Section>
+      )}
+
       <div data-section="resources-placeholder" aria-hidden />
 
       {(() => {
@@ -209,6 +220,27 @@ export default function Article() {
         </section>
       )}
     </article>
+  );
+}
+
+function FAQItem({ item }: { item: FAQ }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-md border border-slate-200">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between gap-4 px-4 py-3 text-left"
+        aria-expanded={open}
+      >
+        <span className="font-medium text-slate-900 leading-snug">{item.question}</span>
+        <span className="flex-none text-slate-400 text-lg">{open ? "−" : "+"}</span>
+      </button>
+      {open && (
+        <div className="px-4 pb-4 text-slate-700 leading-relaxed text-sm">
+          {item.answer}
+        </div>
+      )}
+    </div>
   );
 }
 

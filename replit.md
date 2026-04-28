@@ -32,7 +32,7 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ### Prerendering
 
-Build generates full static HTML for all 29 routes using Vite SSR:
+Build generates full static HTML for all 44 routes using Vite SSR:
 - `src/entry-server.tsx` — SSR entry point; exports `render(url)` and `ROUTES`
 - `vite.ssr.config.ts` — Vite SSR build config (outputs to `dist/server/`)
 - `scripts/prerender.mjs` — Iterates all routes, calls `render()`, injects into `index.html` template, writes `dist/public/{route}/index.html`
