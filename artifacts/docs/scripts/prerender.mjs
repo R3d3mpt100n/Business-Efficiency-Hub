@@ -160,28 +160,28 @@ const proBySlug     = Object.fromEntries(proSystems.map(p => [p.slug, p]));
 // Static page metadata for non-data-driven routes
 const STATIC_META = {
   '/': {
-    title: 'Ledgely — Small Business Systems',
-    description: 'Clear answers, simple tools, and templates for small business owners. Step-by-step guides for EIN, ITIN, taxes, and business setup.',
+    title: 'Ledgely — Free Small Business Guides, Tools & Templates',
+    description: 'Free plain-English guides for small business owners: EIN, ITIN, LLC setup, taxes, expense tracking, invoicing, and getting your first customers.',
   },
   '/docs': {
-    title: 'Free Business Guides | Ledgely',
-    description: 'Step-by-step guides for EIN, ITIN, business registration, expense tracking, invoicing, and financial basics — in plain English.',
+    title: 'Free Small Business Guides | Ledgely',
+    description: 'Step-by-step guides covering EIN, ITIN, LLC vs sole proprietorship, expense tracking, quarterly taxes, invoicing, and how to get your first customers.',
   },
   '/tools': {
-    title: 'Free Business Tools | Ledgely',
-    description: 'Free in-browser tools for small businesses: budget estimator, invoice generator, expense tracker, and cash flow planner.',
+    title: 'Free Small Business Tools | Ledgely',
+    description: 'Free in-browser tools built for small business owners: monthly profit estimator, invoice generator, expense tracker, and cash flow planner. No signup.',
   },
   '/templates': {
     title: 'Free Business Templates | Ledgely',
-    description: 'Ready-to-use templates for small businesses: expense trackers, checklists, cash flow planners, and operational documents.',
+    description: 'Ready-to-download templates for small businesses: expense trackers, compliance checklists, cash flow planners, and startup document organizers.',
   },
   '/pro': {
-    title: 'Pro Systems | Ledgely',
-    description: 'Complete step-by-step systems with templates and checklists for serious small business owners. Business Starter, Financial Control, and more.',
+    title: 'Pro Business Systems | Ledgely',
+    description: 'Complete systems for serious small business owners: Business Starter setup, Financial Control, Client Invoice management, and Marketing Growth — with checklists.',
   },
   '/pro/business-starter': {
     title: 'Business Starter System | Ledgely Pro',
-    description: 'The complete step-by-step system to legally register your business, get your tax IDs, and set up your finances from scratch.',
+    description: 'The complete step-by-step system to legally register your business, get your EIN, open a business bank account, and set up your finances from scratch.',
   },
 };
 

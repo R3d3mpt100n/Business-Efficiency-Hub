@@ -51,7 +51,7 @@ export const articles: Article[] = [
     slug: "what-is-an-ein",
     title: "What is an EIN?",
     description:
-      "A clear, plain-English explanation of the Employer Identification Number and what it's used for.",
+      "An EIN is a free 9-digit tax ID from the IRS — required for business bank accounts, payroll, and taxes. Here's what it is and how to get one.",
     category: "EIN",
     readTime: "3 min read",
     showDisclaimer: true,
@@ -121,7 +121,7 @@ export const articles: Article[] = [
     slug: "who-needs-an-ein",
     title: "Who needs an EIN?",
     description:
-      "A quick rundown of which small businesses are required to have an EIN, and which ones simply benefit from one.",
+      "Not every small business is required to have an EIN — but most benefit from one. Find out if you need one and how getting one protects your SSN.",
     category: "EIN",
     readTime: "3 min read",
     showDisclaimer: true,
@@ -172,7 +172,7 @@ export const articles: Article[] = [
     slug: "ein-application-preparation-checklist",
     title: "EIN Application Preparation Checklist (Business Tax ID)",
     description:
-      "Organize the information you'll need before applying for an EIN with the IRS.",
+      "Everything you need before applying for an EIN: legal name, business structure, responsible party, and state info. Prepare in 5 minutes, apply in 10.",
     category: "EIN",
     readTime: "6 min read",
     showDisclaimer: true,
@@ -258,7 +258,7 @@ export const articles: Article[] = [
     slug: "common-ein-mistakes",
     title: "Common EIN mistakes to avoid",
     description:
-      "Small mistakes during the EIN process that cause big delays — and how to skip them entirely.",
+      "The most common EIN application errors that cause rejections or delays — and exactly what to do instead before submitting to the IRS.",
     category: "EIN",
     readTime: "4 min read",
     showDisclaimer: true,
@@ -313,7 +313,7 @@ export const articles: Article[] = [
     slug: "what-is-an-itin",
     title: "What is an ITIN?",
     description:
-      "A simple explanation of the Individual Taxpayer Identification Number and what it's used for.",
+      "An ITIN lets non-US citizens file federal taxes and open US accounts without a Social Security Number. Plain-English explanation of what it is and who needs one.",
     category: "ITIN",
     readTime: "3 min read",
     showDisclaimer: true,
@@ -361,7 +361,7 @@ export const articles: Article[] = [
     slug: "who-needs-an-itin",
     title: "Who needs an ITIN?",
     description:
-      "Who typically applies for an ITIN, and how to know if it's the right ID for your situation.",
+      "Non-residents, immigrants, and foreign nationals filing US taxes often need an ITIN. Find out who qualifies and whether it's the right tax ID for your situation.",
     category: "ITIN",
     readTime: "3 min read",
     showDisclaimer: true,
@@ -409,7 +409,7 @@ export const articles: Article[] = [
     slug: "itin-application-checklist",
     title: "ITIN Application Checklist (Individual Tax ID)",
     description:
-      "Organize the documents you'll need before applying for an ITIN with the IRS.",
+      "A step-by-step checklist of documents needed for IRS Form W-7 — the ITIN application — including accepted ID types, where to mail it, and what to expect.",
     category: "ITIN",
     readTime: "6 min read",
     showDisclaimer: true,
@@ -495,7 +495,7 @@ export const articles: Article[] = [
     slug: "itin-vs-ein",
     title: "ITIN vs EIN: what's the difference?",
     description:
-      "A side-by-side comparison so you can quickly tell which tax ID applies to your situation.",
+      "ITIN is for individuals who can't get an SSN. EIN is for businesses. A clear side-by-side comparison so you know exactly which tax ID applies to you.",
     category: "ITIN",
     readTime: "3 min read",
     showDisclaimer: true,
@@ -546,7 +546,7 @@ export const articles: Article[] = [
     slug: "how-to-register-a-small-business",
     title: "How do I register a small business?",
     description:
-      "The basic order of operations for legally forming and registering a small business in the US.",
+      "The correct order to legally register a small business in the US: structure, state filing, EIN, bank account, and licenses — step by step, in plain English.",
     category: "Business Setup",
     readTime: "5 min read",
     showDisclaimer: true,
@@ -626,7 +626,7 @@ export const articles: Article[] = [
     slug: "required-startup-documents",
     title: "Required startup documents for a small business",
     description:
-      "The core documents most small businesses need on file from day one.",
+      "The formation documents, tax IDs, licenses, and financial records every small business needs on file from day one — with a printable checklist.",
     category: "Business Setup",
     readTime: "4 min read",
     showDisclaimer: true,
@@ -688,7 +688,7 @@ export const articles: Article[] = [
     slug: "basic-compliance-checklist",
     title: "Basic compliance checklist for small businesses",
     description:
-      "The recurring requirements most small businesses need to stay on top of throughout the year.",
+      "Annual reports, license renewals, payroll filings, and tax deadlines — the recurring compliance requirements small businesses must track to stay in good standing.",
     category: "Business Setup",
     readTime: "4 min read",
     showDisclaimer: true,
@@ -814,7 +814,7 @@ export const articles: Article[] = [
     slug: "how-to-track-business-expenses",
     title: "How do I track business expenses?",
     description:
-      "A simple, no-fuss expense tracking system you can run in under 10 minutes a week.",
+      "A simple expense tracking system for small business owners — what categories to use, where to keep records, and how to make tax time far less painful.",
     category: "Financial Systems",
     readTime: "6 min read",
     directAnswer:
@@ -883,7 +883,7 @@ export const articles: Article[] = [
     slug: "profit-and-loss-basics",
     title: "What is a profit and loss statement?",
     description:
-      "A plain-English breakdown of the most important financial statement for a small business.",
+      "A P&L shows your revenue, expenses, and net profit for a period. Learn what every line means, how to read one, and how to run it for your small business.",
     category: "Financial Systems",
     readTime: "4 min read",
     directAnswer:
@@ -957,7 +957,7 @@ export const articles: Article[] = [
     slug: "simple-cash-flow-overview",
     title: "Cash flow basics for small businesses",
     description:
-      "What cash flow is, why it differs from profit, and how to keep it healthy.",
+      "Cash flow is not the same as profit — and the gap is why businesses fail. Learn how to track timing, invoice faster, and keep enough cash on hand.",
     category: "Financial Systems",
     readTime: "4 min read",
     directAnswer:
@@ -1145,7 +1145,7 @@ export const articles: Article[] = [
     slug: "how-to-get-your-first-10-customers",
     title: "How to get your first 10 customers",
     description:
-      "A simple, no-budget plan for getting your first paying customers from people and communities you already have access to.",
+      "Your first 10 customers almost never come from ads or social media. A practical, no-budget plan using direct outreach to the people and communities you already know.",
     category: "Marketing & Growth",
     readTime: "5 min read",
     showDisclaimer: false,
@@ -1287,7 +1287,7 @@ export const articles: Article[] = [
     slug: "how-to-write-an-offer-people-actually-respond-to",
     title: "How to write an offer people actually respond to",
     description:
-      "A simple framework for writing a clear, specific offer that converts conversations into customers.",
+      "Most offers fail because they're vague. This framework shows you how to write a clear, specific offer that converts real conversations into paying customers.",
     category: "Marketing & Growth",
     readTime: "4 min read",
     showDisclaimer: false,
@@ -1464,7 +1464,7 @@ export const articles: Article[] = [
     slug: "how-to-price-your-services",
     title: "How to price your services (and stop undercharging)",
     description:
-      "A practical method for setting service prices that cover your costs, reflect your value, and don't scare off the right customers.",
+      "Stop guessing on price. A practical method for calculating what to charge based on real costs, market rate, and client value — so you stop leaving money on the table.",
     category: "Marketing & Growth",
     readTime: "5 min read",
     showDisclaimer: false,
