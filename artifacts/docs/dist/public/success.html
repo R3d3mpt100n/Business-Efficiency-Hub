@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Pro Systems — Ledgely</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://ledgely.online/success.html">
+<script>if(location.hostname.endsWith('.replit.app')){location.replace('https://ledgely.online/success.html');}</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D98B;
+    --gold-pale: #FDF8EC;
+    --ink: #1A1814;
+    --ink-mid: #3D3A35;
+    --ink-muted: #7A756C;
+    --ink-faint: #B5B0A8;
+    --surface: #FAFAF8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--ink);
+    color: #FAFAF8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 3rem;
+  }
+
+  .check-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1.5rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem;
+    color: #FAFAF8;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .sub {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .code-section {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .code-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .code-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    user-select: all;
+  }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    color: var(--ink-faint);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    padding: 0.45rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover {
+    border-color: rgba(255,255,255,0.3);
+    color: #FAFAF8;
+  }
+
+  .save-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--gold);
+    color: var(--ink);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.01em;
+    margin-bottom: 1rem;
+  }
+
+  .cta-btn:hover { background: var(--gold-light); }
+  .cta-btn:active { transform: scale(0.99); }
+
+  .support-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+    margin-top: 0.5rem;
+  }
+
+  .support-note a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">Ledgely</div>
+  <div class="label">Pro Systems</div>
+
+  <div class="check-icon">✓</div>
+
+  <h1>You're in. Welcome to Pro Systems.</h1>
+  <p class="sub">Your purchase was successful. Use the access code below to log in any time.</p>
+
+  <div class="code-section">
+    <div class="code-label">Your Access Code</div>
+    <div class="code-value" id="access-code"></div>
+    <button class="copy-btn" onclick="copyCode()">Copy code</button>
+    <p class="save-note">Save this code somewhere safe — you'll need it each time you visit Pro Systems.</p>
+  </div>
+
+  <a class="cta-btn" href="pro-systems.html">Go to Pro Systems →</a>
+
+  <p class="support-note">Lost your code? <a href="index.html">Contact support →</a></p>
+</div>
+
+<script>
+// ACCESS_CODE — must match ACCESS_CODE in pro-systems.html
+const ACCESS_CODE = 'ledgely-pro-2025';
+document.getElementById('access-code').textContent = ACCESS_CODE;
+
+function copyCode() {
+  navigator.clipboard.writeText(ACCESS_CODE).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy code'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>

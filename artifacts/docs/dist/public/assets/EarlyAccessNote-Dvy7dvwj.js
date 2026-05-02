@@ -1,0 +1,1 @@
+import{j as e}from"./vendor-CDandLuC.js";function i({className:s=""}){return e.jsxs("p",{className:`text-xs text-amber-500/80 leading-relaxed ${s}`,children:["Early access pricing is live now.",e.jsx("br",{}),"This is the lowest price Ledgely Pro will ever be."]})}export{i as E};
